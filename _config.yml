@@ -71,7 +71,7 @@ lsi: False
 username: tacos-de-datos
 repo: website
 branch: master
-relative_source: website/
+relative_source: ../website/_site/
 destination: _site/
 production_url:  https://tacosdedatos.com/
 source_url:  https://github.com/tacos-de-datos/wesbite/
