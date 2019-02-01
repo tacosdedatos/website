@@ -1,7 +1,7 @@
 ---
 layout: page
 current: about
-title: About
+title: sobre tacos de datos
 navigation: true
 logo: 'assets/icons/home-button-transparent.png'
 class: page-template
