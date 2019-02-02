@@ -8,6 +8,8 @@ class: page-template
 subclass: 'post page'
 ---
 
+![](../../assets/images/hacienda-2.png)
+
 tacos de datos es tu sitio para aprender visualización y ciencia de datos, en tu idioma.
 
 La meta es crear un recurso que puedas visitar cuando necesitas ayuda creando, diseñando, o ideando tu proyecto de visualización y ciencia de datos.
