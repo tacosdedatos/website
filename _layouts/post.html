@@ -75,12 +75,12 @@ into the {body} of the default.hbs template -->
                                 {% if author[1].bio %}
                                     <p>{{ author[1].bio }}</p>
                                 {% else %}
-                                    <p>Read <a href="{{ site.baseurl }}author/{{ page.author }}">more posts</a> by this author.</p>
+                                    <p>Lee <a href="{{ site.baseurl }}author/{{ page.author }}">más publicaciones</a> por este autor.</p>
                                 {% endif %}
                             </section>
                         </section>
                         <div class="post-full-footer-right">
-                            <a class="author-card-button" href="{{ site.baseurl }}author/{{ page.author }}">Read More</a>
+                            <a class="author-card-button" href="{{ site.baseurl }}author/{{ page.author }}">Lee Más</a>
                         </div>
                     {% endif %}
                 {% endfor %}
