@@ -12,5 +12,5 @@ author: sergio
 ---
 
 Aqui iría el primer post
-==lorem ipsum==
+lorem ipsum
 
