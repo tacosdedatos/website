@@ -1,16 +1,4 @@
-speeches:
-  name: speeches
-  description: Some of the greatest words ever spoken.
-  cover: assets/images/speeches.jpg
-fiction:
-  name: fiction
-  description: False
-  cover: False
-fables:
-  name: fables
-  description: A series of short stories that make you think.
-  cover: assets/images/fables.jpg
-getting-started:
-  name: getting-started
-  description: False
-  cover: False
+cachitos:
+  name: cachitos
+  description: tips, observaciones, y otros pedacitos de sabiduría sobre el diseño de visualizaciones de datos.
+  cover: assets/cachitos/cover-cachitos.png
