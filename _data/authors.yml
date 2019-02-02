@@ -1,3 +1,13 @@
+sergio:
+  username: sergio
+  name: Sergio Sanchez
+  url_full: https://soyserg.io/
+  url: soyserg.io
+  bio: Visualizador de Datos (disque)
+  picture: assets/images/ghost.png
+  facebook: chekos.visuals
+  twitter: chekoswh
+  cover: False
 ghost:
   username: ghost
   name: Ghost
