@@ -12,6 +12,7 @@ author: sergio
 ---
 
 cachitos de diseño es una serie de publicaciones pequeñas celebrando o criticando (de una manera respetuosa) una decisión en el diseño de una visualización de datos. 
+
 El gráfico en cuestión tal vez tenga más de una razón para ser celebrado pero trataré de concentrarme en una sola. Esta serie es inspirada por la serie *muy*, *muy* similar de [Andy Kirk](http://www.twitter.com/visualisingdata) en su sitio [Visualising Data](https://visualisingdata.com).
 
 ***
