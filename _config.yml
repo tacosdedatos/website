@@ -27,7 +27,7 @@ twitter: tacosdedatos # replace by your username
 facebook: tacosdedatos # replace by your username
 
 # Disqus
-disqus: True
+disqus: False
 disqus_shortname: tacosdedatos # replace with your disqus username
 
 # Google Analytics
