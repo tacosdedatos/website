@@ -36,4 +36,4 @@ El uso de un gráfico (o una serie de gráficos) como apoyo a un gráfico princi
 
 ***
 
-Una pregunta para ustedes ¿cómo le llaman ustedes a estos gráficos circulares? los conocidos y odiados *pie charts* en inglés. Mándenme un tuit a [@ChekosWH](https://twitter.com/share?text=yo+le+digo+&url=https://tacosdedatos.com/cachitos-de-dise%C3%B1o)
+Una pregunta para ustedes ¿cómo le llaman ustedes a estos gráficos circulares? los conocidos y odiados *pie charts* en inglés. Mándenme un tuit a [@tacosdedatos](https://twitter.com/share?text=yo+le+digo+&url=https://tacosdedatos.com/cachitos-de-dise%C3%B1o)
