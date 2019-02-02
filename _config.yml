@@ -12,8 +12,8 @@ title: 🌮 tacos de datos
 description: El espacio de aprendizaje de visualización y ciencia de datos.
 cover: assets/images/blog-cover.png
 logo: assets/images/alt-blog-icon.png # transparente para que no tape el titulo
-logo_dark: assets/icons/favicon.png
-favicon: assets/icons/favicon.png
+logo_dark: assets/icons/favicon.ico
+favicon: assets/icons/favicon.ico
 production_url: https://tacosdedatos.com/
 source_url: https://github.com/tacos-de-datos/website/
 CNAME: #add cname for website to be created
