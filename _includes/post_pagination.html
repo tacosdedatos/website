@@ -6,7 +6,7 @@
             <a class="newer-posts" href="{{ site.baseurl }}page{{ paginator.previous_page }}/" title="Previous Page">&laquo; más recientes</a>
       {% endif %}
     {% endif %}
-    <span class="page-number"> Page {{ paginator.page }} of {{ paginator.total_pages }} </span>
+    <span class="page-number"> página {{ paginator.page }} de {{ paginator.total_pages }} </span>
     {% if paginator.next_page %} 
         <a class="older-posts" href="{{ site.baseurl }}page{{ paginator.next_page }}/" title="Next Page">anteriores &raquo;</a>
     {% endif %} 
