@@ -11,7 +11,7 @@ baseurl: /
 title: 🌮 tacos de datos
 description: El espacio de aprendizaje de visualización y ciencia de datos.
 cover: assets/images/blog-cover.png
-logo: assets/images/alt-blog-icon.png
+logo: assets/icons/blog-icon.png
 logo_dark: assets/icons/favicon.png
 favicon: assets/icons/favicon.png
 production_url: https://tacosdedatos.com/
