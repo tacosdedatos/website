@@ -30,3 +30,6 @@ Estas facetas son pequeñas y no ofrecen a quien lea el reporte porcentages exac
 Si fueran del mismo tamaño podríamos observar de manera más inmediata que casi 3 de 4 personas que fallecieron por diabetes en México en 1990 fueron mujeres.
 
 El uso de un gráfico (o una serie de gráficos) como apoyo a un gráfico principal es algo a lo que no le debemos tener miedo. Esta serie de facetas complementan al gráfico principal y aportan otra capa de información de interés al lector.
+
+
+Una pregunta para ustedes ¿cómo le llaman ustedes a estos gráficos circulares? los conocidos y odiados *pie charts* en inglés. Mándenme un tuit a [@ChekosWH](https://twitter.com/share?text=yo+le+digo+&url=https://tacosdedatos.com/cachitos-de-dise%C3%B1o)
