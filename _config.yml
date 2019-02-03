@@ -9,7 +9,7 @@ baseurl: /
 
 # Website info
 title: 🌮 tacos de datos
-description: El sitio para aprender sobre visualización de datos.
+description: El sitio para aprender sobre visualización de datos en español.
 cover: assets/images/blog-cover.png
 logo: assets/images/alt-blog-icon.png # transparente para que no tape el titulo
 logo_dark: assets/icons/favicon.ico
