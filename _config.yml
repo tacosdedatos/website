@@ -9,7 +9,7 @@ baseurl: /
 
 # Website info
 title: 🌮 tacos de datos
-description: El sitio para aprender sobre visualización de datos en español.
+description: Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos. Apoyando a la comunidad profesional de latinoamérica y el mundo. .
 cover: assets/images/blog-cover.png
 logo: assets/images/alt-blog-icon.png # transparente para que no tape el titulo
 logo_dark: assets/icons/favicon.ico
