@@ -16,7 +16,7 @@ logo_dark: assets/icons/favicon.ico
 favicon: assets/icons/favicon.ico
 production_url: https://tacosdedatos.com/
 source_url: https://github.com/tacos-de-datos/website/
-CNAME: #add cname for website to be created
+CNAME: tacosdedatos.com
 
 # Social info
 navigation: True # show the navbar links
@@ -51,16 +51,6 @@ plugins: [jekyll-paginate, jekyll-feed]
 feed:
   path: feed.xml
 
-# Additional settings available on the front-matter
-# Site logo in the index.html (as in demo.ghost.io)
-# Author's page cover in _layouts/author.html
-# The same for page.html and tag.html layouts
-# Post's page cover as a per-post basis _posts/...
-# Disqus comments as a per-post basis
-# ...
-
-# Settings for builing master branch with travis-ci
-# with jekyll-travis
 
 # Settings for deploy rake task
 # Username and repo of Github repo, e.g.
