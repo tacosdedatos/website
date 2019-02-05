@@ -27,7 +27,8 @@ subscribers: True # you need to connect an external service for this to work,
 twitter: tacosdedatos # replace by your username
 facebook: tacosdedatos # replace by your username
 instagram: tacosdedatos
-telegram: https://t.me/joinchat/AAAAAFLeJg3coN-PFoWtqg
+telegram: 
+# https://t.me/joinchat/AAAAAFLeJg3coN-PFoWtqg
 slack: tacosdedatos.slack.com
 
 # Disqus
