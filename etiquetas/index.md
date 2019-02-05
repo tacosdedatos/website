@@ -8,7 +8,7 @@ class: page-template
 subclass: 'post page'
 ---
 
-# Aquí puedes encontrar buscar las publicaciones por sus etiquetas
+Aquí puedes encontrar buscar las publicaciones por sus etiquetas
 
 Hasta el momento tenemos las siguientes:
 
