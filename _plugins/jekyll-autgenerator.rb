@@ -2,7 +2,7 @@ module Jekyll
 
   class AuthorsGenerator < Generator
 
-    #safe true
+    safe true
 
     def generate(site)
       site.data['authors'].each do |author, data|
