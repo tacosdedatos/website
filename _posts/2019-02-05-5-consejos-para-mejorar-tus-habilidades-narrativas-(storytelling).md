@@ -42,9 +42,11 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 ***
 
 **Narra. Cuenta la historia.** <br> 
-  La visualización efectiva de datos se complementa con tu habilidad narrativa. Cuando termines tus lectores deberían poder explicarle a alguien que no estuvo presente de que se trató tu proyecto. O tu presentación. O tu artículo. 
+  La visualización efectiva de datos se complementa con tu habilidad narrativa. Cuando termines tus lectores deberían poder explicarle a alguien que no estuvo presente de que se trató tu proyecto. O tu presentación. O tu artículo. Entregales el lenguaje para compartir el conocimiento que les acabas de otorgar. 
 
-  En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Es nuestro trabajo como periodistas, practicantes de la ciencia, visualizadores, escritores, personas curiosas el sintetizar estos torbellinos de información en algo digerible. Cuando analizamos y visualizamos información aprendemos más. Entre más aprendemos, más podemos enseñarle a los demás. 
+  En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Es nuestro trabajo como periodistas, como practicantes de la ciencia, como visualizadores, como escritores, como personas curiosas, el sintetizar estos torbellinos de información en algo digerible para los demás. Para que esas personas tomen decisiones informadas. Para que construyan encima de lo que tu construiste y alcanzemos nuevas alturas como sociedad. 
+  
+  Cuando analizamos y visualizamos información aprendemos. Entre más aprendemos, más podemos enseñar a los demás. 
 
 ***
 
