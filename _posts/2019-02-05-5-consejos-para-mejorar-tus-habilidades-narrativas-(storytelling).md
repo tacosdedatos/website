@@ -13,7 +13,9 @@ author: sergio
 
 En la visualización y la ciencia de datos, como en cualquier otro ámbito técnico, la comunicación efectiva es una habilidad esencial. 
 
-La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante mostrar tus resultados con gráficos y diagramas. También es necesario el saber narrar tus resultados, el contar una historia. ¿Qué hemos descubierto? ¿Cómo llegamos a estas conclusiones? ¿Por qué deberían los demás tomar un poco de su tiempo y poner atención a tu investigación y resultados?
+La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante mostrar tus resultados con gráficos y diagramas. Es necesario el saber narrar tus resultados. 
+
+¿Qué hemos descubierto? ¿Cómo llegamos a estas conclusiones? ¿Por qué deberían los demás tomar un poco de su tiempo y poner atención a tu investigación y resultados?
 
 En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nuestras habilidades técnicas sino también otras habilidades complementarias. En este caso, como mejorar tus habilidades narrativas - como comunicar mejor con datos. 
 
