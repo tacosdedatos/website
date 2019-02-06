@@ -39,11 +39,14 @@ A lo largo del tiempo seguiremos agregando recursos para desarrollar no sólo nu
 5. **Se conciente de los colores que utilizas y se conciente de las predispociciones de tu audiencia.** <br>
    A nadie le gusta ver números rojos en una reunión de negocios.
 
+***
 
 **Narra. Cuenta la historia.** <br> 
   La visualización efectiva de datos se complementa con narrativas. Cuando termines tu lector debe saber las repuestas a las siguientes preguntas: ¿Cúal fué el punto de esta presentación, de este artículo, de este gráfico? ¿Qué resuelve? ¿Qué aprendí?
 
   En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Es nuestro trabajo como periodistas, practicantes de la ciencia, visualizadores, escritores, personas curiosas el sintetizar estos torbellinos de información en algo digerible. Cuando analizamos y visualizamos información aprendemos más. Entre más aprendemos, más podemos enseñarle a los demás. 
+
+***
 
 > *"El conocimiento os hará libres" - Socrates*
 
