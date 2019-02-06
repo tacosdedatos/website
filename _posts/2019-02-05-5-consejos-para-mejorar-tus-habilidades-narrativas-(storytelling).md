@@ -77,6 +77,8 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 
   Si tienes algún consejo que te haya servido mucho deberías compartirlo con la comunidad. Puedes tuitear usando la hashtag #VisDeDatosTips o etiqueta a [@tacosdedatos](https://twitter.com/tacosdedatos). Estaremos retuiteando todos los consejos, ¡entre más personas aprendan mejor! 
   
+  Si tu consejo no cabe en un tuit [mandanos un correo ✉️ consejos@tacosdedatos.com](mailto:consejos@tacosdedatos.com?subject=Consejos%20de%20Narración%20con%20datos&body=Hola-holaaa)
+  
 ***
 
 > *"El conocimiento os hará libres" - Socrates*
