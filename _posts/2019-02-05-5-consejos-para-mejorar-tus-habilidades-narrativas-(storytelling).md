@@ -15,8 +15,6 @@ En la visualización y la ciencia de datos, como en cualquier otro ámbito técn
 
 La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante mostrar tus resultados con gráficos y diagramas. Es necesario el saber narrar tus resultados. 
 
-¿Qué hemos descubierto? ¿Cómo llegamos a estas conclusiones? ¿Por qué deberían los demás tomar un poco de su tiempo y poner atención a tu investigación y resultados?
-
 En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nuestras habilidades técnicas sino también otras habilidades complementarias. En este caso, como mejorar tus habilidades narrativas - como comunicar mejor con datos. 
 
 ##### 5 consejos prácticos.
@@ -71,7 +69,8 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 
   En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Como periodistas, como practicantes de la ciencia, como visualizadores, como escritores, como personas curiosas, es nuestro trabajo el sintetizar estos torbellinos de información en algo digerible para los demás. Para que esas personas tomen decisiones informadas. Para que construyan encima de lo que tu construiste y alcanzemos nuevas alturas como sociedad. 
   
-  Cuando analizamos y visualizamos información aprendemos. Entre más aprendemos, más podemos enseñar a los demás. 
+  Cuando analizamos y visualizamos información aprendemos. Entre más aprendemos, más podemos enseñar a los demás. <br>
+  Para concluir quiero pedirte una cosa: comparte con 
 
 ***
 
