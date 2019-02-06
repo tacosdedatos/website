@@ -24,17 +24,17 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
   Recuerda el ***contexto*** de tu presentación. Tu audiencia tiene un tiempo limitado para consumir tus visualizaciones y esto depende mucho del medio de comunicación. Si vas a enviar un reporte impreso puede que tengas el lujo de crear una visualización más compleja que si estás presentando algo en una reunión de 30 minutos con diapositivas. <br>
   Solo tú sabes tu **audiencia** y el **contexto** en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilizalo en tu favor.
 2. **Escoje la mejor visualización para lo que quieres dar a conocer.** <br>
-  La mejor visualización es la que transfiere la información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, **muy** interesantes y atractivos pero la realidad es que muchas veces un simple gráfico de barras puede ser más efectivo y eficiente. 
+  La mejor visualización es la que transfiere la información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, **muy** interesantes y atractivos pero la realidad es que un simple gráfico de barras puede llegar ser más efectivo y eficiente. 
 3. **Trata de mantenerlo simple. Estas presentando resultados, no explorando datos.** <br>
-  Sumandole a los puntos que llevamos: recordando tu audiencia y el contexto de tu presentación probablemente la mejor visualización es algo más simple de lo que creemos. Quiero compartirles un ejemplo personal. En el trabajo estabamos escribiendo un reporte sobre la población migrante en California en Estados Unidos. Yo queria hacer algo asi: <br>
+  Sumandole a los puntos que llevamos: recordando tu audiencia y el contexto de tu presentación probablemente la mejor visualización es algo más simple de lo que creemos. Quiero compartirles un ejemplo personal. En el trabajo estabamos escribiendo un reporte sobre la población migrante en California en Estados Unidos. Yo quería hacer algo así: <br>
   <img src ="../assets/blogposts/000_ejemplo_1.png" style="background-color:white"> <br>
-  Obvio personalizado con los colores de la empresa pero queria tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California no vienen de Latinoamérica ya. Ahora llegan de Asia. Mi ejemplo, técnicamente mostraba eso. Entre ***muchas*** otras cosas. Pero solo necesitabamos mostrar **un** punto. Un gráfico como este lograba eso: <br>
+  Obviamente primero personalizarlo con los colores de la empresa pero quería tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, que pudiera ver las proporciones por año, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California no vienen de Latinoamérica ya. Ahora llegan de Asia. Mi ejemplo, técnicamente mostraba eso. Entre ***muchas*** otras cosas. Pero solamente necesitabamos illustrar **un** hecho. Un gráfico como este lograba eso: <br>
   <img src ="../assets/blogposts/000_ejemplo_2.png" style="background-color:white"><br>
-4. **Elimina distracciones y atrae atención a lo que *tu* quieres que se le ponga atención.<br>**
+4. **Elimina distracciones y atrae atención a lo que *tú* quieres que se le ponga atención.<br>**
   Esto va mano a mano con mantener tus visualizaciónes explicativas y simples pero no es lo mismo.
-  No tengas miedo de ser obvio en tus intenciones. Tomemos por ejemplo estos dos gráficos de barras. Ambos muestran la misma información pero uno de ellos esta enfatizando un punto muy obviamente. <br>
+  No tengas miedo de ser obvio en tus intenciones. Tomemos por ejemplo estos dos gráficos de barras. Ambos muestran la misma información pero uno de ellos esta enfatizando un hecho muy obviamente. <br>
   <img src ="../assets/blogposts/000_ejemplo34.png" style="background-color:white">
-  - No tengas miedo de agregar textos explicativos. Tus visualizaciones no siempre van a vivir en donde esperas y es buena practica incluir detalles que pueden ayudar a entender la visualización sin el texto que la acompañaría. <br>
+  - No tengas miedo de agregar textos explicativos. Tus visualizaciones no siempre van a vivir en donde esperas y es buena practica incluir detalles que pueden ayudar a entender la visualización fuera de contexto (si no afecta tu visualización en sí). <br>
   <img src ="../assets/blogposts/000_ejemplo_5.png" style="background-color:white"> 
 5. **Se conciente de los colores que utilizas y se conciente de las predispociciones de tu audiencia.** <br>
    A nadie le gusta ver números rojos en una reunión de negocios.
@@ -42,7 +42,7 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 ***
 
 **Narra. Cuenta la historia.** <br> 
-  La visualización efectiva de datos se complementa con narrativas. Cuando termines tu lector debe saber las repuestas a las siguientes preguntas: ¿Cúal fué el punto de esta presentación, de este artículo, de este gráfico? ¿Qué resuelve? ¿Qué aprendí?
+  La visualización efectiva de datos se complementa con tu habilidad narrativa. Cuando termines tus lectores deberían poder explicarle a alguien que no estuvo presente de que se trató tu proyecto. O tu presentación. O tu artículo. 
 
   En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Es nuestro trabajo como periodistas, practicantes de la ciencia, visualizadores, escritores, personas curiosas el sintetizar estos torbellinos de información en algo digerible. Cuando analizamos y visualizamos información aprendemos más. Entre más aprendemos, más podemos enseñarle a los demás. 
 
