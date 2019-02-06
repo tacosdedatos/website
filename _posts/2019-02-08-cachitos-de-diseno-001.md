@@ -17,20 +17,20 @@ Muchas publicaciones se dieron a la tarea de corroborar sus *"declaraciones"* po
 
 <figure>
     <img src='../assets/cachitos/001_NYT.png' alt='NYT' />
-    <figcaption><a href="https://www.nytimes.com/interactive/2019/01/11/us/politics/trump-border-crisis-reality.html" target="_blank" rel="noopener">New York Times</a></figcaption>
+    <figcaption style="text-align:center"><a href="https://www.nytimes.com/interactive/2019/01/11/us/politics/trump-border-crisis-reality.html" target="_blank" rel="noopener">New York Times</a></figcaption>
 </figure>
 
 <figure>
     <img src='../assets/cachitos/001_PEW.jpg' alt='PEW' />
-    <figcaption><a href="http://www.pewresearch.org/fact-tank/2019/01/16/border-apprehensions-of-migrant-families-have-risen-substantially-so-far-in-2018/" target="_blank" rel="noopener">Pew Research Center</a></figcaption>
+    <figcaption style="text-align:center"><a href="http://www.pewresearch.org/fact-tank/2019/01/16/border-apprehensions-of-migrant-families-have-risen-substantially-so-far-in-2018/" target="_blank" rel="noopener">Pew Research Center</a></figcaption>
 </figure>
 
 <figure>
     <img src='../assets/cachitos/001_Bloomberg_1.jpg' alt='Bloomberg 1' />
-    <figcaption><a href="https://www.bloomberg.com/graphics/trump-mexico-wall/#how-many-people-currently-cross" target="_blank" rel="noopener">Bloomberg</a></figcaption>
+    <figcaption style="text-align:center"><a href="https://www.bloomberg.com/graphics/trump-mexico-wall/#how-many-people-currently-cross" target="_blank" rel="noopener">Bloomberg</a></figcaption>
 </figure>
 
-
+<br>
 Los tres gráficos presentan la cantidad total de arrestos en la frontera con México pero cada una de estas instituciones tomo una decisión consciente sobre que querían enfatizar.
 
 * El New York Times se enfoca en las administraciones en la Casa Blanca como si dijeran *"Trump dice que estamos en crisis pero miren como estaban las cosas bajo Bush."*
