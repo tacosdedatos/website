@@ -1,10 +1,10 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/000.png
+cover:  assets/blogposts/000.png.png
 navigation: True
 title: 5 consejos para mejorar tus habilidades narrativas
-date: 2019-02-02 14:00:00
+date: 2019-02-06 08:00:00
 tags: [blog]
 class: post-template
 subclass: 'post tag-blog'
