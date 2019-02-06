@@ -5,24 +5,24 @@ cover:  assets/blogposts/000.png
 navigation: True
 title: 5 consejos para mejorar tus habilidades narrativas
 date: 2019-02-02 14:00:00
-tags: [cachitos]
+tags: [blog]
 class: post-template
 subclass: 'post tag-blog'
 author: sergio
 ---
 
-En la visualización y la ciencia de datos, como en cualquier otro ámbito técnico, la comunicación efectiva es habilidad esencial. 
+En la visualización y la ciencia de datos, como en cualquier otro ámbito técnico, la comunicación efectiva es una habilidad esencial. 
 
-La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante ilustrar tus resultados con gráficos y diagramas - aunque esto ayuda mucho la mayoría de las veces. También es necesario el saber narrar tus resultados, el contar una historia. ¿Qué hemos descubierto? ¿Cómo llegamos a estas conclusiones? ¿Por qué deberían los demás tomar un poco de su tiempo y poner atención a tu investigación y resultados?
+La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante mostrar tus resultados con gráficos y diagramas. También es necesario el saber narrar tus resultados, el contar una historia. ¿Qué hemos descubierto? ¿Cómo llegamos a estas conclusiones? ¿Por qué deberían los demás tomar un poco de su tiempo y poner atención a tu investigación y resultados?
 
-A lo largo del tiempo seguiremos agregando recursos para desarrollar no sólo nuestras habilidades técnicas sino también habilidades complementarias. En este caso, como mejorar tus habilidades narrativas, como escribir mejor para comunicar con datos. 
+En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nuestras habilidades técnicas sino también otras habilidades complementarias. En este caso, como mejorar tus habilidades narrativas - como comunicar mejor con datos. 
 
 ##### 5 consejos prácticos.
 
 1. **Mantén en mente el contexto y tu audiencia.**<br>
-  Un error muy común es adentramos tanto en nuestro proyecto que olvidamos que estamos presentando un producto final a alguien más. A alguien que no ha estado contigo paso a paso en tu análisis. Recuerda quien es tu ***audiencia***: ¿estas presentando tus resultados al equipo de edición en tu periodico local? ¿a tu jefe que quiere saber como van las ventas? ¿a tus alumnos? Tu audiencia va a variar de proyecto a proyecto y siempre van a llevar prioridad y tu trabajo es personalizar tus visualizaciones y narrativas de la manera más facil de diregir para tus lectores. <br> 
-  Recuerda el ***contexto*** de tu presentación. Tu audiencia tiene un tiempo limitado para consumir tus visualizaciones y depende mucho del medio de comunicación. Si vas a enviar un reporte impreso puede que tengas el lujo de posiblemente crear una visualización más compleja que si estás presentando algo en una reunión de 30 minutos con diapositivas. <br>
-  Solo tu sabes tu **audiencia** y el **contexto** en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilizalo en tu favor.
+  Un error muy común al adentramos tanto en nuestro proyecto es olvidarnos que estamos presentando un producto final a alguien más. A alguien que no ha estado contigo paso a paso en tu análisis. Recuerda quien es tu ***audiencia***: ¿estás presentando tus resultados al equipo de edición en tu periodico local? ¿a tu jefe que quiere saber como van las ventas? ¿a tus alumnos? Tu audiencia va a variar de proyecto a proyecto y siempre van a llevar prioridad. Tu trabajo es personalizar tus visualizaciones y narrativas a la forma más facil de diregir para tus lectores. <br> 
+  Recuerda el ***contexto*** de tu presentación. Tu audiencia tiene un tiempo limitado para consumir tus visualizaciones y esto depende mucho del medio de comunicación. Si vas a enviar un reporte impreso puede que tengas el lujo de crear una visualización más compleja que si estás presentando algo en una reunión de 30 minutos con diapositivas. <br>
+  Solo tú sabes tu **audiencia** y el **contexto** en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilizalo en tu favor.
 2. **Escoje la mejor visualización para lo que quieres dar a conocer.** <br>
   La mejor visualización es la que transfiere la información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, **muy** interesantes y atractivos pero la realidad es que muchas veces un simple gráfico de barras puede ser más efectivo y eficiente. 
 3. **Trata de mantenerlo simple. Estas presentando resultados, no explorando datos.** <br>
