@@ -43,4 +43,6 @@ Cuando analizamos y visualizamos datos para presentar debemos detenernos un segu
 
 Del mismo conjunto de datos pueden salir muchas historias muy diferentes.
 
-En lo personal, me gustó más el de PEW porque utilizan líneas en lugar de barras lo cual deja mucho más espacio en blanco y vuelve el gráfico *menos pesado* al leer. ¿A ti que gráfico te gusto más? 
+En lo personal, me gustó más el de PEW porque utilizan líneas en lugar de barras lo cual deja mucho más espacio en blanco y vuelve el gráfico *menos pesado* al leer. 
+
+¿A ti que gráfico te gusto más? [Mandanos un tuit](https://twitter.com/share?text=Obvis+microbis+el+de+PEW+es+el+mejor+%40tacosdedatos+%F0%9F%8C%AE)
