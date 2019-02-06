@@ -41,7 +41,7 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
   
   <img src ="../assets/blogposts/000_ejemplo_1.png" style="background-color:white">
   
-  Obviamente primero personalizarlo con los colores de la empresa pero quería tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, que pudiera ver las proporciones por año, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California no vienen de Latinoamérica ya. Ahora llegan de Asia. 
+  Obviamente primero personalizarlo con los colores de la empresa pero quería tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, que pudiera ver las proporciones por año, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California ya no vienen de Latinoamérica. Ahora llegan de Asia. 
   
   Mi ejemplo, técnicamente mostraba eso. Entre ***muchas*** otras cosas. Pero solamente necesitabamos illustrar **un** hecho. Un gráfico como este lograba eso:
   
