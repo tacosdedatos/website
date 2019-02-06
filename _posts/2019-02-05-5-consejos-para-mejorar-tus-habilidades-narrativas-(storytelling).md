@@ -67,11 +67,11 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 
   La visualización efectiva de datos se complementa con tu habilidad narrativa. Cuando termines tus lectores deberían poder explicarle a alguien que no estuvo presente de que se trató tu proyecto. O tu presentación. O tu artículo. Entregales el lenguaje para compartir el conocimiento que les acabas de otorgar. 
 
-  En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Como periodistas, como practicantes de la ciencia, como visualizadores, como escritores, como personas curiosas, es nuestro trabajo el sintetizar estos torbellinos de información en algo digerible para los demás. Para que esas personas tomen decisiones informadas. Para que construyan encima de lo que tu construiste y alcanzemos nuevas alturas como sociedad. 
+  En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Como periodistas, como practicantes de la ciencia, como visualizadores, como escritores, como personas curiosas, es nuestro trabajo el sintetizar estos torbellinos de información en algo digerible para los demás. Para que esas personas tomen decisiones informadas. Para que construyan encima de lo que tú construiste y alcanzemos nuevas alturas como sociedad. 
   
   Cuando analizamos y visualizamos información aprendemos. Entre más aprendemos, más podemos enseñar a los demás.
   
-  Para concluir quiero pedirte una cosa: intercambia un consejo con alguien con quien trabajes o estudies. No importa tu nivel de expriencia, esa persona puede aprender algo nuevo por ti y tú de ella. Te dejo dos ejemplos de preguntas:
+  Para concluir quiero pedirte una cosa: intercambia un consejo con alguien con quien trabajes o estudies. No importa tu nivel de expriencia, esa persona puede aprender algo nuevo por ti y tú por ella. Te dejo dos ejemplos de preguntas:
   * Estoy trabajando en este proyecto donde tengo que hacer *X* y *Y*, ¿cómo lo abordarías tu?
   * Me gustó mucho tu trabajo/artículo/presentación, ¿cómo se te ocurrió hacerlo así?
 
