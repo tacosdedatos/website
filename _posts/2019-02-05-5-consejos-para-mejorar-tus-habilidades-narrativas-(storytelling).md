@@ -31,7 +31,7 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
   
 2\. **Escoje la mejor visualización para lo que quieres dar a conocer.**
 
-  La mejor visualización es la que transfiere la información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, **muy** interesantes y atractivos pero la realidad es que un simple gráfico de barras puede llegar ser más efectivo y eficiente. 
+  La mejor visualización es la que transfiere su información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, **muy** interesantes y atractivos pero la realidad es que un simple gráfico de barras puede llegar ser más efectivo y eficiente. 
   
 3\. **Trata de mantenerlo simple. Estas presentando resultados, no explorando datos.** 
 
