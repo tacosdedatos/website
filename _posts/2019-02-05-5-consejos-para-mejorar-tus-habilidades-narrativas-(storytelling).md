@@ -75,7 +75,7 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
   * Estoy trabajando en este proyecto donde tengo que hacer *X* y *Y*, ¿cómo lo abordarías tu?
   * Me gustó mucho tu trabajo/artículo/presentación, ¿cómo se te ocurrió hacerlo así?
 
-  Si tienes algún consejo que te haya servido mucho deberías compartirlo con la comunidad. Puedes tuitear usando la hashtag [#VisDeDatosTips](https://twitter.com/share?text=#VisDeDatosTips) o etiqueta a [@tacosdedatos](https://twitter.com/tacosdedatos). Estaremos retuiteando todos los consejos, ¡entre más personas aprendan mejor! 
+  Si tienes algún consejo que te haya servido mucho deberías compartirlo con la comunidad. Puedes tuitear usando la hashtag [#VisDeDatosTips](https://twitter.com/share?text=%23VisDeDatosTips) o etiqueta a [@tacosdedatos](https://twitter.com/tacosdedatos). Estaremos retuiteando todos los consejos, ¡entre más personas aprendan mejor! 
   
   Si tu consejo no cabe en un tuit [mandanos un correo ✉️ consejos@tacosdedatos.com](mailto:consejos@tacosdedatos.com?subject=Consejos%20de%20Narración%20con%20datos&body=Hola-holaaa)
   
