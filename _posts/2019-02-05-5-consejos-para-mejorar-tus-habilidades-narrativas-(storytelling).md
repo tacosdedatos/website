@@ -30,13 +30,21 @@ A lo largo del tiempo seguiremos agregando recursos para desarrollar no sólo nu
   <img src ="../assets/blogposts/000_ejemplo_1.png" style="background-color:white"> <br>
   Obvio personalizado con los colores de la empresa pero queria tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California no vienen de Latinoamérica ya. Ahora llegan de Asia. Mi ejemplo, técnicamente mostraba eso. Entre ***muchas*** otras cosas. Pero solo necesitabamos mostrar **un** punto. Un gráfico como este lograba eso: <br>
   <img src ="../assets/blogposts/000_ejemplo_2.png" style="background-color:white"><br>
-4. **Elimina distracciones y atrae atención a lo que **tu** quieres que se le ponga atención.<br> **
+4. **Elimina distracciones y atrae atención a lo que *tu* quieres que se le ponga atención.<br>**
   Esto va mano a mano con mantener tus visualizaciónes explicativas y simples pero no es lo mismo.
   No tengas miedo de ser obvio en tus intenciones. Tomemos por ejemplo estos dos gráficos de barras. Ambos muestran la misma información pero uno de ellos esta enfatizando un punto muy obviamente. <br>
   <img src ="../assets/blogposts/000_ejemplo34.png" style="background-color:white">
   - No tengas miedo de agregar textos explicativos. Tus visualizaciones no siempre van a vivir en donde esperas y es buena practica incluir detalles que pueden ayudar a entender la visualización sin el texto que la acompañaría. <br>
   <img src ="../assets/blogposts/000_ejemplo_5.png" style="background-color:white"> 
-5. **Se conciente de los colores que utilizas y se conciente de las predispociciones de tu audiencia. A nadie le gusta ver números rojos en una reunión de negocios.**
-6. **Narra. Cuenta la historia.** <br> 
+5. **Se conciente de los colores que utilizas y se conciente de las predispociciones de tu audiencia.** <br>
+   A nadie le gusta ver números rojos en una reunión de negocios.
 
-  La visualización efectiva de datos se complementa con narrativas. Cuando termines tu lector debe saber las repuestas a las siguientes preguntas: ¿Cúal fué el punto de esta presentación, de este artículo, de este gráfico? ¿Qué resuelve? ¿Qué aprendí?**
+
+**Narra. Cuenta la historia.** <br> 
+  La visualización efectiva de datos se complementa con narrativas. Cuando termines tu lector debe saber las repuestas a las siguientes preguntas: ¿Cúal fué el punto de esta presentación, de este artículo, de este gráfico? ¿Qué resuelve? ¿Qué aprendí?
+
+  En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Es nuestro trabajo como periodistas, practicantes de la ciencia, visualizadores, escritores, personas curiosas el sintetizar estos torbellinos de información en algo digerible. Cuando analizamos y visualizamos información aprendemos más. Entre más aprendemos, más podemos enseñarle a los demás. 
+
+> *"El conocimiento os hará libres" - Socrates*
+
+
