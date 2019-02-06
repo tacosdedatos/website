@@ -21,13 +21,13 @@ En **tacosdedatos** seguiremos agregando recursos para desarrollar no sólo nues
 
 1\. **Mantén en mente el contexto y tu audiencia.**<br>
 
-  Un error muy común al adentramos tanto en nuestro proyecto es olvidarnos que estamos presentando un producto final a alguien más. A alguien que no ha estado contigo paso a paso en tu análisis. Recuerda quien es tu ***audiencia***: ¿estás presentando tus resultados al equipo de edición en tu periodico local? ¿a tu jefe que quiere saber como van las ventas? ¿a tus alumnos? ¿a tus seguidores en redes sociales? (sígueme [@tacosdedatos](https://twitter.com/tacosdedatos) 😉).
+  Un error muy común al adentramos tanto en nuestro proyecto es olvidar que estamos presentando un producto final a alguien más. A alguien que no ha estado contigo paso a paso en tu análisis. Recuerda quien es tu ***audiencia***: ¿estás presentando tus resultados al equipo de edición en tu periodico local? ¿a tu jefe que quiere saber como van las ventas? ¿a tus alumnos? ¿a tus seguidores en redes sociales? (sígueme [@tacosdedatos](https://twitter.com/tacosdedatos) 😉).
   
   Tu audiencia va a variar de proyecto a proyecto y siempre van a llevar prioridad. Tu trabajo es personalizar tus visualizaciones y narrativas a la forma más facil de diregir para tus lectores. 
   
   Recuerda el ***contexto*** de tu presentación. Tu audiencia tiene un tiempo limitado para consumir tus visualizaciones y esto depende mucho del medio de comunicación. Si vas a enviar un reporte impreso puede que tengas el lujo de crear una visualización más compleja que si estás presentando algo en una reunión de 30 minutos con diapositivas.
   
-  Solo tú sabes tu **audiencia** y el **contexto** en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilizalo en tu favor.
+  Solo tú sabes tu **audiencia** y el **contexto** en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilízalo en tu favor.
   
 2\. **Escoje la mejor visualización para lo que quieres dar a conocer.**
 
