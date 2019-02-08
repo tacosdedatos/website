@@ -11,7 +11,7 @@ subclass: 'post tag-tutoriales'
 author: sergio
 ---
 
-Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares. Para el análisis geográficos y visualización de datos, respectivamente.
+Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares para el análisis geográficos y visualización de datos, respectivamente.
 
 Si utilizas `python` para tus proyectos de análisis de datos lo más probable es que hayas utilizado `pandas` en algún momento. `GeoPandas` es una *optimización* de `pandas` para trabajar con datos geográficos. 
 En este tutorial aprenderemos lo siguiente:
@@ -33,4 +33,4 @@ MyBinder creará un espacio en sus servidores donde activará una sesión de `Ju
 
 Este tutorial esta etiquetado como **principiante-intermedio** porque no es material introductorio a `geopandas`, `altair` o `jupyter`. <br> ¿Estabas buscando eso? No te preocupes, ¡guías y tutoriales introductorios vienen en camino a **tacosdedatos**!
 
-Por último, este es el primer tutorial que publicamos. Estamos experimentando con el formato y decidimos hacerlo *interactivo*, simple y directo - aprendes a hacer **una** sola cosa. Cuéntanos que piensas de este formato en un [tuit](https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+). ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en **tacosdedatos**? Envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). 
+Por último, este es el primer tutorial que publicamos. Estamos experimentando con el formato y decidimos hacerlo *interactivo*, simple y directo - te concentras en aprender **una** sola cosa. Cuéntanos que piensas de este formato en un [tuit](https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+). ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en **tacosdedatos**? Envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). 
