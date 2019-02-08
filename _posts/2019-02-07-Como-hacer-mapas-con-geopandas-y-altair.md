@@ -4,7 +4,7 @@ current: post
 cover:  assets/tutoriales/000.png
 navigation: True
 title: Como hacer mapas con geopandas y altair
-date: 2019-02-07 12:00:00
+date: 2019-02-07 17:00:00
 tags: [tutoriales, python, altair]
 class: post-template
 subclass: 'post tag-tutoriales'
