@@ -11,14 +11,14 @@ subclass: 'post tag-tutoriales'
 author: sergio
 ---
 
-Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares.
+Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares. Si utilizas `python` para tus proyectos de análisis de datos lo más probable es que hayas utilizado `pandas` en algún momento. `GeoPandas` es una *optimización* de `pandas` para trabajar con datos geográficos. 
 
 | nivel | conocimiento asumido |
 |:-----|:--------------------:|
 | principiante-intermedio | asumimos conocimientos básicos de `python`, `jupyter` y familiaridad con `pandas`.<br>Conocimiento básico de `altair` ayuda mucho pero no es necesario. |
 
 
-Si utilizas `python` para tus proyectos de análisis de datos lo más probable es que hayas utilizado `pandas` en algún momento. `GeoPandas` es una *optimización* de `pandas` para trabajar con datos geográficos. En este tutorial aprenderemos lo siguiente:
+En este tutorial aprenderemos lo siguiente:
 * Como leer y manipular nuestros datos geográficos de formato `.shp` a `.geojson`
   - también cambiamos el Sistema de Coordenadas de Referencia 👀
 * Como construir gráficos *compuestos* (en capas) con `altair`
