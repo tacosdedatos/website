@@ -5,7 +5,7 @@ cover:  assets/blogposts/000.png
 navigation: True
 title: 5 consejos para mejorar tus habilidades narrativas
 date: 2019-02-06 08:30:00
-tags: [blog]
+tags: [blog, guias]
 class: post-template
 subclass: 'post tag-blog'
 author: sergio
