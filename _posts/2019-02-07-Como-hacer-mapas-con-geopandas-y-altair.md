@@ -33,5 +33,3 @@ MyBinder creará un espacio en sus servidores donde activará una sesión de `Ju
 Este tutorial esta etiquetado como **principiante-intermedio** porque no es material introductorio a `geopandas`, `altair` o `jupyter`. Asumimos conocimiento básico de estas bibliotecas de `python`. ¿Estabas buscando eso? No te preocupes, ¡guías y tutoriales introductorios vienen en camino a **tacosdedatos**!
 
 Por último, este es el primer tutorial que publicamos. Estamos experimentando con el formato y decidimos hacerlo *interactivo*, simple y directo - aprendes a hacer **una** sola cosa. Cuéntanos que piensas de este formato en un [tuit](https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+). ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en **tacosdedatos**? Envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). 
-
-
