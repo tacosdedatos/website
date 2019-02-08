@@ -11,7 +11,7 @@ subclass: 'post tag-tutoriales'
 author: sergio
 ---
 
-Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares. 
+Inauguramos la serie de tutoriales aprendiendo sobre `geopandas` y `altair`. Dos bibliotecas de `python` muy poderosas y cada día más populares. Para el análisis geográficos y visualización de datos, respectivamente.
 
 Si utilizas `python` para tus proyectos de análisis de datos lo más probable es que hayas utilizado `pandas` en algún momento. `GeoPandas` es una *optimización* de `pandas` para trabajar con datos geográficos. 
 En este tutorial aprenderemos lo siguiente:
