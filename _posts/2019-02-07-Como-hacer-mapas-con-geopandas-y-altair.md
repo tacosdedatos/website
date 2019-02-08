@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/cachitos/001.png
+cover:  assets/tutoriales/000.png
 navigation: True
 title: Como hacer mapas con geopandas y altair
 date: 2019-02-07 12:00:00
