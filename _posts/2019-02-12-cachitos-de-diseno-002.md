@@ -4,7 +4,7 @@ current: post
 cover:  assets/cachitos/002.png
 navigation: True
 title: Cachitos de Diseño \#002
-date: 2019-02-12 14:00:00
+date: 2019-02-12 11:00:00
 tags: [cachitos]
 class: post-template
 subclass: 'post tag-cachitos'
