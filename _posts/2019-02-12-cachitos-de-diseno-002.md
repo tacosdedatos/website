@@ -28,7 +28,7 @@ La historia está escrita en letras blancas con un fondo oscuro lo cual lo hace 
 </figure>
 
 <br>
-Esta combinación de colores me encantó porque atrae tu atención pero no de una manera brusca como lo haría un amarillo o un azul más *brillante*. Cuando estas presentando información muy compleja es importante darle a tus lectores tiempo para procesar dicha información. No quieres presentarle un diagrama de flujos el primer ejemplo y saturarlo con **llamadas de atención** (*mira aquí, mira acá, esto también es importante y esto y esto y esto*). 
+Esta combinación de colores me encantó porque atrae tu atención pero no de una manera brusca como lo haría un amarillo o un azul más *brillante*. Cuando estas presentando información muy compleja es importante darle a tus lectores tiempo para procesar dicha información. No quieres presentarle un diagrama de flujos como el primer ejemplo y saturarlo con **llamadas de atención** (*mira aquí, mira acá, esto también es importante y esto y esto y esto*). 
 
 El uso prudente y consciente de una paleta de colores **funcional** es muy importante. 
 
