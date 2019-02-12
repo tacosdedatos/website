@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/cachitos/001.png
 navigation: True
-title: Cachitos de Diseño #000
+title: Cachitos de Diseño \#001
 date: 2019-02-08 14:00:00
 tags: [cachitos]
 class: post-template
