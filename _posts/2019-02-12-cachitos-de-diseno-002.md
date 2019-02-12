@@ -28,7 +28,9 @@ La historia está escrita en letras blancas con un fondo oscuro lo cual lo hace 
 </figure>
 
 <br>
-Esta combinación de colores me encantó porque atrae tu atención pero no de una manera brusca como lo haría un amarillo o un azul más *brillante*.
+Esta combinación de colores me encantó porque atrae tu atención pero no de una manera brusca como lo haría un amarillo o un azul más *brillante*. Cuando estas presentando información muy compleja es importante darle a tus lectores tiempo para procesar dicha información. No quieres presentarle un diagrama de flujos el primer ejemplo y saturarlo con **llamadas de atención** (*mira aquí, mira acá, esto también es importante y esto y esto y esto*). 
+
+El uso prudente y consciente de una paleta de colores **funcional** es muy importante. 
 
 En esta era digital tenemos el lujo de poder controlar absolutamente todo. Desde el fondo de nuestra pantalla hasta los colores y el tamaño de cada letra. Esto es algo que debemos tener en cuenta cuando presentamos información en un medio digital. 
 
