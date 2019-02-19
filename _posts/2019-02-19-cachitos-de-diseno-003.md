@@ -11,7 +11,7 @@ subclass: 'post tag-cachitos'
 author: sergio
 ---
 
-Cuando tenemos un espacio pequeño para visualizar nuestros datos, como es el caso en las redes sociales, es importante utilizarlo de manera eficiente. Mantén en mente la famosa _proporción de tinta y datos_ de Edward Tufte. 
+Cuando tenemos un espacio pequeño para visualizar nuestros datos, como es el caso en las redes sociales, es importante utilizarlo de manera eficiente. Mantén en mente la famosa [_proporción de tinta y datos_](https://infovis-wiki.net/wiki/Data-Ink_Ratio) de Edward Tufte. 
 
 <figure>
     <img src='../assets/cachitos/003_ejemplo_1.jpg' alt='Mexico Como Vamos, 2019' />
@@ -19,7 +19,8 @@ Cuando tenemos un espacio pequeño para visualizar nuestros datos, como es el ca
 </figure>
 <br>
 Esta figura aparece en la cuenta de twitter de _México ¿Cómo Vamos?_: 
-> México, ¿Cómo Vamos? es un colectivo de investigadores integrado por un grupo plural de académicos y expertos en economía y política pública mexicana. [sitio](https://mexicocomovamos.mx)
+> México, ¿Cómo Vamos? es un colectivo de investigadores integrado por un grupo plural de académicos y expertos en economía y política pública mexicana. 
+> [sitio](https://mexicocomovamos.mx)
 
 En este cachito nos vamos a concentrar en el uso de etiquetas del gráfico. Especificamente en el eje horizontal.
 
