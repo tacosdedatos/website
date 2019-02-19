@@ -37,7 +37,7 @@ Por ejemplo,
 Como hemos visto en otros [cachitos](https://tacosdedatos.com/tag/cachitos/) siempre tenemos que tener en mente el medio en el que presentamos nuestros graficos. En twitter la proporción _ideal_ para que una foto aparezca completa en la línea de tiempo de tus seguidores es de 1.91:1 y esto significa que no tienes mucho espacio vertical. Al tener nuestras etiquetas de manera vertical en un medio como twitter puede que estemos utilizando más espacio del absolutamente necesario. 
 
 Pero ¿qué sucede cuando nuestras etiquetas son demasiado largas como para escribirlas de manera horizontal? (i.e. *4T2017*) <br>
-La mayoría de las veces una etiqueta larga es una etiqueta redundante. Especialmente en nuestros ejes. Las etiquetas de nuestros ejes funcionan referencía no como fuentes principales de información. Busca maneras de simplificar lo más posible tus etiquetas en los ejes de tu gráfico. Hazte las siguientes preguntas:
+La mayoría de las veces una etiqueta larga es una etiqueta redundante. Especialmente en nuestros ejes. Las etiquetas de nuestros ejes funcionan como referencía no como fuentes principales de información. Busca maneras de simplificar lo más posible tus etiquetas en los ejes de tu gráfico. Hazte las siguientes preguntas:
 * ¿Existe un patrón predecible al que pueda referenciar de manera intuitiva? <br>Por ejemplo, ***2016 2T 3T 4T 2017 2T 3T 4T*** nos da a saber intuitivamente (en este caso a economistas quienes son la audiencia principal) que estamos hablando de los trimestres de cada año.
 * ¿Puedo simplificar aún más mis etiquetas sin perder información? <br>**2017** puede reducirce a **'17** por ejemplo.
 
