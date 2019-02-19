@@ -25,7 +25,7 @@ En este cachito nos vamos a concentrar en el uso de etiquetas del gráfico. Espe
 
 El eje horizontal tiene 13 puntos: 4 trimestres de los años 2016 a 2018 y el último trimestre de 2015. Estos son representados con la combinación ***4T2017*** por ejemplo. ***4T*** representando el 4º trimestre y ***2017*** el año correspondiente. 
 
-El cachito de diseño es sobre la *redundancia* de nuestras etiquetas. Cuando existen patrones claros y predecibles en nuestros datos no es necesario mencionarlos explícitamente. Una alternativa a escribir 13 etiquetas de 6 caracteres podría ser escribir una sola vez el año y repetir el patrón ***2T 3T 4T*** para representar los trimestres entre cada uno.
+El cachito de diseño es sobre la *redundancia* de nuestras etiquetas. Cuando existen patrones claros y predecibles en nuestros datos no es necesario mencionarlos explícitamente. Una alternativa a escribir 13 etiquetas de 6 caracteres cada una podría ser escribir una sola vez el año y repetir el patrón ***2T 3T 4T*** para representar los trimestres entre cada uno.
 
 Por ejemplo,
 <figure>
@@ -37,8 +37,8 @@ Como hemos visto en otros [cachitos](https://tacosdedatos.com/tag/cachitos/) sie
 
 Pero ¿qué sucede cuando nuestras etiquetas son demasiado largas como para escribirlas de manera horizontal? (i.e. *4T2017*) <br>
 La mayoría de las veces una etiqueta larga es una etiqueta redundante. Especialmente en nuestros ejes. Las etiquetas de nuestros ejes funcionan referencía no como fuentes principales de información. Busca maneras de simplificar lo más posible tus etiquetas en los ejes de tu gráfico. Hazte las siguientes preguntas:
-* ¿Existe un patrón predecible al que pueda referenciar de manera intuitiva? Por ejemplo, ***2016 2T 3T 4T 2017 2T 3T 4T*** me dice intuitivamente (en este caso a los economistas quienes son la audiencia principal) que estamos hablando de los trimestres de cada año.
-* ¿Puedo simplificar aún más mis etiquetas sin perder información? **2017** puede reducirce a **'17** por ejemplo.
+* ¿Existe un patrón predecible al que pueda referenciar de manera intuitiva? <br>Por ejemplo, ***2016 2T 3T 4T 2017 2T 3T 4T*** nos da a saber intuitivamente (en este caso a los economistas quienes son la audiencia principal) que estamos hablando de los trimestres de cada año.
+* ¿Puedo simplificar aún más mis etiquetas sin perder información? <br>**2017** puede reducirce a **'17** por ejemplo.
 
 Para terminar, si vas a publicar una visualización en alguna red social ten en mente las dimensiones ideales para la plataforma ¡y aprovechalas al máximo!
 
