@@ -1,3 +1,17 @@
+---
+layout: post
+current: post
+cover:  assets/cachitos/00X.png
+navigation: True
+title: Cachitos de Diseño #00X
+date: 2019-02-12 12:00:00
+tags: [cachitos]
+class: post-template
+subclass: 'post tag-cachitos'
+author: sergio
+---
+
+
 la primera linea aparecerá en postal junto a la portada. Debe de ser menos de 170 caracteres.
 Ejemplo: "Cachitos de diseño es una serie de publicaciones pequeñas celebrando o criticando (de una manera respetuosa) una decisión en el diseño de una visualización de datos."
 
