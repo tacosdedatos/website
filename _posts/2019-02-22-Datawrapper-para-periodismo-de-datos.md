@@ -14,10 +14,10 @@ author: sergio
 Datawrapper es una herramienta de visualización de datos _"por periodistas, para periodistas"_. No necesitas saber programar o de diseño para crear visualizaciones atractivas e interactivas en cuestión de minutos. 
 
 En esta publicación del blog quiero compartirles esta poderosa herramienta. 
-
+<figure>
 <iframe title="Gráfico: Estudiantes Extranjeros en Universidades de California" aria-describedby="" id="datawrapper-chart-SrMxE" src="//datawrapper.dwcdn.net/SrMxE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important;" height="284"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var t in a.data["datawrapper-height"]){var e=document.getElementById("datawrapper-chart-"+t);e&&(e.style.height=a.data["datawrapper-height"][t]+"px")}})}();</script>
-Este gráfico fué creado con **Datawrapper** en 10 minutos.
-
+<figcaption style="text-align:center">Este gráfico fué creado con **Datawrapper** en 10 minutos.</figcaption>
+</figure>
 Existen muchas herramientas hoy en día para visualizar tus datos sin necesidad de escribir una sola línea de código. En **tacosdedatos** planeamos compartir un pequeño resumen de cada una con sus ventajas y desventajas. Esta publicación es la primera de la serie.
 
 ## Ventajas de Datawrapper
