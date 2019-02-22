@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/blogposts/001.png
 navigation: True
-title: Datawrapper para periodismo de datos
+title: Datawrapper para visualizar datos sin saber programar
 date: 2019-02-22 12:00:00
 tags: [blog, recursos]
 class: post-template
@@ -20,6 +20,11 @@ En esta publicación del blog quiero compartirles esta poderosa herramienta.
 </figure><br>
 Existen muchas herramientas hoy en día para visualizar tus datos sin necesidad de escribir una sola línea de código. En **tacosdedatos** planeamos compartir un pequeño resumen de cada una con sus ventajas y desventajas. Esta publicación es la primera de la serie.
 
+## ¿Qué es Datawrapper?
+> Datawrapper es una herramienta creada por un equipo de once personas.
+> Trabajamos juntos para crear la mejor herramienta de gráficos para todos los que quieran mostrar sus datos en hermosos gráficos y mapas.
+Esta herramienta para visualización de datos existe completamente en tu navegador (en [datawrapper.de](https://datawrapper.de/)) donde puedes construir gráficos elegantes, interactivos y, lo más importante, sin necesidad de saber programar.
+
 ## Ventajas de Datawrapper
   - Datawrapper asume cero conocimiento de diseño o programación de tu parte. <br>
     Para trabajar en Datawrapper sólo necesitas tus datos y ya. Datawrapper se encarga hasta de escoger una paleta de colores inclusiva. <br>
@@ -33,7 +38,7 @@ Existen muchas herramientas hoy en día para visualizar tus datos sin necesidad 
     Aunque su sitio es en inglés también es muy intuitivo y utilizan íconos para todo. No necesitar saber hablar o leer inglés para utilizar su servicio.
 
   - Todo es en tu navegador <br>
-    Datawrapper existe completamente en tu navegador sin la necesidad de descargar ninguna aplicación de software. Esto significa puedes utilizarlo aun si trabajas en una oficina donde no tengas privilegios de administrador para instalar aplicaciones en tu computadora. No se ustedes pero yo no puedo instalar nada sin tener que convencer a 3 personas de que es **indispensable** que me pongan el programa que estoy pidiendo (lo que lo hace más difícil es que la mayoría de las veces no es indispensable 😜) 
+    Datawrapper existe completamente en tu navegador sin la necesidad de descargar ninguna aplicación de software. Esto significa puedes utilizarlo aún si trabajas en una oficina donde no tengas privilegios de administrador para instalar aplicaciones en tu computadora. No sé ustedes pero yo no puedo instalar nada sin tener que convencer a 3 personas de que es **indispensable** que me pongan el programa que estoy pidiendo (lo que lo hace más difícil es que la mayoría de las veces no es indispensable 😜) 
 
 ## Desventajas
   - Lo que ves es lo que hay. <br>
