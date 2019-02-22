@@ -27,15 +27,15 @@ Esta herramienta para visualización de datos existe completamente en tu navegad
 
 ## Ventajas de Datawrapper
   - Datawrapper asume cero conocimiento de diseño o programación de tu parte. <br>
-    Para trabajar en Datawrapper sólo necesitas tus datos y ya. Datawrapper se encarga hasta de escoger una paleta de colores inclusiva. <br>
+    Para trabajar con Datawrapper sólo necesitas tus datos y ya. Datawrapper se encarga hasta de escoger una paleta de colores inclusiva. <br>
    <figure>
     <img src='../assets/blogposts/001_dashboard.png' alt='Datawrapper dashboard' />
     <figcaption style="text-align:center"><i><a href='https://datawrapper.de/'>Datawrapper</a></i></figcaption>
    </figure><br>
-    Si decides escoger tus colores manualmente Datawrapper te hará saber si tu combinación será difícil de ver para algunas personas con daltonismo.
+    Si decides escoger tus colores manualmente Datawrapper te hará saber si tu combinación será difícil de ver para personas con daltonismo.
 
   - Una interfáz intuitiva. <br>
-    Aunque su sitio es en inglés también es muy intuitivo y utilizan íconos para todo. No necesitar saber hablar o leer inglés para utilizar su servicio.
+    Aunque su sitio es en inglés también es muy intuitivo y utilizan íconos para todo. No necesitas saber hablar o leer inglés para utilizar su servicio.
 
   - Todo es en tu navegador <br>
     Datawrapper existe completamente en tu navegador sin la necesidad de descargar ninguna aplicación de software. Esto significa puedes utilizarlo aún si trabajas en una oficina donde no tengas privilegios de administrador para instalar aplicaciones en tu computadora. No sé ustedes pero yo no puedo instalar nada sin tener que convencer a 3 personas de que es **indispensable** que me pongan el programa que estoy pidiendo (lo que lo hace más difícil es que la mayoría de las veces no es indispensable 😜) 
@@ -49,7 +49,7 @@ Esta herramienta para visualización de datos existe completamente en tu navegad
 
 ***
 
-La visualización de datos no tiene que ser sinónimo de saber programar. Si nunca en tu vida has visto una terminal o escrito un `¡Hola mundo!`, tu puedes visualizar datos de una manera elegante y eficáz. Datawrapper es una de las muchas herramientas con la que lo puedes lograr. 
+La visualización de datos no tiene que ser sinónimo de saber programar. Si nunca en tu vida has visto una terminal o escrito un `¡Hola mundo!` aún puedes visualizar datos de una manera elegante y eficáz. Datawrapper es una de las muchas herramientas con la que lo puedes lograr. 
 
 Si visitas [Datawrapper](https://datawrapper.de) podrás ver que grandes instituciones periodisticas lo utilizan actualmente.<br>
    <figure>
@@ -63,4 +63,5 @@ Para terminar te quiero compartir 3 puntos más relacionados a Datawrapper la em
 3. Su [**River**](https://river.datawrapper.de/), un _río_ de visualizaciones del que puedes tomar gráficos y sus datos y modificarlos a tu gusto. 
 
 *** 
-Este es el primer blog de la serie sobre herramientas para visualizar datos sin programación. Queremos mantenerlos cortos y al punto, listando ventajas y desventajas y uno que otro punto relevante. ¿Qué te pareció? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.
+Este es el primer blog de la serie sobre herramientas para visualizar datos sin programación. Queremos mantenerlos cortos y directos al punto, listando ventajas y desventajas y uno que otro punto relevante. Creemos que aprendemos más y mejor explorando, lo que queremos hacer en **tacosdedatos** es señalarte a donde ir. <br>
+¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.
