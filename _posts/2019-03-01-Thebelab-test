@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/001.png
 navigation: True
 title: Probando Thebelab
-date: 2019-02-22 12:00:00
+date: 2019-03-01 12:00:00
 tags: [blog, recursos]
 class: post-template
 subclass: 'post tag-blog'
