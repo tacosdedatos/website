@@ -19,7 +19,7 @@ thebelab: true
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
-<div>
+<div class='thebelab-cell'>
 <pre data-executable="true" data-language="python">
 %matplotlib inline
 import osmnx as ox
