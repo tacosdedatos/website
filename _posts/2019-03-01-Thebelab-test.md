@@ -23,8 +23,8 @@ thebelab: true
 <pre data-executable="true" data-language="python">
 %matplotlib inline
 import osmnx as ox
-G = ox.graph_from_place('Manhattan Island, New York City, New York, USA', network_type='drive')
-ox.plot_graph(G)
+G = ox.graph_from_place('Bellas Artes, Mexico', network_type = 'walk', buffer_dist=1000)
+ox.plot_graph(G);
 </pre>
 
 
