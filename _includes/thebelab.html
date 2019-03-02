@@ -1,69 +1,19 @@
 <!-- Include Thebelab for interactive code if it's enabled -->
+<link rel="stylesheet" href="https://codemirror.net/theme/panda-syntax.css">
 <script type="text/x-thebe-config">
     {
-        // Whether thebelab should automatically trigger the bootstrap upon page load
-        // if set to false, the page should contain some additional javascript
-        // responsible for triggering the javascript when desired (e.g. connected to a button click).
-        bootstrap: true,
-      
-        // arbitrary pre-render function called as part of bootstrap
-        preRenderHook: false,
-      
-        // Whether to request the kernel immediately when thebelab is bootstrapped
-        // instead of on executing code for the first time
-        requestKernel: true,
-      
-        // Whether thebelab should look for predefined output of cells before execution
-        // If this option is enabled and the next div after the cell has the attribute
-        // data-output=true (default), then the content of this div is rendered as output
-        predefinedOutput: true,
-      
-        // The selector for identifying whether an element should be treated as output
-        outputSelector: '[data-output]'
-      
-        // Options for requesting a notebook server from mybinder.org
-        binderOptions: {
-          repo: "tacos-de-datos/tacos-en-jupyter",
-          ref: "master",
-          binderUrl: "https://mybinder.org",
-          // select repository source (optional). Supports Github(default), Gitlab, and Git
-          repoProvider: "github",
-        },
-      
-        // Options for requesting a kernel from the notebook server
-        kernelOptions: {
-          name: "{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}",
-          // notebook server configuration; not needed with binder
-          // serverSettings: {
-          //       "baseUrl": "http://127.0.0.1:8888",
-          //      "token": "test-secret"
-          //    }
-        },
-      
-        // Selector for identifying which elements on the page should
-        // be made interactive
-        selector: "[data-executable]",
-      
-        // Optional prompt handling during the rendering phase
-        // Either false or a dictionary as in the example below
-        stripPrompts: false,
-        // stripPrompts: {
-        //      inPrompt: 'sage: ',
-        //      continuationPrompt: '....: ',
-        //      // only apply the prompt stripping to cells matching this selector (optional)
-        //      selector: '.sage-input',
-        //    },
-      
-        // URL from which to load mathjax
-        // set to `false` to disable mathjax
-        mathjaxUrl: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js",
-      
-        // mathjax configuration string
-        mathjaxConfig: "TeX-AMS_CHTML-full,Safe",
-      
-        // Additional options to pass to CodeMirror instances
-        codeMirrorConfig: {},
+      requestKernel: true,
+      binderOptions: {
+        repo: 'tacos-de-datos/tacos-en-jupyter',
+        ref: 'master',
+      },
+      kernelOptions: {
+        name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
       }
+      codeMirrorConfig: {
+
+      }
+    }
 </script>
 <script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
 <script>
