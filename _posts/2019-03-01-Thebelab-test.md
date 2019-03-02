@@ -9,6 +9,8 @@ tags: [blog, recursos]
 class: post-template
 subclass: 'post tag-blog'
 author: sergio
+kernel_name: python3
+thebelab: true
 ---
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
