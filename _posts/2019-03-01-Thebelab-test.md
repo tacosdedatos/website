@@ -106,12 +106,11 @@ author: sergio
 
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
-
-```python3
+<pre data-executable="true" data-language="python">
 %matplotlib inline
 import numpy as np
 import matplotlib.pyplot as plt
 x = np.linspace(0,10)
 plt.plot(x, np.sin(x))
 plt.plot(x, np.cos(x))
-```
+</pre>
