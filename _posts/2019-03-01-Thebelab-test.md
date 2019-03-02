@@ -11,6 +11,12 @@ subclass: 'post tag-blog'
 author: sergio
 ---
 
+
+<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+
+
+
 <!-- Include Thebelab for interactive code if it's enabled -->
 <script type="text/x-thebe-config">
     {
@@ -107,7 +113,6 @@ author: sergio
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
-<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
 
 <pre data-executable="true" data-language="python">
 %matplotlib inline
