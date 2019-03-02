@@ -13,6 +13,8 @@ author: sergio
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
 
+{% include thebelab_button.html %}
+
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
 

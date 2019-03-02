@@ -1,3 +1,9 @@
 <div class="buttons">
-    <button id="interact-button-thebelab" class="interact-button"><strong>Thebelab</strong></button>
+    <button id="activateButton"  style="width: 150px; height: 75px; font-size: 1.5em; background-color: #738a94">Thebelab</button>
+    <script>
+        var bootstrapThebe = function() {
+            thebelab.bootstrap();
+        }
+        document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
+    </script>
 </div>
