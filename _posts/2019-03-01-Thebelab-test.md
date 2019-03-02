@@ -15,12 +15,11 @@ author: sergio
 <button id="interact-button-thebelab" class="interact-button">Thebelab</button>
 
 <button id="activateButton"  style="width: 150px; height: 75px; font-size: 1.5em;">Activate</button>
-<script>
-var bootstrapThebe = function() {
+<script> 
+    var bootstrapThebe = function() {
     thebelab.bootstrap();
-}
-
-document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
+    }
+    document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
 </script>
 
 
@@ -39,7 +38,7 @@ document.querySelector("#activateButton").addEventListener('click', bootstrapThe
 </script>
 <script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
 <script>
-    // Add attributes to Thebelab blocks
+    <!-- Add attributes to Thebelab blocks -->
 
     const initThebelab = () => {
         const addThebelabToCodeCells = () => {
