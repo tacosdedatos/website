@@ -11,10 +11,7 @@ subclass: 'post tag-blog'
 author: sergio
 ---
 
-
-<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
-
-<button id="activateButton"  style="width: 150px; height: 75px; font-size: 1.5em;">Activate</button>
+<button id="activateButton"  style="width: 150px; height: 75px; font-size: 1.5em;">thebelab</button>
 <script> 
     var bootstrapThebe = function() {
     thebelab.bootstrap();
