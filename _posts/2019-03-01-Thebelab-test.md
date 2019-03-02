@@ -106,6 +106,9 @@ author: sergio
 
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
+
+<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
 <pre data-executable="true" data-language="python">
 %matplotlib inline
 import numpy as np
