@@ -19,12 +19,12 @@ thebelab: true
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
-
+<div>
 <pre data-executable="true" data-language="python">
 %matplotlib inline
 import osmnx as ox
 G = ox.graph_from_place('Manhattan Island, New York City, New York, USA', network_type='drive')
 ox.plot_graph(G)
 </pre>
-
+</div>
 
