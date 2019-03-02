@@ -1,4 +1,26 @@
-<div class="buttons">
+<style>
+.ghost-button {
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+</style>>
+<link rel="stylesheet" href="https://codemirror.net/theme/panda-syntax.css">
+<div class="ghost-button">
     <button id="activateButton"  style="width: 150px; height: 75px; font-size: 1.5em;">Thebelab</button>
     <script>
         var bootstrapThebe = function() {

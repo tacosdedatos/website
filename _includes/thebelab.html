@@ -1,5 +1,5 @@
 <!-- Include Thebelab for interactive code if it's enabled -->
-<link rel="stylesheet" href="https://codemirror.net/theme/panda-syntax.css">
+
 <script type="text/x-thebe-config">
     {
       requestKernel: true,
@@ -9,9 +9,6 @@
       },
       kernelOptions: {
         name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
-      }
-      codeMirrorConfig: {
-
       }
     }
 </script>
