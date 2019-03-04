@@ -17,8 +17,6 @@ thebelab: true
 
 {% include thebelab_button.html %}
 
-{% include copy-button.html %}
-
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
 
