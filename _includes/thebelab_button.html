@@ -29,6 +29,7 @@
         }
         document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
         document.querySelector("#activateButton").addEventListener('click', changeNames)
+        document.querySelector("#thebelab-run-button").addEventListener('click', waitingOnKernel)
         function changeNames() {
                 run_button = document.getElementsByClassName("thebelab-run-button")[0]
                 run_button.innerText = 'ejectuar'
@@ -43,6 +44,13 @@
                 restart_button.setAttribute('style', 'width: 100px')
                 run_button.setAttribute('style', 'width: 100px')
 
+        }
+
+        function waitingOnKernel() {
+            var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = 'pre {background-color: white;}';
+                document.getElementsByTagName('head')[0].appendChild(style);
         }
     </script>
 </div>
