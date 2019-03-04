@@ -28,5 +28,12 @@
             thebelab.bootstrap();
         }
         document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
+        document.querySelector("#activateButton").addEventListener('click', changeNames)
+        function changeNames() {
+                run_button = document.getElementsByClassName("thebelab-run-button")[0]
+                restart_button = document.getElementsByClassName("thebelab-restart-button")[0]
+                run_button.innerText = 'ejectuar'
+                restart_button.innerText = 'reiniciar'
+        }
     </script>
 </div>
