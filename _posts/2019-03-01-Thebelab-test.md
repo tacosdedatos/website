@@ -9,7 +9,7 @@ tags: [blog, recursos]
 class: post-template
 subclass: 'post tag-blog'
 author: sergio
-kernel_name: R
+kernel_name: ir
 thebelab: true
 repo: tacos-de-datos/probando-bbplot
 ---
