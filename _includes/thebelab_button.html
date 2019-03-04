@@ -31,9 +31,18 @@
         document.querySelector("#activateButton").addEventListener('click', changeNames)
         function changeNames() {
                 run_button = document.getElementsByClassName("thebelab-run-button")[0]
-                restart_button = document.getElementsByClassName("thebelab-restart-button")[0]
                 run_button.innerText = 'ejectuar'
+                run_button.className += ' ghost-button'
+                run_button.setAttribute('style', 'height: 20px')
+
+                restart_button = document.getElementsByClassName("thebelab-restart-button")[0]
                 restart_button.innerText = 'reiniciar'
+                restart_button.className += ' ghost-button'
+                restart_button.setAttribute('style', 'height: 20px')
+
+                restart_button.setAttribute('style', 'width: 100px')
+                run_button.setAttribute('style', 'width: 100px')
+
         }
     </script>
 </div>
