@@ -42,7 +42,7 @@
             thebelab.bootstrap();
         }
         document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
-        document.querySelector("#activateButton").addEventListener('click', setTimeout(changeNames(), 0))
+        document.querySelector("#activateButton").addEventListener('click', changeNames)
         
         function changeNames() {
                 run_button = document.getElementsByClassName("thebelab-run-button")
