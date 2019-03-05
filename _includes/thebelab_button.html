@@ -32,7 +32,8 @@
 }
   
 .CodeMirror {
-    width: auto;
+    height: auto;
+    overflow: scroll;
 }
   
 </style>>
@@ -43,7 +44,7 @@
             thebelab.bootstrap();
         }
         document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
-        document.querySelector("#activateButton").addEventListener('click', changeNames)
+        document.querySelector("#activateButton").addEventListener('click', setTimeout(changeNames, 0))
         
         function changeNames() {
                 run_button = document.getElementsByClassName("thebelab-run-button")
