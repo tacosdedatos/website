@@ -36,18 +36,20 @@
         document.querySelector("#activateButton").addEventListener('click', changeNames)
         
         function changeNames() {
-                run_button = document.getElementsByClassName("thebelab-run-button")[0]
-                run_button.innerText = 'ejectuar'
-                run_button.className += ' ghost-button'
-                run_button.setAttribute('style', 'height: 20px')
-
-                restart_button = document.getElementsByClassName("thebelab-restart-button")[0]
-                restart_button.innerText = 'reiniciar'
-                restart_button.className += ' ghost-button'
-                restart_button.setAttribute('style', 'height: 20px')
-
-                restart_button.setAttribute('style', 'width: 100px')
-                run_button.setAttribute('style', 'width: 100px')
+                run_button = document.getElementsByClassName("thebelab-run-button")
+                for(i=0;i <= run_button.length; i++) {
+                    run_button[i].innerText = 'ejectuar'
+                    run_button[i].className += ' ghost-button'
+                    run_button[i].setAttribute('style', 'height: 20px')
+                }
+                restart_button = document.getElementsByClassName("thebelab-restart-button")
+                for(i=0;i<= restart_button.length; i++) {
+                    restart_button[i].innerText = 'reiniciar'
+                    restart_button[i].className += ' ghost-button'
+                    restart_button[i].setAttribute('style', 'height: 20px')
+                }
+                #restart_button.setAttribute('style', 'width: 100px')
+                #run_button.setAttribute('style', 'width: 100px')
 
         }        
    
