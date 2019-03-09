@@ -1,0 +1,19 @@
+<!-- Include Thebelab for interactive code if it's enabled -->
+
+<script type="text/x-thebe-config">
+    {
+      bootstrap: false,
+      requestKernel: true,
+      binderOptions: {
+        repo: '{% if page.repo %}{{ page.repo }}{% else %}tacos-de-datos/tacos-en-jupyter{% endif %}',
+        ref: 'master',
+      },
+      kernelOptions: {
+        name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
+      },
+      codeMirrorConfig: {
+        theme: 'panda-syntax'
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
