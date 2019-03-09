@@ -28,7 +28,6 @@ repo: tacos-de-datos/probando-bbplot # el repositorio de github que vas a usar f
  -->
 
 <pre data-executable="true" data-language="R">
-<code class="R">
 if(!require(pacman))install.packages("pacman")
 
 pacman::p_load('dplyr', 'tidyr', 'gapminder',
@@ -49,8 +48,7 @@ line <- ggplot(line_df, aes(x = year, y = lifeExp)) +
   labs(title="Living longer",
        subtitle = "Life expectancy in Malawi 1952-2007")     
 
-line       
-</code>   
+line         
 </pre>
 
 
