@@ -24,9 +24,10 @@
 }
 
 
-.CodeMirror.CodeMirror-focused {
+/* .CodeMirror.CodeMirror-focused {
   /* background-color: white; */
-}
+/* } 
+*/
 
 /* no prompts */
 .jp-OutputPrompt {
