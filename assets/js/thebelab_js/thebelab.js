@@ -1,5 +1,5 @@
 import $ from "./jquery";
-import CodeMirror from "codemirror";
+import CodeMirror from "./codemirror";
 
 // make CodeMirror public for loading additional themes
 if (typeof window !== "undefined") {
