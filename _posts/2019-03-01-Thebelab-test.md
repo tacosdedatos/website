@@ -9,19 +9,26 @@ tags: [blog, recursos]
 class: post-template
 subclass: 'post tag-blog'
 author: sergio
-kernel_name: ir
-thebelab: true
-repo: tacos-de-datos/probando-bbplot
+thebelab: true  # true o false si quieres tener la opcion de thebelab
+kernel_name: ir # ir para R y python3 para python
+repo: tacos-de-datos/probando-bbplot # el repositorio de github que vas a usar f"{usuario}/{repo}"
 ---
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
 
 {% include thebelab_button.html %}
+<!-- Después de incluir thebelab y el botón correspondiente puedes comenzar el post-->
 
 ¿Qué tal si pudieramos crear código en páginas estaticas de HTML?
 
+<!-- Las celdas de código ejecutable tienen dos parametros:
+  data-executable="true" # Si quieres que sea ejecutable con thebelab
+  data-language="R" o "python" # para especificar el lenguage que estas utilizando
+                               # esto ayuda a formatear el código en la celda
+ -->
 
 <pre data-executable="true" data-language="R">
+<code class="R">
 if(!require(pacman))install.packages("pacman")
 
 pacman::p_load('dplyr', 'tidyr', 'gapminder',
@@ -42,7 +49,8 @@ line <- ggplot(line_df, aes(x = year, y = lifeExp)) +
   labs(title="Living longer",
        subtitle = "Life expectancy in Malawi 1952-2007")     
 
-line          
+line       
+</code>   
 </pre>
 
 
