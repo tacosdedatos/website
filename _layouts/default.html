@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <style>.hljs { background: none; }</style>
 
+    {% if page.thebelab %}
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/panda-syntax.css" />
+    <!-- Eclipse Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/eclipse.css" />
+    {% endif %}
+
+    
+
+
     <!--[if IE]>
         <style>
             p, ol, ul{
