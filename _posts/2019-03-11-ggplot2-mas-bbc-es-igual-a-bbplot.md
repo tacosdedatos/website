@@ -12,6 +12,7 @@ author: sergio
 kernel_name: ir
 thebelab: true
 repo: tacos-de-datos/probando-bbplot
+CodeMirrorMode: r
 ---
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
