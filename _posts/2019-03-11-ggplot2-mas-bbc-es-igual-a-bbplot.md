@@ -60,28 +60,22 @@ pacman::p_load('dplyr', 'tidyr', 'gapminder',
 A `bbplot` lo instalas desde *GitHub* con `devtools`. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos aunque con todos los que hable en preparacion para este articulo me lo contaron como si fuera algo simple y sencillo... :eyes:
 <br>
 Paso 1: instala `devtools`, el paquete que te ayuda a instalar paquetes de *GitHub*. Este si existe en CRAN asi que solo necesitas ejecutar:
-<pre><code class = "language-r">
-install.packages("devtools")
-</code></pre>
+<pre><code class = "language-r">install.packages("devtools")</code></pre>
 Paso 2: instala `bbplot` utilizando `devtools`:
-<pre><code class = 'language-r'>
-devtools::install_github("bbc/bbplot")
-</code></pre>
+<pre><code class = 'language-r'>devtools::install_github("bbc/bbplot")</code></pre>
 
 **OJO PARTE 2**, existe un sinfin de razones por las cuales esto no funcione en ciertos sistemas. El servidor conectado a esta pagina donde estas ejecutando codigo esta basado en `Linux` (Ubuntu, creo :p) y por alguna razon no podiamos instalarlo con `devtools`. Lo que tuvimos que hacer es clonar el repositorio `bbc/bbplot`, instalarlo como **source** y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos mas. 
 
-<pre><code class='language-shell'>
-git clone https://github.com/bbc/bbplot.git
+<pre><code class='language-shell'>git clone https://github.com/bbc/bbplot.git
 R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
-rm -rf bbplot # en sistemas linux/macos 'rmdir /s /s bbplot' en Windows
-</code></pre>
+rm -rf bbplot # en sistemas linux/macos 'rmdir /s /s bbplot' en Windows</code></pre>
 
 ***
 
 
 ### Ya que tenemos todos los paquetes instalados y cargados en tu entorno podemos hacer nuestros graficos
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Datos de gapminder
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Datos de gapminder
 datos_para_linea <- gapminder %>%
   filter(country == "Colombia") 
 
@@ -98,8 +92,8 @@ linea
 </code></pre>
 
 Pero vayamos paso a paso
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Ya tenemos cargados los datos
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Ya tenemos cargados los datos
 # crea el grafico - paso 1
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
 
@@ -107,8 +101,8 @@ linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
 linea
 </code></pre>
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Ya tenemos cargados los datos
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Ya tenemos cargados los datos
 # crea el grafico - paso 2
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
   geom_line(colour = "#1380A1", size = 1) 
@@ -117,8 +111,8 @@ linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
 linea
 </code></pre>
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Ya tenemos cargados los datos
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Ya tenemos cargados los datos
 # crea el grafico - paso 3
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
   geom_line(colour = "#1380A1", size = 1) +
@@ -128,8 +122,8 @@ linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
 linea
 </code></pre>
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Ya tenemos cargados los datos
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Ya tenemos cargados los datos
 # crea el grafico - paso 4
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
   geom_line(colour = "#1380A1", size = 1) +
@@ -141,8 +135,8 @@ linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
 linea
 </code></pre>
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-# Ya tenemos cargados los datos
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Ya tenemos cargados los datos
 # crea el grafico - paso 5
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
   geom_line(colour = "#1380A1", size = 1) +
@@ -159,7 +153,8 @@ linea
 
 ## MAS EJEMPLOS
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'>
 library("ggalt")
 library("tidyr")
 
@@ -185,7 +180,8 @@ ggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), gr
 
 
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'>
 #Prepare data
 facet <- gapminder %>%
   filter(continent != "Americas") %>%
@@ -209,7 +205,8 @@ facet_plot <- ggplot() +
 facet_plot
 </code></pre>
 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'>
 #Make plot
 facet_plot_free <- ggplot() +
   geom_area(data = facet, aes(x = year, y = pop, fill = continent)) +
