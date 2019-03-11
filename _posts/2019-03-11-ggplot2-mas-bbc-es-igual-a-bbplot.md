@@ -27,9 +27,11 @@ CodeMirrorMode: r
 A finales de enero de este 2019, la BBC publico el paquete [`bbplot`](https://github.com/bbc/bbplot) y un [*libro de recetas*](https://bbc.github.io/r-cookbook) para crear varios graficos listos para publicacion con `ggplot2`. <br>
 La meta es crear un proceso de creacion de graficos con su estilo personalizado mas reproducible y de paso ayudarle a principiantes de `R` a hacer graficos. 
 
-### FIGURA DE EJEMPLO DE GRAFICOS QUE PUEDES CREAR (DEL COOKBOOK)
-
-
+<figure>
+    <img src='../assets/blogposts/002_bbplot_ejemplo.png' alt='ggplot2 + bbc_style = bbplot' />
+    <figcaption style="text-align:center"><i>Ejemplos de gráficos con el estilo de la BBC</i></figcaption>
+</figure>
+<br>
 
 # Mas que un tutorial este articulo tiene la meta de explorar el paquete `bbplot`
 `bbplot` es esencialmente dos funciones:
