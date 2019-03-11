@@ -61,7 +61,7 @@ Paso 1: instala `devtools`, el paquete que te ayuda a instalar paquetes de *GitH
 install.packages("devtools")
 ```
 Paso 2: instala `bbplot` utilizando `devtools`:
-<pre style="white-space: pre-wrap"><code class = 'language-r'>
+<pre><code class = 'language-r'>
 devtools::install_github("bbc/bbplot")
 </code></pre>
 
