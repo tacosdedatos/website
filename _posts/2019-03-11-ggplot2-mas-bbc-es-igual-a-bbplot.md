@@ -67,11 +67,11 @@ devtools::install_github("bbc/bbplot")
 
 **OJO PARTE 2**, existe un sinfin de razones por las cuales esto no funcione en ciertos sistemas. El servidor conectado a esta pagina donde estas ejecutando codigo esta basado en `Linux` (Ubuntu, creo :p) y por alguna razon no podiamos instalarlo con `devtools`. Lo que tuvimos que hacer es clonar el repositorio `bbc/bbplot`, instalarlo como **source** y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos mas. 
 
-```shell
+<pre><code class='language-shell'>
 git clone https://github.com/bbc/bbplot.git
 R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
 rm -rf bbplot # en sistemas linux/macos 'rmdir /s /s bbplot' en Windows
-```
+</code></pre>
 
 ***
 
