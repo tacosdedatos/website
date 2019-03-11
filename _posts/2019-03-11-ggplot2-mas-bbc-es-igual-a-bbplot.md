@@ -44,8 +44,8 @@ Sin mas preambulo veamos `bbplot` en accion. En **tacosdedatos** acabamos de agr
 ### Primero necesitas cargar los paquetes necesarios
 En el *libro de recetas* publicado en conjunto con `bbplot` la BBC sugiere utilizar el paquete `pacman` para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir `library("dplyr")`, `library("tidyr")`, `library("gapminder")`, etc. <br>
 La primera linea del codigo instala `pacman` si no lo tienes. 
-<pre data-executable="true" data-language="R"><code class = 'language-r'>
-if(!require(pacman))install.packages("pacman")
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'>if(!require(pacman))install.packages("pacman")
 
 pacman::p_load('dplyr', 'tidyr', 'gapminder',
                'ggplot2',  'ggalt',
