@@ -66,11 +66,13 @@ devtools::install_github("bbc/bbplot")
 ```
 
 **OJO PARTE 2**, existe un sinfin de razones por las cuales esto no funcione en ciertos sistemas. El servidor conectado a esta pagina donde estas ejecutando codigo esta basado en `Linux` (Ubuntu, creo :p) y por alguna razon no podiamos instalarlo con `devtools`. Lo que tuvimos que hacer es clonar el repositorio `bbc/bbplot`, instalarlo como **source** y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos mas. 
-```bash
+
+```shell
 git clone https://github.com/bbc/bbplot.git
 R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
 rm -rf bbplot # en sistemas linux/macos 'rmdir /s /s bbplot' en Windows
 ```
+
 ***
 
 
@@ -155,6 +157,7 @@ linea
 ## MAS EJEMPLOS
 
 <pre data-executable="true" data-language="R">
+<code class="r">
 library("ggalt")
 library("tidyr")
 
@@ -176,6 +179,7 @@ ggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), gr
   bbc_style() + 
   labs(title="We're living longer",
        subtitle="Biggest life expectancy rise, 1967-2007")
+</code>
 </pre>
 
 
