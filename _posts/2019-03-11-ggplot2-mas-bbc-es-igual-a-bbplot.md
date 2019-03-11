@@ -57,11 +57,11 @@ pacman::p_load('dplyr', 'tidyr', 'gapminder',
 A `bbplot` lo instalas desde *GitHub* con `devtools`. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos aunque con todos los que hable en preparacion para este articulo me lo contaron como si fuera algo simple y sencillo... :eyes:
 <br>
 Paso 1: instala `devtools`, el paquete que te ayuda a instalar paquetes de *GitHub*. Este si existe en CRAN asi que solo necesitas ejecutar:
-```r
+```R
 install.packages("devtools")
 ```
 Paso 2: instala `bbplot` utilizando `devtools`:
-```r
+```R
 devtools::install_github("bbc/bbplot")
 ```
 
