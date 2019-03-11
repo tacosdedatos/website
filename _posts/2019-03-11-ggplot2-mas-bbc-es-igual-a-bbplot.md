@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/001.png
+cover:  assets/blogposts/002.png
 navigation: True
 title: ggplot2 + bbc = bbplot
 date: 2019-03-10 12:00:00
