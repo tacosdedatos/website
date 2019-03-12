@@ -12,7 +12,8 @@
         name: '{% if page.kernel_name %}{{ page.kernel_name }}{% else %}python3{% endif %}',
       },
       codeMirrorConfig: {
-        theme: 'panda-syntax'
+        theme: 'panda-syntax',
+        mode: '{% if page.CodeMirrorMode %}{{ page.CodeMirrorMode }}{% else %}python{% endif %}'
       }
     }
 </script>

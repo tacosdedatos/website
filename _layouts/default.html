@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.css" />
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.edited.css" />
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/prism.css" />
     <!-- highlight.js -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
     <style>.hljs { background: none; }</style>
@@ -101,14 +102,12 @@
         </div>
     {% endif %}
 
+
+    <!-- prism.js -->
+    <script type="text/javascript" src="{{ site.baseurl }}assets/js/prism.js"></script>
+    
     <!-- highlight.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
-    <script>$(document).ready(function() {
-      $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-      });
-    });</script>
-
     <!-- jQuery + Fitvids, which makes all video embeds responsive -->
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -117,6 +116,12 @@
     </script>
     <script type="text/javascript" src="{{ site.baseurl }}assets/js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
 
 
     <!-- Paginator increased to "infinit" in _config.yml -->

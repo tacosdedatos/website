@@ -23,21 +23,25 @@
 .jp-RenderedText pre {
     color: #000;
     background-color: transparent;
-    overflow: scroll;
 }
 
 .thebelab-cell {
-    overflow: scroll;
+    width: 100%;
     max-width: 100%;
 }
 
 .thebelab-button {
+    width: 50%;
     max-width: 50%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 400;
     background-color: #FCFCFC;
     border: #FCFCFC;
     border-radius: 4px 4px 0px 0px;
+}
+
+.post-full-content pre code {
+    padding: 0px 0px 0px 6px;
 }
   
 </style>>
@@ -63,8 +67,7 @@
                     restart_button[i].className += ' ghost-button'
                     // restart_button[i].setAttribute('style', 'height: 20px')
                 }
-                // restart_button.setAttribute('style', 'width: 100px')
-                // run_button.setAttribute('style', 'width: 100px')
+
 
         }        
    
