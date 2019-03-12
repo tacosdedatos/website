@@ -191,7 +191,7 @@ línea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) +
 línea
 </code></pre>
 
-Como puedes ver, `bbplot` es un paquete útil y muy fácil de usar. Te sirve para ahorrar tiempo en modificar cada uno de los aspectos de tu gráfico al darte un conjunto de atributos predeterminados (el estilo de la BBC). La segunda función de `bbplot` sirve para guardar tus gráficos en formato `.png`. Al inicio de este artículo vimos un ejemplo. Aquí esta el código que lo creó:
+Como puedes ver, `bbplot` es un paquete útil y muy fácil de usar. Te sirve para ahorrar tiempo en modificar cada uno de los aspectos de tu gráfico al darte un conjunto de atributos predeterminados (el estilo de la BBC). La segunda función de `bbplot` sirve para guardar tus gráficos en formato `.png`:
 <pre><code class = 'language-r'># finalise_plot() para guardar tu gráfico
 finalise_plot(plot_name = linea, # el nombre de tu gráfico en R
               source_name = 'Gapminder', # la fuente de tus datos
