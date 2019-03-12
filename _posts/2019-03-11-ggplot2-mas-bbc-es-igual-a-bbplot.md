@@ -38,7 +38,14 @@ A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://githu
 * `bbc_style()`: añade atributos a tu gráfico de `ggplot2`. <br>
 Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico de `ggplot2` para transformarlo en algo que pareciera haber salido de un artículo de la BBC.
 <figure>
-    <div><img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' /></div>
+    <div class="container">
+        <div style="float:left;width:49%">
+          <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' />
+        </div>
+        <div style="float:right;width:49%">
+          <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
+        </div>
+    </div>
     <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
 </figure><br>
 
