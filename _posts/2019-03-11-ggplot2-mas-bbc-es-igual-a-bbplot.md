@@ -40,10 +40,10 @@ Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico
 <figure>
     <div class="container">
         <div style="float:left;width:49%">
-          <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' />
+          <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' style="max-width:100%"/>
         </div>
         <div style="float:right;width:49%">
-          <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
+          <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' style="max-width:100%"/>
         </div>
     </div>
     <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
