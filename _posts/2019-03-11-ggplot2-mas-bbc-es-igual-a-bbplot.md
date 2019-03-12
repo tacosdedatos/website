@@ -50,10 +50,6 @@ Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico
 </figure><br>
 
 * `finalise_plot()`: agrega los ultimos detalles a tu gráfico y lo guarda como imagen `.png`. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.
-<figure>
-    <img src='../assets/blogposts/002_bbplot_ejemplo_4.png' alt='gráfico de bbplot con logo' style="max-width:70%"/>
-    <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
-</figure>
 
 ***
 
@@ -126,6 +122,8 @@ Pero vayamos paso a paso. <br>
 pais = "Colombia"
 datos_para_linea <- gapminder %>%
   filter(country == pais)
+
+head(datos_para_linea)
 </code></pre>
 
 **Paso 1**: Crea un gráfico y asígnale lo que `ggplot2` llama *aesthethic mappings* o mapeos estéticos (cuando *mapeas* o relacionas tus datos a una característica estética del gráfico). <br>
@@ -202,7 +200,12 @@ finalise_plot(plot_name = linea, # el nombre de tu gráfico en R
               height_pixels = 500, # alto
               logo_image_path = "logo.png") # tu logo, si quieres.
 </code></pre>
+<figure>
+    <img src='../assets/blogposts/002_bbplot_ejemplo_4.png' alt='gráfico de bbplot con logo' style="max-width:70%"/>
+    <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
+</figure>
 ***
+## Conclusión
 Este es el primer artículo explorando paquetes/librerías para visualizar datos. Como otros productos de **tacosdedatos**, queremos mantenerlos cortos y directos al punto, mostrandote a través de ejemplos el "que" y el "como". Creemos que aprendemos más y mejor explorando. 
 
 ¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín al final de esta página. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada. 
