@@ -41,7 +41,7 @@ A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://githu
 Lo único que necesitas hacer es agregar la linea `+ bbc_style()` a tu gráfico de `ggplot2` para transformarlo en algo que pareciera haber salido de un artículo de la BBC.
 <figure>
     <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
-    <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es <pre>+ bbc_style()</pre></i></figcaption>
+    <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
 </figure>
 <br>
 
@@ -179,15 +179,11 @@ linea
 
 
 
-## MáS EJEMPLOS
+## Más ejemplos
 
 <pre data-executable="true" data-language="R">
-<code class = 'language-r'>
-library("ggalt")
-library("tidyr")
-
-#Prepare data
-dumbbell_df <- gapminder %>%
+<code class = 'language-r'># Prepara los datos
+dumbbell_datos <- gapminder %>%
   filter(year == 1967 | year == 2007) %>%
   select(country, year, lifeExp) %>%
   spread(year, lifeExp) %>%
@@ -195,28 +191,27 @@ dumbbell_df <- gapminder %>%
   arrange(desc(gap)) %>%
   head(10)
 
-#Make plot
+# Hacemos el gráfico
 ggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
   geom_dumbbell(colour = "#dddddd",
                 size = 3,
                 colour_x = "#FAAB18",
                 colour_xend = "#1380A1") +
   bbc_style() + 
-  labs(title="We're living longer",
-       subtitle="Biggest life expectancy rise, 1967-2007")
+  labs(title="Güau, vivimos más y más",
+       subtitle="Cambios más grandes en esperanza de vida, 1967-2007")
 </code></pre>
 
 
 
 <pre data-executable="true" data-language="R">
-<code class = 'language-r'>
-#Prepare data
+<code class = 'language-r'># Prepara los datos
 facet <- gapminder %>%
   filter(continent != "Americas") %>%
   group_by(continent, year) %>%
   summarise(pop = sum(as.numeric(pop)))
 
-#Make plot
+# Haz el gráfico
 facet_plot <- ggplot() +
   geom_area(data = facet, aes(x = year, y = pop, fill = continent)) +
   scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) + 
@@ -227,15 +222,14 @@ facet_plot <- ggplot() +
   geom_hline(yintercept = 0, size = 1, colour = "#333333") +
   theme(legend.position = "none",
         axis.text.x = element_blank()) +
-  labs(title = "Asia's rapid growth",
-       subtitle = "Population growth by continent, 1952-2007")
+  labs(title = "El rápido crecimiento de Asia",
+       subtitle = "Crecimiento de población por continente, 1952-2007")
 
 facet_plot
 </code></pre>
 
 <pre data-executable="true" data-language="R">
-<code class = 'language-r'>
-#Make plot
+<code class = 'language-r'># Hagamos el gráfico
 facet_plot_free <- ggplot() +
   geom_area(data = facet, aes(x = year, y = pop, fill = continent)) +
   facet_wrap(~ continent, scales = "free") + 
@@ -245,8 +239,8 @@ facet_plot_free <- ggplot() +
   theme(legend.position = "none",
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
-  labs(title = "It's all relative",
-       subtitle = "Relative population growth by continent,1952-2007")
+  labs(title = "Todo es relativo",
+       subtitle = "Crecimiento de población relativo por continente,1952-2007")
 
 facet_plot_free
 </code></pre>
