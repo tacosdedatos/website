@@ -95,15 +95,18 @@ Ya que tenemos todos los paquetes instalados y cargados en tu entorno podemos ha
 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+pais = "Colombia"
 datos_para_linea <- gapminder %>%
-  filter(country == "Colombia") 
+  filter(country == pais) 
 
 # crea el gráfico
 linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
   geom_line(colour = "#1380A1", size = 1) + 
   geom_hline(yintercept = 0, size = 1, colour="#333333") + 
   labs(title="Pura Vida", 
-         subtitle = "Esperanza de Vida en Colombia 1952-2007") + 
+         subtitle = paste("Esperanza de Vida en ", pais, " 1952-2007")) + 
   bbc_style()
 
 # muestra el gráfico
@@ -113,6 +116,16 @@ linea
 ***
 
 Pero vayamos paso a paso. <br>
+Paso 0: Cargas tus datos.
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+pais = "Colombia"
+datos_para_linea <- gapminder %>%
+  filter(country == pais)
+</code></pre>
+
 Paso 1: Crea un gráfico y asignale lo que `ggplot2` llama *aesthethic mappings* o mapeos estéticos (cuando *mapeas* o relacionas tus datos a una característica estética del gráfico). <br>
 Es decir: *X es el año e Y es esperanza de vida*. 
 <pre data-executable="true" data-language="R">
@@ -124,7 +137,7 @@ linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
 linea
 </code></pre>
 
-Paso 2: Agregale una *geometría*. ¿Cómo vas a visualizar los valores *mapeados*? En este caso con una línea:
+Paso 2: Agrégale una *geometría*. ¿Cómo vas a visualizar los valores *mapeados*? En este caso con una línea:
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Ya tenemos cargados los datos
 # crea el gráfico - paso 2
@@ -218,7 +231,7 @@ grafico_faceteado <- ggplot() +
   facet_wrap( ~ continent, ncol = 5) + 
   scale_y_continuous(breaks = c(0, 2000000000, 4000000000),
                      labels = c(0, "2bn", "4bn")) +
-  bbc_style() +
+  #bbc_style() + # Borra el signo de # al inicio de esta linea para activar el bbc_style()
   geom_hline(yintercept = 0, size = 1, colour = "#333333") +
   theme(legend.position = "none",
         axis.text.x = element_blank()) +
@@ -233,7 +246,7 @@ grafico_faceteado
 grafico_faceteado_free <- ggplot() +
   geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
   facet_wrap(~ continent, scales = "free") + 
-  bbc_style() +
+  #bbc_style() + # activa el bbc_style()
   scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) +
   geom_hline(yintercept = 0, size = 1, colour = "#333333") +
   theme(legend.position = "none",
@@ -247,21 +260,37 @@ grafico_faceteado_free
 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Hagamos el gráfico
-ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
-  geom_point(alpha = 0.7, show.legend = FALSE) +
-  scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) +
-  scale_x_log10() +
-  facet_wrap(~continent)
-</code></pre>
-
-<pre data-executable="true" data-language="R">
-<code class = 'language-r'># Hagamos el gráfico
-ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+datos = gapminder %>%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   geom_point(alpha = 0.7, show.legend = FALSE) +
   scale_colour_manual(values = country_colors) +
   scale_size(range = c(2, 12)) +
   scale_x_log10() +
   facet_wrap(~continent) +
-  bbc_style()
+  theme(legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) 
+</code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Hagamos el gráfico
+datos = gapminder %>%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style() + # bbc_style agrega etiquetas en el eje X asi que lo tenemos que poner antes del final
+  theme(legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) 
 </code></pre>
