@@ -51,7 +51,7 @@ Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico
 
 * `finalise_plot()`: agrega los ultimos detalles a tu gráfico y lo guarda como imagen `.png`. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.
 <figure>
-    <img src='../assets/blogposts/002_bbplot_ejemplo_4.png' alt='gráfico de bbplot con logo' />
+    <img src='../assets/blogposts/002_bbplot_ejemplo_4.png' alt='gráfico de bbplot con logo' style="max-width:70%"/>
     <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
 </figure>
 
