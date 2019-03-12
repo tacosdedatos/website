@@ -192,28 +192,28 @@ dumbbell_datos <- gapminder %>%
   head(10)
 
 # Hacemos el gráfico
-ggplot(dumbbell_df, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
+ggplot(dumbbell_datos, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
   geom_dumbbell(colour = "#dddddd",
                 size = 3,
                 colour_x = "#FAAB18",
                 colour_xend = "#1380A1") +
   bbc_style() + 
   labs(title="Güau, vivimos más y más",
-       subtitle="Cambios más grandes en esperanza de vida, 1967-2007")
+       subtitle="Cambios más grandes \nen esperanza de vida, 1967-2007")
 </code></pre>
 
 
 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Prepara los datos
-facet <- gapminder %>%
+faceta <- gapminder %>%
   filter(continent != "Americas") %>%
   group_by(continent, year) %>%
   summarise(pop = sum(as.numeric(pop)))
 
 # Haz el gráfico
-facet_plot <- ggplot() +
-  geom_area(data = facet, aes(x = year, y = pop, fill = continent)) +
+grafico_faceteado <- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
   scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) + 
   facet_wrap( ~ continent, ncol = 5) + 
   scale_y_continuous(breaks = c(0, 2000000000, 4000000000),
@@ -225,13 +225,13 @@ facet_plot <- ggplot() +
   labs(title = "El rápido crecimiento de Asia",
        subtitle = "Crecimiento de población por continente, 1952-2007")
 
-facet_plot
+grafico_faceteado
 </code></pre>
 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Hagamos el gráfico
-facet_plot_free <- ggplot() +
-  geom_area(data = facet, aes(x = year, y = pop, fill = continent)) +
+grafico_faceteado_free <- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
   facet_wrap(~ continent, scales = "free") + 
   bbc_style() +
   scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) +
@@ -242,5 +242,5 @@ facet_plot_free <- ggplot() +
   labs(title = "Todo es relativo",
        subtitle = "Crecimiento de población relativo por continente,1952-2007")
 
-facet_plot_free
+grafico_faceteado_free
 </code></pre>
