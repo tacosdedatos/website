@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/blogposts/002.png
 navigation: True
-title: ggplot2 + bbc = bbplot
+title: ggplot2 + BBC = bbplot
 date: 2019-03-12 10:00:00
 tags: [blog, recursos]
 class: post-template
@@ -38,7 +38,7 @@ A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://githu
 * `bbc_style()`: añade atributos a tu gráfico de `ggplot2`. <br>
 Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico de `ggplot2` para transformarlo en algo que pareciera haber salido de un artículo de la BBC.
 <figure>
-    <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
+    <div><img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' /></div>
     <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
 </figure><br>
 
@@ -308,7 +308,7 @@ ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 Mira este super gif creado con `ggplot2` + `bbplot` + `gganimate` 😱
 <figure>
     <img src='../assets/blogposts/002_bbplot_y_gganimate.gif' alt='ggplot2 + bbplot + gganimate = güau' />
-    <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
+    <figcaption style="text-align:center"><span style = "font-family:monospace">ggplot2 + bbplot + gganimate = güau</span></figcaption>
 </figure><br>
 
 Este es el código para hacerlo en `Rstudio`:
