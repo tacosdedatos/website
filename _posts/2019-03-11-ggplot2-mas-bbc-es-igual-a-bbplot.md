@@ -272,24 +272,6 @@ grafico_faceteado_free <- ggplot() +
 
 grafico_faceteado_free
 </code></pre>
-
-<pre data-executable="true" data-language="R">
-<code class = 'language-r'># Hagamos el gráfico
-datos = gapminder %>%
-	filter(year == 2007)
-    
-ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
-  geom_point(alpha = 0.7, show.legend = FALSE) +
-  scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) +
-  scale_x_log10() +
-  facet_wrap(~continent) +
-  theme(legend.position = "none",
-        axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.y = element_blank()) 
-</code></pre>
 <br>
 Este es un buen ejemplo de como el `bbc_style()` no siempre es la mejor opción. La BBC utiliza marcas en sus ejes `X` por defecto pero en este gráfico en particular toman mucho espacio. Así que primero *activamos* el estilo BBC y *luego* agregamos código que elimina las etiquetas en los ejes. 
 <pre data-executable="true" data-language="R">
@@ -303,15 +285,29 @@ ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   scale_size(range = c(2, 12)) +
   scale_x_log10() +
   facet_wrap(~continent) +
-  #bbc_style() + # bbc_style agrega etiquetas en el eje X asi que lo tenemos que poner antes del final
-  theme(legend.position = "none",
+  bbc_style()
+</code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Hagamos el gráfico
+datos = gapminder %>%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style() + 
+  theme(legend.position = "none", 
         axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(),
+        axis.ticks.x = element_blank(), # bbc_style agrega etiquetas en el eje X asi tenemos que agregar esto
         axis.ticks.y = element_blank(),
         axis.text.y = element_blank()) 
 </code></pre>
 
-# bonus
+### bonus
 Mira este super gif creado con `ggplot2` + `bbplot` + `gganimate` 😱
 <figure>
     <img src='../assets/blogposts/002_bbplot_y_gganimate.gif' alt='ggplot2 + bbplot + gganimate = güau' />
