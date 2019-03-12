@@ -244,3 +244,24 @@ grafico_faceteado_free <- ggplot() +
 
 grafico_faceteado_free
 </code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Hagamos el gráfico
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent)
+</code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class = 'language-r'># Hagamos el gráfico
+ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style()
+</code></pre>
