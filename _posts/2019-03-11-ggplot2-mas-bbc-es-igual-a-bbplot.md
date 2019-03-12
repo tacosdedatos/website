@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/002.png
 navigation: True
 title: ggplot2 + BBC = bbplot
-date: 2019-03-12 10:00:00
+date: 2019-03-12 12:00:00
 tags: [blog, recursos]
 class: post-template
 subclass: 'post tag-blog'
@@ -58,7 +58,7 @@ Sin más preambulo veamos `bbplot` en acción. En **tacosdedatos** acabamos de a
 Si vas al inicio de esta página verás el botón *✨ activar código ✨*. Al hacer clic transformarás ciertas celdas de código aquí debajo en celdas ejecutables. Estas celdas *activadas* son editables así que te invito a que cambies el código para personalizar los gráficos un poco como se te ocurra. Detrás de todo esto esta el poder de [MyBinder](https://mybinder.org/) un proyecto del mismo equipo que te trajo [Project Jupyter](https://jupyter.org/) del cual aprenderemos más adelante. 
 
 ### Primero necesitas cargar los paquetes necesarios
-En el *libro de recetas* publicado en conjunto con `bbplot` la BBC sugiere utilizar el paquete `pacman` para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir `library("dplyr")`, `library("tidyr")`, `library("gapminder")`, etc. pero en un solo comando. <br>
+En el *libro de recetas* publicado en conjunto con `bbplot` la BBC sugiere utilizar el paquete `pacman` para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir `library("dplyr")`, `library("tidyr")`, `library("gapminder")`, etc. pero en un sólo comando. <br>
 *NOTA: La primera línea del código instala `pacman` si no lo tienes.*
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'>if(!require(pacman))install.packages("pacman")
@@ -235,6 +235,7 @@ ggplot(dumbbell_datos, aes(x = `1967`, xend = `2007`, y = reorder(country, gap),
        subtitle="Cambios más grandes \nen esperanza de vida, 1967-2007")
 </code></pre>
 
+A este par de ejemplos debajo puedes borrarles el `#` en la línea `bbc_style() +` para *activar* el estilo BBC.
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Prepara los datos
 faceta <- gapminder %>%
@@ -249,34 +250,42 @@ grafico_faceteado <- ggplot() +
   facet_wrap( ~ continent, ncol = 5) + 
   scale_y_continuous(breaks = c(0, 2000000000, 4000000000),
                      labels = c(0, "2bn", "4bn")) +
-  #bbc_style() + # Borra el signo de # al inicio de esta línea para activar el bbc_style()
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
   geom_hline(yintercept = 0, size = 1, colour = "#333333") +
   theme(legend.position = "none",
         axis.text.x = element_blank()) +
   labs(title = "El rápido crecimiento de Asia",
-       subtitle = "Crecimiento de población por continente, 1952-2007")
+       subtitle = "Crecimiento de población \npor continente, 1952-2007")
 
 grafico_faceteado
 </code></pre>
 
 <pre data-executable="true" data-language="R">
-<code class = 'language-r'># Hagamos el gráfico
+<code class = 'language-r'># Prepara los datos
+faceta <- gapminder %>%
+  filter(continent != "Americas") %>%
+  group_by(continent, year) %>%
+  summarise(pop = sum(as.numeric(pop)))
+
+# Hagamos el gráfico
 grafico_faceteado_free <- ggplot() +
   geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
   facet_wrap(~ continent, scales = "free") + 
-  #bbc_style() + # activa el bbc_style()
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
   scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) +
   geom_hline(yintercept = 0, size = 1, colour = "#333333") +
   theme(legend.position = "none",
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   labs(title = "Todo es relativo",
-       subtitle = "Crecimiento de población relativo por continente,1952-2007")
+       subtitle = "Crecimiento relativo de población \npor continente,1952-2007")
 
 grafico_faceteado_free
 </code></pre>
 <br>
-Este es un buen ejemplo de como el `bbc_style()` no siempre es la mejor opción. La BBC utiliza marcas en sus ejes `X` por defecto pero en este gráfico en particular toman mucho espacio. Así que primero *activamos* el estilo BBC y *luego* agregamos código que elimina las etiquetas en los ejes. 
+Este es un buen ejemplo de como solo añadir `bbc_style()` al final de cualquier gráfico de `ggplot2` no siempre es la mejor opción. La BBC utiliza marcas en sus ejes `X` por defecto pero en este gráfico en particular toman mucho espacio. Así que primero *activamos* el estilo BBC y *luego* agregamos código que elimina las etiquetas en los ejes. 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Hagamos el gráfico
 datos = gapminder %>%
@@ -305,7 +314,8 @@ ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   bbc_style() + 
   theme(legend.position = "none", 
         axis.text.x = element_blank(),
-        axis.ticks.x = element_blank(), # bbc_style agrega etiquetas en el eje X asi tenemos que agregar esto
+        # bbc_style agrega etiquetas en el eje X asi tenemos que agregar esto
+        axis.ticks.x = element_blank(), 
         axis.ticks.y = element_blank(),
         axis.text.y = element_blank()) 
 </code></pre>
@@ -342,5 +352,7 @@ animeishon <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = cou
     labs(title = 'Año: {frame_time}', subtitle = 'x: PIB per capita \ny: Esperanza de vida') +
     transition_time(year) +
     ease_aes('linear')
+
+animate(animeishon, nframes = 100, end_pause = 10)
 </code></pre>
 Puedes copiar y pegar todo esto en `Rstudio` sin necesidad de instalar nada en MyBinder.org haciendo clic aquí [![badge](https://img.shields.io/badge/-Rstudio-579ACA.svg?logo=data:image/png;base64,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)](https://mybinder.org/v2/gh/tacos-de-datos/probando-bbplot/master?urlpath=rstudio)
