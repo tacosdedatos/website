@@ -32,7 +32,7 @@ A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://githu
 <figure>
     <img src='../assets/blogposts/002_bbplot_ejemplo.png' alt='ggplot2 + bbc_style = bbplot' />
     <figcaption style="text-align:center"><i>Ejemplos de gráficos con el estilo de la BBC</i></figcaption>
-</figure>
+</figure><br>
 
 `bbplot` es esencialmente dos funciones:
 * `bbc_style()`: añade atributos a tu gráfico de `ggplot2`. <br>
@@ -40,7 +40,7 @@ Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico
 <figure>
     <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
     <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
-</figure>
+</figure><br>
 
 * `finalise_plot()`: agrega los ultimos detalles a tu gráfico y lo guarda como imagen `.png`. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.
 <figure>
@@ -50,11 +50,9 @@ Lo único que necesitas hacer es agregar la línea `+ bbc_style()` a tu gráfico
 
 ***
 
-
-
 ### La meta de este artículo es ilustrar lo que puedes hacer con el paquete `bbplot`
 Sin más preambulo veamos `bbplot` en acción. En **tacosdedatos** acabamos de agregar una magia antigüa para poder hacer nuestros artículos más interactivos 🔮👀 (se llama [thebelab](https://thebelab.readthedocs.io/)). <br>
-Si vas al inicio de esta pagina veras el botón *✨ activar código ✨*. Al hacer clic transformarás ciertas celdas de código aquí debajo en celdas ejecutables. Estas celdas *activadas* son editables así que te invito a que cambies el código para personalizar los gráficos un poco como se te ocurra. Detrás de todo esto esta el poder de [MyBinder](https://mybinder.org/) un proyecto del mismo equipo que te trajo [Project Jupyter](https://jupyter.org/) del cual aprenderemos más adelante. 
+Si vas al inicio de esta página verás el botón *✨ activar código ✨*. Al hacer clic transformarás ciertas celdas de código aquí debajo en celdas ejecutables. Estas celdas *activadas* son editables así que te invito a que cambies el código para personalizar los gráficos un poco como se te ocurra. Detrás de todo esto esta el poder de [MyBinder](https://mybinder.org/) un proyecto del mismo equipo que te trajo [Project Jupyter](https://jupyter.org/) del cual aprenderemos más adelante. 
 
 ### Primero necesitas cargar los paquetes necesarios
 En el *libro de recetas* publicado en conjunto con `bbplot` la BBC sugiere utilizar el paquete `pacman` para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir `library("dplyr")`, `library("tidyr")`, `library("gapminder")`, etc. pero en un solo comando. <br>
@@ -71,11 +69,11 @@ pacman::p_load('dplyr', 'tidyr', 'gapminder',
 ***
 **Mucho ojo**, nosotros ya tenemos instalado el paquete `bbplot`. Si no lo haz instalado el código aquí arriba resultará en un error.<br>
 `bbplot` no está en [`CRAN`](https://cran.r-project.org/), el sistema central de paquetes de `R` del que normalmente descargarías un paquete nuevo. <br>
-A `bbplot` lo instalas desde *GitHub* con `devtools`. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos *aunque con todos los que hable en preparación para este articulo me lo contaron como si fuera algo simple y sencillo...* 🙄
+A `bbplot` lo instalas desde *GitHub* con `devtools`. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos (*aunque con todos los que hablé en preparación para este artículo me lo contaron como si fuera algo simple y sencillo...* 🙄).
 
-Paso 1: instala `devtools`, el paquete que te ayuda a instalar paquetes de *GitHub*. Este si existe en `CRAN` así que solo necesitas ejecutar:
+**Paso 1**: instala `devtools`, el paquete que te ayuda a instalar paquetes de *GitHub*. Este si existe en `CRAN` así que solo necesitas ejecutar:
 <pre><code class = "language-r">install.packages("devtools")</code></pre>
-Paso 2: instala `bbplot` utilizando `devtools`:
+**Paso 2**: instala `bbplot` utilizando `devtools`:
 <pre><code class = 'language-r'>devtools::install_github("bbc/bbplot")</code></pre>
 
 **Mucho ojo (parte 2)**, existe un sinfín de razones por las cuales esto no funcione en ciertos sistemas. Por ejemplo, el servidor conectado a esta página donde estás ejecutando código está basado en `Linux` (Ubuntu 16.04, creo) y por alguna razón no podíamos instalarlo con `devtools`. Lo que tuvimos que hacer es clonar el repositorio `bbc/bbplot`, instalarlo como **source** y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos más. 
@@ -86,10 +84,11 @@ git clone https://github.com/bbc/bbplot.git
 R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
 # borra la carpeta de tu area de trabajo
 ## En sistemas Linux/MacOS
-rm -rf bbplot # en sistemas linux/macOS 'rmdir /s /q bbplot' en Windows</code></pre>
+rm -rf bbplot #'rmdir /s /q bbplot' en Windows</code></pre>
 ***
-Ya que tenemos todos los paquetes instalados y cargados en tu entorno podemos hacer nuestros gráficos. Utilizaremos los datos de `Gapminder` los cuales puedes instalar también de `CRAN`. [`Gapminder`](https://gapminder.org/) *"es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global"* a través de datos.
-
+Ya que tenemos todos los paquetes instalados y cargados en nuestro entorno podemos hacer nuestros gráficos. Utilizaremos los datos de `Gapminder` los cuales puedes instalar también de `CRAN`. <br>
+[Gapminder](https://gapminder.org/) *"es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global"* a través de datos.
+***nota: todo esto asume que ya fuiste al inicio de la página a activar el código 👀 y ejecutaste la celda que carga los paquetes con `pacman`***
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Datos de gapminder
 # Primero escoge un pais del conjunto de datos
@@ -196,13 +195,13 @@ finalise_plot(plot_name = linea, # el nombre de tu gráfico en R
               height_pixels = 500, # alto
               logo_image_path = "logo.png") # tu logo, si quieres.
 </code></pre>
-
+***
 Este es el primer artículo explorando paquetes/librerías para visualizar datos. Como otros productos de **tacosdedatos**, queremos mantenerlos cortos y directos al punto, mostrandote a través de ejemplos el "que" y el "como". Creemos que aprendemos más y mejor explorando. 
 
 ¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín al final de esta página. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada. 
 
 ¡Hasta la próxima! Te dejamos aquí debajo otros ejemplos.
-
+***
 #### Más ejemplos
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Prepara los datos
@@ -224,8 +223,6 @@ ggplot(dumbbell_datos, aes(x = `1967`, xend = `2007`, y = reorder(country, gap),
   labs(title="Güau, vivimos más y más",
        subtitle="Cambios más grandes \nen esperanza de vida, 1967-2007")
 </code></pre>
-
-
 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Prepara los datos
@@ -285,7 +282,7 @@ ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
         axis.ticks.y = element_blank(),
         axis.text.y = element_blank()) 
 </code></pre>
-
+<br>
 Este es un buen ejemplo de como el `bbc_style()` no siempre es la mejor opción. La BBC utiliza marcas en sus ejes `X` por defecto pero en este gráfico en particular toman mucho espacio. Así que primero *activamos* el estilo BBC y *luego* agregamos código que elimina las etiquetas en los ejes. 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Hagamos el gráfico
@@ -311,7 +308,7 @@ Mira este super gif creado con `ggplot2` + `bbplot` + `gganimate` 😱
 <figure>
     <img src='../assets/blogposts/002_bbplot_y_gganimate.gif' alt='ggplot2 + bbplot + gganimate = güau' />
     <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
-</figure>
+</figure><br>
 
 Este es el código para hacerlo en `Rstudio`:
 <pre><code class = 'language-r'># Carga todos tus paquetes
