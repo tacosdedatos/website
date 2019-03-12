@@ -87,7 +87,7 @@ R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
 rm -rf bbplot #'rmdir /s /q bbplot' en Windows</code></pre>
 ***
 Ya que tenemos todos los paquetes instalados y cargados en nuestro entorno podemos hacer nuestros gráficos. Utilizaremos los datos de `Gapminder` los cuales puedes instalar también de `CRAN`. <br>
-[Gapminder](https://gapminder.org/) *"es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global"* a través de datos.
+[Gapminder](https://gapminder.org/) *"es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global"* a través de datos.<br>
 ***nota: todo esto asume que ya fuiste al inicio de la página a activar el código 👀 y ejecutaste la celda que carga los paquetes con `pacman`***
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Datos de gapminder
@@ -201,6 +201,7 @@ Este es el primer artículo explorando paquetes/librerías para visualizar datos
 ¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín al final de esta página. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada. 
 
 ¡Hasta la próxima! Te dejamos aquí debajo otros ejemplos.
+
 ***
 #### Más ejemplos
 <pre data-executable="true" data-language="R">
