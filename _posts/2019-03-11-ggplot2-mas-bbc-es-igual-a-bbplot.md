@@ -19,16 +19,16 @@ CodeMirrorMode: r
 
 {% include thebelab_button.html %}
 
-`ggplot2` es un paquete del lenguage `R` para la visualizacion de datos. El par de **G**s en `ggplot2` es de *Grammar of Graphics* o la ***Gramatica de Graficos*** - una lenguaje simple e intuitivo para *construir* á. 
+`ggplot2` es un paquete del lenguage `R` para la visualizacion de datos. El par de **G**s en `ggplot2` es de *Grammar of Graphics* o la ***Gramática de Gráficos*** - un lenguaje simple e intuitivo para *construir* gráficos. 
 
-> Una gramática de gráficos es una herramienta que nos permite describir de manera concisa los componentes de un gráfico. Dicha gramática nos permite ir más allá de los gráficos con nombre (por ejemplo, el _gráfico de dispersión_) y obtener información sobre la estructura profunda que subyace en los gráficos estadísticos. <br> - **_Hadley Wickham_**, creador del `tidyverse` en `R` en su arículo _A Layered Grammar of Graphics (2010)
+> Una gramática de gráficos es una herramienta que nos permite describir de manera concisa los componentes de un gráfico. Dicha gramática nos permite ir más allá de los gráficos con nombre (por ejemplo, el _gráfico de dispersión_) y obtener información sobre la estructura profunda que subyace en los gráficos estadísticos. <br> - **_Hadley Wickham_**, creador del `tidyverse` en `R` en su arículo **A Layered Grammar of Graphics (2010)**.
 
 ### ¿Qué es `bbplot`?
-A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://github.com/bbc/bbplot) y un [*libro de recetas*](https://bbc.github.io/r-cookbook) para crear varios á listos para publicacion con `ggplot2`. <br>
+A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://github.com/bbc/bbplot) y un [*libro de recetas*](https://bbc.github.io/r-cookbook) para crear varios gráficos listos para publicación con `ggplot2`. <br>
 
-> La meta es crear un proceso de creacion de á con su estilo personalizado más reproducible y de paso ayudarle a principiantes de `R` a hacer gráficos. 
+> La meta es crear un proceso de creación de gráficos más reproducible y de paso ayudarle a principiantes de `R` a hacer gráficos. 
 
-`bbplot` es un paquete que transforma un gráfico creado con `ggplot2` agregandole el _estilo_ de la BBC.
+`bbplot` es un paquete que transforma un gráfico creado con `ggplot2` agregándole el _estilo_ de la BBC.
 
 <figure>
     <img src='../assets/blogposts/002_bbplot_ejemplo.png' alt='ggplot2 + bbc_style = bbplot' />
@@ -37,14 +37,19 @@ A finales de enero del 2019, la BBC publicó el paquete [`bbplot`](https://githu
 <br>
 
 `bbplot` es esencialmente dos funciones:
-* `bbc_style()`: agrega atributos a tu gráfico de `ggplot2`. Lo único que necesitas hacer es agregar la linea `+ bbc_style()` a tu gráfico de `ggplot2` para transformarlo en algo que pareciera haber salido de un articulo de la BBC.
+* `bbc_style()`: añade atributos a tu gráfico de `ggplot2`. <br>
+Lo único que necesitas hacer es agregar la linea `+ bbc_style()` a tu gráfico de `ggplot2` para transformarlo en algo que pareciera haber salido de un artículo de la BBC.
 <figure>
     <img src='../assets/blogposts/002_bbplot_ejemplo_2.jpg' alt='gráfico de ggplot2' /> <img src='../assets/blogposts/002_bbplot_ejemplo_3.jpg' alt='gráfico de ggplot2 + bbc_style' />
-    <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es `+ bbc_style()`</i></figcaption>
+    <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es <pre>+ bbc_style()</pre></i></figcaption>
 </figure>
 <br>
 
-* `finalise_plot()`: agrega los ultimos detalles a tu gráfico y lo guarda como image `.png`. Esto esencialmente alinea a la izquierda el titulo y el subtitulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.
+* `finalise_plot()`: agrega los ultimos detalles a tu gráfico y lo guarda como imagen `.png`. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.
+<figure>
+    <img src='../assets/blogposts/002_bbplot_ejemplo_4.png' alt='gráfico de bbplot con logo' />
+    <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
+</figure>
 
 ***
 
@@ -94,12 +99,12 @@ datos_para_linea <- gapminder %>%
   filter(country == "Colombia") 
 
 # crea el gráfico
-linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) 
-  + geom_line(colour = "#1380A1", size = 1) 
-  + geom_hline(yintercept = 0, size = 1, colour="#333333") 
-  + labs(title="Pura Vida", 
-         subtitle = "Esperanza de Vida en Colombia 1952-2007")
-  + bbc_style()
+linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+         subtitle = "Esperanza de Vida en Colombia 1952-2007") + 
+  bbc_style()
 
 # muestra el gráfico
 linea
@@ -123,8 +128,8 @@ Paso 2: Agregale una *geometría*. ¿Cómo vas a visualizar los valores *mapeado
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Ya tenemos cargados los datos
 # crea el gráfico - paso 2
-linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
-  + geom_line(colour = "#1380A1", size = 1)
+linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1)
 
 # muestra el gráfico
 linea
@@ -134,9 +139,9 @@ Paso 3: Agregamos una línea horizontal `geom_hline` en el valor 0 de `Y`. Este 
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Ya tenemos cargados los datos
 # crea el gráfico - paso 3
-linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) 
-  + geom_line(colour = "#1380A1", size = 1) 
-  + geom_hline(yintercept = 0, size = 1, colour="#333333")
+linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333")
 
 # muestra el gráfico
 linea
@@ -146,11 +151,11 @@ Paso 4: Güau que rápido vas. En este paso le agregamos `labels` o etiquetas: T
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Ya tenemos cargados los datos
 # crea el gráfico - paso 4
-linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) 
-  + geom_line(colour = "#1380A1", size = 1) 
-  + geom_hline(yintercept = 0, size = 1, colour="#333333") 
-  + labs(title="Pura Vida", 
-         subtitle = "Esperanza de Vida en Colombia 1952-2007")
+linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+       subtitle = "Esperanza de Vida en Colombia 1952-2007")
 
 # muestra el gráfico
 linea
@@ -161,13 +166,13 @@ Paso 5: Agrégale `+ bbc_style()` y ¡ya quedó!
 <pre data-executable="true" data-language="R">
 <code class = 'language-r'># Ya tenemos cargados los datos
 # crea el gráfico - paso 5
-linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) 
-  + geom_line(colour = "#1380A1", size = 1) 
-  + geom_hline(yintercept = 0, size = 1, colour="#333333") 
-  + labs(title="Pura Vida", 
-         subtitle = "Esperanza de Vida en Colombia 1952-2007") 
-  + bbc_style()
-  
+linea <- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+       subtitle = "Esperanza de Vida en Colombia 1952-2007") + 
+  bbc_style()
+
 # muestra el gráfico
 linea
 </code></pre>
