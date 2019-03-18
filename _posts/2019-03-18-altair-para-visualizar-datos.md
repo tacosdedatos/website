@@ -15,6 +15,9 @@ repo: tacos-de-datos/tacos-en-jupyter
 CodeMirrorMode: python
 ---
 
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.3.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc15"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0-rc1"></script>
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
 
