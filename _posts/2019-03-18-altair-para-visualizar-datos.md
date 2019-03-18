@@ -15,11 +15,9 @@ repo: tacos-de-datos/tacos-en-jupyter
 CodeMirrorMode: python
 ---
 
-  <!-- Import Vega 5 & Vega-Lite 3 (does not have to be from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <!-- Import vega-embed -->
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@3.0.0-rc12"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
 
