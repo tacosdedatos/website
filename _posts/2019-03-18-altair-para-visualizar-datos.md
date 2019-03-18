@@ -11,7 +11,7 @@ subclass: 'post tag-blog'
 author: sergio
 kernel_name: python
 thebelab: true
-repo: tacos-de-datos/tacos-en-jupyter
+repo: tacos-de-datos/probando-altair
 CodeMirrorMode: python
 ---
 
@@ -23,9 +23,14 @@ CodeMirrorMode: python
 
 {% include thebelab_button.html %}
 
+<pre><code class = 'language-python'>alt.renderers.enable('png')</code></pre>
+
 <pre data-executable="true" data-language="python">
 <code class = 'language-python'>import altair as alt
 from vega_datasets import data
+
+alt.renderers.enable('png')
+
 
 # Since the data is more than 5,000 rows we'll import it from a URL
 source = data.zipcodes.url
