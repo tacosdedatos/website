@@ -57,7 +57,7 @@ Ya solo tienes que estilizar tu gráfico como te guste. Yo te recomiendo:
     ![grafico waffle con google sheets](../assets/blogposts/003_ejemplo_7.gif)
 
 
-Aqui te dejo el enlace a la planilla original en [Google Drive](https://docs.google.com/spreadsheets/d/1PSuo-PFrETW68MCDLVwYRw1n7h1jVk6FdLynIry9cik/edit?usp=sharing)
+Aqui te dejo el enlace a la planilla original en [Google Drive](https://docs.google.com/spreadsheets/d/1f1-1J7SXMn4R9OW2XwRLYs8aGy3cB9ITFoy62ZCYHQc/edit?usp=sharing)
 
 Este tutorial esta etiquetado como **principiante** ya que solo necesitas tener acceso a una cuenta google y seguir estos simples pasos. 
 
