@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/003.png
 navigation: True
 title: Gráficos Waffle en Excel y Google Sheets en 5 pasos.
-date: 2019-03-26 18:00:00
+date: 2019-03-27 08:00:00
 tags: [blog, recursos, tutoriales, excel, google sheets, principiante]
 class: post-template
 subclass: 'post tag-tutoriales'
