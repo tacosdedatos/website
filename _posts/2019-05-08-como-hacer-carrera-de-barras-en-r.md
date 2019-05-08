@@ -158,13 +158,13 @@ anim_save('bar_race_population.gif')
 
 El gif que obtenemos es el siguiente:
 
-![carrera de barras imagen gif paises](../assets/blogposts/005_barras_3d.gif  "Imagen de https://giphy.com/")
+![carrera de barras imagen gif paises](../assets/blogposts/005_carrera_barras.gif)
 
 ## Conclusiones
 
 En esta entrada vimos como crear la "carrera de las barras". Espero que con este tutorial puedas agregar este tipo de gráficas a tu catálogo o portafolio de datos.
 
-![gif con barras pasandose a mesa en 3d](../assets/blogposts/005_ejemplo_X.gif)
+![gif con barras pasandose a mesa en 3d](../assets/blogposts/005_barras_3d.gif  "Imagen de https://giphy.com/")
 
 Si te ha gustado este tutorial, te recomiendo que intentes ir un poco más allá cambiando el fondo y los temas de ggplot. Puedes saber sobre [como cambiar los temas de ggplot en este articulo](https://tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot). Envíame [un twit aquí](https://twitter.com/gonzalezgouveia) si lo has logrado!
 
