@@ -13,7 +13,7 @@ author: rafa
 
 Crear la animación de la "bar chart race" en R con gganimate y ggplot
 
-![carrera de barras imagen gif paises](../assets/blogposts/005_ejemplo_1.gif)
+![carrera de barras imagen gif paises](../assets/blogposts/005_carrera_barras.gif)
 
 ¡Hola Mundo! En este tutorial vamos a hacer una animación o GIF llamada "bar chart race". Es posible que ya la hallas visto aquí. En esta entrada, vamos a hacer una versión con R y gganimate en español.
 
@@ -32,7 +32,7 @@ Es deseable que tengas un conocimiento básico de funciones en R, gráficas en g
 
 Para empezar, puedes ir a la página de gapminder. Ahí, bajamos hasta el menú para seleccionar un indicador. Luego, vamos a "Population" y seleccionamos "population, total". Por último, escogemos la opción de csv.
 
-![descargar datos gapminder](../assets/blogposts/005_ejemplo_2.png)
+![descargar datos gapminder](../assets/blogposts/005_gapminder_descarga.png)
 
 Para cargar el csv en R, guardamos el archivo descargado en la carpeta de trabajo. Además, cargamos las librerías que vamos a utilizar en todo el proceso. Luego, podemos utilizar el siguiente código:
 
@@ -85,7 +85,7 @@ population_tidy <- population_data%>%
 
 Ahora viene la parte divertida!
 
-![meme de gato escribiendo en ordenador](../assets/blogposts/005_ejemplo_3.png)
+![meme de gato escribiendo en ordenador](../assets/blogposts/005_gato.gif "Imagen de https://giphy.com/")
 
 ## 3. Visualización de la carrera de barras
 
@@ -158,7 +158,7 @@ anim_save('bar_race_population.gif')
 
 El gif que obtenemos es el siguiente:
 
-![carrera de barras imagen gif paises](../assets/blogposts/005_ejemplo_1.gif)
+![carrera de barras imagen gif paises](../assets/blogposts/005_barras_3d.gif  "Imagen de https://giphy.com/")
 
 ## Conclusiones
 
