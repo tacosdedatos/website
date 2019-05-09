@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogpost/005.png
+cover:  assets/blogposts/005.png
 navigation: True
 title: Cómo hacer la gráfica de carrera de barras en R
 date: 2019-05-08 12:00:00
