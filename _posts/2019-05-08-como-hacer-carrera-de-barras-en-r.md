@@ -67,7 +67,7 @@ population_tidy <- population_data%>%
                         'Spain',
                         'Uruguay',
                         'Venezuela')) %>%
-  # juntar años el filas o renglones
+  # juntar años en filas o renglones
   gather(key = year, value = population, -1) %>%
   # mutar años como entero y población en millones
   mutate(year = as.integer(year),
