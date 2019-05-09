@@ -178,7 +178,7 @@ Te mando un saludo donde quiera que estes!
 
 ### Recursos en inglés
 
-https://emilykuehler.github.io/bar-chart-race/
+[https://emilykuehler.github.io/bar-chart-race/](https://emilykuehler.github.io/bar-chart-race/)
 
 https://github.com/ropenscilabs/learngganimate/blob/2872425f08392f9f647005eb19a9d4afacd1ab44/animate.md#saving-your-animation
 
