@@ -8,3 +8,15 @@ sergio:
   facebook: chekos.visuals
   twitter: chekoswh
   cover: assets/images/chekos-cover.PNG
+
+
+rafa:
+  username: rafa
+  name: Rafael González Gouveia
+  url_full: https://gonzalezgouveia.com/
+  url: gonzalezgouveia.com
+  bio: Soy científico de datos. Me gusta aprender sobre herramientas de programación y aplicarlas a problemas estadísticos
+  picture: assets/images/yo_rafa.jpg
+  facebook: rggdata
+  twitter: GonzalezGouveia
+  cover: assets/images/rafa-cover.PNG
