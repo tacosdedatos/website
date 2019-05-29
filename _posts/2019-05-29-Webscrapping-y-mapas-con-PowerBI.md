@@ -8,7 +8,7 @@ date: 2019-05-08 12:00:00
 tags: [blog, dax, powerquery, PowerBI]
 class: post-template
 subclass: 'post tag-blog'
-author: 
+author: manlio
 ---
 
 Saludos comunidad datera, en este pequeño artículo veremos lo sencillo que es conseguir datos de una página web y convertirlos en unos mapas interactivos con unos cuantos clicks.
