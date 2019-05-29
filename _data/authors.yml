@@ -7,6 +7,8 @@ sergio:
   picture: assets/images/yo.jpg
   facebook: chekos.visuals
   twitter: chekoswh
+  github: chekos
+  linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
 
@@ -20,3 +22,15 @@ rafa:
   facebook: rggdata
   twitter: GonzalezGouveia
   cover: assets/images/rafa-cover.PNG
+
+manlio:
+  username: manlio
+  name: Manlio Rolón Téllez
+  url_full: https://dax-plotion.com/
+  url: dax-plotion.com
+  bio:  Economista del ITAM y MBA del IPADE, entusiasta del Data Science, Business Intelligence y Big Data, que ha utilizado infinidad de herramientas para analizar datos (desde software especializado STATA, MATLAB, Eviews hasta los comerciales Qlickview, Tableau, SAS), pero siempre todo regresa a Excel, ahora con las herramientas del Power Stack (Power Pivot, Power Query y Power BI) no hay límites para todos los usuarios tengan DATA SUPERPOWERS.
+  picture: assets/images/yo_manlio.jpg
+  facebook: manlius.maximuss
+  twitter: jarl_man_lio
+  linkedin: manliorolon
+  cover: assets/images/chekos-cover.PNG
