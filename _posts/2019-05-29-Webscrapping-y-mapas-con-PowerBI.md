@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/006.png
 navigation: True
 title: Webscrapping y Mapas con PowerBI
-date: 2019-05-08 12:00:00
+date: 2019-05-30 10:00:00
 tags: [blog, dax, powerquery, PowerBI]
 class: post-template
 subclass: 'post tag-blog'
