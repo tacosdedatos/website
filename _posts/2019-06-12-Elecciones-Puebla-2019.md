@@ -28,7 +28,12 @@ author: israel
 
 Un análisis y visualización de los datos de la elección de gobernador de Puebla este junio 2019. Análisis en R por Israel Piña ([@YaNiPaper](https://twitter.com/yanipaper)) y visualización por Sergio Sánchez (recreada en `altair` a partir de las visualizaciones estáticas de Israel) ([@tacosdedatos](https://twitter.com/tacosdedatos)). 
 
+Los repositorios con el código y los datos se encuentran en GitHub:
+1. Análisis por Israel: [tacos-de-datos/elecciones-puebla-2019](https://github.com/tacos-de-datos/elecciones-puebla-2019/) - [Pruébalo en Rstudio en mybinder.org](https://mybinder.org/v2/gh/tacos-de-datos/elecciones-puebla-2019/master?urlpath=rstudio)
+2. Visualización por Sergio: [tacos-de-datos/vis-elecciones-puebla-2019](https://github.com/tacos-de-datos/vis-elecciones-puebla-2019/) - [Pruébalo en JupyterLab en mybinder.org](https://mybinder.org/v2/gh/tacos-de-datos/vis-elecciones-puebla-2019/master?urlpath=lab/tree/notebooks/01_Visualizacion.ipynb)
+
 _Nota: Estas visualizaciones son de 10-12 megabytes así que esta página puede tardarse un poco en cargar (oops 😁)_
+
 _Nota 2: No caben en una pantalla de móvil - estamos trabajando en eso pero es demasiada información como para que la disfrutes bien en tu móvil así que visitanos en tu compu porfa_.
 
 
