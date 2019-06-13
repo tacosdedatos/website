@@ -3,7 +3,7 @@ sergio:
   name: Sergio Sánchez Zavala
   url_full: https://soyserg.io/
   url: soyserg.io
-  bio: Soy investigador asociado de política pública basado en San Francisco, California. Diseñador de visualizaciones de datos
+  bio: Soy investigador asociado de política pública basado en San Francisco, California. Diseñador de visualizaciones de datos.
   picture: assets/images/yo.jpg
   facebook: chekos.visuals
   twitter: chekoswh
@@ -17,7 +17,7 @@ rafa:
   name: Rafael González Gouveia
   url_full: https://gonzalezgouveia.com/
   url: gonzalezgouveia.com
-  bio: Soy científico de datos. Me gusta aprender sobre herramientas de programación y aplicarlas a problemas estadísticos
+  bio: Soy científico de datos. Me gusta aprender sobre herramientas de programación y aplicarlas a problemas estadísticos.
   picture: assets/images/yo_rafa.jpg
   facebook: rggdata
   twitter: GonzalezGouveia
@@ -34,3 +34,15 @@ manlio:
   twitter: jarl_man_lio
   linkedin: manliorolon
   cover: assets/images/chekos-cover.PNG
+
+israel:
+  username: israel
+  name: Israel Piña
+  url_full: https://medium.com/@_Pinapolis
+  url: medium.com/@_Pinapolis
+  bio: Nerd journalist - Stories DataViz Technology. Product Manager for Newsroom
+  picture: assets/images/yo_israel.JPG
+  twitter: YaNiPaper
+  github: israelpinacamacho
+  linkedin: israelpicam
+  cover: assets/images/yanipaper-cover.JPG
