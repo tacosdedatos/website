@@ -37,11 +37,12 @@ manlio:
 
 israel:
   username: israel
-  name: Israel Peña
-  url_full: 
-  url: 
-  bio: dbfa
+  name: Israel Piña
+  url_full: https://medium.com/@_Pinapolis
+  url: medium.com/@_Pinapolis
+  bio: Nerd journalist - Stories #DataViz #Technology. Product Manager for Newsroom
   picture: assets/images/yo_israel.jpg
-  facebook: dafdsf
   twitter: YaNiPaper
+  github: israelpinacamacho
+  linkedin: israelpicam
   cover: assets/images/yanipaper-cover.png
