@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/001.png
+cover:  assets/blogposts/007.PNG
 navigation: True
 title: Elecciones para gobernador - Puebla 2019
 date: 2019-06-12 12:00:00
