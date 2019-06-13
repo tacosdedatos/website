@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/007.PNG
+cover:  assets/blogposts/007.png
 navigation: True
 title: Elecciones para gobernador - Puebla 2019
 date: 2019-06-12 12:00:00
@@ -25,14 +25,22 @@ author: israel
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.3.0"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
 
+
+Un análisis y visualización de los datos de la elección de gobernador de Puebla este junio 2019. Análisis en R por Israel Piña ([@YaNiPaper](https://twitter.com/yanipaper)) y visualización por Sergio Sánchez (recreada en `altair` a partir de las visualizaciones estáticas de Israel) ([@tacosdedatos](https://twitter.com/tacosdedatos)). 
+
+_Nota: Estas visualizaciones son de 10-12 megabytes así que esta página puede tardarse un poco en cargar (oops 😁)_
+
+
+### Visualización a nivel municipal
 <div id="municipios"></div>
 <hr>
+
+### Visualización a nivel sección
 <div id="participacion"></div>
 <script type="text/javascript" src="../assets/blogposts/007_municipios.js"></script>
 <script type="text/javascript" src="../assets/blogposts/007_participacion.js"></script>
 
 
 *** 
-Probando si se ven los graficos
 
-¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.
+¿Qué te pareció la nota? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o [ a @YaNiPaper](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40yanipaper+%F0%9F%8C%AE)envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada mes te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.
