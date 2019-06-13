@@ -29,6 +29,7 @@ author: israel
 Un análisis y visualización de los datos de la elección de gobernador de Puebla este junio 2019. Análisis en R por Israel Piña ([@YaNiPaper](https://twitter.com/yanipaper)) y visualización por Sergio Sánchez (recreada en `altair` a partir de las visualizaciones estáticas de Israel) ([@tacosdedatos](https://twitter.com/tacosdedatos)). 
 
 _Nota: Estas visualizaciones son de 10-12 megabytes así que esta página puede tardarse un poco en cargar (oops 😁)_
+_Nota 2: No caben en una pantalla de móvil - estamos trabajando en eso pero es demasiada información como para que la disfrutes bien en tu móvil así que visitanos en tu compu porfa_.
 
 
 ### Visualización a nivel municipal
