@@ -36,7 +36,7 @@ _Nota: Estas visualizaciones son de 10-12 megabytes así que esta página puede 
 
 _Nota 2: No caben en una pantalla de móvil - estamos trabajando en eso pero es demasiada información como para que la disfrutes bien en tu móvil así que visitanos en tu compu porfa_.
 
-_Nota 3: La segunda visualización fué inspirada por Ben Welsh aka [@palewire](https://twitter.com/palewire) por sus mapas de elecciones en Los Angeles [([aquí el tuit=](https://twitter.com/palewire/status/1137815979780476928))]_
+_Nota 3: La segunda visualización fué inspirada por Ben Welsh aka [@palewire](https://twitter.com/palewire) por sus mapas de elecciones en Los Angeles ([aquí el tuit](https://twitter.com/palewire/status/1137815979780476928))_
 
 ### Visualización a nivel municipal
 <div id="municipios"></div>
