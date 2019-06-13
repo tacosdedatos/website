@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/007.png
 navigation: True
 title: Elecciones para gobernador - Puebla 2019
-date: 2019-06-12 12:00:00
+date: 2019-06-13 10:00:00
 tags: [blog, nota, mapas, altair]
 class: post-template
 subclass: 'post tag-blog'
