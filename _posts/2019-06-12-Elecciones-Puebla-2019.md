@@ -8,7 +8,7 @@ date: 2019-06-12 12:00:00
 tags: [blog, nota, mapas, altair]
 class: post-template
 subclass: 'post tag-blog'
-author: sergio
+author: israel
 ---
 <style>
     .vega-actions a {
