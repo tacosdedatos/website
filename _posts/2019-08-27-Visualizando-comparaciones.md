@@ -27,7 +27,8 @@ ej 6: dot plot de 3 (solo latinxs y whites)
 <iframe title="Voters do not reflect California's racial diversity" aria-label="Dot Plot" id="datawrapper-chart-B15v1" src="//datawrapper.dwcdn.net/B15v1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="203"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
 
 
-
+ej 7:
+![imagen 7](../assets/blogposts/008_imagen_1.png)
 
 
 *** 
