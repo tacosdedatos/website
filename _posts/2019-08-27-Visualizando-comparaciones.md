@@ -11,8 +11,13 @@ subclass: 'post tag-blog'
 author: sergio
 ---
 
-ej 2: not highlighted
+Recientemente en mi trabajo tuvimos una discusión muy importante sobre el futuro de nuestros _productos_ - reportes, blogs, informes, etc. además de las visualizaciones que los acompañarán. La primera saldrá a la luz muy pronto y va a incluir algo como lo siguiente. 
+
 <iframe title="Voters do not reflect California's racial diversity" aria-label="Stacked Column Chart" id="datawrapper-chart-6FC72" src="//datawrapper.dwcdn.net/6FC72/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
+
+
+
+
 
 ej 3: Highlighted 
 <iframe title="Voters do not reflect California's racial diversity" aria-label="Stacked Column Chart" id="datawrapper-chart-Yuveq" src="//datawrapper.dwcdn.net/Yuveq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
