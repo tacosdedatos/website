@@ -33,7 +33,7 @@ slack: tacosdedatos.slack.com
 patreon: tacosdedatos
 
 # Disqus
-disqus: False
+disqus: True
 disqus_shortname: tacosdedatos # replace with your disqus username
 
 # Google Analytics
