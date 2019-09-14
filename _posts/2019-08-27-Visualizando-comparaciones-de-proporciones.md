@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/008.png
 navigation: True
 title: Visualizando Comparaciones de Proporciones
-date: 2019-08-27 10:00:00
+date: 2019-09-14 10:00:00
 tags: [blog,]
 class: post-template
 subclass: 'post tag-blog'
@@ -15,9 +15,9 @@ Recientemente en mi trabajo tuvimos una discusión muy importante sobre el futur
 
 <iframe title="Voters do not reflect California's racial diversity" aria-label="Stacked Column Chart" id="datawrapper-chart-6FC72" src="//datawrapper.dwcdn.net/6FC72/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();</script>
 
-Esto es un gráfico de barras _apiladas_ (? es _stacked bar chart_ en inglés) que esta comparando 3 grupos: No votantes, Adultos y Votantes probables. Los datos provienen de nuestra encuesta a nivel estatal de California, EEUU. El punto que _se supone_ que esta resaltando es que los latinxs en California estan subrepresentados en el electorado y los blancos estan sobrerepresentados. Es decir, aunque los latinxs sean el X% de los adultos en California representan un porcentage menor de los Votantes probables. Lo opuesto es verdad sobre la población blanca de California.
+Esto es un gráfico de barras _apiladas_ (? es _stacked bar chart_ en inglés) que esta comparando 3 grupos: No votantes, Adultos y Votantes probables. Los datos provienen de nuestra encuesta a nivel estatal de California, EEUU. El punto que _se supone_ está resaltando es que los latinxs en California estan subrepresentados en el electorado y los blancos estan sobrerepresentados. Es decir, aunque los latinxs sean el X% de los adultos en California representan un porcentaje menor de los Votantes probables. Lo opuesto es verdad sobre la población blanca de California.
 
-Aquí va la primera modificación que yo hubiera hecho: **Sí lo que estas tratando de resaltar atrae el mismo nivél de atención que el resto de los elementos de tu gráfico - no lo estás resaltando.** 
+Aquí va la primera modificación que yo hubiera hecho, porque **sí lo que estas tratando de enfatizar atrae el mismo nivel de atención que el resto de los elementos de tu gráfico - no lo estás enfatizando.** 
 
 Es decir, si lo que estamos tratando de enfatizar es que existe este fenómeno similar pero opuesto en las poblaciones latinx y blanca en California - resaltemos las poblaciones latinx y blanca.
 
