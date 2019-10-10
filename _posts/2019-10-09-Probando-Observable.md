@@ -13,6 +13,16 @@ author: sergio
 
 Este es una prueba de ObservableHQ
 
+# roughviz.js
+
+<div id="observablehq-4142ff84"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/f6579491c0a05e07.js?v=3";
+const inspect = Inspector.into("#observablehq-4142ff84");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
 # Ed Enrollment
 
 <div id="observablehq-af0efbd3"></div>
