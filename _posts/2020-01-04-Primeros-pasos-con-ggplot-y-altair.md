@@ -21,7 +21,7 @@ En este artículo intentaré explicar cómo fue mi proceso creativo y de codific
 
 Como última advertencia les digo que no busqué documentación, tutoriales ningún tipo de ayuda previo a empezar a hacer las gráficas.¿Por qué? Diré que ya tenia muchas ganas de empezar a tirar código y quería probar la documentación existente directo en mis ejemplos para ver si la curva de aprendizaje era digerible para desesperados. Spoiler alert: no lo es.  
 
-Al final del artículo les dejaré alguans referencias de tutoriales y cursos que vale la pena considerar para que no sufran como un servidor.
+Al final del artículo les dejaré algunas referencias de tutoriales y cursos que vale la pena considerar para que no sufran como un servidor.
 
 Dicho esto, a darle que es mole de olla.
 
