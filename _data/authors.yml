@@ -11,6 +11,18 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+nerudista:
+  username: nerudista
+  name: Nerudista
+  # url_full: https://twitter.com/nerudista/
+  # url: 
+  bio: Papá de dos amores.  Me encantan los datos y los deportes. Aprendiz eterno de BI, Dataviz y Python. Ah! Y también entrenador de Triatlón certificado.
+  picture: assets/images/yo_nerudista.jpg
+  # facebook: chekos.visuals
+  twitter: nerudista
+  github: nerudista
+  # linkedin: chekos
+  cover: assets/images/chekos-cover.PNG
 
 rafa:
   username: rafa
