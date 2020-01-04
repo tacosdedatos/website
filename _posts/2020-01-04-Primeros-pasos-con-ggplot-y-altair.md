@@ -110,7 +110,7 @@ theme_pats_white <- theme(
 
 Y acá el de **Altair**:
 
-```py
+```python
 def theme_pats_white():
     # Typography
     font = "Courier",
