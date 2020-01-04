@@ -48,7 +48,7 @@ En total, haciendo apróx. una hora diaria, me tarde como 10-12 días en poder t
 
 El código para replicar la obtención del dataset lo encuentran aquí:
 
-https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb
+[https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb](https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb)
 
 ## A graficar se ha dicho
 
@@ -58,9 +58,9 @@ Regresando a lo que mandan los cánones tomé papel y lapiz y me puse a tirar id
 
 ![https://github.com/nerudista/DataViz/blob/master/Pats/ideas/boceto1.png?raw=true](https://github.com/nerudista/DataViz/blob/master/Pats/ideas/boceto1.png?raw=true)
 
-Perdón por los jeroglíficos. El pdf con las demás ideas está aca:
+Perdón por los jeroglíficos. El pdf con las demás ideas está acá:
 
-https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf
+[https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf](https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf)
 
 
 ## Creando _themes_
