@@ -13,7 +13,7 @@ sergio:
 
 nerudista:
   username: nerudista
-  name: Nerudista
+  name: Pablo Quetzalcóatl Vázquez
   # url_full: https://twitter.com/nerudista/
   # url: 
   bio: Papá de dos amores.  Me encantan los datos y los deportes. Aprendiz eterno de BI, Dataviz y Python. Ah! Y también entrenador de Triatlón certificado.
@@ -21,7 +21,7 @@ nerudista:
   # facebook: chekos.visuals
   twitter: nerudista
   github: nerudista
-  # linkedin: chekos
+  linkedin: pabloqvazquez
   cover: assets/images/chekos-cover.PNG
 
 rafa:
