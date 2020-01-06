@@ -15,13 +15,13 @@ Hace un par de meses, mientras veía el partido de los Pats contra los Cowboys, 
 
 Tenía rato que quería hacer gráficas con ggplot en R y con Altair en Python ya que ambas usan la _gramática de la visualización_ para crear sus gráficas. Además, tengo poca experiencia con Python y R por lo que consideré que sería un gran reto armar algo desde cero y visualizarlo usando ambas bibliotecas para poder tener un punto de comparación.
 
-En este artículo intentaré explicar cómo fue mi proceso creativo y de codificación. Como mencioné previamente soy principiante en ambas herramientas. Por favor ten en mente que este es mi acercamiento inicial a estas herramientas. No intento dar un manual de cómo se deben hacer las cosas sino abrir la conversación acerca de cómo perderle el miedo a jugar con los datos, los retos que afronté y las cosas que no logré completar.
+En este artículo intentaré explicar cómo fue mi proceso creativo y de codificación. Como mencioné previamente soy principiante en ambas herramientas. Por favor tengan en mente que este es mi acercamiento inicial a estas herramientas. No intento dar un manual de cómo se deben hacer las cosas sino abrir la conversación acerca de cómo perderle el miedo a jugar con los datos, los retos que afronté y las cosas que no logré completar.
 
- Seguramente hay formas más eficientes de realizar lo que se va a mostrar aquí o incluso de completar algunas tareas que no pude finalizar porque ya de plano no encontré documentación o ejemplos que me pudieran ayudar. 
+ Seguramente hay formas más eficientes de realizar lo que se va a mostrar aquí o incluso de completar algunas tareas que no pude finalizar porque ya de plano no encontré documentación o ejemplos que me pudieran ayudar.
 
 Como última advertencia les digo que no busqué documentación, tutoriales ningún tipo de ayuda previo a empezar a hacer las gráficas.¿Por qué? Diré que ya tenia muchas ganas de empezar a tirar código y quería probar la documentación existente directo en mis ejemplos para ver si la curva de aprendizaje era digerible para desesperados. Spoiler alert: no lo es.  
 
-Al final del artículo les dejaré algunas referencias de tutoriales y cursos que vale la pena considerar para que no sufran como un servidor.
+Al final del artículo les dejaré algunass referencias de tutoriales y cursos que vale la pena considerar para que no sufran como un servidor.
 
 Dicho esto, a darle que es mole de olla.
 
@@ -29,8 +29,7 @@ Dicho esto, a darle que es mole de olla.
 
 Como quería analizar cosas objetivas y no subjetivas, me decidí por hacer un análisis de los castigos a favor y en contra de los Pats.
 
-Después de buscar en internet no encontré un dataset con todos los datos que quería: saber el resultado del partido, quién lo ganó, el _quarter_ con su minuto y segundo cuando el castigo fue cometido, si fue castigo ofensivo o defensivo o si ese año fueron campeones los Pats, entre otras cosas. Así que me di a la tarea de buscar alguna API de Python que me dejara ver jugada a jugada los partidos de los Pats. Me encontré con la API [**nflgame**](http://nflgame.derekadair.com/)
-que me daba justo lo que quería. El único pero es que sólo tiene info desde el 2009 pero consideré que 10 años era un buen período para analizar.
+Después de buscar en internet no encontré un dataset con todos los datos que quería: saber el resultado del partido, quién lo ganó, el _quarter_ con su minuto y segundo cuando el castigo fue cometido, si fue castigo ofensivo o defensivo o si ese año fueron campeones los Pats, entre otras cosas. Así que me di a la tarea de buscar alguna API de Python que me dejara ver jugada a jugada los partidos de los Pats. Me encontré con la API [**nflgame**](http://nflgame.derekadair.com/) que me daba justo lo que quería. El único pero es que sólo tiene info desde el 2009 pero consideré que 10 años era un buen período para analizar.
 
 Si bien la API tiene clases y métodos para dar información sumarizada, tuve que entrar a ver cómo estaban construidas algunas clases para sacar el detalle de jugadas y no el resumen de ellas. Como el paradigma de objetos me saca ronchas tardé como una semana en poder entender cómo funcionaba pero al final obtuve un dataset de este tipo:
 
@@ -48,19 +47,19 @@ En total, haciendo apróx. una hora diaria, me tarde como 10-12 días en poder t
 
 El código para replicar la obtención del dataset lo encuentran aquí:
 
-[https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb](https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb)
+https://github.com/nerudista/DataViz/blob/master/Pats/get_pats_data.ipynb
 
 ## A graficar se ha dicho
 
-Como todo principiante me emocioné y empecé a leer blogs y documentacion de **ggplot** para empezar a visualizar. Ahí perdí como 3 días porque me ocupé más en _**cómo**_ visualizar y no en _**qué**_ visualizar.
+Como todo principiante me emocioné y empecé a visualizar. Al no saber como crear las gráficas busqué en blogs y en documentacion de **ggplot**. Ahí perdí como 3 días porque me ocupé más en _**cómo**_ visualizar y no en _**qué**_ visualizar.
 
 Regresando a lo que mandan los cánones tomé papel y lapiz y me puse a tirar ideas y bocetos de qué quería comunicar. Este es un ejemplo:
 
 ![https://github.com/nerudista/DataViz/blob/master/Pats/ideas/boceto1.png?raw=true](https://github.com/nerudista/DataViz/blob/master/Pats/ideas/boceto1.png?raw=true)
 
-Perdón por los jeroglíficos. El pdf con las demás ideas está acá:
+Perdón por los jeroglíficos. El pdf con las demás ideas está aca:
 
-[https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf](https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf)
+https://github.com/nerudista/DataViz/blob/master/Pats/ideas/Pats%20an%C3%A1lisis%202019-12-15.pdf
 
 
 ## Creando _themes_
@@ -110,7 +109,7 @@ theme_pats_white <- theme(
 
 Y acá el de **Altair**:
 
-```python
+```py
 def theme_pats_white():
     # Typography
     font = "Courier",
@@ -198,7 +197,7 @@ Yo vengo del mundo de BI por lo que el formato JSON me es muy familiar. Sin emba
 
 Decidí hacer una _bar plot_ para mostrar las  yardas promedio históricas por tipo de castigo.
 
-Empecemos viendo el resultado en ambas bibliotecas.
+Empecemos viendo el resultado en ambas #bibliotecasNoLibrerias.
 
 ![https://github.com/nerudista/DataViz/blob/master/Pats/graficas/R/RplotCastigosOfensivos.png?raw=true](https://github.com/nerudista/DataViz/blob/master/Pats/graficas/R/RplotCastigosOfensivos.png?raw=true)
 
@@ -251,7 +250,7 @@ ggplot(df_yds_totales %>% filter(penalty_side=='Castigo Ofensivo'),
   guides(fill=guide_legend(title=NULL))+      #remove legend title
   scale_x_discrete(labels=c("Cuando Pats Ganan","Cuando Pats Pierden"))+
   scale_y_continuous(breaks = NULL,          #remove y breaks lines
-                     limits = c(0,31))+    #cambiar rango del eje y       
+                     limits = c(0,31))+    #cambiar rango del eje Y       
   scale_fill_manual(
                     values=c("#08415C", "#B0B7BC")
                     #labels=c("NE","Oponente")
@@ -272,7 +271,7 @@ theme(
 6. Aplicar el _theme_ que definimos al inicio. 
 7. Generar el titulo y el _caption_
 
-Hacer esta gráfica fue relativamente fácil. Me tardé poco más de una hora porque investigué  el tema del `position = "dodge" ` , cómo quitar el título de la leyenda y límites del eje y.
+Hacer esta gráfica fue relativamente fácil. Me tardé poco más de una hora porque investigué  el tema del `position = "dodge" ` , cómo quitar el título de la leyenda y límites del eje Y.
 
 
 
@@ -338,7 +337,7 @@ En **Altair** tuve que seguir la siguiente lógica:
 7. Hacer una _facet chart_ para duplicar la gráfica por la variable que creé al inicio
 8. Crear una gráfica para el _caption_
 9. Concatenar verticalmente la _facet chart_ con el _caption_
-10. Ajustar el header para que los labels de la _facet chart_  queden por debajo el eje x
+10. Ajustar el header para que los labels de la _facet chart_  queden por debajo el eje X
 11. Ajustar el título
 
  Me costó bastante entender la secuencia layer --> facet --> concat. Si no la seguía bien, este error se reproducía como conejo:
@@ -350,7 +349,7 @@ ValueError: Objects with "config" attribute cannot be used within LayerChart. Co
 
 En **Altair** no logré quitar el eje Y por completo. Pude quitar los labels y los ticks pero no la línea del eje. Además, no permite saltos de línea en el título del eje, cosa que se arregla con un `\n` en **ggplot**
 
-Como mencioné antariormente, una de las cosas más complicadas que tuve en **Altair** fue poner títulos, subtítulos y _captions_ (la nota que va hasta abajo). En *ggplot* eso se logra con estás líneas:
+Como mencioné anteriormente, una de las cosas más complicadas que tuve en **Altair** fue poner títulos y _captions_ (la nota que va hasta abajo). En *ggplot* eso se logra con estás líneas:
 
 ```r
 labs(title="Castigos Ofensivos por Equipo - ggplot",
@@ -387,9 +386,11 @@ En **ggplot** también existe el concepto de _facet_ pero para esta gráfica no 
            )+
 ```
 
-Y hasta aquí llegamos con esta gráfica.
+Por último tengo que añadir que no logré concatenar la cadena "yds" después del número de yardas arriba de cada barra. Seguro es algo bien sencillo pero no logré darle al clavo.
 
-## Castigos por oportunidad con _bar plots_ horizontales
+
+
+## Castigos por oportunidad con _stack bar plots_ horizontales
 
 Para la segunda gráfica intenté hacer algo similar pero ahora con con barras horizontales y además apiladas
 
@@ -528,7 +529,7 @@ La  lógica aquí fue:
 6. Crear una gráfica para el _subtitle_.
 6. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_
 
-Nuevamente tuve problemas con el eje y y no pude quitar la línea vertical. Intenté centrar los labels dentro de las barras pero no lo logré además de que no logré ordenar las oportunidades en el eje Y de la misma forma que en **ggplot**.
+Nuevamente tuve problemas con el eje Y y no pude quitar la línea vertical. Intenté centrar los labels dentro de las barras pero no lo logré además de que no logré ordenar las oportunidades en el eje Y de la misma forma que en **ggplot**.
 
 Un punto importante es el subtitle lo hice concatenando verticalmente otra gráfica. Sin embargo, cuando lo hago me queda por arriba del _legend_. Intenté jugar de varias maneras con la posición X y Y del _legend_ pero no logré poner el subtítulo entre el título y la gráfica. Se aceptan sugerencias.
 
@@ -541,7 +542,6 @@ Hacer gráficas simples es bastante fácil con ambas #bibliotecasNoLibrerias per
 No. tengo otras tres un poquito más interesante pero para no hacer más largo este artículo y para darle más carnita al blog del amigo @tacosdedatos , las siguientes gráficas vienen en la segunda parte de esta entrega.
 
 Estén atentos a su publicación que esto apenas empieza.
-
 
 *** 
 
