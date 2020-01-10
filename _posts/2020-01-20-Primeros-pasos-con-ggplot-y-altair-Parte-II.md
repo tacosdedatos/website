@@ -13,13 +13,13 @@ author: nerudista
 
 Bienvenidos a la segunda y última parte de mi aventura por **ggplot** y **Altair**
 
-En la  [entrada anterior](https://tacosdedatos.com/primeros-pasos-con-ggplot-y-altair) les platiqué acerca del reto que decidí hacer (analizar castigo a favor y en contra de la #PatsNation), de cómo hice el dataset y de cómo hice las dos primeras gráficas de barras: una _dodge_ y una _stack_.
+En la  [entrada anterior](https://tacosdedatos.com/primeros-pasos-con-ggplot-y-altair) les platiqué acerca del reto que decidí hacer (analizar castigos a favor y en contra de la #PatsNation), de cómo hice el dataset y de cómo hice las dos primeras gráficas de barras: una _dodge o grouped_ y una _stack_.
 
 En este artículo vamos a hacer otras cuantas gráficas, haré mis conclusiones y dejaré algunas recomendaciones para que no pasen el camino de espinas que me tocó recorrer.
 
 Tenga para que se entretenga.
 
-## Castigos en los últimos 5 min del último cuarto , de temporada regular , con _bar plot y mean lines_
+## Castigos en los últimos 5 min del último cuarto, de temporada regular, con _bar plot y mean lines_
 
 Si dicen que a los Pats lo ayudan en los minutos cruciales, pensé que sería bueno analizar los castigos que le marcan a los rivales en los últimos 5 minutos del último cuarto. Para esto, decidí analizar las semanas de la temporada regular y las de postemporada.
 
@@ -70,7 +70,7 @@ df_4q_5min_reg =data[(data.mytime-5 < 0)  &
 ```
 Voy a detenerme un poco en los datasets ya que el manejo del tiempo fue algo interesante en ese ejercicio.
 
-Para **ggplot** usé el comando `strptime` para leer la columna "time_left_qtr" como formato `%M:%S` (minutos y segundos). Después apliqué `as.ITime()` para cambiar el tipo de columna. Acto seguido creé una variable `limit`usando los comando anteriores para poder usarla en la condición del dataframe: ` difftime(data$mytime, limit) < 0`. Lo que la condición valida es que el tiempo en el reloj menos 5 minutos sea menor que cero. Si fuera mayor, no estaría dentro de los últimos 5 minutos.  Esto de jugar con las horas me tomó alrededor de una hora para que funcionara bien.
+Para **ggplot** usé el comando `strptime` para leer la columna `time_left_qtr` como formato `%M:%S` (minutos y segundos). Después apliqué `as.ITime()` para cambiar el tipo de columna. Acto seguido creé una variable `limit`usando los comandos anteriores para poder usarla en la condición del dataframe: `difftime(data$mytime, limit) < 0`. Lo que la condición valida es que el tiempo en el reloj menos 5 minutos sea menor que cero. Si fuera mayor, no estaría dentro de los últimos 5 minutos.  Esto de jugar con las horas me tomó alrededor de una hora para que funcionara bien.
 
 Para **Altair**  la cosa se puso más interesante. Intenté hacer el mismo acercamiento pero no logré hacerlo porque el `to_datetime` me mandaba el día en que ejecutaba el comando (por ejemplo, 20 de enero) concatenado al tiempo del reloj. Busqué un rato documentación y ejemplos pero no encontré algo que me funcionara. Así que decidí engañarme un poco.
 
@@ -111,11 +111,11 @@ plot_4q_5min_reg <- ggplot(df_4q_5min_reg,aes(x=reorder(week, sort(as.numeric(we
 La secuencia de pasos de **ggplot** fue:
 
 1. Definir los aes() de la gráfica y hacer un `reorder` para que se ordenen las semanas numéricamente. Sin esto el orden quedaba como 1,11,12,...,2,3,4,etc.
-2. Crear la gráfica de barras con `geom_bar()`
-3. Crear la línea de promedios con `geom_hline`. El promedio se especifica con `yintercept = mean(count)` 
-4. Definir una etiqueta para la línea de promedios con `annotate`
-5. Crear la capa para los textos de las barras con `geom_text()`
-6. Generar el titulo y el _caption_inicio. 
+2. Crear la gráfica de barras con `geom_bar()`,
+3. Crear la línea de promedios con `geom_hline`. El promedio se especifica con `yintercept = mean(count)`.
+4. Definir una etiqueta para la línea de promedios con `annotate`.
+5. Crear la capa para los textos de las barras con `geom_text()`.
+6. Generar el titulo y el _caption_inicio.
 7. Aplicar el _theme_ que ya tenemos definido.
 
 En **Altair** el código fue:
@@ -200,7 +200,8 @@ De nueva cuenta en  **Altair** no logré quitar el eje Y por completo. Pude quit
 
 Ahora vayamos con las semanas de postemporada.
 
-## Castigos en los últimos 5 min del último cuarto , de postemporada , con _stack bar plots_
+## Castigos en los últimos 5 min del último cuarto, de postemporada, con _stack bar plots_
+
 
 Misma premisa: qué tanto ayudan a los Pats, al castigar a los contrarios, en los últimos minutos del partido pero ahora en partidos de eliminación.
 
@@ -370,14 +371,15 @@ La lógica de esta gráfica es fue:
 3. Hacer una _layer chart_ para unir las dos anteriores.
 4. Crear una gráfica para el _caption_.
 5. Crear una gráfica para el _subtitle_.
-6. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_ 
+6. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_.
 7. Poner el título de la gráfica.
 
 Aquí podemos ver el error que mencionaba en la gráfica anterior. El _legend_ queda justo debajo del título y no debajo del subtítulo. Si son observadores, podrán darse cuenta que la línea del eje X tampoco desapareció por completo.
 
-Esta gráfica es muy similar a uan del post pasado sólo que aquí le meti lo del `sort`. Seguro les puede servir más adelante.
+Esta gráfica es muy similar a una del post pasado sólo que aquí le metí lo del `sort`. Seguro les puede servir más adelante.
 
-## Castigos en juegos de una posesión o cómo diablos uso el _facet_ para duplicar gráficas.
+## Castigos en juegos de una posesión o cómo diablos uso el _facet_ para duplicar gráficas
+
 
 Aquí intenté ver qué tanto ayudan a los Pats en juegos que se decidieron por menos de 8 puntos. Es decir, una posesión de balón.
 
@@ -410,12 +412,16 @@ En este dataframe anidé dos `group_by` con su respectivo `summarise` y además 
 En **Python** el código fue:
 
 ```py
-pre_df_juegos_posesion = data.groupby(["game_winner_cat","team_penalty_cat","season","week","quarter","one_posession_game"])["game_winner_cat"].count().reset_index(name="cnt_pen")
+pre_df_juegos_posesion = data.groupby(["game_winner_cat","team_penalty_cat","season","week","quarter",\
+"one_posession_game"])["game_winner_cat"].count().reset_index(name="cnt_pen")
 pre_df_juegos_posesion[:6]
 
-df_juegos_posesion= pre_df_juegos_posesion.groupby(["game_winner_cat","team_penalty_cat","quarter","one_posession_game"])["cnt_pen"].mean().round(2).reset_index(name="mean_pen")
-df_juegos_posesion.game_winner_cat=df_juegos_posesion.game_winner_cat.apply(lambda x : 'Cuando Pats ganan' if x=="NE" else 'Cuando Pats Pierden' )
-df_juegos_posesion.team_penalty_cat=df_juegos_posesion.team_penalty_cat.apply(lambda x : 'Castigo de NE' if x=="NE" else 'Castigo de Oponente' )
+df_juegos_posesion= pre_df_juegos_posesion.groupby(["game_winner_cat","team_penalty_cat","quarter",\
+"one_posession_game"])["cnt_pen"].mean().round(2).reset_index(name="mean_pen")
+df_juegos_posesion.game_winner_cat=\
+ df_juegos_posesion.game_winner_cat.apply(lambda x : 'Cuando Pats ganan' if x=="NE" else 'Cuando Pats Pierden' )
+df_juegos_posesion.team_penalty_cat=\
+  df_juegos_posesion.team_penalty_cat.apply(lambda x : 'Castigo de NE' if x=="NE" else 'Castigo de Oponente' )
 df_juegos_posesion[:3]
 ```
 
@@ -462,9 +468,9 @@ Va la secuencia de pasos:
 1. Definir los aes() de la gráfica. Recuerden el `fill` para la escala de color que usaremos después.
 2. Crear la gráfica de barras con `geom_bar()` y usando el `position = "dodge"`. 
 3. Crear la capa de texto con `geom_text`. Para que los textos se acomoden tuve que usar `position=position_dodge()`.
-4. Replicar las gráficas con `facet_grid( team_penalty_cat ~ .   )`.
-5. Cambiar los los labesl del eje X
-6. Definir la paleta de colores que usaré para las barras con `scale_fill_manual()`
+4. Replicar las gráficas con `facet_grid( team_penalty_cat ~ .   )`
+5. Cambiar los los labels del eje X.
+6. Definir la paleta de colores que usaré para las barras con `scale_fill_manual()`.
 7. Crear el título, subtítulo y el caption.
 8. Aplicar el _theme_ que ya tenemos definido.
 
@@ -501,20 +507,17 @@ bar_juegos_1_posesion = alt.Chart(df_juegos_posesion[(df_juegos_posesion.one_pos
 
 )
 
-#Guardar imagen
-bar_juegos_1_posesion.save('./graficas/Altair/AltairJuegosUnaPosesionBar.png', scale_factor=1.0)
-
 bar_juegos_1_posesion
 ```
 
 Van los pasos para esta capa:
 
 1. Crear dos listas: una para el rango y otra para el dominio de los datos. En el dominio puse los distintos valores del campo `quarter` y en el rango puse la paleta de colores que voy a usar para cada valor.
-2. Crear chart poniendo el filtro dentro del `chart()`
-3. Crear la gráfica de barra con `mark_bar()`.`.
+2. Crear chart poniendo el filtro dentro del `chart()`.
+3. Crear la gráfica de barra con `mark_bar()`.
 4. En el `encode` definí el `alt.repeat("column"),` en el eje X y `alt.repeat("row")` en el eje Y. Si se fijan, ahí no puse qué campo voy a usar solo que voy a repetir.
-5. Usar la paleta de color dentro de `alt.Scale(` que está dentro de `alt.Color()`
-6. Cambiar el ancho de cada gráfica para que quepa en pantalla. Eso es con ` width = 300` dentro de `properties`.
+5. Usar la paleta de color dentro de `alt.Scale()` que está dentro de `alt.Color()`
+6. Cambiar el ancho de cada gráfica para que quepa en pantalla. Eso es con `width = 300` dentro de `properties`.
 7. Usar `repeat` para especificar qué campos se van a usar para los row y el column que pusimos en el `encode` del paso 4.
 
 Después generé la capa de los textos:
@@ -529,10 +532,10 @@ text_juegos_1_posesion = alt.Chart(df_juegos_posesion[(df_juegos_posesion.one_po
                               (df_juegos_posesion.quarter !='Q5' )]).mark_text(
     font="Courier",
     fontSize =12,
-    
+
 ).encode(
     x = alt.X(alt.repeat("column"),
-              type='ordinal',              
+              type='ordinal',
               axis=None),
     y = alt.Y(alt.repeat("row"), type='quantitative', axis=None),
     column="game_winner_cat",
@@ -549,7 +552,7 @@ text_juegos_1_posesion.save('./graficas/Altair/AltairJuegosUnaPosesionText.png',
 
 text_juegos_1_posesion
 ```
-Sin embargo, cuadno quise unir las capas con `bar_juegos_1_posesion + text_juegos_1_posesion` apareció este error:
+Sin embargo, cuando quise unir las capas con `bar_juegos_1_posesion + text_juegos_1_posesion` apareció este error:
 
 ```py
 ValueError: Objects with "config" attribute cannot be used within LayerChart. Consider defining the config attribute in the LayerChart object instead
@@ -557,9 +560,7 @@ ValueError: Objects with "config" attribute cannot be used within LayerChart. Co
 
 Intenté de varias formas unirlas pero no lo logré. Es la espina que más se me queda clavada de todo el ejercicio. Si alguien me puede pasar tips para terminarla, se los agradeceré muchísimo.
 
-
 ## Correlación entre puntos recibidos y yardas con _scatterplots_
-
 
 Hora de cambiar de tipo de gráfica. Quise ver si había algún tipo de correlación entre los puntos que les anotan a los Pats y los castigos que les son marcados a sus oponentes.
 
@@ -592,7 +593,7 @@ De nueva cuenta anidé dos `group_by` - `summarise` y un `filter` para tener los
 df_temporada_help = data.groupby(["season","week","team_penalty_cat","penalty_side","game_type"]).agg(\
                                                                               pats_points_game = ('pats_points','mean'),
                                                                               opp_points_game = ('opps_points','mean'),
-                                                                              cnt_pen_game = ('opps_points','count'),                                                                                                          
+                                                                              cnt_pen_game = ('opps_points','count'),
                                      ).reset_index().groupby(["season","penalty_side","team_penalty_cat"]).agg(\
                                                                                                           sum_pen_season = ('cnt_pen_game','sum'),
                                                                                                           opp_points_season= ('opp_points_game','sum')
@@ -731,23 +732,23 @@ final_temporada_help= alt.vconcat(
 Estos son los pasos a seguir:
 
 1. Crear dos listas: una para el rango y otra para el dominio de los datos. En el dominio puse los distintos valores del campo `penalty_side` y en el rango puse la paleta de colores que voy a usar para cada valor.
-2. Usar un `transform_filter()` para agarrar sólo los castigos hechos por oponentes `"datum.team_penalty_cat == 'Oponente'"`. Si se fijan, el JSON que se va a generar par ala gráfica **sí** va a traer todos los datos aunque no los usemos. Es por esto que en los anteriores ejemplos filtré desde antes pero para este ejercicio lo hice diferente para que puedan comparar.
+2. Usar un `transform_filter()` para agarrar sólo los castigos hechos por oponentes `"datum.team_penalty_cat == 'Oponente'"`. Si se fijan, el JSON que se va a generar para la gráfica **sí** va a traer todos los datos aunque no los usemos. Es por esto que en los anteriores ejemplos filtré desde antes pero para este ejercicio lo hice diferente para que puedan comparar el JSON que se genera.
 3. Crear la gráfica de puntos con `mark_circle()`. Aquí puse especial enfasis en poner las escalas del eje X y Y con los mismos saltos que en **ggplot**, por ejemplo `bins = [100,150,200,250,300,350,400]` en el eje Y
 4. Usar la gráfica de puntos para agregarle un `transform_regression` que cree las líneas de regresión líneal por `penalty_side`.
 5. Generar no una capa sino otro `chart` para los textos. Aquí sí filtre desde el dataframe que le estoy pasando a **Altair**.
 6. Hacer una _layer chart_ para unir los dos `chart` anteriores.
 7. Crear subtítulo.
 8. Crear una gráfica para el _caption_ (esta ya la traemos desde el inicio pero la pongo para que quede en los pasos.)
-9. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_
-10. Ajustar el título
+9. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_.
+10. Ajustar el título.
  
-Para **Altair** me quedan los prolemas ya muy comentados: no pude quitar las líneas de los ejes y la leyenda queda entre el título y el subtítulo.
+Para **Altair** me quedan los problemas ya muy comentados: no pude quitar las líneas de los ejes y la leyenda queda entre el título y el subtítulo.
 
 Este ejercicio sí me tomó bastantes horas sobre todo para entender los diferentes `transform_*()` que se pueden usar.
 
 ## La última y nos vamos: castigos por temporada con *line plots*
 
-De las gráficas básicas me faltaba ahcer un *line plot* asi que pensé que graficar el número de castigos por temporada sería una buena idea.
+De las gráficas básicas me faltaba hacer un *line plot* asi que pensé que graficar el número de castigos por temporada sería una buena idea.
 
 Así quedó el ejercicio en **ggplot:**
 
@@ -780,7 +781,7 @@ df_temporada_help_all <- data %>%
 df_temporada_help = data.groupby(["season","week","team_penalty_cat","penalty_side","game_type"]).agg(\
                                                                               pats_points_game = ('pats_points','mean'),
                                                                               opp_points_game = ('opps_points','mean'),
-                                                                              cnt_pen_game = ('opps_points','count'),                                                                                                          
+                                                                              cnt_pen_game = ('opps_points','count'),
                                      ).reset_index().groupby(["season","penalty_side","team_penalty_cat"]).agg(\
                                                                                                           sum_pen_season = ('cnt_pen_game','sum'),
                                                                                                           opp_points_season= ('opp_points_game','sum')
@@ -792,7 +793,7 @@ df_temporada_help["cat_made"]=df_temporada_help["team_penalty_cat"]+' '+df_tempo
 df_temporada_help[:3]
 
 ```
-En ambos casos concatené las agrupaciones y al final hice una nueva columna en el dataframe para concatenar el tipo de castigo con el equipo castigado. 
+En ambos casos concatené las agrupaciones y al final hice una nueva columna (`cat_made`) en el dataframe para concatenar el tipo de castigo con el equipo castigado. 
 
 Ahora veamos el código de **ggplot**
 
@@ -805,7 +806,7 @@ plot_temporada_all <- ggplot(df_temporada_help_all,aes(x=season,
     geom_line(aes(color=cat_made, size=sum_pen_season),
               show.legend = TRUE,
               alpha = .8)+
-    geom_dl(aes(label = cat_made),
+    geom_dl(aes(label = cat_made),  #esto es de directlabels
             #method = list(dl.trans(x = x + .2), "last.points")
             #method = list( "smart.grid",cex=.8) 
             #method = list( "last.points",rot=30,colour="#08415C",family="mono") 
@@ -836,14 +837,11 @@ Los pasos para la gráfica fueron:
 2. Definir los `aes()` de la gráfica. Aquí el truco está en `group=cat_made` para crear una línea por cada combinación de la nueva columna que creamos.
 3. Crear la capa de líneas con `geom_line()`. Usé los parámetros `color`  y `size` para asignar colores al tipo de castigo y tamaño a la línea.
 4. Generar la capa de textos con `geom_dl()`. Hay muchos métodos para colocar las etiquetas. En el código dejé varios para que puedan jugar.
-5. Asignar la escala de colores a usar con `scale_color_manual()`
+5. Asignar la escala de colores a usar con `scale_color_manual()`.
 6. Poner el título, subtítulo y caption.
 7. Aplicar el _theme_ de los Pats.
 
 Ahora veamos el código de **Altair:**
-
-
-Ahora vámonos con **Altair**:
 
 ```py
 domain=["NE Castigo Defensivo","NE Castigo Ofensivo","Oponente Castigo Defensivo","Oponente Castigo Ofensivo"]
@@ -879,12 +877,12 @@ base_temporada_all
 ```
 
 1. Crear dos listas: una para el rango y otra para el dominio de los datos. En el dominio puse los distintos valores del nuevo campo `cat_made` y en el rango puse la paleta de colores que voy a usar para cada valor.
-2. Crear la gráfica de puntos con `mark_trail()`. EL truco aquí, para poder asignar tamaño a la línea, es usar `mark_trail()` y no `mark_line()`
+2. Crear la gráfica de puntos con `mark_trail()`. El truco aquí, para poder asignar tamaño a la línea, es usar `mark_trail()` y no `mark_line()`.
 3. Asignar el rango y dominio para los colores dentro del `scale = alt.Scale(domain=domain, range=range_)`.
 4. Usar `scale= alt.Scale(domain=[30,100], range=[1,18]` para jugar con el tamaño de la línea.
 5. Crear una gráfica para el _caption_ (esta ya la traemos desde el inicio pero la pongo para que quede en los pasos.)
-6. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_
-7. Ajustar el título
+6. Concatenar verticalmente la _layer chart_ con el _caption_ y el _subtitle_.
+7. Ajustar el título.
 
 Para **Altair** no logré poner textos sobre las gráficas pero sí logré igualar los *breaks* de los ejes aunque seguí sin poder quitar las líneas de ellos. Para ser honesto, las líneas de este úlitmo ejercicio me gustan mucho más que las de **ggplot** pero no poder poner etiquetas me sigue dando comezón. De nueva cuenta cualquier ayuda es bienvenida.
 
