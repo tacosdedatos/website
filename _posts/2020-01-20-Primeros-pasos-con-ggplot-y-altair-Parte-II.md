@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/009.png
 navigation: True
 title: Primeros pasos con ggplot (R) y Altair (Python) - Parte II
-date: 2020-01-13 10:00:00
+date: 2020-01-10 10:00:00
 tags: [blog, altair, ggplot2, python, r,]
 class: post-template
 subclass: 'post tag-blog'
