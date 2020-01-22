@@ -11,6 +11,19 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+bilal:
+  username: bilal
+  name: Bilal Laouah
+  url_full: https://datasciencia.es/
+  url: dataciencia.es
+  bio: Lorem Ipsum orale orale.
+  picture: assets/images/yo_nerudista.jpg
+  # facebook: chekos.visuals
+  # twitter: nerudista
+  # github: nerudista
+  # linkedin: pabloqvazquez
+  cover: assets/images/chekos-cover.PNG
+  
 nerudista:
   username: nerudista
   name: Pablo Quetzalcóatl Vázquez
