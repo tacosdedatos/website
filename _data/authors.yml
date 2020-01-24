@@ -13,16 +13,16 @@ sergio:
 
 bilal:
   username: bilal
-  name: Bilal Laouah
+  name: Bilal Laouah Bakkali
   url_full: https://datasciencia.es/
   url: dataciencia.es
-  bio: Lorem Ipsum orale orale.
-  picture: assets/images/yo_nerudista.jpg
-  # facebook: chekos.visuals
-  # twitter: nerudista
-  # github: nerudista
-  # linkedin: pabloqvazquez
-  cover: assets/images/chekos-cover.PNG
+  bio: Licenciado en Filosofía y graduado en Psicología en la Universidad de Barcelona, España. Investigador social freelance. 
+  picture: assets/images/yo_bilal.jpg
+  # facebook: 
+  # twitter: 
+  # github: 
+  linkedin: bilallaouah
+  cover: assets/images/bilal-cover.png
   
 nerudista:
   username: nerudista

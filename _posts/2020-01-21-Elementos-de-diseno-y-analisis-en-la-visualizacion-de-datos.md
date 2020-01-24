@@ -35,13 +35,13 @@ Finalizaremos este artículo con una mención a la cuestión de la innovación. 
 
  A través de este artículo hemos querido aproximarnos a la visualización de datos exponiendo algunos de los elementos que entran en juego y articulándolos entre sí, mostrando algunas de las complejidades que aparecen cuando se contraponen algunos enfoques. Se trata, no obstante, de una mera aproximación en la que hemos privilegiado los conceptos de diseño y análisis. Otros temas igual de interesantes no han sido abordado. Algunos de ellos son los siguientes: la alfabetización visual, la importancia de la narratividad en el contexto de las infografías, la interactividad que ofrece la web, el reto de la visualización de datos en tiempo real a la luz del Big Data y de la realidad aumentada, etc. En cualquier caso, si la lectura de este artículo ha conseguido ofrecer una mirada general al fenómeno de la visualización de datos, se considerará logrado su propósito.
 
-Referencias:
+### Referencias:
 
 BBVA Innovation Center. (2016). Herramientas para la visualización de datos. Las claves en el análisis de datos. Serie Innovation Trends. Recuperado de: <https://www.bbva.com/wp-content/uploads/2017/10/ebook-cibbva-visualizacion_de_datos-es.pdf>
 
-Inicitaiva de Datos Abiertos del Gobierno de España (2016). Visualización de datos: Definición, tecnologías y herramientas. Recuperdo de: <https://datos.gob.es/ca/documentacion/visualizacion-de-datos-definicion-tecnologia-y-herramientas>
+Inicitaiva de Datos Abiertos del Gobierno de España (2016). Visualización de datos: Definición, tecnologías y herramientas. Recuperado de: <https://datos.gob.es/ca/documentacion/visualizacion-de-datos-definicion-tecnologia-y-herramientas>
 
-Manovich, Lev (2010). What is Visualization. Recuperdo de: <http://manovich.net/content/04-projects/064-what-is-visualization/61_article_2010.pdf>
+Manovich, Lev (2010). What is Visualization. Recuperado de: <http://manovich.net/content/04-projects/064-what-is-visualization/61_article_2010.pdf>
 
 Minguillon, J. (2016). Introducción a la visualización de datos. UOC (Universitat Oberta de Catalunya). Recuperado de: <http://openaccess.uoc.edu/webapps/o2/handle/10609/57624>
 
