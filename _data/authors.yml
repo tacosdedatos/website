@@ -11,6 +11,19 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+bilal:
+  username: bilal
+  name: Bilal Laouah Bakkali
+  url_full: https://datasciencia.es/
+  url: dataciencia.es
+  bio: Licenciado en Filosofía y graduado en Psicología en la Universidad de Barcelona, España. Investigador social freelance. 
+  picture: assets/images/yo_bilal.png
+  # facebook: 
+  # twitter: 
+  # github: 
+  linkedin: bilallaouah
+  cover: assets/images/bilal-cover.jpg
+  
 nerudista:
   username: nerudista
   name: Pablo Quetzalcóatl Vázquez
