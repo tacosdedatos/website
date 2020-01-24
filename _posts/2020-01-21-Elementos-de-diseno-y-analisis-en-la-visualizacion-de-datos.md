@@ -7,7 +7,7 @@ title: Elementos de diseño y análisis en la visualización de datos
 date: 2020-01-24 10:00:00
 tags: [artículo, visualización de datos, análisis, diseño gráfico, comunicación eficaz]
 class: post-template
-subclass: 'post tag-articulos'
+subclass: 'post tag-artículos'
 author: bilal
 ---
 
