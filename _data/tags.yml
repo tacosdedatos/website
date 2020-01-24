@@ -3,7 +3,7 @@ cachitos:
   description: tips, observaciones, y otros pedacitos de sabiduría sobre el diseño de visualizaciones de datos.
   cover: assets/cachitos/cover-cachitos.png
 
-articulos:
-  name: articulos
+artículos:
+  name: artículos
   description: Textos más largos sobre la visualización y el análisis de datos.
   # cover: assets/cachitos/cover-cachitos.png
