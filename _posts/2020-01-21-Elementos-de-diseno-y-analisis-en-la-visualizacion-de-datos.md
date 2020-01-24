@@ -4,7 +4,7 @@ current: post
 cover:  assets/articulos/001.png
 navigation: True
 title: Elementos de diseño y análisis en la visualización de datos
-date: 2020-01-21 10:00:00
+date: 2020-01-24 10:00:00
 tags: [artículo, visualización de datos, análisis, diseño gráfico, comunicación eficaz]
 class: post-template
 subclass: 'post tag-articulos'
