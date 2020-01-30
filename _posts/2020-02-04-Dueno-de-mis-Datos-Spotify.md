@@ -13,7 +13,7 @@ author: nerudista
 
 Tal vez porque soy un poco paranoico o porque trabajo en una empresa que va codo a codo con algunos gigantes de la industria pero el caso es que decidí ir a Facebook, Twitter, Google y Spotify a pedir los datos que tienen de mí.
 
-En este post vamos a jugar un poco con **ggplot** y con los datos de reproducciones que tuve en el último año. Empezaremos viendo en dónde pueden pedir ustedes la información que tienen de ustedes y después haremos unas tres gráficas con algunas #BibliotecasNoLibrerias que me aventuré a conocer.
+En este post vamos a jugar un poco con **ggplot** y con los datos de reproducciones que tuve en el último año. Empezaremos viendo en dónde pueden pedir la información que tienen de ustedes y después haremos unas tres gráficas con algunas #BibliotecasNoLibrerias que me aventuré a conocer.
 
 Recuerden que estos posts son para principiantes hechos por otro principiante. Si consideran que algo  del código se pudo hacer mejor, denle _fork_ al repo y manden su _pull request_ para que todos podamos aprender algo nuevo.
 
@@ -37,7 +37,7 @@ Sigan el proceso que viene descrito en un unos pocos días, en mi caso fueron 3,
 
 Por favor lean el archivo "Read Me First.pdf". Dentro viene un enlace donde encontraran el diccionario de datos de cada archivo recibido. Para este ejercicio sólo vamos a trabajar con los archivos encerrados en el recuadro rojo. Esos archivos son mi historial de reproducción del último año.
 
-EL contenido lo pueden ver en esta imagen:
+El contenido lo pueden ver en esta imagen:
 
 ![streaming](https://github.com/nerudista/DataViz/blob/master/MySpotify/MySpotify/imagenes/streaming.png?raw=true)
 
@@ -49,7 +49,7 @@ Este es el primer boceto que hice:
 
 ![boceto](https://github.com/nerudista/DataViz/blob/master/MySpotify/MySpotify/imagenes/boceto.png?raw=true)
 
-El resto del documento lo pueden ver el repo dentro del archivo **MySpotifyIdeas.pdf**
+El resto del documento lo pueden ver el repo dentro del archivo [**MySpotifyIdeas.pdf**](https://github.com/nerudista/DataViz/blob/master/MySpotify/MySpotify/MySpotifyIdeas.pdf)
 
 
 ## Creando mi _theme_
@@ -268,13 +268,13 @@ plotSingleBubble <- ggplot()+
 
 ```
 
-Poquito código y queda algo bonito. Sin embargo no me dice qué canción escuché más ni cuántos minutos escuché cada uno. Pintar texto sobre las burbujas porque o no cabe o es tanto texto que tapa las figuras.
+Poquito código y queda algo bonito. Sin embargo no me dice qué canción escuché más ni cuántos minutos escuché cada uno. No pintamos texto sobre las burbujas porque o no cabe o es tanto texto que tapa las figuras.
 
 ¿Y si cuando pase el mouse me dijera qué canción es y cuánto la escuché? Eso ya sería hacer algo interactivo. Y pues ...
 
-## _Circle Packing_ interactivo_
+## _Circle Packing_ interactivo
 
-Primero vamos a importar la biblioteca para la parte interactiva luego toca crear una columna nueva en el data frame con el texto que queremos desplegar:
+Primero vamos a importar la biblioteca para la parte interactiva. Luego toca crear una columna nueva en el data frame con el texto que queremos desplegar:
 
 ```r
 
@@ -285,7 +285,29 @@ library(ggiraph)
 dfSimpleBubble$text <- paste("Canción: ",dfSimpleBubble$dfCanciones.trackName, "\n", "Min:", dfSimpleBubble$dfCanciones.min)
 ```
 Lo que sigue es crear de nuevo la gráfica de burbujas pero agregando el tooltip con la línea:
-`tooltip= dfSimpleBubble$text[id]`.
+`tooltip= dfSimpleBubble$text[id]`:
+
+```r
+plotSingleBubbleInter <- ggplot()+
+  geom_polygon_interactive(data=dat.gg,
+                           aes(x,y,
+                               group=id,
+                               fill=as.factor(id),
+                               tooltip= dfSimpleBubble$text[id],
+                               family="Gotham",
+                               data_id = id),
+                           colour = "black", alpha = 0.6)+
+  theme_spoty +
+  scale_color_brewer(palette="Dark2")+
+  theme(legend.position="none") +
+  labs(title="Un Universo de Música",
+       subtitle="Minutos de reproducción por canción ",
+       caption="Hecho por @nerudista con datos de Spotify") +
+  coord_equal()
+
+widg <- ggiraph(ggobj = plotSingleBubbleInter, width_svg = 6, height_svg = 9)
+
+```
 
 Ya con la gráfica construido hay que pasarla por `ggiraph` para que cree la parte interactiva. El resultado de esto es un archivo html con su respectiva carpeta que contiene los archivos necesarios para crear la visualización web. Si revisan el código van a darse cuenta que usa javascript por debajo para construir la visualización. ¡Un pasito más cerca de D3!
 
@@ -293,7 +315,7 @@ Vean nomás qué chulada queda:
 
 ![interactive_bubble](https://github.com/nerudista/DataViz/blob/master/MySpotify/MySpotify/imagenes/interactive_bubble.png?raw=true)
 
-De mis pendientes quedan poder poner color por artista y no por canción. Tegnoq ue agarrarle más la onda a las funciones de los vértices para poder tener en el data frame alguna variable por artista que me deje hacer el fill por ese nuevo campo y no por `id`.
+De mis pendientes quedan poder poner color por artista y no por canción. Tengo que agarrarle más la onda a las funciones de los vértices para poder tener en el data frame alguna variable por artista que me deje hacer el fill por ese nuevo campo y no por `id`.
 
 ## Lollipops 
 
@@ -389,9 +411,9 @@ Noten que también creamos una columna con el orden en específico en que querem
 
 Intentemos dibujar la gráfica desde la gramática de gráficos:
 
-1. Una capa para las líneas del _lollipop_
-2. Una capa para el círculo de la paleta
-3. Una capa para los textos (minutos escuchados)
+1. Una capa para las líneas del _lollipop_.
+2. Una capa para el círculo de la paleta.
+3. Una capa para los textos (minutos escuchados).
 4. LA capa de título, subtítulo, etc.
 
 Con esto en mente es más fácil saber qué construir:
@@ -472,6 +494,13 @@ Por último, les recuerdo que este año Github está duplicando las donaciones q
 ## Recursos
 
 Para esta entrada usé muchísimo la página [Data to Viz](https://www.data-to-viz.com/). Ahí van a encontrar chorro de ejemplos en R, Python y hasta en otras herramientas. 
+
+El repo con el código está en:
+
+[https://github.com/nerudista/DataViz/tree/master/MySpotify](https://github.com/nerudista/DataViz/tree/master/MySpotify)
+
+Enren a verlo poque hay código que no puse en el blog y que en necesario para que las gráficas funcionen. Ya saben, cosa de economía para que el blog no se haga eterno y lo boten a media lectura.
+
 ***
 
 ¿Qué te pareció la nota? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o [a @nerudista](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+y+%40nerudista+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín semanal aquí debajo.
