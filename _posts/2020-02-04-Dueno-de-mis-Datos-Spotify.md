@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/011.png
+cover:  assets/blogposts/blog-011.png
 navigation: True
 title: Dueño de mis datos - Capítulo Spotify 
 date: 2020-01-30 10:00:00
