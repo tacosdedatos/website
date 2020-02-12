@@ -21,7 +21,7 @@ io_exception:
   twitter: io_exception
   github: fferegrino
   linkedin: antonioferegrino
-  cover: assets/images/io_exception-cover.jpg
+  cover: assets/images/io_exception_cover.jpg
 
 bilal:
   username: bilal
