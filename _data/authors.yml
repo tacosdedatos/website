@@ -11,6 +11,18 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+io_exception:
+  username: io_exception
+  name: Antonio Feregrino Bolaños
+  url_full: https://thatcsharpguy.com
+  url: thatcsharpguy.com
+  bio: Soy científico de datos pero crecí siendo desarrollador de software. 
+  picture: assets/images/yo_io_exception.jpg
+  twitter: io_exception
+  github: fferegrino
+  linkedin: antonioferegrino
+  cover: assets/images/io_exception-cover.jpg
+
 bilal:
   username: bilal
   name: Bilal Laouah Bakkali
