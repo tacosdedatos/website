@@ -11,6 +11,18 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+lewiserick:
+  username: lewiserick
+  name: Luis Erick Zul Rabasa
+  url_full: https://medium.com/@luis061997
+  url: medium.com/@luis061997
+  bio: Científico de datos con especialización en infraestructura y análisis de lenguaje natural. 
+  picture: assets/images/yo_lewiserick.jpg
+  twitter: LewisEraik
+  github: LewisErick
+  linkedin: lewiszul
+  cover: assets/images/lewiseric_cover.jpg
+
 io_exception:
   username: io_exception
   name: Antonio Feregrino Bolaños
