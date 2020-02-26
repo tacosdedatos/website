@@ -69,7 +69,7 @@ Si nos quedamos con el ECM para determinar si las páginas provienen del mismo l
 <b>No.</b> 🐱
 
 Por lo tanto, necesitamos encontrar una comparación más granular. La clave está en no relajar <b>tanto</b> nuestra comparación, aún habiendo transformado nuestras DFPs en FEDs. Si bien esta transformación nos ayudó a ser más resilientes, <i>sería genial si pudiéramos utilizar algo diferente a ECM para nuestra comparación que aproveche las propiedades de la FED.</i> Afortunadamente, la prueba KS nos tiene cubiertos! Disponible en numerosas librerías de Python como Scipy, KS calcula dos valores, D y p, al comparar dos muestras:
-<img src="assets/blogposts/014_imagen_7.png"></img><br>
+<img src="assets/blogposts/014_imagen_7.png"><br>
 En otras palabras, la diferencia más grande entre los puntos de las funciones F y G.
 
 El valor de D se utiliza para determinar el valor de p, resultado el cual es más complicado de obtener (no en el alcance de este artículo). Afortunadamente para nosotros, el valor de p ya nos lo dan nuestras <i>bellas librerías</i>. Aquí están los resultados de aplicar KS a nuestros tres fragmentos (<a href="https://github.com/LewisErick/kolmogorov-smirnov/blob/master/Kolmogorov-Smirnoff%20Test.ipynb">notebook</a>):
