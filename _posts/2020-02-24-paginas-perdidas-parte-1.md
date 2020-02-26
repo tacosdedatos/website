@@ -16,7 +16,7 @@ Cuando observamos dos sets de datos, es muy tentador asumir que forman parte de 
 
 La respuesta es sí pero no. Todo depende de la complejidad del fenómeno que estamos observando. Por ejemplo, es más sencillo analizar los factores involucrados en un juego de gato que los factores que entran en juego en el tráfico de Monterrey. Como científicos de datos, cada supuesto necesita evidencia y pruebas que lo respalden. En este artículo pondremos nuestros supuestos a prueba mediante la prueba de <b>bondad de ajuste</b>.
 
-<img src="assets/blogposts/014_imagen_1.jpg"></img><br>
+<img src="assets/blogposts/014_imagen_1.jpg"><br>
 
 Imagina que encontraste tres páginas. No sabemos de qué libro vienen, o si vienen de libros diferentes. En realidad, dos vienen del mismo libro, de biología y el tercero de un libro de cocina. Sin embargo, <b>no sabemos eso todavía</b>. Vamos a buscar probarlo <b>ahora</b>.
 
