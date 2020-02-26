@@ -64,7 +64,7 @@ La diferencia relativa entre las FCDs parece ser significativamente más pequeñ
 
 Si nos quedamos con el ECM para determinar si las páginas provienen del mismo libro, concluimos que eso es verdad. ¿Pero será esto verdad?
 ¡Aquí viene el mago con otra pista!
-<img src="assets/blogposts/014_imagen_6.jpg"></img><br>
+<img src="assets/blogposts/014_imagen_6.jpg"><br>
 
 <b>No.</b> 🐱
 
