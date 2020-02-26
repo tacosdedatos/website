@@ -38,7 +38,7 @@ En esta primera parte del <i>misterio</i>, analizaremos la primera pista.
 La estadística KS mide la distance entre dos funciones cumulativas de densidad (FCD). Una FCD representa la probabilidad de obtener un valor de nuestra variable en particular si fueramos a elegir un valor de manera aleatoria. Lo que hace a la FCD especial es que cada cada valor de la variable es la suma de sus valores anteriores. Esta característica cumulativa permite FCD ser menos sensible a ruido en los datos. ¿Qué significa esto?
 
 Echemos un vistazo a dos Funciones de Densidad de Probabilidad (FDP):
-<img src="assets/blogposts/014_imagen_3.png"></img><br>
+<img src="assets/blogposts/014_imagen_3.png"><br>
 
 Las diferencias introducidas en las FDP de la Muestra 1 y Muestra 2 son:
 - En la <b>FDP de la muestra 2</b>, faltan datos (representados por un 0) en algunos valores del rango de la variable “Número de caracteres en palabra”.
