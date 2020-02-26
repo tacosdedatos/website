@@ -53,7 +53,7 @@ Si utilizamos los datos de la FDP como están sin hacerles algún preprocesamien
 <img src="assets/blogposts/014_imagen_4.png"></img><br>
 
 La diferencia relativa entre las FCDs parece ser significativamente más pequeña que las de FDPs de las que originan. Si comparamos el Error Cuadrático Medio (ECM) entre los FDP normalizados en escala (el valor máximo es 1, en vez de menor a 1 para que tenga la misma escala que los FCDs) y los FCDs enconrramos que el ECM de los FDPs son 0.2, cinco veces mayor al valor de ECM de los FCDs con un valor de 0.04 (<a href="https://github.com/LewisErick/kolmogorov-smirnov/blob/master/Explaining%20CDFs.ipynb">notebook<a/>). <b>Excelente, ahora obtengamos las FCDs de las páginas perdidas:</b>
-<img src="assets/blogposts/014_imagen_5.png"></img><br>
+<img src="assets/blogposts/014_imagen_5.png"><br>
 
 <i>Bello, bello.</i> Pero, ¿qué fue lo que hicimos?
 - Convertir las palabras de las páginas en números que representan su cantidad de caracteres ✅
