@@ -1,3 +1,5 @@
+<h1>Las Páginas Perdidas Parte 1: Pruebas Estadísticas de Bondad</h1>
+
 Cuando observamos dos sets de datos, es muy tentador asumir que forman parte de diferentes grupos independientes i.e. no tienen relaciones entre ellos. Esta simplificación nos permite evaluar las propiedades de cada grupo de manera aislada, pues similar a la probabilidad, los eventos independientes son más fáciles de calcular. ¿Habrá veces que esto perjudique más de lo que nos ayuda?
 
 La respuesta es sí pero no. Todo depende de la complejidad del fenómeno que estamos observando. Por ejemplo, es más sencillo analizar los factores involucrados en un juego de gato que los factores que entran en juego en el tráfico de Monterrey. Como científicos de datos, cada supuesto necesita evidencia y pruebas que lo respalden. En este artículo pondremos nuestros supuestos a prueba mediante la prueba de <b>bondad de ajuste</b>.
