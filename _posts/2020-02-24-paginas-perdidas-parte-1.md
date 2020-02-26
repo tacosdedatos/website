@@ -73,7 +73,7 @@ Por lo tanto, necesitamos encontrar una comparación más granular. La clave est
 En otras palabras, la diferencia más grande entre los puntos de las funciones F y G.
 
 El valor de D se utiliza para determinar el valor de p, resultado el cual es más complicado de obtener (no en el alcance de este artículo). Afortunadamente para nosotros, el valor de p ya nos lo dan nuestras <i>bellas librerías</i>. Aquí están los resultados de aplicar KS a nuestros tres fragmentos (<a href="https://github.com/LewisErick/kolmogorov-smirnov/blob/master/Kolmogorov-Smirnoff%20Test.ipynb">notebook</a>):
-<img src="assets/blogposts/014_imagen_8.png"></img><br>
+<img src="assets/blogposts/014_imagen_8.png"><br>
 
 El valor de p puede interpretarse como una probabilidad del 0 al 1. <i>¿Pero probabilidad de qué exactamente?</i> ¿De que los fragmentos vienen de libros diferentes? <b>No necesariamente</b>. La única conclusión que nos da analizar la longitud de las palabras en los fragmentos es que es muy probable que el lenguaje entre los fragmentos sean muy similares entre las tres muestras.
 
