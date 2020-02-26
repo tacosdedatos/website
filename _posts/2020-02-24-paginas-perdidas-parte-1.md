@@ -23,7 +23,7 @@ Imagina que encontraste tres páginas. No sabemos de qué libro vienen, o si vie
 Nuestro supuesto de las páginas de los libros es una hipótesis, la cual podemos aceptar a rechazar. ¿Qué información podríamos utilizar para probar nuestra hipótesis?
 
 ¿Pero qué es eso? ¿Acaso un mago?
-<img src="assets/blogposts/014_imagen_2.jpg"></img><br>
+<img src="assets/blogposts/014_imagen_2.jpg"><br>
 
 ¡Woosh! ¡Woosh! ¡Ahora tienes un tip!
 
