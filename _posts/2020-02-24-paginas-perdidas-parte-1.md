@@ -50,7 +50,7 @@ Si comparamos <b>punto por punto</b> la distancia entre cada punto en las dos FD
 - Funciones de probabilidad desplazadas, o en otras palabras distribuciones con forma similar pero diferente centro, como podría interpretarse con las dos muestras.
 
 Si utilizamos los datos de la FDP como están sin hacerles algún preprocesamiento, hacemos nuestras conclusiones sensibles al ruido y al sesgo, lo cual permitiría una gran variabilidad en nuestras mediciones. Hacer esto nos llevaría a obtener un resultado diferente cada vez que tomamos nuevas muestras. Necesitamos una estrategia que sea capaz de ir más allá de esto. Necesitamos la Función Cumulativa de Densidad (FCD):
-<img src="assets/blogposts/014_imagen_4.png"></img><br>
+<img src="assets/blogposts/014_imagen_4.png"><br>
 
 La diferencia relativa entre las FCDs parece ser significativamente más pequeña que las de FDPs de las que originan. Si comparamos el Error Cuadrático Medio (ECM) entre los FDP normalizados en escala (el valor máximo es 1, en vez de menor a 1 para que tenga la misma escala que los FCDs) y los FCDs enconrramos que el ECM de los FDPs son 0.2, cinco veces mayor al valor de ECM de los FCDs con un valor de 0.04 (<a href="https://github.com/LewisErick/kolmogorov-smirnov/blob/master/Explaining%20CDFs.ipynb">notebook<a/>). <b>Excelente, ahora obtengamos las FCDs de las páginas perdidas:</b>
 <img src="assets/blogposts/014_imagen_5.png"><br>
