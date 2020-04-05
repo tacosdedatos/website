@@ -12,7 +12,7 @@ author: ioexception
 ---
 
 ## Creando animaciones  
-A veces, la forma en la que presentamos los datos podría ayudarnos aún más a contar la historia que representan. A veces esta forma puede tomar forma de una animación, haciendo que la presentación de los datos sea más dinámica y más entrentenida.
+A veces, la forma en la que presentamos los datos podría ayudarnos aún más a contar la historia que representan. A veces esta forma puede tomar forma de una animación, haciendo que la presentación de los datos sea más dinámica y más entretenida.
 
 En este post te mostraré cómo es que puedes animar tus gráficas hechas con *matplotlib* en Python; además usaré *seaborn* porque... pues por que es bonito usarlo para graficar datos.
 
@@ -71,9 +71,9 @@ for i in range(2, timesteps + 2):
 
 ![](https://i.imgur.com/UpQAUg7.png)
 
-La idea clave es que en la animación, cada *frame* debe ser una gráfica "nueva", cuando presentamos una gráfica después de otra dará la ilusión de que la gráfica se está moviendo (sí, de la misma manera en la que imagenes estáticas presentadas rápidamente crean un video).
+La idea clave es que en la animación, cada *frame* debe ser una gráfica "nueva", cuando presentamos una gráfica después de otra dará la ilusión de que la gráfica se está moviendo (sí, de la misma manera en la que imágenes estáticas presentadas rápidamente crean un video).
 
-Como se ve en la gráfica de arriba, en este caso es más que suficiente mover el *slice* en ingrementos para nuestras variables `x` e `y `, excepto que para la animación no queremos graficar una a un lado de la otra, sino **en lugar de la otra**. Para realizar esto, vamos a hacer uso de la clase `FuncAnimation` dentro del módulo `matplotlib.animation`:
+Como se ve en la gráfica de arriba, en este caso es más que suficiente mover el *slice* en incrementos para nuestras variables `x` e `y `, excepto que para la animación no queremos graficar una a un lado de la otra, sino **en lugar de la otra**. Para realizar esto, vamos a hacer uso de la clase `FuncAnimation` dentro del módulo `matplotlib.animation`:
 
 ```python
 from matplotlib.animation import FuncAnimation
@@ -97,15 +97,13 @@ create_frame(10, ax)
 
 Y finalmente, por fin podemos usar `FuncAnimation`, pasando como parámetros la `Figure` en la que vamos a dibujar, la función que estamos usando para dibujar, el número de *frames* (100 en este caso) y el *axes* en el que vamos a dibujar, con el argumento `fargs`:
 
-And finally, we get to use `FuncAnimation`, passing as parameters the `Figure` we are drawing to, the function we are using to draw, the number of frames (100 in this case) and the axes we are using to draw, via the `fargs` parameter:
-
 ```python
 fig = plt.figure()
 ax = fig.gca()
 animation = FuncAnimation(fig, create_frame, frames=100, fargs=(ax,))
 ```
 
-Ya casi terminamos; sólamente tenemos que generar nuestra animación, podemos convertirla en una animación en video, gif (usando el método `save`) o algo que podemos abrir con html (usando `to_jshtml`):
+Ya casi terminamos; solamente tenemos que generar nuestra animación, podemos convertirla en una animación en video, gif (usando el método `save`) o algo que podemos abrir con html (usando `to_jshtml`):
 
 ```python
 from IPython.display import HTML
@@ -128,7 +126,7 @@ Con un poco de trabajo extra se pueden hacer cosas un tanto más complejas, como
 
 No me voy a detener a hablar tanto del código, pero lo dejo ahí para que juegues con él. Me puedes contactar en los comentarios, o en [@io_exception en Twitter](https://twitter.com/io_exception) si tienes dudas sobre él.
 
-Nuevamente, el principio imás importante es pensar en la forma final de nuestra animación, solo que en este caso tenemos cuatro posibles finales, que a su vez son 4 posibles principios...
+Nuevamente, el principio más importante es pensar en la forma final de nuestra animación, solo que en este caso tenemos cuatro posibles finales, que a su vez son 4 posibles principios...
 
 Comencemos por crear las distribuciones, también hay que graficarlas para ver si logramos crearlas correctamente:
 
