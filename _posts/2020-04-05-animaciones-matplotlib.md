@@ -14,7 +14,9 @@ author: ioexception
 ## Creando animaciones  
 A veces, la forma en la que presentamos los datos podría ayudarnos aún más a contar la historia que representan. A veces esta forma puede tomar forma de una animación, haciendo que la presentación de los datos sea más dinámica y más entretenida.
 
-En este post te mostraré cómo es que puedes animar tus gráficas hechas con *matplotlib* en Python; además usaré *seaborn* porque... pues por que es bonito usarlo para graficar datos.
+En este post te mostraré cómo es que puedes animar tus gráficas hechas con *matplotlib* en Python; además usaré *seaborn* porque... pues por que es bonito usarlo para graficar datos. 
+
+<small><a href="https://colab.research.google.com/drive/1VbLzMGkbuKvdg7-CCTCSS_iODm6Ti5Sx" target="_blank">Aquí está</a> el Colab con el código que aquí muestro.</small>
 
 <small>Importamos algunos paquetes:</small>  
 
@@ -203,4 +205,4 @@ anim.to_jshtml()
 <iframe style="border:none;" src="https://mystifying-meitner-c75bce.netlify.com/multiplots.html" width="100%" height="450"></iframe>
 <small>Sí, puedes interactuar con la gráfica de arriba.</small>
 
-Y, ¡ya está! ahora espero que puedas tu también hacer animaciones para que tus datos te ayuden a contar historias más interesantes y atractivas. Te recuerdo que me puedes contactar en [@io_exception en Twitter](https://twitter.com/io_exception) si tienes dudas sobre lo que aquí te conté o te interesa saber más sobre Python o *matplotlib*.
+Y, ¡ya está! ahora espero que puedas tu también hacer animaciones para que tus datos te ayuden a contar historias más interesantes y atractivas. Te recuerdo que me puedes contactar en [@io_exception en Twitter](https://twitter.com/io_exception) si tienes dudas sobre lo que aquí te conté o te interesa saber más sobre Python o *matplotlib*. Ah, **[aquí está](https://colab.research.google.com/drive/1VbLzMGkbuKvdg7-CCTCSS_iODm6Ti5Sx) el Colab con el código que aquí muestro**.
