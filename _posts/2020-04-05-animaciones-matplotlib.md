@@ -8,7 +8,7 @@ date: 2020-04-05 10:00:00
 tags: [blog, python, matplotlib]
 class: post-template
 subclass: 'post tag-blog'
-author: ioexception
+author: io_exception
 ---
 
 ## Creando animaciones  

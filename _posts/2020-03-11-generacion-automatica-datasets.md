@@ -8,7 +8,7 @@ date: 2020-03-11 10:00:00
 tags: [blog, python, kaggle]
 class: post-template
 subclass: 'post tag-blog'
-author: ioexception
+author: io_exception
 ---
 
 Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré *"Detrás de la visualización"* para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería de datos. *Y es que, además de preparar los tacos, también es bueno saber cómo conseguir los ingredientes.*
