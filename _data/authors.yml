@@ -11,6 +11,19 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+mauricio:
+  username: mauricio
+  name: Mauricio Montiel Espinoza
+  url_full: http://shorturl.at/ilsAO
+  url: http://shorturl.at/ilsAO
+  bio: Ingeniero Civil Industrial de Chile. Apasionado por la Innovación y la Tecnología.
+  picture: assets/images/yo_mauricio.jpg
+  facebook: MauricioMontielE
+  twitter: MauMontielE
+  github: MontielMauricio
+  linkedin: MauricioMontiel
+  cover: assets/images/mauricio-cover.jpg
+
 lewiserick:
   username: lewiserick
   name: Luis Erick Zul Rabasa
