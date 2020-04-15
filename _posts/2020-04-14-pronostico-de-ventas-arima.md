@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/004.png #Cambiar el cover
+cover:  assets/tutoriales/tutorial-arima.png 
 navigation: True
 title: Pronóstico de ventas - ARIMA
 date: 2020-04-15 09:34:00
