@@ -21,6 +21,7 @@ La previsibilidad de un evento o una cantidad depende de varios factores que inc
 3. Si los pronósticos pueden afectar lo que estamos tratando de pronosticar.
 
 En el siguiente video se expone como realizar un pronóstico de ventas usando los **modelos econométricos ARIMA** usando `RStdio` . Les recomiendo mucho que lo revisen con detenimiento y que lo repliquen con sus propios datos, el código lo pueden descargar acá -> [https://github.com/MontielMauricio/ARIMA](https://github.com/MontielMauricio/ARIMA)<br>
+    
     <iframe width="560" height="315" src="https://www.youtube.com/embed/6pYto7y0KTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
