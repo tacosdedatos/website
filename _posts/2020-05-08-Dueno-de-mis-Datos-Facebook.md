@@ -1,11 +1,11 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/blog-011.png
+cover:  assets/blogposts/blog-016.png
 navigation: True
 title: Dueño de mis datos - Capítulo Facebook 
 date: 2020-05-08 10:00:00
-tags: [blog, Facebook, ggplot2, r, python, text-mining]
+tags: [blog, Facebook, python, text-mining]
 class: post-template
 subclass: 'post tag-blog'
 author: nerudista
