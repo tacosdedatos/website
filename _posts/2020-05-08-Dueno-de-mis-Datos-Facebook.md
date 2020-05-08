@@ -5,7 +5,7 @@ cover:  assets/blogposts/blog-016.png
 navigation: True
 title: Dueño de mis datos - Capítulo Facebook 
 date: 2020-05-08 10:00:00
-tags: [blog, Facebook, python, text-mining]
+tags: [blog, Facebook, python, privacidad, text-mining]
 class: post-template
 subclass: 'post tag-blog'
 author: nerudista
@@ -247,7 +247,7 @@ with open ("./datos/misPosts.csv", 'w',encoding='utf-8',newline='') as file:
     writer.writerow(["Timestamp", "Title", "Comment"])
     writer.writerows(list_posts)
 ```
-¡ Y listo! Ya tenemos dos archivos CSV con los datos que vamos a ocupar.
+¡Y listo! Ya tenemos dos archivos CSV con los datos que vamos a ocupar.
 
 ## ¿Y los bocetos?
 Esta vez rompí mi regla de crear bocetos en papel y es que me enfoqué más en poder hacer los análisis y no tenía una idea de qué me iba a encontrar y por ende no sabía qué y cómo graficar.
