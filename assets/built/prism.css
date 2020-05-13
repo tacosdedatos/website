@@ -33,7 +33,7 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
-	overflow: visible;
+	overflow: hidden;
 	padding: 0;
 }
 pre[class*="language-"]>code {
@@ -52,7 +52,7 @@ code[class*="language"] {
 	height: inherit;
 	padding: 0 1em;
 	display: block;
-	overflow: auto;
+	overflow: hidden;
 }
 
 /* Margin bottom to accommodate shadow */
