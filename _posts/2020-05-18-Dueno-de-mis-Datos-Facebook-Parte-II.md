@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/blog-017.png
+cover:  assets/blogposts/blog-018.png
 navigation: True
 title: Dueño de mis datos - Capítulo Facebook - Parte II
 date: 2020-05-18 10:00:00
@@ -22,6 +22,7 @@ Solo para recordar el objetivo de esta serie:
 
 ## Un poco de contexto. O sea, mi _Disclaimer_
 
+
 La cuarentena me ha pegado duro como a la mayoría de la gente. Si le suman que previo a ella ya tenía 4 meses encerrado por una lesión, se podrán imaginar lo desesperado que he llegado a estar.
 
 Una forma en que yo logro manejar la ansiedad es estudiando, aprendiendo cosas nuevas y pasando horas practicándolas. Entiendo que eso no es para todos pero se los comparto por si les es de ayuda.
@@ -33,11 +34,12 @@ Dicho esto, por favor tengan en mente que lo que aqui haremos es una acercamient
 
 ## _Guidelines_ para la visualización
 
+
 Esta vez no hay bocetos en papel pero vamos a tocar un tema nuevo: los _guidelines_.
 
-Para las visualizaciones de los [Pats](https://tacosdedatos.com/Primeros-pasos-con-ggplot-y-altair) y de [Spotify](https://tacosdedatos.com/Dueno-de-mis-Datos-Spotify) me tuve que crear un par de _themes_ para que las visualizaciones fueran consistentes. Eso son las _guidelines_.Sin embargo, estas gúias de estilo no son enchiladas. En aquellas ocasiones tardé mucho en elegir colores, tamaños de fuentes, espacios entre márgenes, etc. 
+Para las visualizaciones de los [Pats](https://tacosdedatos.com/Primeros-pasos-con-ggplot-y-altair) y de [Spotify](https://tacosdedatos.com/Dueno-de-mis-Datos-Spotify) me tuve que crear un par de _themes_ para que las visualizaciones fueran consistentes. Eso son las _guidelines_. Sin embargo, estas gúias de estilo no son enchiladas. En aquellas ocasiones tardé mucho en elegir colores, tamaños de fuentes, espacios entre márgenes, etc. 
 
-Todos sabemos que usar Comic Sans no es profesional, para una dataviz, pero ¿por qué? Si van a hacer una gráfica, ¿porqué usarían Calibri, Arial o Tmes New Roman? Si van a combinar fuentes, ¿cuál va mejor con cúal?
+Todos sabemos que usar Comic Sans no es profesional para una dataviz, pero ¿por qué? Si van a hacer una gráfica, ¿porqué usarían Calibri, Arial o Times New Roman? Si van a combinar fuentes, ¿cuál va mejor con cúal?
 
 Afortunadamente hay un montón de UX, VD, entre otras profesiones, que se dedican a crear estas guías para sus organizaciones y muchas de ellas con públicas. Hay una buena lista [aquí](https://docs.google.com/spreadsheets/d/1VhBBwSvIeiUL42eLQgoXb93Y1_LBUWTaW2OB-tXFYD0/edit#gid=1679646668) que tenemos a la mano gracias a la [Data Visualization Society](https://www.datavisualizationsociety.com/). Para este ejercicio decidí tomar como referencia la guía del [Urban Institute](https://urbaninstitute.github.io/graphics-styleguide/).
 
@@ -117,7 +119,7 @@ theme_fb <- theme(
 my_caption <-  expression(paste(bold("Fuente:"), " Datos proporcionados por Facebook para el usuario ", bold("nerudista")))
 ```
 
-Los invito a intenten replicar alguna de las guías que vienen en la lista que está arriba y vean como sus visualizaziones empiezan a verse más profesionales. Después pueden crearse las propias que reflejen su estilo de visualización.
+Los invito a intenten replicar alguna de las guías que vienen en la lista que está arriba y vean como sus visualizaciones empiezan a verse más profesionales. Después pueden crearse las propias que reflejen su estilo de visualización.
 
 ## Preparando los datos
 
@@ -145,7 +147,8 @@ data <- rbind(data_comments, data_posts)
 stop_words <- tm::stopwords(kind="es")
 
 #cargar palabras que no eliminó el paquete tm::stopwords 
-my_stop_words <- c("si","p","d","así","tan","!","¡","=","$","esposa","de","que","a","with","to","ps","made","nocroprc")
+my_stop_words <- c("si","p","d","así","tan","!","¡","=","$",
+"esposa","de","que","a","with","to","ps","made","nocroprc")
 
 #Unir los dos vectores de stop words
 final_stop_words <- c(stop_words,my_stop_words)
@@ -164,13 +167,13 @@ Convertir el dataframe en un corpus es bastante sencillo. Basta con este comando
 
 `corp_comments <- quanteda::corpus(data$Comment)`
 
-Lo que sigue es tokenizar (convertir cada palabra en un objeto que puede analizarse) y después quitar las palabras que no nos sirven. La premisa es que las palabras que más se repiten como los artículos, pronombres, preposiciones; son las que menos aportan al análisis. Las palabras qeu se repiten menos son las más características de nuestros textos y las que más nos pueden ayudar al análisis. Por eso es importante quitar la paja desde el principio.
+Lo que sigue es tokenizar (convertir cada palabra en un objeto que puede analizarse) y después quitar las palabras que no nos sirven. La premisa es que las palabras que más se repiten como los artículos, pronombres, preposiciones; son las que menos aportan al análisis. Las palabras que se repiten menos son las más características de nuestros textos y las que más nos pueden ayudar al análisis. Por eso es importante quitar la paja desde el principio.
 
-En mi primera ejecucición quité los stopwords que vienen por default en `tm::stopwords` pero cuando vi los tokens me di cuenta que había muchas que no servían en para mi analisis en particular. A lo que voy es que deben entrar a ensuciarse con los datos antes de empezar a hacer cosas bonitas. Si conoces tus datos, les puedes sacar más jugo.
+En mi primera ejecución quité los stopwords que vienen por default en `tm::stopwords` pero cuando vi los tokens me di cuenta que había muchas que no servían en para mi analisis en particular. A lo que voy es que deben entrar a ensuciarse con los datos antes de empezar a hacer cosas bonitas. Si conoces tus datos, les puedes sacar más jugo.
 
-Después de varias iteraciones saqué la lista de palabras que quería quitar y es encontes cuando cree la variable `my_stop_words` con la que acabé usando para crear la que usaré al final: `final_stop_words`
+Después de varias iteraciones saqué la lista de palabras que quería quitar y es entonces cuando creé la variable `my_stop_words`. Esta la que acabé usando para crear la que usé al final: `final_stop_words`
 
-Con `Quanteda` podemos tokenizar y hacer limpieza en el mismo comando. Esto va a crear un objetos donde cada registro va a ser un token. Después necesitamos crear una _Document Feature Matrix (dfm)_ que es otro tipo de objeto donde cada token se convierte en una "columna" en vez de un registro.
+Con `Quanteda` podemos tokenizar y hacer limpieza en el mismo comando. Esto va a crear un objeto donde cada registro va a ser un token. Después necesitamos crear una _Document Feature Matrix (dfm)_ que es otro tipo de objeto donde cada token se convierte en una "columna" en vez de un registro.
 
 El código es muy simple:
 ```r
@@ -188,7 +191,7 @@ tok_comments <-  quanteda::tokens(corp_comments,
 dfmat_comments <- quanteda::dfm(tok_comments,remove_punct = TRUE)
 ```
 
-Con el _dfm_ podemos hacer ya aplicar varios comandos para sacar las frecuencias de tokens, analisis de sentimientos o para crear nubes de palabras, entre otras cosas.
+Con el _dfm_ podemos ya aplicar varios comandos para sacar las frecuencias de tokens, analisis de sentimientos o para crear nubes de palabras, entre otras cosas.
 
 Empecemos con una nube de palabras:
 
@@ -237,7 +240,7 @@ Para variar un poco voy a ocupar la opción de 2-gramas y crear una wordcloud co
   
   #Ahora a tokenizar por oracion
   #Da casi lo mismo que la data.limpia.
-  #Es decir, casi nnca repetí oraciones.
+
   tidy.tokens.sentence <- data.limpia %>% 
     unnest_tokens(sentence, Comment, token = "sentences")
   
@@ -270,7 +273,7 @@ En el repo viene el código que tienen que agregar para que le den buen tamaño 
 
 ## Analisis de sentimientos
 
-Aprovechando que tenemos recién creado el objeto `tidy.tokens.word`, que contiene tokens por palabra, vintentemos hacer algo de análisis de sentimientos. Para eso necesitamos usar un diccionario de palabras. Los más usadons son **Affin, NRC y Bing**. Cada uno tiene sus caracteristicas especiales. Si los buscan en Google hay buenos artículos que mencionan sus diferencias.
+Aprovechando que tenemos recién creado el objeto `tidy.tokens.word`, que contiene tokens por palabra, intentemos hacer algo de análisis de sentimientos. Para eso necesitamos usar un diccionario de palabras. Los más usadons son **Affin, NRC y Bing**. Cada uno tiene sus caracteristicas especiales. Si los buscan en Google hay buenos artículos que mencionan sus diferencias.
 
 Vamos a ocupar el diccionario AFFIN en español que ronda por la internet para ligarlo con cada uno de los tokens que tenemos. El diccionario lo que tiene es algo así:
 
@@ -326,10 +329,11 @@ Lo que se puede ver es que mis respuestas a posts de otros solían ser bastante 
 
 ## ¿En serio una tercera parte?
 
-Sí. Porque nos falta jugar con diccionarios NRC, TF-IDF y LDA.
+Sí. Porque nos falta jugar con diccionarios NRC, calcular el TF-IDF y encontrar tópicos usando LDA.
 
+Espero este blog les hay aparecido interesante y les den ganas de ir a pedir sus datos y jugar con ellos. Siéntanse libres de contactarme en mi Twitter  [@nerudista](https://twitter.com/nerudista) si se les ofrece algo.
 
-
+Así que no se desesperen. La próxima semana se viene la última y nos vamos.
 ***
 
 ¿Qué te pareció la nota? [Mandanos un tuit a @tacosdedatos](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE) o [a @nerudista](https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+y+%40nerudista+%F0%9F%8C%AE) o envianos un correo a [✉️ sugerencias@tacosdedatos.com](mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&body=Hola-holaaa). Y recuerda que puedes subscribirte a nuestro boletín semanal aquí debajo.
