@@ -11,7 +11,7 @@ subclass: 'post tag-blog'
 author: sergio
 thebelab: true  # true o false si quieres tener la opcion de thebelab
 kernel_name: ir # ir para R y python3 para python
-repo: tacos-de-datos/probando-bbplot # el repositorio de github que vas a usar f"{usuario}/{repo}"
+repo: tacosdedatos/probando-bbplot # el repositorio de github que vas a usar f"{usuario}/{repo}"
 ---
 <!-- Load Thebelab for interactive widgets -->
 {% include thebelab.html %}
