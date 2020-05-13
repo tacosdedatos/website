@@ -15,7 +15,7 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre-wrap;
 	word-spacing: normal;
-	word-break: normal;
+	word-break: break-word;
 	word-wrap: normal;
 	line-height: 1.5;
 
@@ -33,7 +33,7 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
-	overflow: visible;
+	overflow: auto;
 	padding: 0;
 }
 pre[class*="language-"]>code {
