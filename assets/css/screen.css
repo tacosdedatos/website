@@ -802,7 +802,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content pre {
-    overflow-x: scroll;
+    overflow-x: hidden;
     margin: 1.5em 0 3em;
     padding: 20px;
     max-width: 100%;
