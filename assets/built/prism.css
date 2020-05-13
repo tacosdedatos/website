@@ -11,7 +11,7 @@ pre[class*="language-"] {
 	color: black;
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1em;
+	font-size: 1rem;
 	text-align: left;
 	white-space: pre-wrap;
 	word-spacing: normal;
@@ -33,7 +33,7 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
-	overflow: hidden;
+	overflow: auto;
 	padding: 0;
 }
 pre[class*="language-"]>code {
@@ -52,7 +52,7 @@ code[class*="language"] {
 	height: inherit;
 	padding: 0 1em;
 	display: block;
-	overflow: hidden;
+	overflow: auto;
 }
 
 /* Margin bottom to accommodate shadow */
