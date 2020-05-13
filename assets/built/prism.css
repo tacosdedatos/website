@@ -11,11 +11,11 @@ pre[class*="language-"] {
 	color: black;
 	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 1rem;
+	font-size: 1em;
 	text-align: left;
 	white-space: pre-wrap;
 	word-spacing: normal;
-	word-break: normal;
+	word-break: break-word;
 	word-wrap: normal;
 	line-height: 1.5;
 
