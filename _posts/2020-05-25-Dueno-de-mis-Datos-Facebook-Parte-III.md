@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/blog-018.png
 navigation: True
 title: Dueño de mis datos - Capítulo Facebook - Parte III
-date: 2020-05-25 10:00:00
+date: 2020-05-18 10:00:00
 tags: [blog, Facebook, ggplot2, r, text-mining]
 class: post-template
 subclass: 'post tag-blog'
