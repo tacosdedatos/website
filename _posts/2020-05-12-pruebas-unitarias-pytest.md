@@ -3,7 +3,7 @@ layout: post
 current: post
 cover:  assets/detrasdelavis/002.png
 navigation: True
-title: Porbando nuestro código con pytest
+title: Probando nuestro código con pytest
 date: 2020-05-12 10:00:00
 tags: [blog, python, pytest]
 class: post-template
