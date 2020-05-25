@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/blogposts/blog-018.png
+cover:  assets/blogposts/018.PNG
 navigation: True
 title: Dueño de mis datos - Capítulo Facebook - Parte III
 date: 2020-05-22 10:00:00
