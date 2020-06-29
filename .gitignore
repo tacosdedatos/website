@@ -11,3 +11,6 @@ node_modules/
 
 # python
 __pycache__/
+
+# jekyll
+.jekyll-cache
