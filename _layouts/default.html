@@ -15,10 +15,29 @@
     <link rel="stylesheet" type="text/css" href="{{ 'assets/built/screen.css' | relative_url }}" />
     <link rel="stylesheet" type="text/css" href="{{ 'assets/built/screen.edited.css' | relative_url }}" />
     <link rel="stylesheet" type="text/css" href="{{ 'assets/built/syntax.css' | relative_url }}" />
-    <link rel="stylesheet" type="text/css" href="{{ 'assets/built/prism.css' | relative_url }}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ 'assets/built/prism.css' | relative_url }}" /> -->
     <!-- highlight.js -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    <!-- <link rel="stylesheet" href="{{ 'assets/built/styles/default.css' | relative_url }}"> -->
     <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="{{ 'assets/built/styles/night-owl.css' | relative_url }}" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
 
     {% if page.thebelab %}
     <!-- CodeMirror CSS -->
@@ -103,13 +122,19 @@
         </div>
     {% endif %}
 
-
-    <!-- prism.js -->
-    <script type="text/javascript" src="{{ 'assets/js/prism.js' | relative_url }}"></script>
-    
     <!-- highlight.js -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <script src="{{ 'assets/js/highlight.pack.js' | relative_url }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="{{ 'assets/js/prism.js' | relative_url }}"></script> -->
+    
 
     <!-- jQuery + Fitvids, which makes all video embeds responsive -->
     <script
@@ -120,11 +145,11 @@
     <script type="text/javascript" src="{{ 'assets/js/jquery.fitvids.js' | relative_url }}"></script>
     <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
 
-    <script>$(document).ready(function() {
+    <!-- <script>$(document).ready(function() {
       $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
       });
-    });</script>
+    });</script> -->
 
 
     <!-- Paginator increased to "infinit" in _config.yml -->
