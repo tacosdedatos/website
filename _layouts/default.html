@@ -12,13 +12,32 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Styles'n'Scripts -->
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.css" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/screen.edited.css" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/syntax.css" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/built/prism.css" />
+    <link rel="stylesheet" type="text/css" href="{{ 'assets/built/screen.css' | relative_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ 'assets/built/screen.edited.css' | relative_url }}" />
+    <link rel="stylesheet" type="text/css" href="{{ 'assets/built/syntax.css' | relative_url }}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{{ 'assets/built/prism.css' | relative_url }}" /> -->
     <!-- highlight.js -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <!-- <link rel="stylesheet" href="{{ 'assets/built/styles/default.css' | relative_url }}"> -->
     <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="{{ 'assets/built/styles/night-owl.css' | relative_url }}" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
 
     {% if page.thebelab %}
     <!-- CodeMirror CSS -->
@@ -94,7 +113,7 @@
             <a class="subscribe-overlay-close" href="#"></a>
             <div class="subscribe-overlay-content">
                 {% if site.logo %}
-                    <img class="subscribe-overlay-logo" src="{{ site.baseurl }}{{ site.logo }}" alt="{{ site.title }}" />
+                    <img class="subscribe-overlay-logo" src="{{ site.logo | relative_url }}" alt="{{ site.title }}" />
                 {% endif %}
                 <h1 class="subscribe-overlay-title">Subscríbete a {{ site.title }}</h1>
                 <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
@@ -103,26 +122,34 @@
         </div>
     {% endif %}
 
-
-    <!-- prism.js -->
-    <script type="text/javascript" src="{{ site.baseurl }}assets/js/prism.js"></script>
-    
     <!-- highlight.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="{{ 'assets/js/highlight.pack.js' | relative_url }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="{{ 'assets/js/prism.js' | relative_url }}"></script> -->
+    
+
     <!-- jQuery + Fitvids, which makes all video embeds responsive -->
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="{{ site.baseurl }}assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="{{ 'assets/js/jquery.fitvids.js' | relative_url }}"></script>
     <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
 
-    <script>$(document).ready(function() {
+    <!-- <script>$(document).ready(function() {
       $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
       });
-    });</script>
+    });</script> -->
 
 
     <!-- Paginator increased to "infinit" in _config.yml -->
@@ -137,7 +164,7 @@
     <script>
         var maxPages = parseInt('{{ paginator.total_pages }}');
     </script>
-    <script src="{{ site.baseurl }}assets/js/infinitescroll.js"></script>
+    <script src="{{ 'assets/js/infinitescroll.js' | relative_url }}"></script>
     {% endif %}
 
 
