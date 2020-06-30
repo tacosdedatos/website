@@ -13,6 +13,9 @@ jobs:
    
       - name: convert notebooks and word docs to posts
         uses: fastai/fastpages@master
+        with:
+          BOOL_SAVE_MARKDOWN: true
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
 
       - uses: helaili/jekyll-action@2.0.1
         env:
