@@ -17,6 +17,11 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
+      - name: Dump commit
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github.event.commits) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: convert notebooks and word docs to posts
         uses: fastai/fastpages@master
         with:
