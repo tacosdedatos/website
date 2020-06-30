@@ -7,7 +7,7 @@ on:
 
 jobs:
   github-pages:
-    if: "!contains(github.event.commits.message, '***Bot***')"
+    if: "!endsWith(github.event.commits.message, 'posts')"
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
