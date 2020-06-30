@@ -7,11 +7,11 @@ on:
 
 jobs:
   github-pages:
-    if: github.event.commits.message != '[Bot] Update blog posts'
+    if: github.event.commits.message != '[Bot] Update  blog posts'
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
