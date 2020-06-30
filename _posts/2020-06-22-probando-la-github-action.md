@@ -2,6 +2,15 @@
 keywords: fastai
 description: "Probando a ver si la github action de fastai/fastpages sirve pa tacosdedatos."
 title: "Probando notebooks"
+layout: post
+current: post
+cover: assets/blogposts/018.PNG
+navigation: True
+date: 2020-06-22 10:00:00
+tags: [blog, Facebook, ggplot2, r, text-mining]
+class: post-template
+subclass: 'post tag-blog'
+author: chekos
 nb_path: _notebooks/2020-06-22-probando-la-github-action.ipynb
 layout: notebook
 ---
