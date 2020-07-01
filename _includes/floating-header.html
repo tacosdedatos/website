@@ -13,7 +13,7 @@
         <div class="floating-header-share-label">comparte esto {% include point.html %}</div>
         <a class="floating-header-share-tw" href="https://twitter.com/share?text={{ page.title | url_encode }}&amp;url={{ site.production_url }}{{ page.url | remove_first: '/' }}"
             onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
-            {% include twitter.html %}
+            {% include twitter-icon.html %}
         </a>
         <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u={{ site.production_url }}{{ page.url | remove_first: '/' }}"
             onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
