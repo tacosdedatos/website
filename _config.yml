@@ -48,8 +48,11 @@ permalink: /:title
 # Tags' info in `_data/tags_info.yml`
 
 # gems and other configs
-plugins_dir: ["_plugins"]
-plugins: [jekyll-paginate, jekyll-feed]
+# plugins_dir: ["_plugins"]
+plugins: 
+  - jekyll-paginate
+  - jekyll-feed
+  - jekyll-twitter-plugin
 
 feed:
   path: feed.xml
