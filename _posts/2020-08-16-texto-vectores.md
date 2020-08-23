@@ -5,14 +5,11 @@ cover:  assets/detrasdelavis/004.png
 navigation: True
 title: De texto a vectores (parte 1)
 date: 2020-08-16 10:00:00
-tags: [python, spacy, texto]
+tags: [python, skelarn, texto]
 class: post-template
 subclass: 'post tag-tutoriales'
 author: io_exception
 math: True
-markdown: kramdown
-kramdown:
-  parse_block_html: true
 ---
 
 Tener nuestro texto convertido en tokens es un paso importante en el uso de texto para aplicaciones de machine learning, existe una transformación que debemos realizar para facilitarle la tarea a nuestros modelos. Esta transformación es conocida como vectorización.  
@@ -20,18 +17,18 @@ Tener nuestro texto convertido en tokens es un paso importante en el uso de text
 En el [post pasado](https://tacosdedatos.com/analisis-texto) nos quedamos con nuestro texto ya tokenizado, sin embargo los modelos de machine learning operan con valores numéricos organizados en arreglos llamados vectores, y hasta el momento nuestros tokens son solo secuencias de caracteres. Nuestra tarea, y de lo que les voy a hablar en el siguiente post, es convertir esta secuencias a vectores.
 
 ## Un poco de nomenclatura  
-Cuando se habla de texto en el contexto de la ciencia de datos hay algunas palabras que debemos entender ya que son comunmente usadas:  
+Cuando se habla de texto en el contexto de la ciencia de datos hay algunas palabras que debemos entender ya que son comúnmente usadas:  
 
  - **Token**, conjunto de caracteres que representa la mínima unidad en el análisis de texto.
  - **Documento**, la representación escrita de una idea, concepto o diálogo, un documento está compuesto por varios tokens. Como ejemplos de documentos podemos tener un *tweet*, un diálogo en una película o un *paper* de una publicación científica.
  - **Corpus**, todo el conjunto de documentos sobre el que estamos realizando el análisis.
- - **Vocabulario**, el conunto de tokens únicos que obtenemos como resultado al tokenizar nuestro *corpus* completo.
+ - **Vocabulario**, el conjunto de tokens únicos que obtenemos como resultado al tokenizar nuestro *corpus* completo.
   
 Por ejemplo, debajo tenemos tres documentos, que en conjunto forman nuestro corpus.
 
- > Fui a comer tacos veganos de suadero y mi decisión de ser vegetariana de posterga por mucho tiempo.  
+ > Fui a comer tacos de suadero. Juro que es el suadero más delicioso de mi vida. #suadero  
 
- > Hay que comer tacos de suadero... con su respectiva bolsa de plástico para que no ensucie el plato.  
+ > Taco de delicioso suadero con bolsa de plástico para que no ensucie el plato.  
 
  > Tengo ganas de comprarme unos tacos de fútbol, ir a la cancha y jugar hasta la noche
 
@@ -57,7 +54,7 @@ Una de las primeras ideas que se nos puede venir a la mente es la de generar una
 
  > **`CountVectorizer` y `analyzer`**: Al especificar el argumento `analyzer` y asignarlo a nuestra función para tokenizar (`tokenize_phrase`) le estamos indicando a nuestro transformador que cuando sea el momento de tokenizar nuestros documentos, use esa función en lugar del tokenizador por default que viene en `sklearn`.
 
-### Vectores de frequencia  
+### Vectores de frecuencia  
 Para rellenar la tabla anterior tenemos varias opciones, por ejemplo, podríamos simplemente la cantidad de veces que un determinado token aparece en cada uno de los documentos:  
 
 ![](assets/detrasdelavis/004_frequency.png)
@@ -76,7 +73,7 @@ frequency_vectors = frequency_vectorizer.transform(corpus)
 ```
 
 ### One-hot-encoding (*Bag of words*)  
-Otra opción que tenemos, si es que solamente queremos saber si una palabra existe en un documento o no, es la de usar la codificación *one-hot*, que simplemente consise en colocar verdadero o falso (`1` o `0`) dependiendo de si la palabra existe o no:  
+Otra opción que tenemos, si es que solamente queremos saber si una palabra existe en un documento o no, es la de usar la codificación *one-hot*, que simplemente consiste en colocar verdadero o falso (`1` o `0`) dependiendo de si la palabra existe o no:  
 
 ![](assets/detrasdelavis/004_onehot.png)
 
@@ -100,7 +97,7 @@ La idea detrás del famoso TF-IDF (Term Frequency – Inverse Document Frequency
 
 ### Detalles matemáticos...
 
-Existen diversas maneras de calcular este número [la wikipedia lista varias](https://es.wikipedia.org/wiki/Tf-idf#Detalles_matem%C3%A1ticos), pero esta es una de las mas comunes:
+Existen diversas maneras de calcular este número [la wikipedia lista varias](https://es.wikipedia.org/wiki/Tf-idf#Detalles_matem%C3%A1ticos), pero esta es una de las más comunes:
 
 Partiendo de que 
  - $$t$$ es el token para el cual estamos calculando, 
@@ -154,7 +151,7 @@ Que nos dará como resultado una matriz más o menos así:
 Si de algo nos dimos cuenta con las matrices anteriores, es que en muchas ocasiones, tenemos más `0` (valores en blanco) que valores reales. En otras palabras, nuestros documentos-vectores son dispersos, o en ingles *sparse vectors*. Esto podría llegar a ser un problema cuando tenemos un vocabulario de tamaño considerable. 
 
 ### No reflejan el orden de los términos  
-Otra cosa a considerar es que con solo ver la representación vectorizada de determinado documento, no podemos reconstruir el documento original, de entrada por todo el proceso de tokenización, pero también porque **ninguna de las técnicas que vimos, perserva el orden original de los tokens en el documento**.
+Otra cosa a considerar es que con solo ver la representación vectorizada de determinado documento, no podemos reconstruir el documento original, de entrada por todo el proceso de tokenización, pero también porque **ninguna de las técnicas que vimos, preserva el orden original de los tokens en el documento**.
 
 ### Existen todavía más opciones  
 Si bien estas representaciones son buenas u útiles, hay casos en los que necesitamos obtener más detalle de nuestros documentos, para esos casos podemos usar técnicas como [Word2vec](http://jalammar.github.io/illustrated-word2vec/) o [Doc2vec](https://medium.com/wisio/a-gentle-introduction-to-doc2vec-db3e8c0cce5e), de las cuales espero escribir en un post futuro.
