@@ -4,7 +4,7 @@ current: post
 cover:  assets/detrasdelavis/004.png
 navigation: True
 title: De texto a vectores (parte 1)
-date: 2020-08-16 10:00:00
+date: 2020-08-24 10:00:00
 tags: [python, skelarn, texto]
 class: post-template
 subclass: 'post tag-tutoriales'
