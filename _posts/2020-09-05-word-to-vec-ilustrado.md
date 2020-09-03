@@ -4,7 +4,7 @@ current: post
 cover:  assets/detrasdelavis/004.png
 navigation: True
 title: Word2vec ilustrado
-date: 2020-09-05 10:00:00
+date: 2020-09-01 10:00:00
 tags: [python, skelarn, texto]
 class: post-template
 subclass: 'post tag-tutoriales'
@@ -87,3 +87,152 @@ Este es un *embedding* para la palabra *"king"* –rey, en inglés– (GloVe vec
 ```
 
 Es una lista de 50 números. No podemos decir mucho si solamente vemos estos números. 
+
+![](http://jalammar.github.io/images/word2vec/king-white-embedding.png)  
+
+Añadamos colores a las celdas basados en sus valores (rojo si están cerca de 2, blanco si están cerca de 0 y azul si están cerca de -2):  
+
+![](http://jalammar.github.io/images/word2vec/king-colored-embedding.png)
+
+De ahora en adelante, vamos a ignorar los números y concentrarnos solo en los colores que indican los valores de las celdas. Comparemos *"king"* contra otras palabras:
+
+![](http://jalammar.github.io/images/word2vec/king-man-woman-embedding.png)
+
+¿Ves cómo las palabras *"man"* y *"woman"* son más similares entre sí que cualquiera de ellas con *"king"*? Esto nos dice algo. Estas representaciones vectoriales capturan un poco las información/significado/asociaciones de estas palabras.
+
+Aquí hay otros ejemplos (compara las columnas verticalmente, buscando columas con colores similares):
+
+![](https://jalammar.github.io/images/word2vec/queen-woman-girl-embeddings.png)
+
+Algunas cosas para destacar:  
+
+ 1. Hay una columan roja que coincide en todas las palabras. Las palabras son similares en esa dimensión (recuerda que no sabemos lo que significa cada dimensión).  
+ 2. Puedes ver cómo *"woman"* y *"girl"* son similares en un montón de lugares. Lo mismo sucede con *"man"* y *"boy"*.  
+ 3. *"boy"* y *"girl"* también tienen lugares en donde coinciden, pero son lugares diferentes a *"woman"* o *"man"*. ¿Será que estas estén codificando una vaga definición de juventud? es posible.  
+ 4. Todas las palabras, excepto la última representan personas. Agregué, por ejemplo, un objeto (*"water"*) para mostrar las diferencias entre categorías. Por ejemplo, ¿ves esa columna azul fuerte a la derecha que se atenua cuando llegamos al *embedding* de *"water"*?
+ 5. Hay otros lugares en donde *"king"* y *"queen"* son diferentes de todas las demás, ¿será que estas diferencias codifiquen un concepto vago de realeza?
+
+
+### Analogías  
+
+ > “Las palabras pueden llevar todo el peso que queramos. Todo lo que se requiere es un acuerdo tradición a partir de la cual  construir” ~ Dios emperador de Dune  
+
+Los ejemplos más usados que muestran una de las características más increíbles de los *embeddings* es el concepto de analogías. Podemos sumar y restar *embeddings* y llegar a resultados interesantes. El ejemplo más famoso es la fórmula *"king"* - *"man"* + *"woman"*:  
+
+![](https://jalammar.github.io/images/word2vec/king-man+woman-gensim.png)
+
+<small>Usando la biblioteca [Gensim](https://radimrehurek.com/gensim/) de Python, podemos sumar y restar vectores, y encontrar las palabras más similares al vector resultante. La imagen muestra una lista de las palabras más similares, cada una con su similitud coseno.</small>
+
+Podemos visualizar esta analogía como lo hemos hecho anteriormente:  
+
+![](https://jalammar.github.io/images/word2vec/king-analogy-viz.png)
+
+<small>El vector resultante de *"king-man+woman"* no coincide exactamente con *"queen"* es la más cercana de las 400,000 que la continene este *dataset*.</small>
+
+Ahora que hemos revisado los *embeddings*, aprendamos más acerca del proceso para obtenerlos. Pero antes de que lleguemos a *word2vec*, necesitamos conocer a su padre conceptual: los modelos de lenguaje neuronales.
+
+## Modelando lenguajes  
+
+ > “El profeta no se distrae con ilusiones del pasado, presente y futuro. **La fijeza del lenguaje determina tales distinciones lineales.** Los profetas sostienen la llave de la cerradura en un idioma. 
+ > Este no es un universo mecánico. La progresión lineal de los eventos la impone el observador. ¿Causa y efecto? No es eso para nada. **El profeta pronuncia palabras fatídicas.** Vislumbras algo "destinado a ocurrir" pero el instante profético libera algo de portento y poder infinitos. El universo sufre un cambio fantasmal” ~ Dios emperador de Dune   
+
+Si uno quisiera un ejemplo de una aplicación que usa *NLP*, uno de los mejores sería la predicción de la próxima palabra en el teclado de un teléfono. Es una característica que miles de millones de pesonas usan cientos de veces al día.
+
+![](http://jalammar.github.io/images/word2vec/swiftkey-keyboard.png)
+
+La predicción de la próxima palabra es una tarea que puede llevarse a cabo usando un *modelo de lenguage* (*language model*, en inglés). Un modelo de lenguaje puede tomar una lista de palabras (digamos, dos), y tratar de predecir cuál es la que le seguiría.
+
+En la captura de pantalla de arriba, podemos pensar que el modelo tomó estas dos palabras en color verde (<span style="color: #70BF41;">Thou</span>, <span style="color: #70BF41;">shalt</span>) y regresa un conjunto de sugerencias ("not" es la que tenía la mayor probabilidad):  
+
+![](http://jalammar.github.io/images/word2vec/thou-shalt-_.png)  
+
+Puedes pensar en el modelo como una caja negra:  
+
+![](http://jalammar.github.io/images/word2vec/language_model_blackbox.png)  
+
+Pero en la práctica, el modelo no solamente regresa como resultado una sola palabra. En realidad entrega las probabilidades para todas las palabras que "conoce" (el conjunto de todas las palabras que conoce se llama vocabulario, que pueden ir desde unas cuantas miles hasta millones de palabras). Es la responsabilidad del teclado encontrar las palabras con mayor probabilidad y presentarlas al usuario.  
+
+![](http://jalammar.github.io/images/word2vec/language_model_blackbox_output_vector.png)
+
+<small>Los resultados de un modelo de lenguaje son probabilidades sobre todas las palabras que el modelo "conoce". En la imagen nos referimos a la probabilidad como porcentaje, pero ese 40% en realidad vale 0.4 en nuestro vector de salida.</small>  
+
+Después de ser entrenado, los primeros modelos de lenguaje ([Bengio 2003](http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)) calculaban la predicción en tres pasos:  
+
+![](http://jalammar.github.io/images/word2vec/neural-language-model-prediction.png)  
+
+El primer paso es el más relevante para nosotros porque en este post estamos hablando sobre los *embeddings*. Uno de los resultados del proceso de entrenamiento es una matriz que contiene un *embedding* por cada uno de los tokens en nuestro vocabulario. Cuando estamos prediciendo, simplemente buscamos los *embeddings* de los tokens de entrad ay calculamos la predicción:  
+
+![](http://jalammar.github.io/images/word2vec/neural-language-model-embedding.png)
+
+Ahora vamos a aprender cómo es que esta matriz de *embeddings* es creada.  
+
+
+## Entrenamiento de modelos de lenguaje  
+
+ > “Un proceso no se puede entender deteniéndolo. La comprensión debe moverse con el flujo del proceso, debe unirse y fluir con él.” ~Dune  
+
+Los modelos de lenguaje tienen una gran ventaja sobre otros modelos de *machine learning*. Esa ventaja es que podemos entrenarlos usando texto – del cual tenemos mucho. Piensa en todos los libros, artículos, y otras formas de textos a nuestro al rededor. En contraste con otros modelos de aprendizaje automático que necesitan que la los datos sean preparados (y a veces obtenidos) específicamente para ellos.  
+
+ > “Conocerás una palabra por sus la compañía que mantiene alrededor” ~ J.R. Firth  
+
+Las palabras obienen sus *embeddings* a partir de las palabras que aparecen a su alrededor. Esto funciona de la siguiente manera:  
+
+ 1. Obtenemos un montón de texto (digamos, todos los artículos de Wilipedia), luego
+ 2. tomamos una ventana (digamos, de trees palabras) que movemos sobre todo el texto,
+ 3. Esta ventana genera nuestros ejemplos para el entrenamiento del modelo:  
+
+![](http://jalammar.github.io/images/word2vec/wikipedia-sliding-window.png)  
+
+En tanto esta ventana se desliza, nosotros (virtualmente) generamos un *dataset* que usaremos para entrenar el modelo. Para ver cómo es que esto funciona, veamos cómo funciona el proceso para la siguiente frase:
+
+ > “Thou shalt not make a machine in the likeness of a human mind” ~Dune  
+
+Cuando empezamos, la ventana está en las tres primeras palabras de la oración:
+
+![](http://jalammar.github.io/images/word2vec/lm-sliding-window.png)
+
+Tomamos las dos palabras como *features*, y la tercera como la etiqueta a predecir:  
+
+![](http://jalammar.github.io/images/word2vec/lm-sliding-window-2.png)
+
+Luego entonces deslizamos la ventana a la siguiente posición para generar un segundo ejemplo de entrenamiento:  
+
+![](http://jalammar.github.io/images/word2vec/lm-sliding-window-3.png)
+
+
+Y de pronto tendremos un gran *dataset* de palabras que suelen aparecer después de otro par:  
+
+![](http://jalammar.github.io/images/word2vec/lm-sliding-window-4.png)  
+
+En la práctica, los modelos suelen ser entrenados mientras esta ventana se va deslizando, sin embargo, siento que es más claro separar lógicamente la etapa de generación del *dataset* de la etapa de entrenamiento. Además de modelos basados en redes neuronales, existe una técnica conocida como *n-grams* que es también usada comunmente para entrenar modelos (mira el capítulo 3 de [*Speech and Language Processing*](http://web.stanford.edu/~jurafsky/slp3/)). para ver cómo es que este cambio de *n-grams* a modelos neuronales se refleja en productos reales, revisa [este post de Swiftkey](https://blog.swiftkey.com/neural-networks-a-meaningful-leap-for-mobile-typing/) mi teclado favorito para Android, introduciendo su modelo neuronal de lenguaje y comparándolo con su previo modelo basado en *n-grams*. me gusta este ejemplo porque muestra cómo las propiedades agorítmicas de los *embeddings* se pueden describir en lenguaje de marketing.  
+
+### Mira hacia ambos lados  
+
+> “La paradoja es un indicador que te dice que mires más allá. Si las paradojas te molestan, eso delata tu profundo deseo de absolutos. El relativista trata una paradoja simplemente como interesante, quizás divertida o incluso, un pensamiento terrible, educativo” ~ Dios emperador de Dune 
+
+Sabiendo de lo que hablamos anteriormente en este post, completa la oración
+
+![](http://jalammar.github.io/images/word2vec/jay_was_hit_by_a_.png)
+
+
+El contexto que te he dado aquí son 5 palabras antes del espacio en blanco. Estoy seguro que la mayoría de las personas elegirían la palabra *"bus"* como solución. Pero qué sucedería si te doy un poco más de información – una palabra después del espacio en blanco, ¿cambiaría tu respuesta?
+
+![](http://jalammar.github.io/images/word2vec/jay_was_hit_by_a_.png)  
+
+Esto cambia cimpletamente lo que debería ir en el espacio en blanco, la palabra *"red"* es ahora la que tiene mayor sentido de ser elegida. Lo que hemos aprendido de esto es que tanto las palabras previas como las siguientes a una palabra determinada contienen un alto valor sobre esta palabra determinada. Resulta que tomar en cuenta ambas direcciones (palabras a la izquierda y derecha de la que estamos adivinando) nos lleva a tener mejor *embeddings*. Veamos cómo es que podemos tomar en cuenta esto al momento de entrenar nuestro modelo.
+
+## *Skipgram*  
+
+ > “La inteligencia se arriesga con datos limitados en un campo donde los errores no solo son posibles sino también necesarios.” ~Chapterhouse: Dune  
+
+En lugar de solamente mirar dos palabras antes de nuestra palabra objetivo, podemos también ver dos palabras después:  
+
+![](http://jalammar.github.io/images/word2vec/continuous-bag-of-words-example.png)
+
+Si hacemos esto, el *dataset* que estamos construyendo virtualmente para entrenar el modelo se vería así:  
+
+![](http://jalammar.github.io/images/word2vec/continuous-bag-of-words-dataset.png)
+
+Esta arquitectura es conocida como *Continuous Bag of Words* y es descrita en uno de los [artículos de word2vec](https://arxiv.org/pdf/1301.3781.pdf). Hay otra arquitectura que entregó grandes resultados haciendo las cosas un poco diferente.
+
+El lugar de "adivinar" una palabra a partir de su contexto (las palabras antes y después de ella), esta otra arquitectura trata de predecir las palabras vecinas a partir de una palabra determinada.
