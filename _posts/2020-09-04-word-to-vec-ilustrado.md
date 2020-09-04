@@ -1,11 +1,11 @@
 ---
 layout: post
 current: post
-cover:  assets/detrasdelavis/004.png
+cover:  assets/detrasdelavis/005.png
 navigation: True
 title: Word2vec ilustrado
-date: 2020-09-01 10:00:00
-tags: [python, skelarn, texto]
+date: 2020-09-04 10:00:00
+tags: [python, skelarn, texto, word2vec]
 class: post-template
 subclass: 'post tag-tutoriales'
 author: io_exception
