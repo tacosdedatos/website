@@ -12,6 +12,12 @@ author: io_exception
 math: True
 ---
 
+En esta ocasión les quero hablar de otra forma de convertir texto a vectores, esta es distinta a las que hemos visto previamente ya que nos da como resultado un vector por cada token y cada uno de estos vectores es un vector denso.  
+
+Por esta ocasión, les traigo no un post original, sino más bien una traducción de un artículo que me parece vale mucho la pena. El artículo original es de Jay Alammar y se llama [The Illustrated Word2vec](http://jalammar.github.io/illustrated-word2vec/):
+
+<hr />
+
  > “Hay en todas las cosas un ritmo que es parte de nuestro universo. Hay simetría, elegancia y gracia… esas cualidades a las que se acoge el verdadero artista. Uno puede encontrar este ritmo en la sucesión de las estaciones, en la forma en que la arena modela una cresta, en las ramas de un arbusto creosota o en el diseño de sus hojas. 
  > Intentamos copiar este ritmo en nuestras vidas y en nuestra sociedad, buscando la medida y la cadencia que reconfortan. Y sin embargo, es posible ver un peligro en el descubrimiento de la perfección última. Está claro que el último esquema contiene en sí mismo su propia fijeza. En esta perfección, todo conduce hacia la muerte” ~ Frank Herbert. “Dune” (1965)  
 
@@ -235,4 +241,197 @@ Si hacemos esto, el *dataset* que estamos construyendo virtualmente para entrena
 
 Esta arquitectura es conocida como *Continuous Bag of Words* y es descrita en uno de los [artículos de word2vec](https://arxiv.org/pdf/1301.3781.pdf). Hay otra arquitectura que entregó grandes resultados haciendo las cosas un poco diferente.
 
-El lugar de "adivinar" una palabra a partir de su contexto (las palabras antes y después de ella), esta otra arquitectura trata de predecir las palabras vecinas a partir de una palabra determinada.
+El lugar de "adivinar" una palabra a partir de su contexto (las palabras antes y después de ella), esta otra arquitectura trata de predecir las palabras vecinas a partir de una palabra determinada. Podemos imaginar que la ventana se desliza sobre el texto de entrenamiento así:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window.png)
+
+<small>La palabra en la casilla verde será tratada como la palabra de entrada y cada una de las casillas rosas serán tratadas como posibles resultados.</small>
+
+Las casillas rosas están marcadas con diferentes tonalidades porque la ventana deslizante en realidad crea cuatro ejemplos diferentes en nuestro dataset:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-samples.png)  
+
+Este método es comocido como la arquitectura *skipgram*. Podemos visualizar la ventanadeslizante haciendo algo así:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-1.png)
+
+Esto añadiría cuatro ejemplos a nuestro dataset de entrenamiento:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-2.png)
+
+Luego entonces podemos deslizar la ventana a su siguiente posición:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-3.png)  
+
+Esto genera otros cuatro ejemplos:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-4.png)  
+
+Un par de posiciones más adelante tenemos muchos más ejemplos:   
+
+![](http://jalammar.github.io/images/word2vec/skipgram-sliding-window-5.png)
+
+## Revisando el proceso de entrenamiento  
+
+ > “Muad'Dib aprendió rápidamente porque su primer entrenamiento fue sobre cómo aprender. Y la primera lección de todas fue la confianza básica que podía aprender. Es impactante descubrir cuántas personas no creen que puedan aprender y cuántas más creen que aprender es difícil.” ~ Dune  
+
+Ahora que ya tenemos nuestro *dataset* creado a partir del modelo *skipgram*, echemos un vistazo a cómo lo podemos usar para entrenar un modelo neuronal básico de lenguaje que predice las palabras vecinas a otra.   
+
+![](http://jalammar.github.io/images/word2vec/skipgram-language-model-training.png)  
+
+Comencemos por el primer ejemplo en nuestro *dataset*. Tomando la primer entrada y dándosela al modelo que aún no está entrenado pidiéndole su predición para la siguiente palabra.   
+
+![](http://jalammar.github.io/images/word2vec/skipgram-language-model-training-2.png)  
+
+El modelo ejecuta los tres pasos definidos arriba y entrega un vector de predicción (en donde cada palabra en su vocabulario recibe una probabilidad). Dado que el modelo no está entrenado aún, sus predicciones son incorrectas en esta etapa; eso está bien. Nosotros sabemos qué palabra debió haber predecido – la palabra (o "etiqueta") en la fila que estamos usando para entrenar el modelo:  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-language-model-training-3.png)
+
+<small>El vector objetivo (*"target vector"*) es aquel en donde la verdadera palabra esperada tiene un probabilidad de 1 mientras que cualquier otra tienen probabilidad 0.</small>
+
+¿Qué tan lejos estuvo el modelo? para saber esto, restamos los dos vectores (el valor esperado menos el valor predecido) lo cual nos va a dar un vector "error":  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-language-model-training-4.png)  
+
+Este vector "error" puede ser usado para actualizar el modelo para que, la siguiente vez que se le pregunte, sea más probable que "adivine" <span style="color: #e91e63;">thou</span> cuando recibe <span style="color: #4caf50;">not</span> como entrada.
+
+![](http://jalammar.github.io/images/word2vec/skipgram-language-model-training-5.png)  
+
+Y así concluye el primer paso del entrenamiento. Procedemos a ejecutar el mismo proceso con el siguiente ejemplo en nuestro dataset, y el siguiente, y el siguiente y así hasta que hayamos terminado de cubrir todos los ejemplos de nuestro *dataset*, con eso se cubre lo que en *machine learning* se conoce como una **época de entrenamiento**. Después repetimos el mismo proceso por un número de épocas y finalmente podemos extraer la matriz de *embeddings* (que son los parámetros internos de nuestro modelo neuronal) y usarla para cualquier otra aplicación.  
+
+Mientras qué hemos logrado entender el proceso, aún no llegamos a cómo es que *word2vec* fue entrenado en realidad. Nos faltan un par de ideas claves.   
+
+## Sampleo negativo  
+
+ > “Intentar comprender a Muad'Dib sin comprender a sus enemigos mortales, los Harkonnen, es intentar ver la Verdad sin conocer la Falsedad. Es el intento de ver la Luz sin conocer la Oscuridad. No puede ser.” ~ Dune   
+
+Recordemos los tres pasos de cómo es que este modelo neuronal calcula su predicción:  
+
+![](http://jalammar.github.io/images/word2vec/language-model-expensive.png)
+
+Este tercer paso es muy costoso desde un punto de vista computacional – especialmente sabiendo que tenemos que hacerlo una vez por cada ejemplo en nuestro dataset (que fácilmente será millones de veces). Necesitamos hacer algo para mejorar el desempeño.  
+
+Una forma de hacerlo es dividiendo nuestro objetivo en dos etapas:  
+
+ 1. Generar *embeddings* de alta calidad (sin preocuparnos por predecir la siguiente palabra)  
+ 2. User estos *embeddings* para entrenar un modelo de lenguaje (para ahora si, predecir la siguiente palabra)  
+
+Nos vamos a enfocar en el paso 1, ya que este post se trata de *embeddings*. Para generar unos de alta calidad mientras que usamos un modelo de alto desempeño podemos cambiar la funcionalidad del modelo de predecir la siguiente palabra:  
+
+![](http://jalammar.github.io/images/word2vec/predict-neighboring-word.png)
+
+A uno que tome las dos palabras (la de entrada y la que sería de salida) y regrese una medida indicando si estas palabras son vecinas o no (0 para "no vecinas", 1 para "vecinas"):
+
+![](http://jalammar.github.io/images/word2vec/are-the-words-neighbors.png)  
+
+Este simple cambio también significa que podemos cambiar nuestro modelo de salidas de múltiples salidas a un modelo de regresión lineal – que se convierte en uno más sencillo y fácil de entrenar.  
+
+Este cambio también requiere que nosotros cambiemos la estructura de nuestro *dataset* – lo que era antes nuestra etiqueta ahora es otra entrada al modelo, y el valor a predecir es 0 o 1. Por ahora todos serán 1 puesto que todas nuestras palabras son "vecinas".
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-dataset.png)
+
+Este problema puede ser resuelto a una velocidad impresionante – procesando millones de ejemplos en minutos; sin embargo, existe un pequeño problema que debemos solucionar. Si todos nuestros ejemplos son positivos (es decir, etiqueta 1), nos estamos exponiendo a que nuestro modelo se pase de listillo y siempre regrese 1 como respuesta – logrando 100% de precisión pero sin aprender nada (y en el proceso generar *embeddings* que no sirven).
+
+![](http://jalammar.github.io/images/word2vec/word2vec-smartass-model.png)  
+
+Para resolver esto, necesitmos incluir *ejemplos negativos* en nuestro *dataset* – ejemplos de palabras que no tienen relación y para las cuales nuestro modelo debe regresar 0 como predicción. Con eso tenemos ahora un verdadero reto para el cual nuestro modelo tiene que trabajar para resolver, sin embargo este proceso sigue siendo rápido.  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-negative-sampling.png)  
+
+<small>Para cada ejemplo en nuestro *dataset*, añadimos un ejemplo negativo. Estos tienen la misma palabra de "entrada" y 0 como etiqueta.</small>  
+
+Pero, ¿qué colocamos como palabras de "salida"? pues podemos elegir palabras de nuestro vocabulario aleatoriamente:  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-negative-sampling-2.png)
+
+Esta idea está inspirada por [*noise-constrative estimation*](http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf). Nosotros estamos contrastando la verdadera señal (los ejemplos positivos de palabras vecinas) con ruido (los ejemplos de palabras que no son vecinas elegidos aleatoriamente). Esto representa un excelente balance entre eficiencia computacional y estadística.  
+
+## *Skipgram* con sampleo negativo  
+
+Ahora hemos cubierto dos de las ideas centrales en *word2vec*: en conjunto son llamadas *skipgram* con sampleo negativo (*Skipgram with Negative Sampling, SGNS)  
+
+![](http://jalammar.github.io/images/word2vec/skipgram-with-negative-sampling.png)  
+
+## Proceso de entrenamiento de *Word2vec*  
+
+ > “La computadora no puede anticipar todos los problemas de importancia para los humanos. Es la diferencia entre bits en serie y un continuo ininterrumpido. Nosotros tenemos este; las máquinas se limitan al otro.” ~ Dune  
+
+Antes de que el proceso de entrenamiento comience, tenemos que pre-procesar el texto que vamos a usar para entrenar el modelo. Por ejemplo, determinamos el tamaño de nuestro vocabulario (llamaremos a este valor <span style="color:#ffa000;">vocab_size</span>, y digamos que su valor es 10,000) y qué palabras pertenecen a este.
+
+Al principio de la face de entrenamiento creamos dos matrices – una de <span style="color: #4caf50;">Embedding</span> y otra de <span style="color: #9c27b0;">Contexto</span>. Estas dos matrices tienen un vector (*embedding*) para cada palabra en el vocabulario, es decir <span style="color:#ffa000;">vocab_size</span> es el tamaño de una de sus dimensiones. La segunda dimensión es qué tan largo queremos que el *embedding* sea (llamémos a este parámetro <span style="color: #ff6f00;">embedding_size</span>), 300 es un valor común, aunque anterormente vimos un ejemplo de 50.  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-embedding-context-matrix.png)  
+
+Cuando el proceso de entrenamiento comienza, rellenamos estas matrices con valores aleatorios. En cada paso de entrenamiento, tomamos un ejemplo positivo y su correspondiente negativo. Veámoslo con el primer grupo:  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-example.png)  
+
+Ahora tenemos cuatro palabras: la de entrada <span style="color: #4caf50;">not</span> y la de salida o contexto <span style="color: #9c27b0;">thou</span> (que es su vecina). Además tenemos <span style="color: #9c27b0;">aaron</span> y <span style="color: #9c27b0;">taco</span> como ejemplos negativos. Con esto en mente, ubicamos sus *embeddings*: para la palabra de entrada, buscamos en la matriz <span style="color: #4caf50;">Embedding</span> mientras que para las palabras "contexto" los buscamos en la matriz <span style="color: #9c27b0;">Contexto</span> (a pesar de que ambas matrices tienen un *embedding* para cada palabra en nuestro vocabulario).
+
+![](http://jalammar.github.io/images/word2vec/word2vec-lookup-embeddings.png)  
+
+Después, tomamos el producto punto (*dot product*) del *embedding* de entrada con los *embeddings* contexto. En cada caso, este producto punto resultará en un número que indica la similtud entre estas dos palabras:  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-dot-product.png)  
+
+Necesitamos una forma de convertir estos valores en algo que parezca probabilidades – necesitamos que todas sean positivas y con valores entre 0 y 1. Este es un buen lugar para usar [*sigmoid*](https://jalammar.github.io/feedforward-neural-networks-visual-interactive/#sigmoid-visualization).
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-dot-product-sigmoid.png)
+
+Ahora podemos tratar la salida de la operación *sigmoid* como la salida del modelo para estos ejemplos. Puedes ver que <span style="color: #9c27b0;">taco</span> tiene el valor mayor mientras que <span style="color: #9c27b0;">aaron</span> el menor, ambos antes y después de la operación *sigmoid*. 
+
+
+Una vez que el modelo no entrenado ha hecho una predicción, y sabiendo que tenemos un resultado correcto contra el cual comparar, vamos a calcular cuál fue el error en las predicciones del modelo. Para hacer eso, basta con restar el los valores obtenidos de *sigmoid* contra el valor de salida verdadero (*target*):  
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-error.png)
+
+Aquí es donde viene la parte del *learning* en *machine learning*. Una vez que calculamos el error, podemos usarlo para ajustar los embeddings de nuestrass palabras, para que la próxima vez que necesitemos una predicción, los valores predecidos sean más parecidos a los valores esperados.
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-update.png)  
+
+Con esto concluye un primer paso de entrenamiento. Una vez concluído, terminamos con *embeddings* un poquito mejores para las palabras involucradas en él (<span style="color: #4caf50;">not</span>, <span style="color: #9c27b0;">thou</span>, <span style="color: #9c27b0;">aaron</span> y <span style="color: #9c27b0;">taco</span>). Ahora si, podemos pasar al siguiente paso, es decir, el siguiente ejemplo positivo y sus correspondientes negativos para ejecutar el proceso nuevamente. 
+
+![](http://jalammar.github.io/images/word2vec/word2vec-training-example-2.png)  
+
+Los *embeddings* seguirán mejorando mientras iteramos sobre todo nuestro *dataset*. En cualquier momento podemos detener el proceso de entrenamiento, descartar la matriz <span style="color: #9c27b0;">Contexto</span> y usar los *embeddings* en la matriz <span style="color: #4caf50;">Embedding</span> para cualquier otra tarea. 
+
+## Tamaño de ventana y número de ejemplos negativos  
+
+Hay dos híper parámetros claves en el proceso de entrenamiento de *word2vec*, estos son el tamaño de la ventana y el número de ejemplos negativos.
+
+![](http://jalammar.github.io/images/word2vec/word2vec-window-size.png)  
+
+Diferentes tareas se benefician de diferentes tamaños de ventana. Una [heurística](https://youtu.be/tAxrlAVw-Tk?t=648) que podemos emplear es que tamaños de ventana pequeños (2-15) llevan a *embeddings* donde altos valores de similitud indican que las palabras son intercambiables (toma en cuenta que los antónimos suelen ser intercabiables si solo nos fijamos en las palabras que los rodean – por ejemplo, "bueno" y "malo" suelen aparecer en contextos similares). Los tamaños de ventana más grandes nos llevana a *embeddings* en donde la similitud es más bien una medida del nivel de relación entre dos palabras. En la práctica, probablemente tengas que proveer [anotaciones](https://youtu.be/ao52o9l6KGw?t=287) que guíen el proceso de generación de *embeddings* y entreguen un sentido mejor de similitud. El tamaño de ventana por default en *Gensim* es 5 (dos palabras antes y dos palabras después de la palabra de entrada).
+
+![](http://jalammar.github.io/images/word2vec/word2vec-negative-samples.png)  
+
+El número de ejemplos negativos es otro factor a considerar en el proceso de entrenamiento, el *paper* original recomienda de 5 a 20 como un buen número de ejemplos negativos. También menciona que de 2 a 5 suele ser suficiente cuando se tiene un *dataset* de buen tamaño. El default en Gensim es 5 ejemplos negativos.  
+
+## Conclusión  
+
+ > “Si sale de tu dominio, entonces estás interactuando con inteligencia, no con automatización.” ~ Dios Emperador de Dune  
+
+Espero que ahora ya comprendas qué son los *embeddings* y el algoritmo detrás de *word2vec*. También espero que cuando leas un artículo científico mencionando *"skipgram with negative sampling"* (como los que mencioné al principio), entiendas lo que significan estos conceptos. Como siempre, cualquier comentario es bien apreciado [@JayAlammar](https://twitter.com/JayAlammar)
+
+## Referencias y recursos para seguir leyendo  
+* [Distributed Representations of Words and Phrases and their Compositionality](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) [pdf]
+* [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/pdf/1301.3781.pdf) [pdf]
+* [A Neural Probabilistic Language Model](http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf) [pdf]
+* [Speech and Language Processing](https://web.stanford.edu/~jurafsky/slp3/) by Dan Jurafsky and James H. Martin is a leading resource for NLP. Word2vec is tackled in Chapter 6.
+* [Neural Network Methods in Natural Language Processing](https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984) by [Yoav Goldberg](https://twitter.com/yoavgo) is a great read for neural NLP topics.
+* [Chris McCormick](http://mccormickml.com/) has written some great blog posts about Word2vec. He also just released [The Inner Workings of word2vec](https://www.preview.nearist.ai/paid-ebook-and-tutorial), an E-book focused on the internals of word2vec.
+* Want to read the code? Here are two options:
+  * Gensim's [python implementation](https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/word2vec.py) of word2vec
+  * Mikolov's original [implementation in C](https://github.com/tmikolov/word2vec/blob/master/word2vec.c) -- better yet, this [version with detailed comments](https://github.com/chrisjmccormick/word2vec_commented/blob/master/word2vec.c) from Chris McCormick.
+* [Evaluating distributional models of compositional semantics](http://sro.sussex.ac.uk/id/eprint/61062/1/Batchkarov,%20Miroslav%20Manov.pdf)
+* [On word embeddings](http://ruder.io/word-embeddings-1/index.html), [part 2](http://ruder.io/word-embeddings-softmax/)
+* [Dune](https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717/)  
+
+
+<small>Alammar, Jay (2019). The Illustrated Word2vec [Blog post]. Retrieved from [http://jalammar.github.io/illustrated-word2vec/](http://jalammar.github.io/illustrated-word2vec/) </small>
+
+<hr />
+
+Sin más les recuerdo que como siempre, quedo atento a sus dudas y comentarios en mi cuenta de Twitter [@io_exception](https://twitter.com/io_exception), en donde me pueden con contactar para hablar sobre ciencia de datos, ingeniería de software y muchas cosas más.  
+
+
