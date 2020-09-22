@@ -11,6 +11,19 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+karen:
+  username: karen
+  name: Karen Santoyo
+  url_full: https://soyserg.io/
+  url: soyserg.io
+  bio: Soy investigador asociado de política pública basado en San Francisco, California. Diseñador de visualizaciones de datos.
+  picture: assets/images/yo.jpg
+  facebook: chekos.visuals
+  twitter: chekoswh
+  github: chekos
+  linkedin: chekos
+  cover: assets/images/chekos-cover.PNG
+
 mauricio:
   username: mauricio
   name: Mauricio Montiel Espinoza
