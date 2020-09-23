@@ -4,7 +4,7 @@ current: post
 cover:  assets/blogposts/020.png
 navigation: True
 title: Creación de Mapas con Tableau
-date: 2020-09-18 10:00:00
+date: 2020-09-24 10:00:00
 tags: [tableau, mapas]
 class: post-template
 subclass: 'post tag-tutoriales'
