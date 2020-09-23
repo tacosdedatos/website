@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/detrasdelavis/005.png
+cover:  assets/blogposts/020.png
 navigation: True
 title: Creación de Mapas con Tableau
 date: 2020-09-18 10:00:00
