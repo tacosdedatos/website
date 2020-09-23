@@ -67,8 +67,6 @@ Además de editar el tipo y tamaño de fuente, y la alineación para las etiquet
 
 ![IMA_04](assets/blogposts/tableau-mapas/IMA_04.png)
 
-Ahora solo queda guardarlo y ¡listo! Una vez que lo hayas hecho, puedes descargarlo en distintos formatos. 
-
-![GIF_09](assets/blogposts/tableau-mapas/GIF_09.gif) 
+Ahora solo queda guardarlo, para esto dirígete a Archivo en la barra superior y selecciona Guardar en Tableau Public. ¡Listo! Podrás descargar el resultado final en distintos formatos.
 
 ![IMA_05](assets/blogposts/tableau-mapas/IMA_05.png)
