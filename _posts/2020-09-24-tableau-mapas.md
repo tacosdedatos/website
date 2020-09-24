@@ -25,7 +25,7 @@ El Marco Geoestadístico del INEGI es necesario para garantizar que tu informaci
 Una vez que haya finalizado la descarga, descomprime la carpeta “mg_sep2019_integrado” y guárdala en tu directorio de trabajo. 
 Por último, necesitas los datos que quieras representar para cada una de las entidades del país. Estos deben estar en un archivo Excel de forma que cada fila corresponda a una observación y cada columna sea una variable. En este sentido, una columna contendrá la clave numérica perteneciente a cada entidad, otra su nombre de acuerdo con el Marco Geoestadístico; esto lo encuentras en la carpeta “catálogos” del archivo que descargaste de INEGI. En una tercera columna agrega el nombre abreviado de la entidad pues será útil si quieres etiquetar los valores en tu mapa. Y, por último, en otra columna debe estar la información que requieras para cada entidad. Para realizar este ejemplo, usaré los datos sobre la percepción de inseguridad de las mujeres en las calles contenidos en la Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2019 del INEGI. La estructura de tu base de datos debe ser como se ilustra en la siguiente imagen. 
 
-![IMA_01](assets/blogposts/tableau-mapas/IMA_01.png)
+![IMA_01](assets/blogposts/tableau-mapas/IMA_001.png)
 
 Ahora sí abré Tableau y carga los datos con los que vas a trabajar. En la pantalla de inicio de Tableau del lado izquierdo encontrarás un panel con distintos formatos de archivos, da click en Microsoft Excel y selecciona el archivo que contiene tu base de datos. Si este contiene una solo hoja se abrirá automáticamente, de lo contrario arrastra la hoja con tu información a la parte superior de la página. A continuación, une estos datos con el Marco Geoestadístico del INEGI como se muestra, da click en Añadir, selecciona Archivo espacial y elige el archivo “00ent.shp” contenido en la carpeta “conjunto de datos”. Para realizar la unión, ambos archivos deben contener una columna con los mismos datos para que estos sean identificados, puedes utilizar las claves numéricas de la entidad o sus nombres.  
 
@@ -33,11 +33,11 @@ Ahora sí abré Tableau y carga los datos con los que vas a trabajar. En la pant
 
 Con los datos en la plataforma irás a la hoja de trabajo de Tableau que aparece en la esquina inferior izquierda, Hoja 1. Una vez que estés ahí, es necesario que identifiques del lado izquierdo los datos con los que vas a trabajar y enseguida encontrarás una serie de recuadros con los títulos Páginas, Filtros y Marcas; este último es el más relevante pues aquí puedes editar la simbología y etiquetado del mapa. En la barra de herramientas superior se encuentran otras opciones que permiten modificar o configurar algunas funciones. Por ahora ubica en Archivo la opción Configuración regional del libro de trabajo y selecciona español (México) para que las unidades que utilices se muestren con la notación adecuada. 
 
-![IMA_02](assets/blogposts/tableau-mapas/IMA_02.png)
+![IMA_02](assets/blogposts/tableau-mapas/IMA_002.png)
 
 Es momento de comenzar con tu mapa. Arrastra el campo “Geometría” a Detalle ubicado en el recuadro Marcas. Tu pantalla ahora debe mostrarte el mapa de México. 
 
-![IMA_03.PNG](assets/blogposts/tableau-mapas/IMA_03.png)
+![IMA_03.PNG](assets/blogposts/tableau-mapas/IMA_003.png)
 
 Para que el mapa se vea de forma más clara, ubica en la barra superior la etiqueta Mapa, da click en Capas de mapas y deselecciona todas las opciones. 
 
@@ -65,8 +65,8 @@ Además de editar el tipo y tamaño de fuente, y la alineación para las etiquet
 
 ¡Estás por terminar! Dirígete a Dashboard en la barra de herramientas superior y selecciona Nuevo Dashboard para darle la presentación final a tu mapa. Del lado izquierdo puedes indicar el tamaño que tendrá tu hoja. A continuación, arrastra tu hoja de trabajo al dashboard y comienza a editar el título, subtítulo, fuente y la ubicación de la simbología. Recuerda que al dar click derecho en estos objetos puedes acceder a las opciones de edición. 
 
-![IMA_04](assets/blogposts/tableau-mapas/IMA_04.png)
+![IMA_04](assets/blogposts/tableau-mapas/IMA_004.png)
 
 Ahora solo queda guardarlo, para esto dirígete a Archivo en la barra superior y selecciona Guardar en Tableau Public. ¡Listo! Podrás descargar el resultado final en distintos formatos.
 
-![IMA_05](assets/blogposts/tableau-mapas/IMA_05.png)
+![IMA_05](assets/blogposts/tableau-mapas/IMA_005.png)
