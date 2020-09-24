@@ -11,6 +11,19 @@ sergio:
   linkedin: chekos
   cover: assets/images/chekos-cover.PNG
 
+karen:
+  username: karen
+  name: Karen Santoyo Tapia
+  url_full: 
+  url: 
+  bio: Economista encantada de contar historias a través del análisis y la visualización de datos, especialmente en temas de seguridad y gobierno.
+  picture: assets/images/karen.jpg
+  facebook: 
+  twitter: kasantoyo
+  github: 
+  linkedin: 
+  cover: assets/images/chekos-cover.PNG
+
 mauricio:
   username: mauricio
   name: Mauricio Montiel Espinoza
