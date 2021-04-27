@@ -1,26 +1,3 @@
 #notebook-container {
     width: 100%;
 }
-
-input {
-    background: lighten(rgb(243, 243, 251), 5%);
-    color: rgb(143, 143, 214);
-    /* width: 50%; */
-    border: 0;
-    padding: 20px 40px;
-    margin: 0;
-    width: 100%;
-  }
-  
-  form.revue-form-group {
-    text-align: center;
-  }
-  
-  input.revue-form-field {
-    padding: 10px;
-    border: 0;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.06);
-    border-radius: 5px;
-    width: 98%;
-  }
-  
