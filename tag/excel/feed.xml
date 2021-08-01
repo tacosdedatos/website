@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/excel/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/excel/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Gráficos Waffle en Excel y Google Sheets en 5 pasos.</title>
+      <link href="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets" rel="alternate" type="text/html" title="Gráficos Waffle en Excel y Google Sheets en 5 pasos." />
+      <published>2019-03-27T08:00:00+00:00</published>
+      <updated>2019-03-27T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets">&lt;p&gt;Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_1.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En este pequeño tutorial vamos a aprender a crear este tipo de gráficos en Google Sheets ya que es más accesible - solo necesitas acceso a una cuenta de google. Todo lo que hagamos aquí funciona en Excel también.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-1-prepara-una-cuadrícula-10x10&quot;&gt;Paso 1: Prepara una cuadrícula 10x10.&lt;/h2&gt;
+&lt;p&gt;El gráfico se crea manipulando los colores de las celdas. No es un gráfico como los más comunes en excel (de barras o líneas), es decir, no es un gráfico que &lt;em&gt;insertas&lt;/em&gt; al que le conectas celdas y modificas sus propiedades y atributos. &lt;br /&gt;
+Toma 10 lineas y 10 columnas, llénalas de los valores 0 a 1 en incrementos de un centésimo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_2.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Con la siguiente formula puedes llenar más rápidamente tus celdas:&lt;/p&gt;
+&lt;pre&gt;=(COLUMNS($C2:C$11)+10*(ROWS($C2:C$11)-1))/100&lt;/pre&gt;
+
+&lt;p&gt;Yo estoy usando los valroes de C2 a C11 porque ahí comienza mi cuadrícula. Asegúrate de que tus valores concuerden con los de tu cuadrícula.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-2-agregale-el-color-de-fondo&quot;&gt;Paso 2: Agregale el color de fondo.&lt;/h2&gt;
+&lt;p&gt;Cambia el color de tus números y de las celdas al color que quieras que sea &lt;em&gt;el fondo&lt;/em&gt; de tu gráfico. Te recomiendo escoger un valor claro. En este caso utilizamos un verde claro:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_3.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-3-escoge-la-celda-que-va-a-servir-como-indicador&quot;&gt;Paso 3: Escoge la celda que va a servir como indicador.&lt;/h2&gt;
+&lt;p&gt;Escoge una celda que contenga el número (o porcentaje en este caso) que ilustrarás con tu waffle.
+En nuestro caso va a ser la celda &lt;strong&gt;A2&lt;/strong&gt;. &lt;br /&gt;
+&lt;strong&gt;nota&lt;/strong&gt;: Aquí escogemos una valor inventado pero podrías escoger una celda que contenga alguna estadística de alguna tabla que tengas en tu planilla. La &lt;em&gt;celda indicadora&lt;/em&gt; no tiene que ser un valor estático, puede contener una fórmula - el promedio, la suma, la diferencia de otros valores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_4.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-4-agrega-un-formato-condicional-a-tu-cuadrícula&quot;&gt;Paso 4: Agrega un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula.&lt;/h2&gt;
+&lt;p&gt;Este es el paso clave. Cuando agregas un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula vas a poder &lt;em&gt;pintar&lt;/em&gt; las celdas de tu waffle &lt;em&gt;interactivamente&lt;/em&gt; modificando sólo el valor de la celda que haz escogido como indicador.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_5.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ojo&quot;&gt;Ojo:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;formato condicional&lt;/em&gt; tienes que escoger &lt;strong&gt;igual o menor que&lt;/strong&gt; al valor de tu &lt;em&gt;celda indicadora&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;celda indicadora&lt;/em&gt; tienes que utilizar el formato &lt;strong&gt;=$A$2&lt;/strong&gt;. Es decir: el signo de &lt;strong&gt;=&lt;/strong&gt; y tu celda con los símbolos &lt;strong&gt;$&lt;/strong&gt; antes de la letra y el número. Eso le dice a Excel y Google Sheets que esta fórmula es &lt;em&gt;estática&lt;/em&gt; y aplica así como esta a todas las celdas de tu cuadrícula.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;paso-5-listo&quot;&gt;Paso 5: ¡Listo!&lt;/h2&gt;
+&lt;p&gt;Ya solo tienes que estilizar tu gráfico como te guste. Yo te recomiendo:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Utilizar bordes claros en el interior de tu cuadrícula y oscuros en el borde más externo.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_6.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Agregale un título.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_7.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Aqui te dejo el enlace a la planilla original en &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1f1-1J7SXMn4R9OW2XwRLYs8aGy3cB9ITFoy62ZCYHQc/edit?usp=sharing&quot;&gt;Google Drive&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Este tutorial esta etiquetado como &lt;strong&gt;principiante&lt;/strong&gt; ya que solo necesitas tener acceso a una cuenta google y seguir estos simples pasos.&lt;/p&gt;
+
+&lt;p&gt;Para terminar, este es el primer tutorial que publicamos sobre excel/google sheets. Estamos creciendo en &lt;strong&gt;tacosdedatos&lt;/strong&gt; y queremos saber si te gusta el formato o tienes sugerencias. Cuéntanos que piensas de este formato en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+&quot;&gt;tuit&lt;/a&gt;. ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="recursos" />
+      
+        <category term="tutoriales" />
+      
+        <category term="excel" />
+      
+        <category term="google sheets" />
+      
+        <category term="principiante" />
+      
+
+      
+        <summary type="html">Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/word2vec/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/word2vec/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Word2vec ilustrado</title>
+      <link href="https://old.tacosdedatos.com/word-to-vec-ilustrado" rel="alternate" type="text/html" title="Word2vec ilustrado" />
+      <published>2020-09-04T10:00:00+00:00</published>
+      <updated>2020-09-04T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/word-to-vec-ilustrado</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/word-to-vec-ilustrado">&lt;p&gt;En esta ocasión les quiero hablar de otra forma de convertir texto a vectores, esta es distinta a las que hemos visto previamente ya que nos da como resultado un vector por cada token y cada uno de estos vectores es un vector denso.&lt;/p&gt;
+
+&lt;p&gt;Esta vez les traigo no un post original, sino más bien una traducción de un artículo que me parece vale mucho la pena. El artículo original es de Jay Alammar y se llama &lt;a href=&quot;http://jalammar.github.io/illustrated-word2vec/&quot;&gt;The Illustrated Word2vec&lt;/a&gt;:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Hay en todas las cosas un ritmo que es parte de nuestro universo. Hay simetría, elegancia y gracia… esas cualidades a las que se acoge el verdadero artista. Uno puede encontrar este ritmo en la sucesión de las estaciones, en la forma en que la arena modela una cresta, en las ramas de un arbusto creosota o en el diseño de sus hojas. 
+Intentamos copiar este ritmo en nuestras vidas y en nuestra sociedad, buscando la medida y la cadencia que reconfortan. Y sin embargo, es posible ver un peligro en el descubrimiento de la perfección última. Está claro que el último esquema contiene en sí mismo su propia fijeza. En esta perfección, todo conduce hacia la muerte” ~ Frank Herbert. “Dune” (1965)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Encuentro la idea de &lt;em&gt;embeddings&lt;/em&gt;* una de las más fascinantes dentro del aprendizaje automático. Si alguna vez has usado &lt;em&gt;Siri&lt;/em&gt;, &lt;em&gt;Google Assistant&lt;/em&gt;, &lt;em&gt;Alexa&lt;/em&gt; o &lt;em&gt;Google Translate&lt;/em&gt;, o inclusive un teléfono con teclado que predice tu siguiente palabra, entonces seguramente te has beneficiado de esta idea que se a convertido en la clave de los modelos de Procesamiento de Lenguaje Natural (&lt;em&gt;NLP&lt;/em&gt;). En las últimas décadas ha existido mucho desarrollo respecto a usar &lt;em&gt;embeddings&lt;/em&gt; para modelos neuronales (investigaciones recientes incluyen &lt;em&gt;embeddings&lt;/em&gt; contextualizados que llevan a modelos vanguardistas como &lt;a href=&quot;https://jalammar.github.io/illustrated-bert/&quot;&gt;BERT&lt;/a&gt; o GPT2).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Word2vec&lt;/strong&gt; es un método para crear &lt;em&gt;embeddings&lt;/em&gt; de forma eficiente que ha existido desde 2013. pero además de su utilidad para la creación de estos &lt;em&gt;embeddings&lt;/em&gt;, algunos de sus conceptos han sido exitosamente empleados para crear modelos de recomendación y para hacer sentido de datos secuenciales, inclusive en aplicaciones comerciales no relacionadas con lenguajes. Compañías como &lt;a href=&quot;https://www.kdd.org/kdd2018/accepted-papers/view/real-time-personalization-using-embeddings-for-search-ranking-at-airbnb&quot;&gt;Airbnb&lt;/a&gt;, &lt;a href=&quot;https://www.kdd.org/kdd2018/accepted-papers/view/billion-scale-commodity-embedding-for-e-commerce-recommendation-in-alibaba&quot;&gt;Alibaba&lt;/a&gt;, &lt;a href=&quot;https://www.slideshare.net/AndySloane/machine-learning-spotify-madison-big-data-meetup&quot;&gt;Spotify&lt;/a&gt;, y &lt;a href=&quot;https://towardsdatascience.com/using-word2vec-for-music-recommendations-bb9649ac2484&quot;&gt;Anghami&lt;/a&gt; le han sacado provecho a esta brillante pieza del mundo del &lt;em&gt;NLP&lt;/em&gt; y la están usando para potenciar una nueva clase de modelos de recomendación.&lt;/p&gt;
+
+&lt;p&gt;En este post, vamos a revisar el concepto de &lt;em&gt;embeddings&lt;/em&gt;, y cómo es que se generan estos con la técnica de &lt;em&gt;word2vec&lt;/em&gt;. Pero comencemos con un ejemplo para familiarizarnos con el uso de vectores para representar cosas. ¿Sabías que una lista de cinco números (es decir, un vector) puede representar mucho sobre tu personalidad?&lt;/p&gt;
+
+&lt;h2 id=&quot;embeddings-de-personalidad-cómo-eres&quot;&gt;&lt;em&gt;Embeddings&lt;/em&gt; de personalidad: ¿cómo eres?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Te doy el camaleón del desierto, cuya habilidad para mezclarse con el fondo te dice todo lo que necesitas saber sobre las raíces de la ecología y las bases de la identidad personal” ~ Hijos de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;En una escala de 0 a 100, ¿qué tan introvertido/extrovertido eres tu (donde 0 es introvertido, y 100 es extrovertido)? ¿alguna vez has tomado un test de personalidad como MBTI – o, mejor aún, una prueba del &lt;a href=&quot;https://es.wikipedia.org/wiki/Modelo_de_los_cinco_grandes&quot;&gt;modelo de los cinco grandes&lt;/a&gt;? si no lo has hecho, este tipo de pruebas te hace una serie de preguntas y te califica en diferentes ejes, siendo la introversión o extraversión uno de ellos.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/big-five-personality-traits-score.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Ejemplo de un resultado en una prueba del modelo de los cinco grandes. Este te puede decir mucho sobre ti mismo y ha mostrado tener habilidades predictivas en cuanto a éxito &lt;a href=&quot;http://psychology.okstate.edu/faculty/jgrice/psyc4333/FiveFactor_GPAPaper.pdf&quot;&gt;académico&lt;/a&gt;, &lt;a href=&quot;https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1744-6570.1999.tb00174.x&quot;&gt;personal&lt;/a&gt; y &lt;a href=&quot;https://www.massgeneral.org/psychiatry/assets/published_papers/soldz-1999.pdf&quot;&gt;profesional&lt;/a&gt;. &lt;a href=&quot;https://projects.fivethirtyeight.com/personality-quiz/&quot;&gt;Aquí&lt;/a&gt; puedes calcular tus valores.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Imagina que obtuve 38/100 en el eje de introversión/extroversión. Lo podemos graficar así:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/introversion-extraversion-100.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Si colocamos los valores de -1 a 1:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/introversion-extraversion-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;¿Qué tan bien crees conocer a una persona si sabes solo esta información sobre ella? No mucho, las personas son complejas. Añadamos otra dimensión, la calificación de otra de las características del test:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/two-traits-vector.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Podemos representar dos dimensiones como un punto en la gráfica, o mejor aún, como un vector desde el origen a ese punto. Tenemos herramientas increíbles que para trabajar con vectores que nos resultarán útiles más adelante.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;He ocultado qué características estamos graficando solamente para que nos acostumbremos a no saber qué representa cada dimensión – aun asi, estamos obteniendo mucha información de la representación vectorial de cada una de las personalidades.&lt;/p&gt;
+
+&lt;p&gt;Ahora podemos decir que este vector representa parcialmente mi personalidad. La usabilidad de esta representación es útil cuando quieres comparar otras dos personas conmigo. Digamos que me atropella un autobús y debo ser reemplazado por alguien con una personalidad similar. Dada la siguiente figura, ¿cuál de las dos personas es más similar a mi?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/personality-two-persons.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cuando estamos trabajando con vectores, una forma común de calcular una medida de similitud es la &lt;a href=&quot;https://es.wikipedia.org/wiki/Similitud_coseno&quot;&gt;similitud coseno&lt;/a&gt; (o &lt;em&gt;cosine similarity&lt;/em&gt; que es su nombre en inglés).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/cosine-similarity.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;&lt;span style=&quot;color: #70BF41;&quot;&gt;Person #1&lt;/span&gt; es más similar a mi en cuanto a personalidad. Vectores que apuntan a la misma dirección (aunque la longitud también tiene que ver) tienen una similitud coseno más grande.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Aun asi, dos dimensiones no son suficientes para capturar información suficiente sobre qué tan diferentes dos personas son. Décadas de investigación psicológica han llevado a que existen 5 características (y muchas sub-características). Así que vamos a usar todas en nuestras comparaciones:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/big-five-vectors.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El problema con estas cinco dimensiones es que hemos perdido la habilidad de graficar esas flechitas tan bonitas en dos dimensiones. Este es un obstáculo común en el aprendizaje automático en el que constantemente tenemos que pensar en espacios de grandes dimensiones. La ventaja que teneos es que la similitud coseno aún funciona sin importar las dimensiones:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/embeddings-cosine-personality.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;La similitud coseno funciona sin importar el número de dimensiones. Estas son mejores calificaciones porque han sido calculadas en una representación con mayor resolución de las cosas que están siendo comparadas.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Para concluir esta sección, quiero que nos quedemos con dos ideas principales:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Podemos representar personas (y cosas) como vectores de números (lo que es perfecto para las computadoras).&lt;/li&gt;
+  &lt;li&gt;Podemos comparar fácilmente qué tan similares son los vectores entre sí.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/section-1-takeaway-vectors-cosine.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;embeddings-de-palabras&quot;&gt;&lt;em&gt;Embeddings&lt;/em&gt; de palabras&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El don de las palabras es el don del engaño y la ilusión” ~ Hijos de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Entendiendo esto, podemos proceder a ver ejemplos de vectores-palabra entrenados (también conocidos como &lt;em&gt;embeddings&lt;/em&gt;) y ver algunas de sus propiedades interesantes.&lt;/p&gt;
+
+&lt;p&gt;Este es un &lt;em&gt;embedding&lt;/em&gt; para la palabra &lt;em&gt;“king”&lt;/em&gt; –rey, en inglés– (GloVe vector entrenado en Wikipedia):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[ 0.50451 , 0.68607 , -0.59517 , -0.022801, 0.60046 , -0.13498 , -0.08813 , 0.47377 , -0.61798 , -0.31012 , -0.076666, 1.493 , -0.034189, -0.98173 , 0.68229 , 0.81722 , -0.51874 , -0.31503 , -0.55809 , 0.66421 , 0.1961 , -0.13495 , -0.11476 , -0.30344 , 0.41177 , -2.223 , -1.0756 , -1.0783 , -0.34354 , 0.33505 , 1.9927 , -0.04234 , -0.64319 , 0.71125 , 0.49159 , 0.16754 , 0.34344 , -0.25663 , -0.8523 , 0.1661 , 0.40102 , 1.1685 , -1.0137 , -0.21585 , -0.15155 , 0.78321 , -0.91241 , -1.6106 , -0.64426 , -0.51042 ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Es una lista de 50 números. No podemos decir mucho si solamente vemos estos números.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/king-white-embedding.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Añadamos colores a las celdas basados en sus valores (rojo si están cerca de 2, blanco si están cerca de 0 y azul si están cerca de -2):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/king-colored-embedding.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;De ahora en adelante, vamos a ignorar los números y concentrarnos solo en los colores que indican los valores de las celdas. Comparemos &lt;em&gt;“king”&lt;/em&gt; contra otras palabras:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/king-man-woman-embedding.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;¿Ves cómo las palabras &lt;em&gt;“man”&lt;/em&gt; y &lt;em&gt;“woman”&lt;/em&gt; son más similares entre sí que cualquiera de ellas con &lt;em&gt;“king”&lt;/em&gt;? Esto nos dice algo. Estas representaciones vectoriales capturan un poco la información/significado/asociaciones de estas palabras.&lt;/p&gt;
+
+&lt;p&gt;Aquí hay otros ejemplos (compara las columnas verticalmente, buscando columas con colores similares):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jalammar.github.io/images/word2vec/queen-woman-girl-embeddings.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Algunas cosas para destacar:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Hay una columna roja que coincide en todas las palabras. Las palabras son similares en esa dimensión (recuerda que no sabemos lo que significa cada dimensión).&lt;/li&gt;
+  &lt;li&gt;Puedes ver cómo &lt;em&gt;“woman”&lt;/em&gt; y &lt;em&gt;“girl”&lt;/em&gt; son similares en un montón de lugares. Lo mismo sucede con &lt;em&gt;“man”&lt;/em&gt; y &lt;em&gt;“boy”&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;“boy”&lt;/em&gt; y &lt;em&gt;“girl”&lt;/em&gt; también tienen lugares en donde coinciden, pero son lugares diferentes a &lt;em&gt;“woman”&lt;/em&gt; o &lt;em&gt;“man”&lt;/em&gt;. ¿Será que estas estén codificando una vaga definición de juventud? es posible.&lt;/li&gt;
+  &lt;li&gt;Todas las palabras, excepto la última representan personas. Agregué, por ejemplo, un objeto (&lt;em&gt;“water”&lt;/em&gt;) para mostrar las diferencias entre categorías. Por ejemplo, ¿ves esa columna azul fuerte a la derecha que se atenúa cuando llegamos al &lt;em&gt;embedding&lt;/em&gt; de &lt;em&gt;“water”&lt;/em&gt;?&lt;/li&gt;
+  &lt;li&gt;Hay otros lugares en donde &lt;em&gt;“king”&lt;/em&gt; y &lt;em&gt;“queen”&lt;/em&gt; son diferentes de todas las demás, ¿será que estas diferencias codifiquen un concepto vago de realeza?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;analogías&quot;&gt;Analogías&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Las palabras pueden llevar todo el peso que queramos. Todo lo que se requiere es un acuerdo tradición a partir de la cual  construir” ~ Dios emperador de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Los ejemplos más usados que muestran una de las características más increíbles de los &lt;em&gt;embeddings&lt;/em&gt; es el concepto de analogías. Podemos sumar y restar &lt;em&gt;embeddings&lt;/em&gt; y llegar a resultados interesantes. El ejemplo más famoso es la fórmula &lt;em&gt;“king”&lt;/em&gt; - &lt;em&gt;“man”&lt;/em&gt; + &lt;em&gt;“woman”&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jalammar.github.io/images/word2vec/king-man+woman-gensim.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Usando la biblioteca &lt;a href=&quot;https://radimrehurek.com/gensim/&quot;&gt;Gensim&lt;/a&gt; de Python, podemos sumar y restar vectores, y encontrar las palabras más similares al vector resultante. La imagen muestra una lista de las palabras más similares, cada una con su similitud coseno.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Podemos visualizar esta analogía como lo hemos hecho anteriormente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://jalammar.github.io/images/word2vec/king-analogy-viz.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;El vector resultante de &lt;em&gt;“king-man+woman”&lt;/em&gt; no coincide exactamente con &lt;em&gt;“queen”&lt;/em&gt; es la más cercana de las 400,000 que la contiene este &lt;em&gt;dataset&lt;/em&gt;.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora que hemos revisado los &lt;em&gt;embeddings&lt;/em&gt;, aprendamos más acerca del proceso para obtenerlos. Pero antes de que lleguemos a &lt;em&gt;word2vec&lt;/em&gt;, necesitamos conocer a su padre conceptual: los modelos de lenguaje neuronales.&lt;/p&gt;
+
+&lt;h2 id=&quot;modelando-lenguajes&quot;&gt;Modelando lenguajes&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“El profeta no se distrae con ilusiones del pasado, presente y futuro. &lt;strong&gt;La fijeza del lenguaje determina tales distinciones lineales.&lt;/strong&gt; Los profetas sostienen la llave de la cerradura en un idioma. 
+Este no es un universo mecánico. La progresión lineal de los eventos la impone el observador. ¿Causa y efecto? No es eso para nada. &lt;strong&gt;El profeta pronuncia palabras fatídicas.&lt;/strong&gt; Vislumbras algo “destinado a ocurrir” pero el instante profético libera algo de portento y poder infinitos. El universo sufre un cambio fantasmal” ~ Dios emperador de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Si uno quisiera un ejemplo de una aplicación que usa &lt;em&gt;NLP&lt;/em&gt;, uno de los mejores sería la predicción de la próxima palabra en el teclado de un teléfono. Es una característica que miles de millones de personas usan cientos de veces al día.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/swiftkey-keyboard.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;La predicción de la próxima palabra es una tarea que puede llevarse a cabo usando un &lt;em&gt;modelo de lenguage&lt;/em&gt; (&lt;em&gt;language model&lt;/em&gt;, en inglés). Un modelo de lenguaje puede tomar una lista de palabras (digamos, dos), y tratar de predecir cuál es la que le seguiría.&lt;/p&gt;
+
+&lt;p&gt;En la captura de pantalla de arriba, podemos pensar que el modelo tomó estas dos palabras en color verde (&lt;span style=&quot;color: #70BF41;&quot;&gt;Thou&lt;/span&gt;, &lt;span style=&quot;color: #70BF41;&quot;&gt;shalt&lt;/span&gt;) y regresa un conjunto de sugerencias (“not” es la que tenía la mayor probabilidad):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/thou-shalt-_.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Puedes pensar en el modelo como una caja negra:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/language_model_blackbox.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Pero en la práctica, el modelo no solamente regresa como resultado una sola palabra. En realidad, entrega las probabilidades para todas las palabras que “conoce” (el conjunto de todas las palabras que conoce se llama vocabulario, que pueden ir desde unas cuantas miles hasta millones de palabras). Es la responsabilidad del teclado encontrar las palabras con mayor probabilidad y presentarlas al usuario.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/language_model_blackbox_output_vector.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Los resultados de un modelo de lenguaje son probabilidades sobre todas las palabras que el modelo “conoce”. En la imagen nos referimos a la probabilidad como porcentaje, pero ese 40% en realidad vale 0.4 en nuestro vector de salida.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Después de ser entrenado, los primeros modelos de lenguaje (&lt;a href=&quot;http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf&quot;&gt;Bengio 2003&lt;/a&gt;) calculaban la predicción en tres pasos:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/neural-language-model-prediction.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El primer paso es el más relevante para nosotros porque en este post estamos hablando sobre los &lt;em&gt;embeddings&lt;/em&gt;. Uno de los resultados del proceso de entrenamiento es una matriz que contiene un &lt;em&gt;embedding&lt;/em&gt; por cada uno de los tokens en nuestro vocabulario. Cuando estamos prediciendo, simplemente buscamos los &lt;em&gt;embeddings&lt;/em&gt; de los tokens de entrad ay calculamos la predicción:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/neural-language-model-embedding.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora vamos a aprender cómo es que esta matriz de &lt;em&gt;embeddings&lt;/em&gt; es creada.&lt;/p&gt;
+
+&lt;h2 id=&quot;entrenamiento-de-modelos-de-lenguaje&quot;&gt;Entrenamiento de modelos de lenguaje&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Un proceso no se puede entender deteniéndolo. La comprensión debe moverse con el flujo del proceso, debe unirse y fluir con él.” ~Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Los modelos de lenguaje tienen una gran ventaja sobre otros modelos de &lt;em&gt;machine learning&lt;/em&gt;. Esa ventaja es que podemos entrenarlos usando texto – del cual tenemos mucho. Piensa en todos los libros, artículos, y otras formas de textos a nuestro al rededor. En contraste con otros modelos de aprendizaje automático que necesitan que la los datos sean preparados (y a veces obtenidos) específicamente para ellos.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Conocerás una palabra por sus la compañía que mantiene alrededor” ~ J.R. Firth&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Las palabras obtienen sus &lt;em&gt;embeddings&lt;/em&gt; a partir de las palabras que aparecen a su alrededor. Esto funciona de la siguiente manera:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Obtenemos un montón de texto (digamos, todos los artículos de Wikipedia), luego&lt;/li&gt;
+  &lt;li&gt;tomamos una ventana (digamos, de tres palabras) que movemos sobre todo el texto,&lt;/li&gt;
+  &lt;li&gt;Esta ventana genera nuestros ejemplos para el entrenamiento del modelo:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/wikipedia-sliding-window.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En tanto esta ventana se desliza, nosotros (virtualmente) generamos un &lt;em&gt;dataset&lt;/em&gt; que usaremos para entrenar el modelo. Para ver cómo es que esto funciona, veamos cómo funciona el proceso para la siguiente frase:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Thou shalt not make a machine in the likeness of a human mind” ~Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Cuando empezamos, la ventana está en las tres primeras palabras de la oración:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/lm-sliding-window.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tomamos las dos palabras como &lt;em&gt;features&lt;/em&gt;, y la tercera como la etiqueta a predecir:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/lm-sliding-window-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Luego entonces deslizamos la ventana a la siguiente posición para generar un segundo ejemplo de entrenamiento:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/lm-sliding-window-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Y de pronto tendremos un gran &lt;em&gt;dataset&lt;/em&gt; de palabras que suelen aparecer después de otro par:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/lm-sliding-window-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En la práctica, los modelos suelen ser entrenados mientras esta ventana se va deslizando, sin embargo, siento que es más claro separar lógicamente la etapa de generación del &lt;em&gt;dataset&lt;/em&gt; de la etapa de entrenamiento. Además de modelos basados en redes neuronales, existe una técnica conocida como &lt;em&gt;n-grams&lt;/em&gt; que es también usada comúnmente para entrenar modelos (mira el capítulo 3 de &lt;a href=&quot;http://web.stanford.edu/~jurafsky/slp3/&quot;&gt;&lt;em&gt;Speech and Language Processing&lt;/em&gt;&lt;/a&gt;). para ver cómo es que este cambio de &lt;em&gt;n-grams&lt;/em&gt; a modelos neuronales se refleja en productos reales, revisa &lt;a href=&quot;https://blog.swiftkey.com/neural-networks-a-meaningful-leap-for-mobile-typing/&quot;&gt;este post de Swiftkey&lt;/a&gt; mi teclado favorito para Android, introduciendo su modelo neuronal de lenguaje y comparándolo con su previo modelo basado en &lt;em&gt;n-grams&lt;/em&gt;. me gusta este ejemplo porque muestra cómo las propiedades algorítmicas de los &lt;em&gt;embeddings&lt;/em&gt; se pueden describir en lenguaje de marketing.&lt;/p&gt;
+
+&lt;h3 id=&quot;mira-hacia-ambos-lados&quot;&gt;Mira hacia ambos lados&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“La paradoja es un indicador que te dice que mires más allá. Si las paradojas te molestan, eso delata tu profundo deseo de absolutos. El relativista trata una paradoja simplemente como interesante, quizás divertida o incluso, un pensamiento terrible, educativo” ~ Dios emperador de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Sabiendo de lo que hablamos anteriormente en este post, completa la oración&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/jay_was_hit_by_a_.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El contexto que te he dado aquí son 5 palabras antes del espacio en blanco. Estoy seguro que la mayoría de las personas elegirían la palabra &lt;em&gt;“bus”&lt;/em&gt; como solución. Pero qué sucedería si te doy un poco más de información – una palabra después del espacio en blanco, ¿cambiaría tu respuesta?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/jay_was_hit_by_a_.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esto cambia completamente lo que debería ir en el espacio en blanco, la palabra &lt;em&gt;“red”&lt;/em&gt; es ahora la que tiene mayor sentido de ser elegida. Lo que hemos aprendido de esto es que tanto las palabras previas como las siguientes a una palabra determinada contienen un alto valor sobre esta palabra determinada. Resulta que tomar en cuenta ambas direcciones (palabras a la izquierda y derecha de la que estamos adivinando) nos lleva a tener mejor &lt;em&gt;embeddings&lt;/em&gt;. Veamos cómo es que podemos tomar en cuenta esto al momento de entrenar nuestro modelo.&lt;/p&gt;
+
+&lt;h2 id=&quot;skipgram&quot;&gt;&lt;em&gt;Skipgram&lt;/em&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“La inteligencia se arriesga con datos limitados en un campo donde los errores no solo son posibles sino también necesarios.” ~Chapterhouse: Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;En lugar de solamente mirar dos palabras antes de nuestra palabra objetivo, podemos también ver dos palabras después:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/continuous-bag-of-words-example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Si hacemos esto, el &lt;em&gt;dataset&lt;/em&gt; que estamos construyendo virtualmente para entrenar el modelo se vería así:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/continuous-bag-of-words-dataset.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta arquitectura es conocida como &lt;em&gt;Continuous Bag of Words&lt;/em&gt; y es descrita en uno de los &lt;a href=&quot;https://arxiv.org/pdf/1301.3781.pdf&quot;&gt;artículos de word2vec&lt;/a&gt;. Hay otra arquitectura que entregó grandes resultados haciendo las cosas un poco diferente.&lt;/p&gt;
+
+&lt;p&gt;El lugar de “adivinar” una palabra a partir de su contexto (las palabras antes y después de ella), esta otra arquitectura trata de predecir las palabras vecinas a partir de una palabra determinada. Podemos imaginar que la ventana se desliza sobre el texto de entrenamiento así:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;La palabra en la casilla verde será tratada como la palabra de entrada y cada una de las casillas rosas serán tratadas como posibles resultados.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Las casillas rosas están marcadas con diferentes tonalidades porque la ventana deslizante en realidad crea cuatro ejemplos diferentes en nuestro dataset:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-samples.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este método es conocido como la arquitectura &lt;em&gt;skipgram&lt;/em&gt;. Podemos visualizar la ventana deslizante haciendo algo así:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esto añadiría cuatro ejemplos a nuestro dataset de entrenamiento:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Luego entonces podemos deslizar la ventana a su siguiente posición:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esto genera otros cuatro ejemplos:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Un par de posiciones más adelante tenemos muchos más ejemplos:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-sliding-window-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;revisando-el-proceso-de-entrenamiento&quot;&gt;Revisando el proceso de entrenamiento&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Muad’Dib aprendió rápidamente porque su primer entrenamiento fue sobre cómo aprender. Y la primera lección de todas fue la confianza básica que podía aprender. Es impactante descubrir cuántas personas no creen que puedan aprender y cuántas más creen que aprender es difícil.” ~ Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Ahora que ya tenemos nuestro &lt;em&gt;dataset&lt;/em&gt; creado a partir del modelo &lt;em&gt;skipgram&lt;/em&gt;, echemos un vistazo a cómo lo podemos usar para entrenar un modelo neuronal básico de lenguaje que predice las palabras vecinas a otra.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-language-model-training.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Comencemos por el primer ejemplo en nuestro &lt;em&gt;dataset&lt;/em&gt;. Tomando la primer entrada y dándosela al modelo que aún no está entrenado pidiéndole su predicción para la siguiente palabra.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-language-model-training-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El modelo ejecuta los tres pasos definidos arriba y entrega un vector de predicción (en donde cada palabra en su vocabulario recibe una probabilidad). Dado que el modelo no está entrenado aún, sus predicciones son incorrectas en esta etapa; eso está bien. Nosotros sabemos qué palabra debió haber predicho – la palabra (o “etiqueta”) en la fila que estamos usando para entrenar el modelo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-language-model-training-3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;El vector objetivo (&lt;em&gt;“target vector”&lt;/em&gt;) es aquel en donde la verdadera palabra esperada tiene una probabilidad de 1 mientras que cualquier otra tienen probabilidad 0.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;¿Qué tan lejos estuvo el modelo? para saber esto, restamos los dos vectores (el valor esperado menos el valor predecido) lo cual nos va a dar un vector “error”:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-language-model-training-4.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este vector “error” puede ser usado para actualizar el modelo para que, la siguiente vez que se le pregunte, sea más probable que “adivine” &lt;span style=&quot;color: #e91e63;&quot;&gt;thou&lt;/span&gt; cuando recibe &lt;span style=&quot;color: #4caf50;&quot;&gt;not&lt;/span&gt; como entrada.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-language-model-training-5.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Y así concluye el primer paso del entrenamiento. Procedemos a ejecutar el mismo proceso con el siguiente ejemplo en nuestro dataset, y el siguiente, y el siguiente y así hasta que hayamos terminado de cubrir todos los ejemplos de nuestro &lt;em&gt;dataset&lt;/em&gt;, con eso se cubre lo que en &lt;em&gt;machine learning&lt;/em&gt; se conoce como una &lt;strong&gt;época de entrenamiento&lt;/strong&gt;. Después repetimos el mismo proceso por un número de épocas y finalmente podemos extraer la matriz de &lt;em&gt;embeddings&lt;/em&gt; (que son los parámetros internos de nuestro modelo neuronal) y usarla para cualquier otra aplicación.&lt;/p&gt;
+
+&lt;p&gt;Mientras qué hemos logrado entender el proceso, aún no llegamos a cómo es que &lt;em&gt;word2vec&lt;/em&gt; fue entrenado en realidad. Nos faltan un par de ideas claves.&lt;/p&gt;
+
+&lt;h2 id=&quot;sampleo-negativo&quot;&gt;Sampleo negativo&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Intentar comprender a Muad’Dib sin comprender a sus enemigos mortales, los Harkonnen, es intentar ver la Verdad sin conocer la Falsedad. Es el intento de ver la Luz sin conocer la Oscuridad. No puede ser.” ~ Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Recordemos los tres pasos de cómo es que este modelo neuronal calcula su predicción:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/language-model-expensive.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este tercer paso es muy costoso desde un punto de vista computacional – especialmente sabiendo que tenemos que hacerlo una vez por cada ejemplo en nuestro dataset (que fácilmente será millones de veces). Necesitamos hacer algo para mejorar el desempeño.&lt;/p&gt;
+
+&lt;p&gt;Una forma de hacerlo es dividiendo nuestro objetivo en dos etapas:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Generar &lt;em&gt;embeddings&lt;/em&gt; de alta calidad (sin preocuparnos por predecir la siguiente palabra)&lt;/li&gt;
+  &lt;li&gt;Usar estos &lt;em&gt;embeddings&lt;/em&gt; para entrenar un modelo de lenguaje (para ahora si, predecir la siguiente palabra)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Nos vamos a enfocar en el paso 1, ya que este post se trata de &lt;em&gt;embeddings&lt;/em&gt;. Para generar unos de alta calidad mientras que usamos un modelo de alto desempeño podemos cambiar la funcionalidad del modelo de predecir la siguiente palabra:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/predict-neighboring-word.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;A uno que tome las dos palabras (la de entrada y la que sería de salida) y regrese una medida indicando si estas palabras son vecinas o no (0 para “no vecinas”, 1 para “vecinas”):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/are-the-words-neighbors.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este simple cambio también significa que podemos cambiar nuestro modelo de salidas de múltiples salidas a un modelo de regresión lineal – que se convierte en uno más sencillo y fácil de entrenar.&lt;/p&gt;
+
+&lt;p&gt;Este cambio también requiere que nosotros cambiemos la estructura de nuestro &lt;em&gt;dataset&lt;/em&gt; – lo que era antes nuestra etiqueta ahora es otra entrada al modelo, y el valor a predecir es 0 o 1. Por ahora todos serán 1 puesto que todas nuestras palabras son “vecinas”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-dataset.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este problema puede ser resuelto a una velocidad impresionante – procesando millones de ejemplos en minutos; sin embargo, existe un pequeño problema que debemos solucionar. Si todos nuestros ejemplos son positivos (es decir, etiqueta 1), nos estamos exponiendo a que nuestro modelo se pase de listillo y siempre regrese 1 como respuesta – logrando 100% de precisión pero sin aprender nada (y en el proceso generar &lt;em&gt;embeddings&lt;/em&gt; que no sirven).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-smartass-model.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Para resolver esto, necesitamos incluir &lt;em&gt;ejemplos negativos&lt;/em&gt; en nuestro &lt;em&gt;dataset&lt;/em&gt; – ejemplos de palabras que no tienen relación y para las cuales nuestro modelo debe regresar 0 como predicción. Con eso tenemos ahora un verdadero reto para el cual nuestro modelo tiene que trabajar para resolver, sin embargo este proceso sigue siendo rápido.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-negative-sampling.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Para cada ejemplo en nuestro &lt;em&gt;dataset&lt;/em&gt;, añadimos un ejemplo negativo. Estos tienen la misma palabra de “entrada” y 0 como etiqueta.&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Pero, ¿qué colocamos como palabras de “salida”? pues podemos elegir palabras de nuestro vocabulario aleatoriamente:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-negative-sampling-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta idea está inspirada por &lt;a href=&quot;http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf&quot;&gt;&lt;em&gt;noise-constrative estimation&lt;/em&gt;&lt;/a&gt;. Nosotros estamos contrastando la verdadera señal (los ejemplos positivos de palabras vecinas) con ruido (los ejemplos de palabras que no son vecinas elegidos aleatoriamente). Esto representa un excelente balance entre eficiencia computacional y estadística.&lt;/p&gt;
+
+&lt;h2 id=&quot;skipgram-con-sampleo-negativo&quot;&gt;&lt;em&gt;Skipgram&lt;/em&gt; con sampleo negativo&lt;/h2&gt;
+
+&lt;p&gt;Ahora hemos cubierto dos de las ideas centrales en &lt;em&gt;word2vec&lt;/em&gt;: en conjunto son llamadas &lt;em&gt;skipgram&lt;/em&gt; con sampleo negativo (*Skipgram with Negative Sampling, SGNS)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/skipgram-with-negative-sampling.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;proceso-de-entrenamiento-de-word2vec&quot;&gt;Proceso de entrenamiento de &lt;em&gt;Word2vec&lt;/em&gt;&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“La computadora no puede anticipar todos los problemas de importancia para los humanos. Es la diferencia entre bits en serie y un continuo ininterrumpido. Nosotros tenemos este; las máquinas se limitan al otro.” ~ Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Antes de que el proceso de entrenamiento comience, tenemos que pre-procesar el texto que vamos a usar para entrenar el modelo. Por ejemplo, determinamos el tamaño de nuestro vocabulario (llamaremos a este valor &lt;span style=&quot;color:#ffa000;&quot;&gt;vocab_size&lt;/span&gt;, y digamos que su valor es 10,000) y qué palabras pertenecen a este.&lt;/p&gt;
+
+&lt;p&gt;Al principio de la face de entrenamiento creamos dos matrices – una de &lt;span style=&quot;color: #4caf50;&quot;&gt;Embedding&lt;/span&gt; y otra de &lt;span style=&quot;color: #9c27b0;&quot;&gt;Contexto&lt;/span&gt;. Estas dos matrices tienen un vector (&lt;em&gt;embedding&lt;/em&gt;) para cada palabra en el vocabulario, es decir &lt;span style=&quot;color:#ffa000;&quot;&gt;vocab_size&lt;/span&gt; es el tamaño de una de sus dimensiones. La segunda dimensión es qué tan largo queremos que el &lt;em&gt;embedding&lt;/em&gt; sea (llamemos a este parámetro &lt;span style=&quot;color: #ff6f00;&quot;&gt;embedding_size&lt;/span&gt;), 300 es un valor común, aunque anteriormente vimos un ejemplo de 50.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-embedding-context-matrix.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cuando el proceso de entrenamiento comienza, rellenamos estas matrices con valores aleatorios. En cada paso de entrenamiento, tomamos un ejemplo positivo y su correspondiente negativo. Veámoslo con el primer grupo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora tenemos cuatro palabras: la de entrada &lt;span style=&quot;color: #4caf50;&quot;&gt;not&lt;/span&gt; y la de salida o contexto &lt;span style=&quot;color: #9c27b0;&quot;&gt;thou&lt;/span&gt; (que es su vecina). Además, tenemos &lt;span style=&quot;color: #9c27b0;&quot;&gt;aaron&lt;/span&gt; y &lt;span style=&quot;color: #9c27b0;&quot;&gt;taco&lt;/span&gt; como ejemplos negativos. Con esto en mente, ubicamos sus &lt;em&gt;embeddings&lt;/em&gt;: para la palabra de entrada, buscamos en la matriz &lt;span style=&quot;color: #4caf50;&quot;&gt;Embedding&lt;/span&gt; mientras que para las palabras “contexto” los buscamos en la matriz &lt;span style=&quot;color: #9c27b0;&quot;&gt;Contexto&lt;/span&gt; (a pesar de que ambas matrices tienen un &lt;em&gt;embedding&lt;/em&gt; para cada palabra en nuestro vocabulario).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-lookup-embeddings.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Después, tomamos el producto punto (&lt;em&gt;dot product&lt;/em&gt;) del &lt;em&gt;embedding&lt;/em&gt; de entrada con los &lt;em&gt;embeddings&lt;/em&gt; contexto. En cada caso, este producto punto resultará en un número que indica la similtud entre estas dos palabras:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-dot-product.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Necesitamos una forma de convertir estos valores en algo que parezca probabilidades – necesitamos que todas sean positivas y con valores entre 0 y 1. Este es un buen lugar para usar &lt;a href=&quot;https://jalammar.github.io/feedforward-neural-networks-visual-interactive/#sigmoid-visualization&quot;&gt;&lt;em&gt;sigmoid&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-dot-product-sigmoid.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora podemos tratar la salida de la operación &lt;em&gt;sigmoid&lt;/em&gt; como la salida del modelo para estos ejemplos. Puedes ver que &lt;span style=&quot;color: #9c27b0;&quot;&gt;taco&lt;/span&gt; tiene el valor mayor mientras que &lt;span style=&quot;color: #9c27b0;&quot;&gt;aaron&lt;/span&gt; el menor, ambos antes y después de la operación &lt;em&gt;sigmoid&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Una vez que el modelo no entrenado ha hecho una predicción, y sabiendo que tenemos un resultado correcto contra el cual comparar, vamos a calcular cuál fue el error en las predicciones del modelo. Para hacer eso, basta con restar los valores obtenidos de &lt;em&gt;sigmoid&lt;/em&gt; contra el valor de salida verdadero (&lt;em&gt;target&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-error.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Aquí es donde viene la parte del &lt;em&gt;learning&lt;/em&gt; en &lt;em&gt;machine learning&lt;/em&gt;. Una vez que calculamos el error, podemos usarlo para ajustar los embeddings de nuestrass palabras, para que la próxima vez que necesitemos una predicción, los valores predecidos sean más parecidos a los valores esperados.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-update.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Con esto concluye un primer paso de entrenamiento. Una vez concluido, terminamos con &lt;em&gt;embeddings&lt;/em&gt; un poquito mejores para las palabras involucradas en él (&lt;span style=&quot;color: #4caf50;&quot;&gt;not&lt;/span&gt;, &lt;span style=&quot;color: #9c27b0;&quot;&gt;thou&lt;/span&gt;, &lt;span style=&quot;color: #9c27b0;&quot;&gt;aaron&lt;/span&gt; y &lt;span style=&quot;color: #9c27b0;&quot;&gt;taco&lt;/span&gt;). Ahora si, podemos pasar al siguiente paso, es decir, el siguiente ejemplo positivo y sus correspondientes negativos para ejecutar el proceso nuevamente.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-training-example-2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Los &lt;em&gt;embeddings&lt;/em&gt; seguirán mejorando mientras iteramos sobre todo nuestro &lt;em&gt;dataset&lt;/em&gt;. En cualquier momento podemos detener el proceso de entrenamiento, descartar la matriz &lt;span style=&quot;color: #9c27b0;&quot;&gt;Contexto&lt;/span&gt; y usar los &lt;em&gt;embeddings&lt;/em&gt; en la matriz &lt;span style=&quot;color: #4caf50;&quot;&gt;Embedding&lt;/span&gt; para cualquier otra tarea.&lt;/p&gt;
+
+&lt;h2 id=&quot;tamaño-de-ventana-y-número-de-ejemplos-negativos&quot;&gt;Tamaño de ventana y número de ejemplos negativos&lt;/h2&gt;
+
+&lt;p&gt;Hay dos híper parámetros claves en el proceso de entrenamiento de &lt;em&gt;word2vec&lt;/em&gt;, estos son el tamaño de la ventana y el número de ejemplos negativos.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-window-size.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Diferentes tareas se benefician de diferentes tamaños de ventana. Una &lt;a href=&quot;https://youtu.be/tAxrlAVw-Tk?t=648&quot;&gt;heurística&lt;/a&gt; que podemos emplear es que tamaños de ventana pequeños (2-15) llevan a &lt;em&gt;embeddings&lt;/em&gt; donde altos valores de similitud indican que las palabras son intercambiables (toma en cuenta que los antónimos suelen ser intercambiables si solo nos fijamos en las palabras que los rodean – por ejemplo, “bueno” y “malo” suelen aparecer en contextos similares). Los tamaños de ventana más grandes nos llevana a &lt;em&gt;embeddings&lt;/em&gt; en donde la similitud es más bien una medida del nivel de relación entre dos palabras. En la práctica, probablemente tengas que proveer &lt;a href=&quot;https://youtu.be/ao52o9l6KGw?t=287&quot;&gt;anotaciones&lt;/a&gt; que guíen el proceso de generación de &lt;em&gt;embeddings&lt;/em&gt; y entreguen un sentido mejor de similitud. El tamaño de ventana por default en &lt;em&gt;Gensim&lt;/em&gt; es 5 (dos palabras antes y dos palabras después de la palabra de entrada).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jalammar.github.io/images/word2vec/word2vec-negative-samples.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El número de ejemplos negativos es otro factor a considerar en el proceso de entrenamiento, el &lt;em&gt;paper&lt;/em&gt; original recomienda de 5 a 20 como un buen número de ejemplos negativos. También menciona que de 2 a 5 suele ser suficiente cuando se tiene un &lt;em&gt;dataset&lt;/em&gt; de buen tamaño. El default en Gensim es 5 ejemplos negativos.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Si sale de tu dominio, entonces estás interactuando con inteligencia, no con automatización.” ~ Dios Emperador de Dune&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Espero que ahora ya comprendas qué son los &lt;em&gt;embeddings&lt;/em&gt; y el algoritmo detrás de &lt;em&gt;word2vec&lt;/em&gt;. También espero que cuando leas un artículo científico mencionando &lt;em&gt;“skipgram with negative sampling”&lt;/em&gt; (como los que mencioné al principio), entiendas lo que significan estos conceptos. Como siempre, cualquier comentario es bien apreciado &lt;a href=&quot;https://twitter.com/JayAlammar&quot;&gt;@JayAlammar&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;referencias-y-recursos-para-seguir-leyendo&quot;&gt;Referencias y recursos para seguir leyendo&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&quot;&gt;Distributed Representations of Words and Phrases and their Compositionality&lt;/a&gt; [pdf]&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1301.3781.pdf&quot;&gt;Efficient Estimation of Word Representations in Vector Space&lt;/a&gt; [pdf]&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf&quot;&gt;A Neural Probabilistic Language Model&lt;/a&gt; [pdf]&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/&quot;&gt;Speech and Language Processing&lt;/a&gt; by Dan Jurafsky and James H. Martin is a leading resource for NLP. Word2vec is tackled in Chapter 6.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Language-Processing-Synthesis-Lectures-Technologies/dp/1627052984&quot;&gt;Neural Network Methods in Natural Language Processing&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/yoavgo&quot;&gt;Yoav Goldberg&lt;/a&gt; is a great read for neural NLP topics.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://mccormickml.com/&quot;&gt;Chris McCormick&lt;/a&gt; has written some great blog posts about Word2vec. He also just released &lt;a href=&quot;https://www.preview.nearist.ai/paid-ebook-and-tutorial&quot;&gt;The Inner Workings of word2vec&lt;/a&gt;, an E-book focused on the internals of word2vec.&lt;/li&gt;
+  &lt;li&gt;Want to read the code? Here are two options:
+    &lt;ul&gt;
+      &lt;li&gt;Gensim’s &lt;a href=&quot;https://github.com/RaRe-Technologies/gensim/blob/develop/gensim/models/word2vec.py&quot;&gt;python implementation&lt;/a&gt; of word2vec&lt;/li&gt;
+      &lt;li&gt;Mikolov’s original &lt;a href=&quot;https://github.com/tmikolov/word2vec/blob/master/word2vec.c&quot;&gt;implementation in C&lt;/a&gt; – better yet, this &lt;a href=&quot;https://github.com/chrisjmccormick/word2vec_commented/blob/master/word2vec.c&quot;&gt;version with detailed comments&lt;/a&gt; from Chris McCormick.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://sro.sussex.ac.uk/id/eprint/61062/1/Batchkarov,%20Miroslav%20Manov.pdf&quot;&gt;Evaluating distributional models of compositional semantics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://ruder.io/word-embeddings-1/index.html&quot;&gt;On word embeddings&lt;/a&gt;, &lt;a href=&quot;http://ruder.io/word-embeddings-softmax/&quot;&gt;part 2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.com/Dune-Frank-Herbert/dp/0441172717/&quot;&gt;Dune&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;small&gt;Alammar, Jay (2019). The Illustrated Word2vec [Blog post]. Retrieved from &lt;a href=&quot;http://jalammar.github.io/illustrated-word2vec/&quot;&gt;http://jalammar.github.io/illustrated-word2vec/&lt;/a&gt; &lt;/small&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Sin más les recuerdo que como siempre, quedo atento a sus dudas y comentarios en mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;, en donde me pueden con contactar para hablar sobre ciencia de datos, ingeniería de software y muchas cosas más.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Antonio Feregrino Bolaños</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="python" />
+      
+        <category term="skelarn" />
+      
+        <category term="texto" />
+      
+        <category term="word2vec" />
+      
+
+      
+        <summary type="html">En esta ocasión les quiero hablar de otra forma de convertir texto a vectores, esta es distinta a las que hemos visto previamente ya que nos da como resultado un vector por cada token y cada uno de estos vectores es un vector denso.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

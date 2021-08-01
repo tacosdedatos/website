@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/author/mauricio/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/author/mauricio/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Pronóstico de ventas - ARIMA</title>
+      <link href="https://old.tacosdedatos.com/pronostico-de-ventas-arima" rel="alternate" type="text/html" title="Pronóstico de ventas - ARIMA" />
+      <published>2020-04-15T09:34:00+00:00</published>
+      <updated>2020-04-15T09:34:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pronostico-de-ventas-arima</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pronostico-de-ventas-arima">&lt;p&gt;El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Se requieren pronósticos en muchas situaciones: decidir si se construirá otra planta de generación de energía en los próximos cinco años requiere pronósticos de la demanda futura; programar el personal en un centro de llamadas la próxima semana requiere pronósticos de volúmenes de llamadas; almacenar un inventario requiere pronósticos de los requisitos de stock. Se pueden requerir pronósticos con varios años de anticipación (para el caso de inversiones de capital), o solo unos minutos antes (para el enrutamiento de telecomunicaciones). Cualesquiera que sean las circunstancias o los horizontes de tiempo involucrados, el pronóstico es una ayuda importante para una planificación efectiva y eficiente.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Algunas cosas son más fáciles de pronosticar que otras. La hora del amanecer mañana por la mañana se puede pronosticar con precisión. Por otro lado, los números de lotería de mañana no se pueden pronosticar con precisión. 
+La previsibilidad de un evento o una cantidad depende de varios factores que incluyen:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Qué tan bien entendemos los factores que contribuyen a ello;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Cuántos datos hay disponibles;&lt;/li&gt;
+  &lt;li&gt;Si los pronósticos pueden afectar lo que estamos tratando de pronosticar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;En el siguiente video se expone como realizar un pronóstico de ventas usando los &lt;strong&gt;modelos econométricos ARIMA&lt;/strong&gt; usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RStudio&lt;/code&gt; . Les recomiendo mucho que lo revisen con detenimiento y que lo repliquen con sus propios datos, el código lo pueden descargar acá -&amp;gt; &lt;a href=&quot;https://github.com/MontielMauricio/ARIMA&quot;&gt;https://github.com/MontielMauricio/ARIMA&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/6pYto7y0KTA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Quiero agradecer a &lt;strong&gt;tacosdedatos&lt;/strong&gt; por permitirme compartir mi conocimiento con todos ustedes a través de este blog. Procuraré subir contenido de alta calidad para aportar a esta excelente comunidad. Si así lo desean pueden agregarme como contacto en mi cuenta de &lt;a href=&quot;https://www.linkedin.com/in/mauriciomontiel&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Con eso me despido. Tómense un tiempo para ver los demás videos que tengo en el canal de &lt;a href=&quot;https://www.youtube.com/channel/UCmzIHZGEwUyb7luzTu6N85g?view_as=subscriber&quot;&gt;YouTube&lt;/a&gt; y cuéntame que piensas en un &lt;a href=&quot;https://twitter.com/MauMontielE&quot;&gt;tuit&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Mauricio Montiel Espinoza</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="R" />
+      
+        <category term="tutoriales" />
+      
+        <category term="charlas" />
+      
+
+      
+        <summary type="html">El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

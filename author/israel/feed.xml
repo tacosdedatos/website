@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/author/israel/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/author/israel/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Elecciones para gobernador - Puebla 2019</title>
+      <link href="https://old.tacosdedatos.com/Elecciones-Puebla-2019" rel="alternate" type="text/html" title="Elecciones para gobernador - Puebla 2019" />
+      <published>2019-06-13T10:00:00+00:00</published>
+      <updated>2019-06-13T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/Elecciones-Puebla-2019</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/Elecciones-Puebla-2019">&lt;style&gt;
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+&lt;/style&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm//vega@5&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm//vega-lite@3.3.0&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm//vega-embed@4&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Un análisis y visualización de los datos de la elección de gobernador de Puebla este junio 2019. Análisis en R por Israel Piña (&lt;a href=&quot;https://twitter.com/yanipaper&quot;&gt;@YaNiPaper&lt;/a&gt;) y visualización por Sergio Sánchez (recreada en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt; a partir de las visualizaciones estáticas de Israel) (&lt;a href=&quot;https://twitter.com/tacosdedatos&quot;&gt;@tacosdedatos&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Los repositorios con el código y los datos se encuentran en GitHub:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Análisis por Israel: &lt;a href=&quot;https://github.com/tacosdedatos/elecciones-puebla-2019/&quot;&gt;tacosdedatos/elecciones-puebla-2019&lt;/a&gt; - &lt;a href=&quot;https://mybinder.org/v2/gh/tacosdedatos/elecciones-puebla-2019/master?urlpath=rstudio&quot;&gt;Pruébalo en Rstudio en mybinder.org&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Visualización por Sergio: &lt;a href=&quot;https://github.com/tacosdedatos/vis-elecciones-puebla-2019/&quot;&gt;tacosdedatos/vis-elecciones-puebla-2019&lt;/a&gt; - &lt;a href=&quot;https://mybinder.org/v2/gh/tacosdedatos/vis-elecciones-puebla-2019/master?urlpath=lab/tree/notebooks/01_Visualizacion.ipynb&quot;&gt;Pruébalo en JupyterLab en mybinder.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Nota: Estas visualizaciones son de 10-12 megabytes así que esta página puede tardarse un poco en cargar (oops 😁)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nota 2: No caben en una pantalla de móvil - estamos trabajando en eso pero es demasiada información como para que la disfrutes bien en tu móvil así que visitanos en tu compu porfa&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nota 3: La segunda visualización fué inspirada por Ben Welsh aka &lt;a href=&quot;https://twitter.com/palewire&quot;&gt;@palewire&lt;/a&gt; por sus mapas de elecciones en Los Angeles (&lt;a href=&quot;https://twitter.com/palewire/status/1137815979780476928&quot;&gt;aquí el tuit&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;visualización-a-nivel-municipal&quot;&gt;Visualización a nivel municipal&lt;/h3&gt;
+&lt;div id=&quot;municipios&quot;&gt;&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;visualización-a-nivel-sección&quot;&gt;Visualización a nivel sección&lt;/h3&gt;
+&lt;div id=&quot;participacion&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../assets/blogposts/007_municipios.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;../assets/blogposts/007_participacion.js&quot;&gt;&lt;/script&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;¿Qué te pareció la nota? &lt;a href=&quot;https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit a @tacosdedatos&lt;/a&gt; o &lt;a href=&quot;https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40yanipaper+%F0%9F%8C%AE&quot;&gt; a @YaNiPaper&lt;/a&gt; envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;. Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada mes te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Israel Piña</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="nota" />
+      
+        <category term="mapas" />
+      
+        <category term="altair" />
+      
+
+      
+        <summary type="html"></summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

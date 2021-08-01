@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/tutoriales/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/tutoriales/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Introducción al análisis exploratorio de datos</title>
+      <link href="https://old.tacosdedatos.com/introduccion-eda" rel="alternate" type="text/html" title="Introducción al análisis exploratorio de datos" />
+      <published>2020-05-24T10:00:00+00:00</published>
+      <updated>2020-05-24T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/introduccion-eda</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/introduccion-eda">&lt;p&gt;En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis).&lt;/p&gt;
+
+&lt;p&gt;Como lo mencioné en mi &lt;a href=&quot;https://youtu.be/s7A1OxEeT6o&quot;&gt;video de YouTube sobre el tema&lt;/a&gt;, El AED una forma de realizar análisis de datos, es usualmente uno de los primeros pasos que uno debe realizar antes de aventurarse utilizar el scikit learn o tensoflow para hacer machine learning. Usualmente este proceso de análisis involucra muchas ayudas visuales, es decir gráficas, que nos ayudan a encontrar información que de otra forma sería difícil de conocer acerca de nuestros datos; mediante este proceso estamos tratando de encontrar:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;La estructura y distribución de nuestros datos,&lt;/li&gt;
+  &lt;li&gt;Encontrar las relaciones entre las variables explicatorias,&lt;/li&gt;
+  &lt;li&gt;Encontrar la relación que tienen las variables explicatorias con la variable respuesta,&lt;/li&gt;
+  &lt;li&gt;Encontrar posibles errores, puntos extremos y anomalías en los datos,&lt;/li&gt;
+  &lt;li&gt;Refinar nuestras hipótesis, o generar nuevas preguntas sobre los datos que tenemos&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;No existe una técnica formal sobre cómo llevar a cabo este tipo de análisis, sino que más dependen de lo que vayamos encontrando en los datos, así como de la experiencia y conocimiento específico del problema con el que contemos.&lt;/p&gt;
+
+&lt;p&gt;Para este post usaré algunas de las librerías más comunes para el análisis de datos en el ecosistema de Python, todas las puedes instalar desde PyPI:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;numpy pandas matplotlib seaborn scikit-learn
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Y sobre los datos que vamos a analizar, serán los datos de &lt;a href=&quot;https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009&quot;&gt;Red Wine Quality&lt;/a&gt;. Por cierto, &lt;a href=&quot;https://www.kaggle.com/ioexception/vino-eda&quot;&gt;puedes ver el notebook completo&lt;/a&gt; en Kaggle, si accedes al notebook ahí, no tienes que preocuparte por instalar nada ni descargar nada, todo está listo. Ahora si, comenzamos con nuestros imports de regla:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;seaborn&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.style&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;style&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;contextlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contextmanager&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sklearn.model_selection&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_test_split&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ggplot'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Ahora sí, leemos nuestros a un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataFrame&lt;/code&gt; datos usando &lt;em&gt;pandas&lt;/em&gt;, una vez leídos mostramos qué tan grande es nuestro &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataFrame&lt;/code&gt;, así como una muestra de los datos:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;wine_quality&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/kaggle/input/red-wine-quality-cortez-et-al-2009/winequality-red.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Dataset length&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_quality&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;wine_quality&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Dataset length 1599&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;fixed acidity&lt;/th&gt;
+      &lt;th&gt;volatile acidity&lt;/th&gt;
+      &lt;th&gt;citric acid&lt;/th&gt;
+      &lt;th&gt;residual sugar&lt;/th&gt;
+      &lt;th&gt;chlorides&lt;/th&gt;
+      &lt;th&gt;free sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;total sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;density&lt;/th&gt;
+      &lt;th&gt;pH&lt;/th&gt;
+      &lt;th&gt;sulphates&lt;/th&gt;
+      &lt;th&gt;alcohol&lt;/th&gt;
+      &lt;th&gt;quality&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;7.4&lt;/td&gt;
+      &lt;td&gt;0.70&lt;/td&gt;
+      &lt;td&gt;0.00&lt;/td&gt;
+      &lt;td&gt;1.9&lt;/td&gt;
+      &lt;td&gt;0.076&lt;/td&gt;
+      &lt;td&gt;11.0&lt;/td&gt;
+      &lt;td&gt;34.0&lt;/td&gt;
+      &lt;td&gt;0.9978&lt;/td&gt;
+      &lt;td&gt;3.51&lt;/td&gt;
+      &lt;td&gt;0.56&lt;/td&gt;
+      &lt;td&gt;9.4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;7.8&lt;/td&gt;
+      &lt;td&gt;0.88&lt;/td&gt;
+      &lt;td&gt;0.00&lt;/td&gt;
+      &lt;td&gt;2.6&lt;/td&gt;
+      &lt;td&gt;0.098&lt;/td&gt;
+      &lt;td&gt;25.0&lt;/td&gt;
+      &lt;td&gt;67.0&lt;/td&gt;
+      &lt;td&gt;0.9968&lt;/td&gt;
+      &lt;td&gt;3.20&lt;/td&gt;
+      &lt;td&gt;0.68&lt;/td&gt;
+      &lt;td&gt;9.8&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;7.8&lt;/td&gt;
+      &lt;td&gt;0.76&lt;/td&gt;
+      &lt;td&gt;0.04&lt;/td&gt;
+      &lt;td&gt;2.3&lt;/td&gt;
+      &lt;td&gt;0.092&lt;/td&gt;
+      &lt;td&gt;15.0&lt;/td&gt;
+      &lt;td&gt;54.0&lt;/td&gt;
+      &lt;td&gt;0.9970&lt;/td&gt;
+      &lt;td&gt;3.26&lt;/td&gt;
+      &lt;td&gt;0.65&lt;/td&gt;
+      &lt;td&gt;9.8&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;11.2&lt;/td&gt;
+      &lt;td&gt;0.28&lt;/td&gt;
+      &lt;td&gt;0.56&lt;/td&gt;
+      &lt;td&gt;1.9&lt;/td&gt;
+      &lt;td&gt;0.075&lt;/td&gt;
+      &lt;td&gt;17.0&lt;/td&gt;
+      &lt;td&gt;60.0&lt;/td&gt;
+      &lt;td&gt;0.9980&lt;/td&gt;
+      &lt;td&gt;3.16&lt;/td&gt;
+      &lt;td&gt;0.58&lt;/td&gt;
+      &lt;td&gt;9.8&lt;/td&gt;
+      &lt;td&gt;6&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;7.4&lt;/td&gt;
+      &lt;td&gt;0.70&lt;/td&gt;
+      &lt;td&gt;0.00&lt;/td&gt;
+      &lt;td&gt;1.9&lt;/td&gt;
+      &lt;td&gt;0.076&lt;/td&gt;
+      &lt;td&gt;11.0&lt;/td&gt;
+      &lt;td&gt;34.0&lt;/td&gt;
+      &lt;td&gt;0.9978&lt;/td&gt;
+      &lt;td&gt;3.51&lt;/td&gt;
+      &lt;td&gt;0.56&lt;/td&gt;
+      &lt;td&gt;9.4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;De a poco vamos conociendo nuestros datos… ahora la siguiente pregunta &lt;strong&gt;¿Qué variables tenemos?&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lo primero que hay que hacer es tratar de identificar el tipo de variables que tenemos a la mano, en algunos &lt;em&gt;datasets&lt;/em&gt; esto es posible con tan solo leer los nombres de las columnas (como es el caso de el &lt;em&gt;dataset&lt;/em&gt; con el que estamos trabajando). Sin embargo, hay algunos casos en los que los nombres no son provistos (o están ofuscados) por diversas razones.&lt;/p&gt;
+
+&lt;p&gt;Aprovechando que nuestro &lt;em&gt;dataset&lt;/em&gt; sí tiene nombres, podemos verlos con:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;wine_quality&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Index([‘fixed acidity’, ‘volatile acidity’, ‘citric acid’, ‘residual sugar’,
+  ‘chlorides’, ‘free sulfur dioxide’, ‘total sulfur dioxide’, ‘density’,
+  ‘pH’, ‘sulphates’, ‘alcohol’, ‘quality’],
+  dtype=’object’)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Probablemente si no eres un conocedor de vinos, las variables tengan poco o nada de sentido para ti. &lt;strong&gt;Idealmente nosotros deberíamos tener conocimiento del tema sobre el que vamos a trabajar (o podemos conseguir un experto que nos guíe)&lt;/strong&gt;… pero por ahora pretendamos que sabemos lo que hacemos. Visita este link si quieres &lt;a href=&quot;https://waterhouse.ucdavis.edu/whats-in-wine&quot; target=&quot;_blank&quot;&gt;una ligera introducción a los componentes del vino&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;antes-de-continuar-️&quot;&gt;Antes de continuar ⚠️&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Si lo que estás esperando hacer con la información es crear un modelo predictivo, lo primero que hay que hacer es separar los datos en conjuntos de prueba, entrenamiento y, si puedes, validación. El análisis exploratorio de datos se debe conducir únicamente sobre los datos de entrenamiento, ya que realizar el análisis en todo el conjunto de datos nos llevaría a tomar decisiones teniendo en cuenta datos a los que, en teoría, tu modelo no tendría acceso en producción. Es decir, este es un problema de filtración de datos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Teniendo esto en mente, vamos a separar nuestros datos con:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wine_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_test_split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_quality&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;completitud-en-los-datos&quot;&gt;Completitud en los datos&lt;/h2&gt;
+&lt;p&gt;Antes de comenzar cualquier análisis, es bueno revisar los datos para buscar información faltante; y en caso de que la haya, es nuestra tarea decidir qué es lo que podemos hacer con esos registros faltantes. Con los dataframes de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt; podemos usar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;info&lt;/code&gt; para encontrar los datos faltantes: También podríamos haber usado &lt;a href=&quot;https://github.com/ResidentMario/missingno&quot;&gt;missingno&lt;/a&gt; para tener una representación visual de esta información.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;wine_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Y así es cómo se ve a la salida:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;class 'pandas.core.frame.DataFrame'&amp;gt;
+Int64Index: 1199 entries, 1060 to 418
+Data columns (total 12 columns):
+fixed acidity           1199 non-null float64
+volatile acidity        1199 non-null float64
+citric acid             1199 non-null float64
+residual sugar          1199 non-null float64
+chlorides               1199 non-null float64
+free sulfur dioxide     1199 non-null float64
+total sulfur dioxide    1199 non-null float64
+density                 1199 non-null float64
+pH                      1199 non-null float64
+sulphates               1199 non-null float64
+alcohol                 1199 non-null float64
+quality                 1199 non-null int64
+dtypes: float64(11), int64(1)
+memory usage: 121.8 KB
+&amp;lt;class 'pandas.core.frame.DataFrame'&amp;gt;
+Int64Index: 400 entries, 1186 to 1163
+Data columns (total 12 columns):
+fixed acidity           400 non-null float64
+volatile acidity        400 non-null float64
+citric acid             400 non-null float64
+residual sugar          400 non-null float64
+chlorides               400 non-null float64
+free sulfur dioxide     400 non-null float64
+total sulfur dioxide    400 non-null float64
+density                 400 non-null float64
+pH                      400 non-null float64
+sulphates               400 non-null float64
+alcohol                 400 non-null float64
+quality                 400 non-null int64
+dtypes: float64(11), int64(1)
+memory usage: 40.6 KB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Y pues no, no hay datos faltantes… sin embargo si faltaran, debes saber que existe toda una metodología para decidir cómo actuar ante datos faltantes en nuestro &lt;em&gt;dataset&lt;/em&gt;. Pero de eso podemos hablar en otro momento.&lt;/p&gt;
+
+&lt;h2 id=&quot;estadísticas-descriptivas&quot;&gt;Estadísticas descriptivas&lt;/h2&gt;
+
+&lt;p&gt;El segundo paso a dar, es ver las estadísticas descriptivas de nuestra información, esto nos ayudará a darnos una idea de los posibles valores de nuestro dataset. El paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt; ofrece el método &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;describe&lt;/code&gt; para obtener una vista detallada y completa de algunas de las estadísticas más comunes:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;fixed acidity&lt;/th&gt;
+      &lt;th&gt;volatile acidity&lt;/th&gt;
+      &lt;th&gt;citric acid&lt;/th&gt;
+      &lt;th&gt;residual sugar&lt;/th&gt;
+      &lt;th&gt;chlorides&lt;/th&gt;
+      &lt;th&gt;free sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;total sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;density&lt;/th&gt;
+      &lt;th&gt;pH&lt;/th&gt;
+      &lt;th&gt;sulphates&lt;/th&gt;
+      &lt;th&gt;alcohol&lt;/th&gt;
+      &lt;th&gt;quality&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;count&lt;/th&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+      &lt;td&gt;1199.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;mean&lt;/th&gt;
+      &lt;td&gt;8.309174&lt;/td&gt;
+      &lt;td&gt;0.525847&lt;/td&gt;
+      &lt;td&gt;0.269867&lt;/td&gt;
+      &lt;td&gt;2.574604&lt;/td&gt;
+      &lt;td&gt;0.088136&lt;/td&gt;
+      &lt;td&gt;15.820267&lt;/td&gt;
+      &lt;td&gt;46.194329&lt;/td&gt;
+      &lt;td&gt;0.996755&lt;/td&gt;
+      &lt;td&gt;3.312035&lt;/td&gt;
+      &lt;td&gt;0.664120&lt;/td&gt;
+      &lt;td&gt;10.436614&lt;/td&gt;
+      &lt;td&gt;5.637198&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;std&lt;/th&gt;
+      &lt;td&gt;1.758086&lt;/td&gt;
+      &lt;td&gt;0.177889&lt;/td&gt;
+      &lt;td&gt;0.194103&lt;/td&gt;
+      &lt;td&gt;1.448308&lt;/td&gt;
+      &lt;td&gt;0.049179&lt;/td&gt;
+      &lt;td&gt;10.559120&lt;/td&gt;
+      &lt;td&gt;32.648521&lt;/td&gt;
+      &lt;td&gt;0.001879&lt;/td&gt;
+      &lt;td&gt;0.156249&lt;/td&gt;
+      &lt;td&gt;0.177114&lt;/td&gt;
+      &lt;td&gt;1.075123&lt;/td&gt;
+      &lt;td&gt;0.802324&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;min&lt;/th&gt;
+      &lt;td&gt;4.600000&lt;/td&gt;
+      &lt;td&gt;0.120000&lt;/td&gt;
+      &lt;td&gt;0.000000&lt;/td&gt;
+      &lt;td&gt;0.900000&lt;/td&gt;
+      &lt;td&gt;0.012000&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;6.000000&lt;/td&gt;
+      &lt;td&gt;0.990070&lt;/td&gt;
+      &lt;td&gt;2.740000&lt;/td&gt;
+      &lt;td&gt;0.330000&lt;/td&gt;
+      &lt;td&gt;8.400000&lt;/td&gt;
+      &lt;td&gt;3.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;25%&lt;/th&gt;
+      &lt;td&gt;7.100000&lt;/td&gt;
+      &lt;td&gt;0.390000&lt;/td&gt;
+      &lt;td&gt;0.090000&lt;/td&gt;
+      &lt;td&gt;1.900000&lt;/td&gt;
+      &lt;td&gt;0.070000&lt;/td&gt;
+      &lt;td&gt;7.000000&lt;/td&gt;
+      &lt;td&gt;22.000000&lt;/td&gt;
+      &lt;td&gt;0.995600&lt;/td&gt;
+      &lt;td&gt;3.210000&lt;/td&gt;
+      &lt;td&gt;0.560000&lt;/td&gt;
+      &lt;td&gt;9.500000&lt;/td&gt;
+      &lt;td&gt;5.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;50%&lt;/th&gt;
+      &lt;td&gt;7.900000&lt;/td&gt;
+      &lt;td&gt;0.520000&lt;/td&gt;
+      &lt;td&gt;0.260000&lt;/td&gt;
+      &lt;td&gt;2.200000&lt;/td&gt;
+      &lt;td&gt;0.079000&lt;/td&gt;
+      &lt;td&gt;13.000000&lt;/td&gt;
+      &lt;td&gt;37.000000&lt;/td&gt;
+      &lt;td&gt;0.996800&lt;/td&gt;
+      &lt;td&gt;3.310000&lt;/td&gt;
+      &lt;td&gt;0.620000&lt;/td&gt;
+      &lt;td&gt;10.200000&lt;/td&gt;
+      &lt;td&gt;6.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;75%&lt;/th&gt;
+      &lt;td&gt;9.200000&lt;/td&gt;
+      &lt;td&gt;0.637500&lt;/td&gt;
+      &lt;td&gt;0.420000&lt;/td&gt;
+      &lt;td&gt;2.600000&lt;/td&gt;
+      &lt;td&gt;0.091000&lt;/td&gt;
+      &lt;td&gt;22.000000&lt;/td&gt;
+      &lt;td&gt;61.500000&lt;/td&gt;
+      &lt;td&gt;0.997820&lt;/td&gt;
+      &lt;td&gt;3.400000&lt;/td&gt;
+      &lt;td&gt;0.735000&lt;/td&gt;
+      &lt;td&gt;11.100000&lt;/td&gt;
+      &lt;td&gt;6.000000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;max&lt;/th&gt;
+      &lt;td&gt;15.900000&lt;/td&gt;
+      &lt;td&gt;1.330000&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;15.500000&lt;/td&gt;
+      &lt;td&gt;0.611000&lt;/td&gt;
+      &lt;td&gt;72.000000&lt;/td&gt;
+      &lt;td&gt;278.000000&lt;/td&gt;
+      &lt;td&gt;1.003690&lt;/td&gt;
+      &lt;td&gt;4.010000&lt;/td&gt;
+      &lt;td&gt;2.000000&lt;/td&gt;
+      &lt;td&gt;14.900000&lt;/td&gt;
+      &lt;td&gt;8.000000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;De este resumen estadístico, una de las primeras cosas que podrían resultar extrañas es que la variable &lt;strong&gt;quality&lt;/strong&gt; únicamente toma valores entre $3$ y $8$ (a pesar de que en la descripción original dice que los valores van de $0$ a $10$. Lo cual representa un problema puesto que nuestro modelo predictivo no tendrá ejemplos de vinos con una calidad de $0$ o de $10$, por ejemplo. Pero por el momento, no nos vamos a preocupar mucho por eso.&lt;/p&gt;
+
+&lt;p&gt;También tengo que decir que algun conocedor del tema podría tener opiniones acerca de los rangos de valores que cubren ciertas variables… pero nosotros vamos a pasar al análisis gráfico.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contextmanager&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;histogramas&quot;&gt;Histogramas&lt;/h3&gt;
+&lt;p&gt;Primero podemos echarle un ojo a la distribución de la variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quality&lt;/code&gt;, que como ya sabemos que es una variable discreta y que los valores van, en teoría de 0 a 10, podemos simplemente usar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;countplot&lt;/code&gt; del módulo &lt;em&gt;seaborn&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Counts of `qualuty`&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Quality&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Count&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;countplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quality&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;palette&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Accent&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/FFFtlJm.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Como puedes ver, nuestro conjunto de datos está desbalanceado, con muchos mas $5$ y $6$ que cualquier otro valor.&lt;/p&gt;
+
+&lt;p&gt;Ahora lo que podemos hacer es revisar algunas otras distribuciones, ahora sí, usando histogramas:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Fixed Acidity distribution&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Acidity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;volatile acidity&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/QnXb6u0.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Podemos usar un poco de código para visualizar más de una variable a la vez:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'fixed acidity'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'volatile acidity'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'citric acid'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'residual sugar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;s&quot;&gt;'chlorides'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'free sulfur dioxide'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'total sulfur dioxide'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'density'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;s&quot;&gt;'pH'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'sulphates'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'alcohol'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'quality'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/ZoAJMQa.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;De esta gráfica podemos ver que muchas de las variables tienen una distribución asimétrica (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fixed acidity&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;residual sugar&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chlorides&lt;/code&gt;, por ejemplo), además de que al parecer algunos valores tienen valores extremos (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;residual sugar&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sulphates&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total sulfur dioxide&lt;/code&gt;). Tal vez merezcan más exploración…&lt;/p&gt;
+
+&lt;h3 id=&quot;boxplots&quot;&gt;Boxplots&lt;/h3&gt;
+&lt;p&gt;Como mencioné anteriormente, existen algunas variables que merecen un poco más de exploración ya que parecen tener valores extremos, las &lt;em&gt;boxplots&lt;/em&gt; nos permiten encontrar precisamente estos valores extremos. Es fácil graficar &lt;em&gt;boxplots&lt;/em&gt; con &lt;em&gt;seaborn&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'fixed acidity'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'residual sugar'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+       &lt;span class=&quot;s&quot;&gt;'chlorides'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'free sulfur dioxide'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+             &lt;span class=&quot;s&quot;&gt;'total sulfur dioxide'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'sulphates'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'alcohol'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variables&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;boxplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/zAGmjNX.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Como ya sabemos, los puntos fuera de las líneas horizontales son los famosos &lt;em&gt;outliers&lt;/em&gt; o “valores atípicos”, dependiendo de la aplicación podemos reaccionar de diversas maneras frente a ellos… a veces los &lt;em&gt;outliers&lt;/em&gt; se eliminan, a veces se transforman, o a veces se dejan porque tienen alto valor predictivo.&lt;/p&gt;
+
+&lt;h3 id=&quot;scatterplots&quot;&gt;Scatterplots&lt;/h3&gt;
+&lt;p&gt;El siguiente paso es tratar de identificar relaciones entre variables, podríamos por ejemplo usar un &lt;em&gt;scatterplot&lt;/em&gt; para ver qué tipo de relación existe entre la cantidad de alcohol y la calidad de un vino:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Alcohol - Quality scatterplot&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Alcohol&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Quality&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatterplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;alcohol&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;quality&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/GRULpvb.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tal vez esta gráfica no sea tan reveladora, ya que nuestra variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quality&lt;/code&gt; es más bien del tipo categórico y es difícil identificar una tendencia. Otra cosa a notar es que las correlaciones también se pueden y, en la mayoría de los casos, se deben identificar entre las variables independientes también, no solo entre una de ellas y la variable dependiente. Por ejemplo, entre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free sulfur dioxide&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;total sulfur dioxide&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Free Sulfur Dioxide - Total Sulfur Dioxide scatterplot&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Free Sulfur Dioxide&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total Sulfur Dioxide&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatterplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;free sulfur dioxide&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;total sulfur dioxide&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/HfdtXwC.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En esta gráfica si se puede observar una clara relación entre las variables, ¿cierto?&lt;/p&gt;
+
+&lt;p&gt;Si quieres ver solamente el grado de correlación (sin necesidad de tratar de encontrarlo tu mismo desde una &lt;em&gt;scatterplot&lt;/em&gt;) también podemos hacer uso de las matrices de correlación.&lt;/p&gt;
+
+&lt;h3 id=&quot;matrices-de-correlación&quot;&gt;Matrices de correlación&lt;/h3&gt;
+&lt;p&gt;Una matriz de correlación no es más que una matriz de números (cada número va de -1 a 1) que nos indican qué tan relacionadas están una variable con otra. Existen &lt;a href=&quot;https://datascience.stackexchange.com/a/64261&quot;&gt;3 métodos&lt;/a&gt; para calcular esta correlación. Para calcularla en nuestro dataframe de vinos, podemos simplemente usar el método &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;corr&lt;/code&gt; de un &lt;em&gt;dataframe&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;correlation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wine_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;corr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pearson&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;correlation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;fixed acidity&lt;/th&gt;
+      &lt;th&gt;volatile acidity&lt;/th&gt;
+      &lt;th&gt;citric acid&lt;/th&gt;
+      &lt;th&gt;residual sugar&lt;/th&gt;
+      &lt;th&gt;chlorides&lt;/th&gt;
+      &lt;th&gt;free sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;total sulfur dioxide&lt;/th&gt;
+      &lt;th&gt;density&lt;/th&gt;
+      &lt;th&gt;pH&lt;/th&gt;
+      &lt;th&gt;sulphates&lt;/th&gt;
+      &lt;th&gt;alcohol&lt;/th&gt;
+      &lt;th&gt;quality&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;fixed acidity&lt;/th&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;-0.237044&lt;/td&gt;
+      &lt;td&gt;0.675747&lt;/td&gt;
+      &lt;td&gt;0.164493&lt;/td&gt;
+      &lt;td&gt;0.091213&lt;/td&gt;
+      &lt;td&gt;-0.167011&lt;/td&gt;
+      &lt;td&gt;-0.102002&lt;/td&gt;
+      &lt;td&gt;0.681653&lt;/td&gt;
+      &lt;td&gt;-0.692635&lt;/td&gt;
+      &lt;td&gt;0.152724&lt;/td&gt;
+      &lt;td&gt;-0.075869&lt;/td&gt;
+      &lt;td&gt;0.128048&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;volatile acidity&lt;/th&gt;
+      &lt;td&gt;-0.237044&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;-0.543960&lt;/td&gt;
+      &lt;td&gt;-0.011115&lt;/td&gt;
+      &lt;td&gt;0.063904&lt;/td&gt;
+      &lt;td&gt;-0.015815&lt;/td&gt;
+      &lt;td&gt;0.088772&lt;/td&gt;
+      &lt;td&gt;0.031415&lt;/td&gt;
+      &lt;td&gt;0.220483&lt;/td&gt;
+      &lt;td&gt;-0.248910&lt;/td&gt;
+      &lt;td&gt;-0.209193&lt;/td&gt;
+      &lt;td&gt;-0.389654&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;citric acid&lt;/th&gt;
+      &lt;td&gt;0.675747&lt;/td&gt;
+      &lt;td&gt;-0.543960&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;0.149428&lt;/td&gt;
+      &lt;td&gt;0.225910&lt;/td&gt;
+      &lt;td&gt;-0.078811&lt;/td&gt;
+      &lt;td&gt;0.004797&lt;/td&gt;
+      &lt;td&gt;0.376603&lt;/td&gt;
+      &lt;td&gt;-0.545874&lt;/td&gt;
+      &lt;td&gt;0.314076&lt;/td&gt;
+      &lt;td&gt;0.109625&lt;/td&gt;
+      &lt;td&gt;0.241375&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;residual sugar&lt;/th&gt;
+      &lt;td&gt;0.164493&lt;/td&gt;
+      &lt;td&gt;-0.011115&lt;/td&gt;
+      &lt;td&gt;0.149428&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;0.059603&lt;/td&gt;
+      &lt;td&gt;0.170785&lt;/td&gt;
+      &lt;td&gt;0.162121&lt;/td&gt;
+      &lt;td&gt;0.390897&lt;/td&gt;
+      &lt;td&gt;-0.114692&lt;/td&gt;
+      &lt;td&gt;0.021992&lt;/td&gt;
+      &lt;td&gt;0.037932&lt;/td&gt;
+      &lt;td&gt;0.026566&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;chlorides&lt;/th&gt;
+      &lt;td&gt;0.091213&lt;/td&gt;
+      &lt;td&gt;0.063904&lt;/td&gt;
+      &lt;td&gt;0.225910&lt;/td&gt;
+      &lt;td&gt;0.059603&lt;/td&gt;
+      &lt;td&gt;1.000000&lt;/td&gt;
+      &lt;td&gt;0.003828&lt;/td&gt;
+      &lt;td&gt;0.061718&lt;/td&gt;
+      &lt;td&gt;0.192486&lt;/td&gt;
+      &lt;td&gt;-0.284091&lt;/td&gt;
+      &lt;td&gt;0.391324&lt;/td&gt;
+      &lt;td&gt;-0.222979&lt;/td&gt;
+      &lt;td&gt;-0.133884&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Luego, para graficar estos números podemos usar un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;heatmap&lt;/code&gt; de &lt;em&gt;seaborn&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Free Sulfur Dioxide - Total Sulfur Dioxide scatterplot&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;heatmap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;correlation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vmin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'coolwarm'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/oKpJmEe.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Los colores más intensos corresponden con números cercanos a -1 o 1, que indican que tienen mayor relación entre ellas, por ejemplo, la variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pH&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fixed acidity&lt;/code&gt; (que tienen una relación inversa) o &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;density&lt;/code&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fixed acidity&lt;/code&gt; que de igual manera, presenta una relación, pero en este caso, directa.&lt;/p&gt;
+
+&lt;p&gt;Y pues, eso es todo por este post, sí, es bastante sencillo y aún hay mucho qué discutir sobre el análisis exploratorio de datos, aquí hay algunos de los recursos que yo consulté para preparar este video, y aún así hay mucho más por explorar:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.itl.nist.gov/div898/handbook/eda/section1/eda1.htm&quot; target=&quot;_blank&quot;&gt;EDA Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/a-gentle-introduction-to-exploratory-data-analysis-f11d843b8184&quot; target=&quot;_blank&quot;&gt;A Gentle Introduction to Exploratory Data Analysis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://r4ds.had.co.nz/exploratory-data-analysis.html&quot; target=&quot;_blank&quot;&gt;Exploratory Data Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;No olvides seguirme en twitter en &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Antonio Feregrino Bolaños</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="tutoriales" />
+      
+        <category term="python" />
+      
+        <category term="eda" />
+      
+
+      
+        <summary type="html">En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis).</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Pronóstico de ventas - ARIMA</title>
+      <link href="https://old.tacosdedatos.com/pronostico-de-ventas-arima" rel="alternate" type="text/html" title="Pronóstico de ventas - ARIMA" />
+      <published>2020-04-15T09:34:00+00:00</published>
+      <updated>2020-04-15T09:34:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pronostico-de-ventas-arima</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pronostico-de-ventas-arima">&lt;p&gt;El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Se requieren pronósticos en muchas situaciones: decidir si se construirá otra planta de generación de energía en los próximos cinco años requiere pronósticos de la demanda futura; programar el personal en un centro de llamadas la próxima semana requiere pronósticos de volúmenes de llamadas; almacenar un inventario requiere pronósticos de los requisitos de stock. Se pueden requerir pronósticos con varios años de anticipación (para el caso de inversiones de capital), o solo unos minutos antes (para el enrutamiento de telecomunicaciones). Cualesquiera que sean las circunstancias o los horizontes de tiempo involucrados, el pronóstico es una ayuda importante para una planificación efectiva y eficiente.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Algunas cosas son más fáciles de pronosticar que otras. La hora del amanecer mañana por la mañana se puede pronosticar con precisión. Por otro lado, los números de lotería de mañana no se pueden pronosticar con precisión. 
+La previsibilidad de un evento o una cantidad depende de varios factores que incluyen:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Qué tan bien entendemos los factores que contribuyen a ello;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Cuántos datos hay disponibles;&lt;/li&gt;
+  &lt;li&gt;Si los pronósticos pueden afectar lo que estamos tratando de pronosticar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;En el siguiente video se expone como realizar un pronóstico de ventas usando los &lt;strong&gt;modelos econométricos ARIMA&lt;/strong&gt; usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RStudio&lt;/code&gt; . Les recomiendo mucho que lo revisen con detenimiento y que lo repliquen con sus propios datos, el código lo pueden descargar acá -&amp;gt; &lt;a href=&quot;https://github.com/MontielMauricio/ARIMA&quot;&gt;https://github.com/MontielMauricio/ARIMA&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/6pYto7y0KTA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Quiero agradecer a &lt;strong&gt;tacosdedatos&lt;/strong&gt; por permitirme compartir mi conocimiento con todos ustedes a través de este blog. Procuraré subir contenido de alta calidad para aportar a esta excelente comunidad. Si así lo desean pueden agregarme como contacto en mi cuenta de &lt;a href=&quot;https://www.linkedin.com/in/mauriciomontiel&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Con eso me despido. Tómense un tiempo para ver los demás videos que tengo en el canal de &lt;a href=&quot;https://www.youtube.com/channel/UCmzIHZGEwUyb7luzTu6N85g?view_as=subscriber&quot;&gt;YouTube&lt;/a&gt; y cuéntame que piensas en un &lt;a href=&quot;https://twitter.com/MauMontielE&quot;&gt;tuit&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Mauricio Montiel Espinoza</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="R" />
+      
+        <category term="tutoriales" />
+      
+        <category term="charlas" />
+      
+
+      
+        <summary type="html">El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">PyCon 2019 - PyCon Charlas y tutorial de Pandas</title>
+      <link href="https://old.tacosdedatos.com/pycon-2019" rel="alternate" type="text/html" title="PyCon 2019 - PyCon Charlas y tutorial de Pandas" />
+      <published>2019-05-07T08:00:00+00:00</published>
+      <updated>2019-05-07T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pycon-2019</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pycon-2019">&lt;p&gt;La semana pasada Cleveland, Ohio fue el lugar más mágico del planeta por una razón: PyCon US 2019.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;../assets/blogposts/004_Cleveland.jpg&quot; alt=&quot;Cleveland con la raza&quot; /&gt;
+&lt;figcaption style=&quot;text-align:center&quot;&gt;foto por Denny (&lt;a href=&quot;https://twitter.com/dennyperez18&quot;&gt;@dennyperez18&lt;/a&gt;)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este año tuve la oportunidad de atender una PyCon por primera vez. Para quien no sepa: PyCon (de &lt;em&gt;Python Conference&lt;/em&gt;) es una conferencia anual atendida por personas de &lt;strong&gt;todo&lt;/strong&gt; el mundo. Conocí gente de Colombia, Argentina, Brasil, Nicaragua, España, República Dominicana, Puerto Rico, Australia, Siria, y muchos otros paises los 4 días que estuve ahí.&lt;/p&gt;
+
+&lt;p&gt;Pero más que compartir mi experiencia personal quiero compartir rápidamente 3 cositas:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Python&lt;/code&gt; tiene un sinfín de aplicaciones&lt;br /&gt;
+ En las #PyConCharlas tuve la oportunidad de aprender de profesionales que utilizan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; en campos que jamás hubiera imaginado. Resolviendo crímenes en Argentina, vigilando al gobierno en Brasil, creando geometrías fantásticas, y muchas otras cosas más. Les recomiendo ver estas charlas ya que todo está en YouTube.&lt;br /&gt;¡Son de 20-25 minutos!
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/videoseries?list=PLPbTDk1hBo3zUw1o802TTPu4tjD4ZtW8f&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Mi tutorial de Pandas está disponible en español&lt;br /&gt;
+ PyCon se encarga de publicar &lt;strong&gt;todas&lt;/strong&gt; las platicas en YouTube para que, aunque no hayas ido, todos tengan acceso a este conocimiento. Esto incluye los tutoriales. Esto se me hace increíble ya que para entrar a estos tutoriales tenías que pagar $150. Aún así todo esto esta disponible de manera gratuita en YouTube. Aquí esta mi tutorial en inglés:
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/sGtCgYWzOV4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+    &lt;p&gt;¡Y también traduje el tutorial a español! &lt;br /&gt;Si quieres seguir el tutorial en tu propio navegador puedes visitar &lt;a href=&quot;https://bit.ly/DATOS-CENSALES-PYCON2019&quot;&gt;bit.ly/DATOS-CENSALES-PYCON2019&lt;/a&gt;. El repositorio de GitHub se encuentra por acá -&amp;gt; &lt;a href=&quot;https://github.com/chekos/analizando-datos-censales&quot;&gt;https://github.com/chekos/analizando-datos-censales&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;¡PyCon Latinoamérica viene este agosto a México!&lt;br /&gt;
+ &lt;img src=&quot;../assets/blogposts/004_pyconlatam.jpg&quot; alt=&quot;pycon latam&quot; /&gt;&lt;br /&gt;
+ El último día para proponer una charla es el 31 de mayo. Si quieres aprender más de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; o visitar Puerto Vallarta o ambos, ve a &lt;a href=&quot;https://pylatam.org/&quot;&gt;pylatam.org&lt;/a&gt; para reservar tus boletos y a &lt;a href=&quot;https://papercall.io/pyconlatam&quot;&gt;papercall.io/pyconlatam&lt;/a&gt; para proponer una charla.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Para terminar, quiero agradecerle a todos y cada una de las personas que hacen &lt;strong&gt;tacosdedatos&lt;/strong&gt; posible. Acabamos de llegar a 1000 seguidores en twitter. Esta es una comunidad increíble de gente amable, curiosa, y, como decimos en México, chingona. Todas las personas que conocí en PyCon son increíbles. Todas las personas con las que he interactuado &lt;em&gt;online&lt;/em&gt; a través de &lt;a href=&quot;https://twitter.com/tacosdedatos&quot;&gt;@tacosdedatos&lt;/a&gt; son increíbles.&lt;/p&gt;
+
+&lt;p&gt;Y con eso me despido. Tómense un tiempo para ver las PyCon Charlas y &lt;a href=&quot;https://twitter.com/share?text=+%pyconcharlas+muchas+gracias+&quot;&gt;¡envíen un tuit agradeciendoles el trabajo que hacen!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Cuéntanos que piensas en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+yo+tambien+quiero+ir+a+pycon+latam+%40pylatam&quot;&gt;tuit&lt;/a&gt;. 
+¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="pycon" />
+      
+        <category term="tutoriales" />
+      
+        <category term="charlas" />
+      
+
+      
+        <summary type="html">La semana pasada Cleveland, Ohio fue el lugar más mágico del planeta por una razón: PyCon US 2019.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Gráficos Waffle en Excel y Google Sheets en 5 pasos.</title>
+      <link href="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets" rel="alternate" type="text/html" title="Gráficos Waffle en Excel y Google Sheets en 5 pasos." />
+      <published>2019-03-27T08:00:00+00:00</published>
+      <updated>2019-03-27T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets">&lt;p&gt;Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_1.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En este pequeño tutorial vamos a aprender a crear este tipo de gráficos en Google Sheets ya que es más accesible - solo necesitas acceso a una cuenta de google. Todo lo que hagamos aquí funciona en Excel también.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-1-prepara-una-cuadrícula-10x10&quot;&gt;Paso 1: Prepara una cuadrícula 10x10.&lt;/h2&gt;
+&lt;p&gt;El gráfico se crea manipulando los colores de las celdas. No es un gráfico como los más comunes en excel (de barras o líneas), es decir, no es un gráfico que &lt;em&gt;insertas&lt;/em&gt; al que le conectas celdas y modificas sus propiedades y atributos. &lt;br /&gt;
+Toma 10 lineas y 10 columnas, llénalas de los valores 0 a 1 en incrementos de un centésimo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_2.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Con la siguiente formula puedes llenar más rápidamente tus celdas:&lt;/p&gt;
+&lt;pre&gt;=(COLUMNS($C2:C$11)+10*(ROWS($C2:C$11)-1))/100&lt;/pre&gt;
+
+&lt;p&gt;Yo estoy usando los valroes de C2 a C11 porque ahí comienza mi cuadrícula. Asegúrate de que tus valores concuerden con los de tu cuadrícula.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-2-agregale-el-color-de-fondo&quot;&gt;Paso 2: Agregale el color de fondo.&lt;/h2&gt;
+&lt;p&gt;Cambia el color de tus números y de las celdas al color que quieras que sea &lt;em&gt;el fondo&lt;/em&gt; de tu gráfico. Te recomiendo escoger un valor claro. En este caso utilizamos un verde claro:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_3.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-3-escoge-la-celda-que-va-a-servir-como-indicador&quot;&gt;Paso 3: Escoge la celda que va a servir como indicador.&lt;/h2&gt;
+&lt;p&gt;Escoge una celda que contenga el número (o porcentaje en este caso) que ilustrarás con tu waffle.
+En nuestro caso va a ser la celda &lt;strong&gt;A2&lt;/strong&gt;. &lt;br /&gt;
+&lt;strong&gt;nota&lt;/strong&gt;: Aquí escogemos una valor inventado pero podrías escoger una celda que contenga alguna estadística de alguna tabla que tengas en tu planilla. La &lt;em&gt;celda indicadora&lt;/em&gt; no tiene que ser un valor estático, puede contener una fórmula - el promedio, la suma, la diferencia de otros valores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_4.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-4-agrega-un-formato-condicional-a-tu-cuadrícula&quot;&gt;Paso 4: Agrega un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula.&lt;/h2&gt;
+&lt;p&gt;Este es el paso clave. Cuando agregas un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula vas a poder &lt;em&gt;pintar&lt;/em&gt; las celdas de tu waffle &lt;em&gt;interactivamente&lt;/em&gt; modificando sólo el valor de la celda que haz escogido como indicador.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_5.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ojo&quot;&gt;Ojo:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;formato condicional&lt;/em&gt; tienes que escoger &lt;strong&gt;igual o menor que&lt;/strong&gt; al valor de tu &lt;em&gt;celda indicadora&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;celda indicadora&lt;/em&gt; tienes que utilizar el formato &lt;strong&gt;=$A$2&lt;/strong&gt;. Es decir: el signo de &lt;strong&gt;=&lt;/strong&gt; y tu celda con los símbolos &lt;strong&gt;$&lt;/strong&gt; antes de la letra y el número. Eso le dice a Excel y Google Sheets que esta fórmula es &lt;em&gt;estática&lt;/em&gt; y aplica así como esta a todas las celdas de tu cuadrícula.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;paso-5-listo&quot;&gt;Paso 5: ¡Listo!&lt;/h2&gt;
+&lt;p&gt;Ya solo tienes que estilizar tu gráfico como te guste. Yo te recomiendo:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Utilizar bordes claros en el interior de tu cuadrícula y oscuros en el borde más externo.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_6.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Agregale un título.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_7.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Aqui te dejo el enlace a la planilla original en &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1f1-1J7SXMn4R9OW2XwRLYs8aGy3cB9ITFoy62ZCYHQc/edit?usp=sharing&quot;&gt;Google Drive&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Este tutorial esta etiquetado como &lt;strong&gt;principiante&lt;/strong&gt; ya que solo necesitas tener acceso a una cuenta google y seguir estos simples pasos.&lt;/p&gt;
+
+&lt;p&gt;Para terminar, este es el primer tutorial que publicamos sobre excel/google sheets. Estamos creciendo en &lt;strong&gt;tacosdedatos&lt;/strong&gt; y queremos saber si te gusta el formato o tienes sugerencias. Cuéntanos que piensas de este formato en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+&quot;&gt;tuit&lt;/a&gt;. ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="recursos" />
+      
+        <category term="tutoriales" />
+      
+        <category term="excel" />
+      
+        <category term="google sheets" />
+      
+        <category term="principiante" />
+      
+
+      
+        <summary type="html">Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Como hacer mapas con geopandas y altair</title>
+      <link href="https://old.tacosdedatos.com/Como-hacer-mapas-con-geopandas-y-altair" rel="alternate" type="text/html" title="Como hacer mapas con geopandas y altair" />
+      <published>2019-02-07T17:00:00+00:00</published>
+      <updated>2019-02-07T17:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/Como-hacer-mapas-con-geopandas-y-altair</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/Como-hacer-mapas-con-geopandas-y-altair">&lt;p&gt;Inauguramos la serie de tutoriales aprendiendo sobre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;geopandas&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt;. Dos bibliotecas de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; muy poderosas y cada día más populares para el análisis de datos geográficos y visualización de datos, respectivamente.&lt;/p&gt;
+
+&lt;p&gt;Si utilizas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; para tus proyectos de análisis de datos lo más probable es que hayas utilizado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt; en algún momento. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GeoPandas&lt;/code&gt; es una &lt;em&gt;optimización&lt;/em&gt; de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt; para trabajar con datos geográficos. 
+En este tutorial aprenderemos lo siguiente:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Como leer y manipular nuestros datos geográficos de formato &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.shp&lt;/code&gt; a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.geojson&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;también cambiamos el Sistema de Coordenadas de Referencia 👀&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Como construir gráficos &lt;em&gt;compuestos&lt;/em&gt; (en capas) con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;También aprendemos un poco sobre la &lt;em&gt;anatomía de un gráfico&lt;/em&gt; en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt;.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;nivel&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;conocimiento asumido&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;principiante-intermedio&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;asumimos conocimientos básicos de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jupyter&lt;/code&gt; y familiaridad con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pandas&lt;/code&gt;.&lt;br /&gt;Conocimiento básico de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt; ayuda mucho pero no es necesario.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Este tutorial es &lt;strong&gt;interactivo&lt;/strong&gt;. Utilizamos la plataforma &lt;a href=&quot;https://mybinder.org&quot;&gt;mybinder.org&lt;/a&gt; para que no tengas que instalar nada y puedas seguir el tutorial tan sólo dándole clic a la medalla. &lt;br /&gt;
+MyBinder creará un espacio en sus servidores donde activará una sesión de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jupyter Lab&lt;/code&gt; con el material. Tú sólo tienes que seguir el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notebook&lt;/code&gt;. Si lo que quieres es descargar el material y probarlo en tu computador puedes clonar el &lt;a href=&quot;https://github.com/tacosdedatos/tutorial-mapas-con-geopandas-y-altair&quot;&gt;repo de GitHub&lt;/a&gt;. &lt;br /&gt;
+&lt;a href=&quot;https://mybinder.org/v2/gh/tacosdedatos/tutorial-mapas-con-geopandas-y-altair/master?urlpath=%2Flab%2Ftree%2Ftutorial%2Fnotebooks%2F00_Preparaci%C3%B3n.ipynb&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/pruebalo-en%20mybinder.org-F5A252.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAMAAABi1XidAAAB8lBMVEX///9XmsrmZYH1olJXmsr1olJXmsrmZYH1olJXmsr1olJXmsrmZYH1olL1olJXmsr1olJXmsrmZYH1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olJXmsrmZYH1olL1olL0nFf1olJXmsrmZYH1olJXmsq8dZb1olJXmsrmZYH1olJXmspXmspXmsr1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olLeaIVXmsrmZYH1olL1olL1olJXmsrmZYH1olLna31Xmsr1olJXmsr1olJXmsrmZYH1olLqoVr1olJXmsr1olJXmsrmZYH1olL1olKkfaPobXvviGabgadXmsqThKuofKHmZ4Dobnr1olJXmsr1olJXmspXmsr1olJXmsrfZ4TuhWn1olL1olJXmsqBi7X1olJXmspZmslbmMhbmsdemsVfl8ZgmsNim8Jpk8F0m7R4m7F5nLB6jbh7jbiDirOEibOGnKaMhq+PnaCVg6qWg6qegKaff6WhnpKofKGtnomxeZy3noG6dZi+n3vCcpPDcpPGn3bLb4/Mb47UbIrVa4rYoGjdaIbeaIXhoWHmZYHobXvpcHjqdHXreHLroVrsfG/uhGnuh2bwj2Hxk17yl1vzmljzm1j0nlX1olL3AJXWAAAAbXRSTlMAEBAQHx8gICAuLjAwMDw9PUBAQEpQUFBXV1hgYGBkcHBwcXl8gICAgoiIkJCQlJicnJ2goKCmqK+wsLC4usDAwMjP0NDQ1NbW3Nzg4ODi5+3v8PDw8/T09PX29vb39/f5+fr7+/z8/Pz9/v7+zczCxgAABC5JREFUeAHN1ul3k0UUBvCb1CTVpmpaitAGSLSpSuKCLWpbTKNJFGlcSMAFF63iUmRccNG6gLbuxkXU66JAUef/9LSpmXnyLr3T5AO/rzl5zj137p136BISy44fKJXuGN/d19PUfYeO67Znqtf2KH33Id1psXoFdW30sPZ1sMvs2D060AHqws4FHeJojLZqnw53cmfvg+XR8mC0OEjuxrXEkX5ydeVJLVIlV0e10PXk5k7dYeHu7Cj1j+49uKg7uLU61tGLw1lq27ugQYlclHC4bgv7VQ+TAyj5Zc/UjsPvs1sd5cWryWObtvWT2EPa4rtnWW3JkpjggEpbOsPr7F7EyNewtpBIslA7p43HCsnwooXTEc3UmPmCNn5lrqTJxy6nRmcavGZVt/3Da2pD5NHvsOHJCrdc1G2r3DITpU7yic7w/7Rxnjc0kt5GC4djiv2Sz3Fb2iEZg41/ddsFDoyuYrIkmFehz0HR2thPgQqMyQYb2OtB0WxsZ3BeG3+wpRb1vzl2UYBog8FfGhttFKjtAclnZYrRo9ryG9uG/FZQU4AEg8ZE9LjGMzTmqKXPLnlWVnIlQQTvxJf8ip7VgjZjyVPrjw1te5otM7RmP7xm+sK2Gv9I8Gi++BRbEkR9EBw8zRUcKxwp73xkaLiqQb+kGduJTNHG72zcW9LoJgqQxpP3/Tj//c3yB0tqzaml05/+orHLksVO+95kX7/7qgJvnjlrfr2Ggsyx0eoy9uPzN5SPd86aXggOsEKW2Prz7du3VID3/tzs/sSRs2w7ovVHKtjrX2pd7ZMlTxAYfBAL9jiDwfLkq55Tm7ifhMlTGPyCAs7RFRhn47JnlcB9RM5T97ASuZXIcVNuUDIndpDbdsfrqsOppeXl5Y+XVKdjFCTh+zGaVuj0d9zy05PPK3QzBamxdwtTCrzyg/2Rvf2EstUjordGwa/kx9mSJLr8mLLtCW8HHGJc2R5hS219IiF6PnTusOqcMl57gm0Z8kanKMAQg0qSyuZfn7zItsbGyO9QlnxY0eCuD1XL2ys/MsrQhltE7Ug0uFOzufJFE2PxBo/YAx8XPPdDwWN0MrDRYIZF0mSMKCNHgaIVFoBbNoLJ7tEQDKxGF0kcLQimojCZopv0OkNOyWCCg9XMVAi7ARJzQdM2QUh0gmBozjc3Skg6dSBRqDGYSUOu66Zg+I2fNZs/M3/f/Grl/XnyF1Gw3VKCez0PN5IUfFLqvgUN4C0qNqYs5YhPL+aVZYDE4IpUk57oSFnJm4FyCqqOE0jhY2SMyLFoo56zyo6becOS5UVDdj7Vih0zp+tcMhwRpBeLyqtIjlJKAIZSbI8SGSF3k0pA3mR5tHuwPFoa7N7reoq2bqCsAk1HqCu5uvI1n6JuRXI+S1Mco54YmYTwcn6Aeic+kssXi8XpXC4V3t7/ADuTNKaQJdScAAAAAElFTkSuQmCC&quot; alt=&quot;badge&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Este tutorial esta etiquetado como &lt;strong&gt;principiante-intermedio&lt;/strong&gt; porque no es material introductorio a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;geopandas&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;altair&lt;/code&gt; o &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jupyter&lt;/code&gt;. &lt;br /&gt; ¿Estabas buscando eso? No te preocupes, ¡guías y tutoriales introductorios vienen en camino a &lt;strong&gt;tacosdedatos&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;Por último, este es el primer tutorial que publicamos. Estamos experimentando con el formato y decidimos hacerlo &lt;em&gt;interactivo&lt;/em&gt;, simple y directo - te concentras en aprender &lt;strong&gt;una&lt;/strong&gt; sola cosa. Cuéntanos que piensas de este formato en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+&quot;&gt;tuit&lt;/a&gt;. ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="tutoriales" />
+      
+        <category term="python" />
+      
+        <category term="altair" />
+      
+
+      
+        <summary type="html">Inauguramos la serie de tutoriales aprendiendo sobre geopandas y altair. Dos bibliotecas de python muy poderosas y cada día más populares para el análisis de datos geográficos y visualización de datos, respectivamente. Si utilizas python para tus proyectos de análisis de datos lo más probable es que hayas utilizado pandas en algún momento. GeoPandas es una optimización de pandas para trabajar con datos geográficos. En este tutorial aprenderemos lo siguiente: Como leer y manipular nuestros datos geográficos de formato .shp a .geojson también cambiamos el Sistema de Coordenadas de Referencia 👀 Como construir gráficos compuestos (en capas) con altair También aprendemos un poco sobre la anatomía de un gráfico en altair. nivel conocimiento asumido principiante-intermedio asumimos conocimientos básicos de python, jupyter y familiaridad con pandas.Conocimiento básico de altair ayuda mucho pero no es necesario. Este tutorial es interactivo. Utilizamos la plataforma mybinder.org para que no tengas que instalar nada y puedas seguir el tutorial tan sólo dándole clic a la medalla. MyBinder creará un espacio en sus servidores donde activará una sesión de Jupyter Lab con el material. Tú sólo tienes que seguir el notebook. Si lo que quieres es descargar el material y probarlo en tu computador puedes clonar el repo de GitHub. Este tutorial esta etiquetado como principiante-intermedio porque no es material introductorio a geopandas, altair o jupyter. ¿Estabas buscando eso? No te preocupes, ¡guías y tutoriales introductorios vienen en camino a tacosdedatos! Por último, este es el primer tutorial que publicamos. Estamos experimentando con el formato y decidimos hacerlo interactivo, simple y directo - te concentras en aprender una sola cosa. Cuéntanos que piensas de este formato en un tuit. ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en tacosdedatos? Envianos un correo a ✉️ sugerencias@tacosdedatos.com.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/pytest/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/pytest/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Probando nuestro código con pytest</title>
+      <link href="https://old.tacosdedatos.com/pruebas-unitarias-pytest" rel="alternate" type="text/html" title="Probando nuestro código con pytest" />
+      <published>2020-05-12T10:00:00+00:00</published>
+      <updated>2020-05-12T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pruebas-unitarias-pytest</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pruebas-unitarias-pytest">&lt;h4 id=&quot;aviso&quot;&gt;Aviso&lt;/h4&gt;
+&lt;p&gt;A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la &lt;a href=&quot;https://tacosdedatos.com/generacion-automatica-datasets&quot;&gt;generación automática de datasets&lt;/a&gt;; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta.&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-es-pytest&quot;&gt;¿Qué es &lt;em&gt;pytest&lt;/em&gt;?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;pytest&lt;/em&gt; es un &lt;em&gt;framework&lt;/em&gt; para Python que ofrece la recolección automática de los &lt;em&gt;tests&lt;/em&gt;, aserciones simples, soporte para &lt;em&gt;fixtures&lt;/em&gt;, &lt;em&gt;debugeo&lt;/em&gt; y mucho más… no te preocupes si algunas de estas palabras no te hacen mucho sentido; intentaré aclararlos más adelante a lo largo de este post.&lt;/p&gt;
+
+&lt;p&gt;Por cierto, &lt;em&gt;pytest&lt;/em&gt; no es el único &lt;em&gt;framework&lt;/em&gt; disponible; también está &lt;em&gt;nose&lt;/em&gt;, &lt;em&gt;doctest&lt;/em&gt;, &lt;em&gt;testify&lt;/em&gt;… pero &lt;em&gt;pytest&lt;/em&gt; es el que uso y de el que conozco más.&lt;/p&gt;
+
+&lt;p&gt;Para obtener &lt;em&gt;pytest&lt;/em&gt; lo puedes descargar desde PyPI con tu gestor de paquetes de elección:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pytest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;escribiendo-nuestros-tests&quot;&gt;Escribiendo nuestros &lt;em&gt;tests&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;Para escribir las pruebas es necesario escribir funciones que comiencen con el prefijo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_&lt;/code&gt;. Es necesario que las llamemos así ya que al momento de ejecutar &lt;em&gt;pytest&lt;/em&gt; debemos especificar un directorio raíz, a partir de este directorio &lt;em&gt;pytest&lt;/em&gt; leerá todos los archivos buscando funciones que comiencen con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_&lt;/code&gt;. Por ejemplo, si miras el &lt;a href=&quot;https://github.com/fferegrino/medium-collector&quot;&gt;repositorio de &lt;em&gt;medium-collector&lt;/em&gt;&lt;/a&gt;, verás que todos los &lt;em&gt;tests&lt;/em&gt; están contenidos dentro de un folder apropiadamente llamado &lt;em&gt;tests&lt;/em&gt;. Para ejecutar todas las pruebas, lo que tenemos que hacer es ejecutar &lt;em&gt;pytest&lt;/em&gt; con esta carpeta como argumento:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pytest tests/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;parametrizando-nuestras-pruebas&quot;&gt;Parametrizando nuestras pruebas&lt;/h2&gt;
+&lt;p&gt;Comencemos por escribir un test sencillo: una sola entrada, una sola salida. y sin llamadas a servicios externos. Me refiero a una función que toma una cadena codificada (como esta: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=?UTF-8?B?VGhlcmXigJlz?= more to the story&lt;/code&gt;) y regresa otra cadena (como esta: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;There’s more to the story&lt;/code&gt;), en este caso estoy hablando sobre la función &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/parser.py#L12&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get_subject&lt;/code&gt; method&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;subject_parts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;subjects&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subjects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;subject_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;utf8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;except&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;subject_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subject_parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para escribir una prueba unitaria es tan “simple” como hacer esto:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;There's more to the story&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;=?UTF-8?B?VGhlcmXigJlz?= more to the story&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sin embargo, esta funcion necesita ser probada con el caso en donde toda la cadena está codificada, o el caso en donde no lo está. Para cubrir estos casos tendríamos que escribir métodos como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_get_subject_all_encoded&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_get_subject_none_encoded&lt;/code&gt;, pero eso sería una duplicación absurda de código, para solucionar este problema de &lt;strong&gt;probar el mismo código con múltiples valores de entrada&lt;/strong&gt; podemos hacer uso de la &lt;strong&gt;parametrización&lt;/strong&gt; usando el decorador &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@pytest.mark.parametrize&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pytest&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parametrize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;input_subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;expected&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Input 1
+&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;=?UTF-8?B?V2hlbiBhICQxMDAsMDAwIFNhbGFyeSBJc27igJl0IEVub3VnaCB8IEFkYW0gUGFyc29ucyBpbiBNYWtpbmcgb2YgYSBNaWxsaW8=?= =?UTF-8?B?bmFpcmU=?=&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;When a $100,000 Salary Isn’t Enough | Adam Parsons in Making of a Millionaire&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Input 2
+&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;=?UTF-8?B?VGhlcmXigJlz?= more to the story&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+            &lt;span class=&quot;s&quot;&gt;&quot;There’s more to the story&quot;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Input 3
+&lt;/span&gt;        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;7 Things Rich People Advise But Never Do | David O. in The Startup&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot;7 Things Rich People Advise But Never Do | David O. in The Startup&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El código anterior le indica a &lt;em&gt;pytest&lt;/em&gt; que ejecute la prueba &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_get_subject&lt;/code&gt; tres veces, cada una reemplazando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;input_subject&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;expected&lt;/code&gt; con sus valores correspondientes especificados en el segundo argumento de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parametrize&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;fixtures&quot;&gt;Fixtures&lt;/h2&gt;
+&lt;p&gt;En algunas ocasiones tal vez tengamos &lt;strong&gt;pruebas que comiencen desde cierto estado&lt;/strong&gt;, este estado puede ser tener datos en una base de datos, tener archivos en alguna carpeta, o tal vez simplemente tener el objeto correcto como entrada a la función; es ahí donde las &lt;em&gt;fixtures&lt;/em&gt; son útiles.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo, en el repositorio de &lt;em&gt;medium-colletor&lt;/em&gt; hay una función llamada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parse_mail&lt;/code&gt; que, como el nombre lo sugiere, podemos usar para extraer información de un objeto de la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;email.message.Message&lt;/code&gt;. Esta es una versión simplificada de la implementación del método:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Message-ID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;to&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;To&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;from&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;From&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para probar esta función necesitamos un objeto de la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;, pero en realidad no quiero tener que conectarme a nuestro servidor de email cada vez que ejecutemos la prueba; este es el escenario perfecto para usar una &lt;em&gt;fixture&lt;/em&gt;. Para definir una, tenemos que isar algo como el siguiente código:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fixture&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dummy_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MIMEMultipart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;alternative&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Link&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;From&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;you@this.com&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;To&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;me@that.com&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Message-ID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;123&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%a, %d %b %Y %H:%M:%S +0000 (UTC)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hi!&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;lt;br&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MIMEText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;plain&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MIMEText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Lo primero que hay que notar es que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@pytest.fixture&lt;/code&gt; es usado como decorador de… ¿¡una función!? Sí, así es, una &lt;em&gt;fixture&lt;/em&gt; no es nada más que una función cuyo valor de retorno debe ser el valor que queremos que esa &lt;em&gt;fixture&lt;/em&gt; tenga. En este caso, el valor de nuestra &lt;em&gt;fixture&lt;/em&gt; será un objeto de la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MIMEMultipart&lt;/code&gt; que hereda de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt; que es justo lo que queremos.&lt;/p&gt;
+
+&lt;p&gt;Ahora, para usar nuestra &lt;em&gt;fixture&lt;/em&gt; llamada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dummy_mail&lt;/code&gt; en nuestra prueba es suficiente con pasarla como argumento en nuestra función de prueba:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dummy_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expected_mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ad841b37bd4b9b5403b575432f67f5ed2d68ed40&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;to&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;a4747a50dad63531704f5ab32509bb0c60b7350f&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;from&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;you@this.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Link&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ANY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dummy_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected_mail_info&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Hi!&amp;lt;br&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Cuando ejecutamos &lt;em&gt;pytest&lt;/em&gt;, este tratará de resolverlas antes de que se ejecute cualquier prueba que las use, y una ves que estas estén listas, los métodos de prueba reciben los valores especificados en cada método asociado. Este mecanismo permite algunos otros usos interesantes de los que hablaré más adelante.&lt;/p&gt;
+
+&lt;h3 id=&quot;una-característica-extra-de-las-fixtures&quot;&gt;Una característica extra de las &lt;em&gt;fixtures&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;Las &lt;em&gt;fixtures&lt;/em&gt; de &lt;em&gt;pytest&lt;/em&gt; son geniales, y otro de sus usos es cuando queremos reutilizar el mismo fragmento de código en dos o más funciones de prueba. Imagina que necesitamos usar un objeto de la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt; para dos pruebas. Podríamos haber declarado una variable global, digamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MESSAGE = MIMEMultipart(&quot;alternative&quot;)&lt;/code&gt; y después usarla en nuestros métodos así:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_parse_mail_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MESSAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ...
+&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_parse_mail_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MESSAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# ...
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pero en este caso, ambos tests estarían usando la misma variable, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MESSAGE&lt;/code&gt; lo que significa que cualquier cambio hecho por &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_parse_mail_1&lt;/code&gt; afectaría el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MESSAGE&lt;/code&gt; que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_parse_mail_2&lt;/code&gt; recibe, esto rompe el propósito de las pruebas unitarias, ya que nuestros &lt;em&gt;tests&lt;/em&gt; no estarían aislados. Sin embargo, cuando usamos &lt;em&gt;fixtures&lt;/em&gt;, cada función de prueba recibe una copia nueva de lo que sea que regrese nuestra función marcada con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@pytest.fixture&lt;/code&gt;, haciendo fácil y sencillo usarlas una y otra vez.&lt;/p&gt;
+
+&lt;h2 id=&quot;patching&quot;&gt;Patching&lt;/h2&gt;
+&lt;p&gt;Sin lugar a dudas, algunas partes de nuestro código dependerán de librerías de terceros o a servicios externos que no queremos ejecutar o contactar cuando ejecutamos nuestras pruebas. Ya sea porque la librería que estamos usando consume muchos recursos o es un sistema productivo que no debería ser tocado durante las pruebas, aquí es cuando el &lt;strong&gt;patching&lt;/strong&gt; brilla por su utilidad; este nos ayuda a &lt;strong&gt;reemplazar el comportamiento (o valores de retorno) de una llamada a una función&lt;/strong&gt; con lo que nosotros dispongamos.&lt;/p&gt;
+
+&lt;p&gt;Imagina que la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get_html&lt;/code&gt; contiene código que es muy &lt;em&gt;“costoso”&lt;/em&gt; ejecutar, y no lo queremos que este código se ejecute cada vez que llamamos al test &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test_parse_mail&lt;/code&gt;, entonces podemos &lt;em&gt;parcharlo&lt;/em&gt; (tengo que decir que el &lt;em&gt;patching&lt;/em&gt; no es una funcionalidad de &lt;em&gt;pytest&lt;/em&gt; si no que viene con Python por default).&lt;/p&gt;
+
+&lt;p&gt;Hay dos formas de &lt;em&gt;“parchar”&lt;/em&gt; nuestro código: una de ellas es haciendo uso de la instrucción &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with&lt;/code&gt;, pasando el nombre completo de la función que queremos &lt;em&gt;“parchar”&lt;/em&gt;. Un test que aplica un &lt;em&gt;patch&lt;/em&gt; a la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get_html&lt;/code&gt; dentro de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parse_email&lt;/code&gt; se vería así:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;unittest.mock&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dummy_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expected_mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ad841b37bd4b9b5403b575432f67f5ed2d68ed40&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# ...
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;medium_collector.download.parser.get_html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;return_value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;patched&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parse_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dummy_mail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;patched&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assert_called_once&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expected_mail_info&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoded&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En el fragmento anterior estamos &lt;em&gt;“parchando”&lt;/em&gt; la función y estableciendo el valor de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt; como su valor de retorno con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;return_value&lt;/code&gt;. Esto significa que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;Hello&quot;&lt;/code&gt; será regresado cada vez que la función es ejecutada. Ahora que la función original no es realmente ejecutada, es importante que nos cercioremos que nuestro código está llamando a esta función, para esto podemos utilizar el método &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assert_called_once&lt;/code&gt; para verificar que lo hemos llamado.&lt;/p&gt;
+
+&lt;h3 id=&quot;los-peligros-del-patching&quot;&gt;Los peligros del &lt;em&gt;patching&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;El &lt;em&gt;parcheo&lt;/em&gt; podría parecer una solución fácil para evitar conectarse con servicios externos o llamadas a funciones costosas. Pero debes tener en cuenta que cuando &lt;em&gt;parchamos&lt;/em&gt; algo, estamos asumiendo muchas cosas sobre el código que estamos &lt;em&gt;parchando&lt;/em&gt;, estas asunciones son:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sabemos el comportamiento esperado del código que estamos &lt;em&gt;parchando&lt;/em&gt;, es decir, sabemos sus valores de retorno y bajo que circunstancias falla.&lt;/li&gt;
+  &lt;li&gt;Puedes, con completa seguridad, regresar un objeto que se comporte como el valor que originalmente sería retornado por la función real.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cuando aplicas un parche a una función, toma en cuenta que esta puede retornar un valor “complejo” que sea difícil de reproducir, y que &lt;em&gt;“parcharlo”&lt;/em&gt; mal resultaría en tu código siendo probado ante un escenario que nunca ocurrirá en la vida real. Para evitar esto, tal vez tengas que examinar muy a detalla cuales son los valores de retorno de lo que estás &lt;em&gt;“parchando”&lt;/em&gt; con el fin de hacerlo correctamente.&lt;/p&gt;
+
+&lt;p&gt;Otro problema muy común con el &lt;em&gt;patching&lt;/em&gt; es que en nos podemos dejar llevar y terminar &lt;em&gt;“parchando”&lt;/em&gt; todo… lo que, a final de cuentas nos pone en la situación de estar probando nuestro código en escenarios poco realistas. Si en algún momento te encuentras haciendo esto, es mejor que te detengas y reconsideres si las pruebas unitarias son la mejor solución para probar tu código… tal vez las pruebas de integración sean una mejor solución para tu problema de &lt;em&gt;testing&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;fixtures-avanzadas&quot;&gt;&lt;em&gt;Fixtures&lt;/em&gt; avanzadas&lt;/h2&gt;
+&lt;p&gt;Como lo mencioné anteriormente, la forma en la que &lt;em&gt;pytest&lt;/em&gt; resuelve las &lt;em&gt;fixtures&lt;/em&gt; puede ser usada para darle a nuestro código más flexibilidad. En el repositorio de &lt;em&gt;medium-collector&lt;/em&gt; hay una función que carga algunos archivos a un &lt;em&gt;bucket&lt;/em&gt; de S3 usando la librería &lt;em&gt;boto&lt;/em&gt;, esta es la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload_files&lt;/code&gt;, que se ve más o menos así:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upload_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&quot;s3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;aws_access_key_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ACCESS_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;aws_secret_access_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SECRET_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;region_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eu-west-2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upload_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Claro que no quero estar conectándome a AWS cada vez que ejecuto las pruebas; aquí es donde la librería &lt;em&gt;moto&lt;/em&gt; aparece para rescatarme. En palabras de sus creadores: &lt;em&gt;“Moto es una librería que permite que tus tests fácilmente finjan comunicarse con servicios de AWS”&lt;/em&gt;. La forma en la que ellos sugieren usarla es a través de un manejador de contexto:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_my_model_save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'s3'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;region_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'us-east-1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para probar nuestra función debemos cumplir dos condiciones antes de llamar a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload_files&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Imitar S3; no queremos estar conectándonos a AWS en nuestras pruebas unitarias,&lt;/li&gt;
+  &lt;li&gt;Tener un &lt;em&gt;bucket&lt;/em&gt; que ya exista; nuestro código asume que uno ya existe&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Para lograr estas dos cosas con un &lt;em&gt;fixture&lt;/em&gt; podemos hacer algo como esto:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fixture&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_special_bucket&quot;&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pytest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fixture&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mock_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contextmanager&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_s3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;s3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;region_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eu-east-1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;create_bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inner&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Esta &lt;em&gt;fixture&lt;/em&gt; es, en realidad, una función (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inner&lt;/code&gt;) que gracias al decorador &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;contextmanager&lt;/code&gt; podemos llamar con la instrucción &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;with&lt;/code&gt;. En términos de la implementación puedes ver que estamos usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mock_s3&lt;/code&gt; como lo recomiendan los desarrolladores de &lt;em&gt;moto&lt;/em&gt;, dentro de este contexto creamos un cliente de &lt;em&gt;boto3&lt;/em&gt;, luego, dependiendo de un parámetro pasado a nuestra función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;inner&lt;/code&gt; decidimos si creamos o no la &lt;em&gt;bucket&lt;/em&gt;; por último, y como este se trata de un manejador de contexto usamos la instrucción &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yield&lt;/code&gt; que le indicará a &lt;em&gt;pytest&lt;/em&gt; que nuestra &lt;em&gt;fixture&lt;/em&gt; está lista para ser usada.&lt;/p&gt;
+
+&lt;p&gt;Ah, no sé si te diste cuenta, pero &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mock_storage&lt;/code&gt; toma como argumento otra &lt;em&gt;fixture&lt;/em&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bucket&lt;/code&gt; en este caso). Esa es otra de las excelentes características de &lt;em&gt;pytest&lt;/em&gt;: permite crear ciertas dependencias entre nuestras &lt;em&gt;fixtures&lt;/em&gt;, y esta es resuleta antes de que se ejecuten nuestras pruebas.&lt;/p&gt;
+
+&lt;p&gt;Ahora sí, estamos listos a probar nuestra función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;upload_files&lt;/code&gt; con esta función:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_upload_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mock_storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;create_bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;upload_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;files_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;s3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;region_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eu-east-1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;contents&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list_objects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Contents&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;practica&quot;&gt;¡Practica!&lt;/h2&gt;
+&lt;p&gt;Me hubiera encantado preparar un notebook o cualquier otra forma de entorno interactivo que pudieras usar para jugar y experimentar un poco con los &lt;em&gt;tests&lt;/em&gt;, pero creo que para este tema, es mejor que te ensucies las manos con un poco de código verdadero. Te invito a que descargues el código de la aplicación &lt;a href=&quot;https://github.com/fferegrino/medium-collector&quot;&gt;&lt;em&gt;medium-collector&lt;/em&gt; repo&lt;/a&gt; y ejecutes los test por ti mism@.&lt;/p&gt;
+
+&lt;h2 id=&quot;más-allá-de-las-pruebas-unitarias&quot;&gt;Más allá de las pruebas unitarias&lt;/h2&gt;
+&lt;p&gt;A pesar de que &lt;em&gt;pytest&lt;/em&gt; es fabuloso para realizar pruebas unitarias, nada nos detiene de usarlo para otras pruebas, aún más más complejas; hablo de pruebas de integración o tal vez hasta de &lt;em&gt;end-to-end&lt;/em&gt;. Con herramientas como &lt;em&gt;Docker&lt;/em&gt;, &lt;em&gt;localstack&lt;/em&gt; y otras más, es posible crear un poderos &lt;em&gt;framework&lt;/em&gt; de pruebas para todos tus proyectos de Python. En un post futuro voy a hablar de cómo es que se puede utilizar todo el poder de estas herramientas para crear un test de &lt;em&gt;end-to-end&lt;/em&gt;, así que asegúrate de seguir el blog y de seguirme en Twitter en &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Antonio Feregrino Bolaños</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="python" />
+      
+        <category term="pytest" />
+      
+
+      
+        <summary type="html">Aviso A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la generación automática de datasets; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

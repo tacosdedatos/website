@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/charlas/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/charlas/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Pronóstico de ventas - ARIMA</title>
+      <link href="https://old.tacosdedatos.com/pronostico-de-ventas-arima" rel="alternate" type="text/html" title="Pronóstico de ventas - ARIMA" />
+      <published>2020-04-15T09:34:00+00:00</published>
+      <updated>2020-04-15T09:34:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pronostico-de-ventas-arima</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pronostico-de-ventas-arima">&lt;p&gt;El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Se requieren pronósticos en muchas situaciones: decidir si se construirá otra planta de generación de energía en los próximos cinco años requiere pronósticos de la demanda futura; programar el personal en un centro de llamadas la próxima semana requiere pronósticos de volúmenes de llamadas; almacenar un inventario requiere pronósticos de los requisitos de stock. Se pueden requerir pronósticos con varios años de anticipación (para el caso de inversiones de capital), o solo unos minutos antes (para el enrutamiento de telecomunicaciones). Cualesquiera que sean las circunstancias o los horizontes de tiempo involucrados, el pronóstico es una ayuda importante para una planificación efectiva y eficiente.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Algunas cosas son más fáciles de pronosticar que otras. La hora del amanecer mañana por la mañana se puede pronosticar con precisión. Por otro lado, los números de lotería de mañana no se pueden pronosticar con precisión. 
+La previsibilidad de un evento o una cantidad depende de varios factores que incluyen:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Qué tan bien entendemos los factores que contribuyen a ello;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Cuántos datos hay disponibles;&lt;/li&gt;
+  &lt;li&gt;Si los pronósticos pueden afectar lo que estamos tratando de pronosticar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;En el siguiente video se expone como realizar un pronóstico de ventas usando los &lt;strong&gt;modelos econométricos ARIMA&lt;/strong&gt; usando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RStudio&lt;/code&gt; . Les recomiendo mucho que lo revisen con detenimiento y que lo repliquen con sus propios datos, el código lo pueden descargar acá -&amp;gt; &lt;a href=&quot;https://github.com/MontielMauricio/ARIMA&quot;&gt;https://github.com/MontielMauricio/ARIMA&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/6pYto7y0KTA&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Quiero agradecer a &lt;strong&gt;tacosdedatos&lt;/strong&gt; por permitirme compartir mi conocimiento con todos ustedes a través de este blog. Procuraré subir contenido de alta calidad para aportar a esta excelente comunidad. Si así lo desean pueden agregarme como contacto en mi cuenta de &lt;a href=&quot;https://www.linkedin.com/in/mauriciomontiel&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Con eso me despido. Tómense un tiempo para ver los demás videos que tengo en el canal de &lt;a href=&quot;https://www.youtube.com/channel/UCmzIHZGEwUyb7luzTu6N85g?view_as=subscriber&quot;&gt;YouTube&lt;/a&gt; y cuéntame que piensas en un &lt;a href=&quot;https://twitter.com/MauMontielE&quot;&gt;tuit&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Mauricio Montiel Espinoza</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="R" />
+      
+        <category term="tutoriales" />
+      
+        <category term="charlas" />
+      
+
+      
+        <summary type="html">El pronóstico ha fascinado a las personas durante muchos años. En este post exploraremos uno de los métodos más confiables para producir pronósticos. Se hará hincapié en los métodos que son replicables y comprobables, y se ha demostrado que funcionan.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">PyCon 2019 - PyCon Charlas y tutorial de Pandas</title>
+      <link href="https://old.tacosdedatos.com/pycon-2019" rel="alternate" type="text/html" title="PyCon 2019 - PyCon Charlas y tutorial de Pandas" />
+      <published>2019-05-07T08:00:00+00:00</published>
+      <updated>2019-05-07T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/pycon-2019</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/pycon-2019">&lt;p&gt;La semana pasada Cleveland, Ohio fue el lugar más mágico del planeta por una razón: PyCon US 2019.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;img src=&quot;../assets/blogposts/004_Cleveland.jpg&quot; alt=&quot;Cleveland con la raza&quot; /&gt;
+&lt;figcaption style=&quot;text-align:center&quot;&gt;foto por Denny (&lt;a href=&quot;https://twitter.com/dennyperez18&quot;&gt;@dennyperez18&lt;/a&gt;)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este año tuve la oportunidad de atender una PyCon por primera vez. Para quien no sepa: PyCon (de &lt;em&gt;Python Conference&lt;/em&gt;) es una conferencia anual atendida por personas de &lt;strong&gt;todo&lt;/strong&gt; el mundo. Conocí gente de Colombia, Argentina, Brasil, Nicaragua, España, República Dominicana, Puerto Rico, Australia, Siria, y muchos otros paises los 4 días que estuve ahí.&lt;/p&gt;
+
+&lt;p&gt;Pero más que compartir mi experiencia personal quiero compartir rápidamente 3 cositas:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Python&lt;/code&gt; tiene un sinfín de aplicaciones&lt;br /&gt;
+ En las #PyConCharlas tuve la oportunidad de aprender de profesionales que utilizan &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; en campos que jamás hubiera imaginado. Resolviendo crímenes en Argentina, vigilando al gobierno en Brasil, creando geometrías fantásticas, y muchas otras cosas más. Les recomiendo ver estas charlas ya que todo está en YouTube.&lt;br /&gt;¡Son de 20-25 minutos!
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/videoseries?list=PLPbTDk1hBo3zUw1o802TTPu4tjD4ZtW8f&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Mi tutorial de Pandas está disponible en español&lt;br /&gt;
+ PyCon se encarga de publicar &lt;strong&gt;todas&lt;/strong&gt; las platicas en YouTube para que, aunque no hayas ido, todos tengan acceso a este conocimiento. Esto incluye los tutoriales. Esto se me hace increíble ya que para entrar a estos tutoriales tenías que pagar $150. Aún así todo esto esta disponible de manera gratuita en YouTube. Aquí esta mi tutorial en inglés:
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/sGtCgYWzOV4&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+    &lt;p&gt;¡Y también traduje el tutorial a español! &lt;br /&gt;Si quieres seguir el tutorial en tu propio navegador puedes visitar &lt;a href=&quot;https://bit.ly/DATOS-CENSALES-PYCON2019&quot;&gt;bit.ly/DATOS-CENSALES-PYCON2019&lt;/a&gt;. El repositorio de GitHub se encuentra por acá -&amp;gt; &lt;a href=&quot;https://github.com/chekos/analizando-datos-censales&quot;&gt;https://github.com/chekos/analizando-datos-censales&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;¡PyCon Latinoamérica viene este agosto a México!&lt;br /&gt;
+ &lt;img src=&quot;../assets/blogposts/004_pyconlatam.jpg&quot; alt=&quot;pycon latam&quot; /&gt;&lt;br /&gt;
+ El último día para proponer una charla es el 31 de mayo. Si quieres aprender más de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python&lt;/code&gt; o visitar Puerto Vallarta o ambos, ve a &lt;a href=&quot;https://pylatam.org/&quot;&gt;pylatam.org&lt;/a&gt; para reservar tus boletos y a &lt;a href=&quot;https://papercall.io/pyconlatam&quot;&gt;papercall.io/pyconlatam&lt;/a&gt; para proponer una charla.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Para terminar, quiero agradecerle a todos y cada una de las personas que hacen &lt;strong&gt;tacosdedatos&lt;/strong&gt; posible. Acabamos de llegar a 1000 seguidores en twitter. Esta es una comunidad increíble de gente amable, curiosa, y, como decimos en México, chingona. Todas las personas que conocí en PyCon son increíbles. Todas las personas con las que he interactuado &lt;em&gt;online&lt;/em&gt; a través de &lt;a href=&quot;https://twitter.com/tacosdedatos&quot;&gt;@tacosdedatos&lt;/a&gt; son increíbles.&lt;/p&gt;
+
+&lt;p&gt;Y con eso me despido. Tómense un tiempo para ver las PyCon Charlas y &lt;a href=&quot;https://twitter.com/share?text=+%pyconcharlas+muchas+gracias+&quot;&gt;¡envíen un tuit agradeciendoles el trabajo que hacen!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Cuéntanos que piensas en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+yo+tambien+quiero+ir+a+pycon+latam+%40pylatam&quot;&gt;tuit&lt;/a&gt;. 
+¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="pycon" />
+      
+        <category term="tutoriales" />
+      
+        <category term="charlas" />
+      
+
+      
+        <summary type="html">La semana pasada Cleveland, Ohio fue el lugar más mágico del planeta por una razón: PyCon US 2019.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

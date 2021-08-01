@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/kaggle/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/kaggle/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Generando datasets de Kaggle automáticamente</title>
+      <link href="https://old.tacosdedatos.com/generacion-automatica-datasets" rel="alternate" type="text/html" title="Generando datasets de Kaggle automáticamente" />
+      <published>2020-03-11T10:00:00+00:00</published>
+      <updated>2020-03-11T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/generacion-automatica-datasets</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/generacion-automatica-datasets">&lt;p&gt;Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré &lt;em&gt;“Detrás de la visualización”&lt;/em&gt; para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería de datos. &lt;em&gt;Y es que, además de preparar los tacos, también es bueno saber cómo conseguir los ingredientes.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;PD: Mira cuál es el resultado de lo que estoy explicando aquí: &lt;a href=&quot;https://www.kaggle.com/ioexception/medium-daily-digests&quot;&gt;Medium Daily Digests on Kaggle&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;fuente-de-los-datos-y-su-recolección&quot;&gt;Fuente de los datos y su recolección&lt;/h2&gt;
+
+&lt;p&gt;Ya tenía tiempo queriendo hacer un dataset con información extraída de Medium.com. Al principio, pensé en hacer &lt;em&gt;web scraping&lt;/em&gt; masivamente en las publicaciones de Medium; el problema es que no proporcionan un sitio web ni fácil de &lt;em&gt;crawlear&lt;/em&gt; ni fácil de extraer información… luego pensé en ese “Medium Daily Digest”, un &lt;em&gt;newsletter&lt;/em&gt; que recibo todos los días, en él, Medium me envía historias que “me pueden interesar”; Recuerdo que cuando me suscribí, tuve que elegir mis temas preferidos, y desde entonces siempre recibo un correo con artículos sobre ellos.&lt;/p&gt;
+
+&lt;p&gt;Con eso en mente, me propuse crear 20 cuentas de correo electrónico diferentes (en realidad son alias para una sola cuenta) y luego usar cada una de ellas para suscribirse al mentado “Medium Daily Digest”, cada cuenta asociada con cinco diferentes (pero un tanto relacionados) temas. Y desde entonces he estado recibiendo 20 correos electrónicos, todos los días con títulos, subtítulos y URLs de posts.&lt;/p&gt;
+
+&lt;p&gt;De vez en cuando inicio sesión en esas cuentas, abro algunos correos electrónicos para evitar que dichas cuentas se eliminen de la sindicación de Medium &lt;a href=&quot;(https://www.theverge.com/2019/7/3/20681508/tracking-pixel-email-spying-superhuman-web-beacon-open-tracking-read-receipts-location)&quot;&gt;porque esta gente sabe cuándo no lees sus correos electrónicos&lt;/a&gt;. También es de esperarse que los temas que ofrecen puedan cambiar con el tiempo, y en algún momento los intereses asociados de algunas cuentas pueden cambiar, en ese caso tendré que iniciar sesión en Medium y modificar las cuentas  manualmente, pero en su mayor parte la recopilación de datos se ejecuta de manera automática.&lt;/p&gt;
+
+&lt;p&gt;Por cierto, no estoy seguro de si el conjunto de datos será útil para alguien, pero espero que la forma en que lo construí con Python sea útil para cualquiera con datos más importantes.&lt;/p&gt;
+
+&lt;h2 id=&quot;leyendo-los-correos-del-servidor&quot;&gt;Leyendo los correos del servidor&lt;/h2&gt;
+
+&lt;p&gt;Como lo mencioné anteriormente, los correos electrónicos llegan a mi cuenta, y no es divertido tener que descargar 20 correos electrónicos manualmente todos los días, por lo tanto, por primera vez en este artículo: Python al rescate.&lt;/p&gt;
+
+&lt;p&gt;Para acceder a los correos electrónicos en mi servidor, uso el protocolo IMAP; Esto me permite leerlos sin tenerlos que borrar del servidor, en caso de que quiera acceder a ellos en el futuro. Para esto, a pesar de que Python ofrece el módulo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;imaplib&lt;/code&gt; para interactuar con dichos servidores, decidí usar el paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;imapclient&lt;/code&gt; que, en mi opinión, hace que el código sea un poco más limpio y comprensible. Leer todos los correos electrónicos de una cuenta es tan fácil como muestra este fragmento de código:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;email&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;imapclient&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IMAPClient&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IMAPClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imap_server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use_uid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;search&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NOT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;DELETED&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message_id&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;fetched&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;RFC822&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fetched&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message_from_bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;RFC822&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email_message&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Como puede ver, usamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IMAPClient&lt;/code&gt; como &lt;em&gt;context manager&lt;/em&gt;, luego iniciamos sesión con nuestras credenciales de correo electrónico (sí, es una pena que tengamos que usar nuestra contraseña directamente); después de iniciar sesión, buscamos todos los correos electrónicos que no hemos eliminado (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NOT&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DELETED&lt;/code&gt;), esto devolverá una lista de cadenas que contienen los identificadores para cada mensaje; podemos iterar sobre estos identificadores y usar el cliente ejecutándo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; para obtener cada mensaje, especificando que queremos la propiedad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RFC822&lt;/code&gt; del correo electrónico.&lt;/p&gt;
+
+&lt;p&gt;El valor de retorno de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch&lt;/code&gt; será un diccionario de la forma &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{ message_id: { b&quot;RFC822&quot;: (bytes) } }&lt;/code&gt;, podemos transformar fácilmente estos bytes en una representación de correo electrónico más pytónica mediante el uso de la función &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message_from_bytes&lt;/code&gt;. Puedes ver mi implementación real en la función &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/reader.py#L6&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read_from_mail&lt;/code&gt;&lt;/a&gt; en mi repositorio.&lt;/p&gt;
+
+&lt;h2 id=&quot;extrayendo-datos-del-correo-electrónico&quot;&gt;Extrayendo datos del correo electrónico&lt;/h2&gt;
+
+&lt;p&gt;Teniendo un correo electrónico con el que sea fácil trabajar en Python, me referiré una publicación anterior sobre &lt;a href=&quot;https://dev.to/fferegrino/reading-emails-with-python-4o72&quot;&gt;cómo leer trabajar con correos electrónicos con Python&lt;/a&gt;. Una vez que podemos &lt;em&gt;“leer”&lt;/em&gt; el mensaje, podemos acceder a propiedades como &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;To&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;From&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt; y &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Date&lt;/code&gt;, así como acceder al contenido real del correo electrónico. Para referencia, mira este fragmento de código donde &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message&lt;/code&gt; es lo que obtenemos al llamar a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message_from_bytes&lt;/code&gt; en el fragmento de código anterior:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datetime&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;quopri&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;part&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_content_type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;part&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;part&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()}&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quopri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decodestring&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/html&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;   
+&lt;span class=&quot;n&quot;&gt;mail_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Message-ID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;  
+    &lt;span class=&quot;s&quot;&gt;&quot;to&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;To&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;  
+    &lt;span class=&quot;s&quot;&gt;&quot;from&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;From&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;  
+    &lt;span class=&quot;s&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strptime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;%a, %d %b %Y %H:%M:%S +0000 (%Z)&quot;&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El resultado final de este fragmento es producir un diccionario (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mail_info&lt;/code&gt;) que contenga información básica del correo electrónico y la versión html del correo electrónico (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;html&lt;/code&gt;). Puedes ver mi implementación real en la función &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/parser.py#L34&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parse_mail&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para trabajar con el HTML del correo electrónico utilicé BeautifulSoup, no entraré en detalles, pero como siempre en &lt;em&gt;web scraping&lt;/em&gt;, fue un proceso de prueba y error obtener la estructura adecuada para extraer información del contenido del correo. Puedes ver la función de extracción completa &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/master/medium_collector/download/parser.py#L50&quot;&gt;aquí&lt;/a&gt;, todo se reduce a una lista de diccionarios (uno para cada publicación en el correo electrónico) con la siguiente información: &lt;em&gt;section_title&lt;/em&gt;, &lt;em&gt;post_title&lt;/em&gt;, &lt;em&gt;post_subtitle&lt;/em&gt;, &lt;em&gt;post_url&lt;/em&gt;, &lt;em&gt;author_name&lt;/em&gt;, &lt;em&gt;author_handle&lt;/em&gt;, &lt;em&gt;site_name&lt;/em&gt;, &lt;em&gt;site_slug&lt;/em&gt;, &lt;em&gt;members_only&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/jmkVSgz.png&quot; alt=&quot;Extraction description&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;(en restrospectiva, pude haber extraído el tiempo de lectura… tal vez para la siguiente versión)&lt;/small&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;guardando-la-información&quot;&gt;Guardando la información&lt;/h2&gt;
+
+&lt;p&gt;Después de descargar la información, esta es almacenada en dos archivos csv:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;mails.csv&lt;/em&gt;, que es un archivo de todos los correos electrónicos recibidos, este contiene:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;id&lt;/strong&gt;: un identificador único del correo electrónico&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;date&lt;/strong&gt;: la fecha y hora en que se recibió el correo electrónico&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;to&lt;/strong&gt;: un hash de la cuenta de correo electrónico a la que se envió este correo electrónico&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;from&lt;/strong&gt;: la cuenta de correo electrónico utilizada para enviar el correo electrónico (siempre es la misma)&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;subject&lt;/strong&gt;:  el asunto del correo electrónico&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;articles_mails.csv&lt;/em&gt;, contiene la información extraída de cada correo electrónico, asociada al correo electrónico del que provienen:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;mail_id&lt;/strong&gt;: un identificador único del correo electrónico del que proviene este artículo, corresponde a &lt;strong&gt;id&lt;/strong&gt; en el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mails.csv&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;post_url&lt;/strong&gt;: la url del artículo&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;post_title&lt;/strong&gt;: el título del artículo&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;post_subtitle&lt;/strong&gt;: el subtítulo del artículo&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;section_title&lt;/strong&gt;: el título de la sección en la que encontró la publicación&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;members_only&lt;/strong&gt;: una bandera que especifica si el artículo es para miembros de Medium&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;author_name&lt;/strong&gt;: nombre del autor del artículo&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;author_handle&lt;/strong&gt;: identificador del autor del artículo&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;site_name&lt;/strong&gt;: si el artículo se publicó en un sitio, este contiene el nombre de dicho sitio&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;site_slug&lt;/strong&gt;: si el artículo se publicó en un sitio, este contiene el identificador de dicho sitio&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para escribir toda esta información en los archivos, utilicé el módulo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;csv&lt;/code&gt; siempre confiable, en particular, la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DictWriter&lt;/code&gt; que permite el uso de diccionarios cuando se llama al método &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writerow&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;csv&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;EMAILS_FILE_HEADERS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;to&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;from&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;emails&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;date&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; 
+           &lt;span class=&quot;s&quot;&gt;&quot;to&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;cosme@fulanito.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;from&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;noreply@medium.com&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	   &lt;span class=&quot;s&quot;&gt;&quot;subject&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Don't miss this!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;w&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;writer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DictWriter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;writable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fieldnames&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EMAILS_FILE_HEADERS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;writer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;writeheader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emails&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;n&quot;&gt;writer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;writerow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;En realidad, lo que hago es un poco más complicado, ya que quiero agregar filas al conjunto de datos de forma incremental; por lo tanto, el archivo debe abrirse con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;a&quot;&lt;/code&gt; como modo de archivo, no con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;w&quot;&lt;/code&gt; y es necesario tener especial cuidado para no escribir los encabezados en el medio del archivo tampoco. Puedes verificar toda la implementación de las funciones de escritura en &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/writer.py&quot;&gt;este fragmento de código&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;cargando-la-información-a-s3&quot;&gt;Cargando la información a S3&lt;/h2&gt;
+
+&lt;p&gt;Pero, ¿de qué sirven estos datos si van a vivir guardados en mi computadora? Para superar este problema, pensé en cargar los datos en un &lt;em&gt;bucket&lt;/em&gt; de S3, para que estén disponibles para descargarlo en cualquier lugar que lo necesite. Para acceder a cualquier recurso de AWS, mi herramienta favorita es el paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boto3&lt;/code&gt; que es una verdadera navaja suiza para AWS.&lt;/p&gt;
+
+&lt;p&gt;Supongamos que desea cargar el archivo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;medium_data/mails.csv&lt;/code&gt; en el bucket &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;medium_bucket&quot;&lt;/code&gt; y que se llame &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;mails.csv&quot;&lt;/code&gt;, el siguiente código será suficiente:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;boto3&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_super_cool_bucket&quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boto3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;  
+	&lt;span class=&quot;s&quot;&gt;&quot;s3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;aws_access_key_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ACCESS_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;aws_secret_access_key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SECRET_KEY&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;  
+	&lt;span class=&quot;n&quot;&gt;region_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eu-west-2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upload_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;medium_data/mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pero no quiero seguir cargando el mismo archivo una y otra vez si no hay necesidad de hacerlo. Para lograr esto, es posible verificar si el archivo existe en nuestro &lt;em&gt;bucket&lt;/em&gt; y resumir su contenido con un hash &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;md5&lt;/code&gt; generado por el propio AWS. Entonces es solo una cuestión de comparar dicho hash con el hash del archivo local y si son iguales, no subo el archivo:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hashlib&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_file_hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;   
+	&lt;span class=&quot;n&quot;&gt;hash_md5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hashlib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+	&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+		&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chunk&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;iter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4096&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;sa&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+			&lt;span class=&quot;n&quot;&gt;hash_md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chunk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hash_md5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hexdigest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head_object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;md5_signature&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_file_hash&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;medium_data/mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ETag&quot;&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;literal_eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ETag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;md5_signature&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;# The file already exists, do nothing
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upload_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;medium_data/mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mails.csv&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;El método al que se debe llamar para obtener información para un objeto es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;head_object&lt;/code&gt;. Por cierto, toda la lógica y la implementación están en &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/s3.py&quot;&gt;este archivo&lt;/a&gt; si quieres verlo.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Algunas consideraciones&lt;/em&gt;: para este ejemplo, consideré que el &lt;em&gt;depósito&lt;/em&gt; ya existe, sin embargo, si no existe, también es posible usar &lt;em&gt;boto&lt;/em&gt; para crearlo. Como dije, &lt;em&gt;boto&lt;/em&gt; es un monstruo de biblioteca que debes considerar si trabajas con AWS. También estoy usando las credenciales directamente en la llamada a la creación del cliente para &lt;em&gt;s3&lt;/em&gt;, pero hay varias formas de manejar la autenticación con &lt;em&gt;boto&lt;/em&gt;, consulta la documentación para obtener más información.&lt;/p&gt;
+
+&lt;h2 id=&quot;cargando-los-datos-a-kaggle&quot;&gt;Cargando los datos a Kaggle&lt;/h2&gt;
+
+&lt;p&gt;Hasta ahora, todo va muy bien, pero el conjunto de datos todavía está disponible para mí, y aunque podría hacer público mi &lt;em&gt;bucket&lt;/em&gt; de s3, hay algunos problemas con esto:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;No quiero que mi factura de S3 suba por el cielo si alguien con intenciones maliciosas se apodera de mi s3&lt;/li&gt;
+  &lt;li&gt;Quiero que la gente use los datos, y con una url de s3 no es muy fácil de descubrir o promocionar el &lt;em&gt;dataset&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Pero hay un buen lugar para almacenar conjuntos de datos, es gratuito y, al mismo tiempo, indexa los datos y los hace visibles al público en generar. Estoy hablando de Kaggle.&lt;/p&gt;
+
+&lt;p&gt;Kaggle hace que sea relativamente fácil interactuar con algunos de los recursos que ofrece el sitio web a través de su paquete &lt;a href=&quot;https://github.com/Kaggle/kaggle-api&quot;&gt;kaggle-api&lt;/a&gt;. En general, promueven la interacción a través de la línea de comando, sin embargo, también es posible utilizar la API programática que alimenta el &lt;em&gt;cli&lt;/em&gt;. Para cargar una nueva versión de mi conjunto de datos tuve que hacer algo como esto:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;kaggle&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;api&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;upload_to_kaggle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_folder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataset_create_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_folder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quiet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+	
+&lt;span class=&quot;n&quot;&gt;upload_to_kaggle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;medium_data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;A new version of this dataset&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Y eso es todo. Realmente, es así de fácil. Pero no tan rápido, es decir, si queremos actualizar un conjunto de datos, si estamos creando uno desde cero, primero debemos realizar tres cosas:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Crear una carpeta (por ejemplo, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;medium_data&quot;&lt;/code&gt;) donde solo existen los archivos correspondientes a nuestro conjunto de datos&lt;/li&gt;
+  &lt;li&gt;Tener un archivo llamado &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dataset-metadata.json&lt;/code&gt; en esa carpeta con los metadatos para su conjunto de datos, el aspecto del archivo debe parecerse al siguiente (pero puedes revisar el de mi app &lt;a href=&quot;https://github.com/fferegrino/medium-collector/blob/v0.0.0/data/dataset-metadata.json&quot;&gt;para un ejemplo más concreto&lt;/a&gt;):&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;title&quot;: &quot;My Awesome Dataset&quot;, 
+  &quot;id&quot;: &quot;cosme_fulanito/my-awesome-dataset&quot;, 
+  &quot;licenses&quot;: [{&quot;name&quot;: &quot;CC0-1.0&quot;}]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;Ejecutar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kaggle datasets create -p medium_data&lt;/code&gt; en la consola, o usar el método &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dataset_create_new&lt;/code&gt; programáticamente.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Realicé esas tareas manualmente, ya que no es como si anduviera creando &lt;em&gt;datasets&lt;/em&gt; a cada rato, sino que simplemente los estoy tratando de actualizar, tu caso de uso puede ser diferente.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Algunas consideraciones&lt;/em&gt;: al igual que AWS, Kaggle también ofrece algunas formas de autenticación con su servicio, utilicé el que más promocionan: un archivo kaggle.json en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~/.kaggle&lt;/code&gt;, pero puede usar algo diferente.&lt;/p&gt;
+
+&lt;h2 id=&quot;pruebas&quot;&gt;Pruebas&lt;/h2&gt;
+
+&lt;p&gt;Al igual que con cualquier pieza de software que se pondrá en producción y que se ejecutará sin supervisión (sin mencionar que mi factura de s3 depende de que esto funcione correctamente), es bueno tener algunas pruebas solo para asegurarse de que haga lo que programamos. Sin embargo, inicialmente tenía la intención de escribir sobre las pruebas en esta publicación, pero este post ya es suficientemente largo, por lo que publicaré cómo probé la aplicación en una publicación futura, así que asegúrate de seguirme si quieres aprender sobre pruebas, &lt;em&gt;patching&lt;/em&gt; y &lt;em&gt;mocks&lt;/em&gt; (incluyéndo pruebas con servicios de AWS).&lt;/p&gt;
+
+&lt;h3 id=&quot;preguntas-comentarios&quot;&gt;¿Preguntas? ¿comentarios?&lt;/h3&gt;
+
+&lt;p&gt;No olvides que me puedes dejar un comentario aquí o enviarme un tuit en &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;, con gusto te ayudo si las cosas no están claras o necesitas más explicación sobre el código. Recuerda que la aplicación completa está &lt;a href=&quot;https://github.com/fferegrino/medium-collector/tree/v0.0.0&quot;&gt;disponible en GitHub&lt;/a&gt; para que puedas jugar con el código.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Antonio Feregrino Bolaños</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="python" />
+      
+        <category term="kaggle" />
+      
+
+      
+        <summary type="html">Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré “Detrás de la visualización” para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería de datos. Y es que, además de preparar los tacos, también es bueno saber cómo conseguir los ingredientes.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

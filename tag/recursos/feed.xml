@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/recursos/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/recursos/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Gráficos Waffle en Excel y Google Sheets en 5 pasos.</title>
+      <link href="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets" rel="alternate" type="text/html" title="Gráficos Waffle en Excel y Google Sheets en 5 pasos." />
+      <published>2019-03-27T08:00:00+00:00</published>
+      <updated>2019-03-27T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/graficos-waffle-en-excel-y-google-sheets">&lt;p&gt;Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_1.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;En este pequeño tutorial vamos a aprender a crear este tipo de gráficos en Google Sheets ya que es más accesible - solo necesitas acceso a una cuenta de google. Todo lo que hagamos aquí funciona en Excel también.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-1-prepara-una-cuadrícula-10x10&quot;&gt;Paso 1: Prepara una cuadrícula 10x10.&lt;/h2&gt;
+&lt;p&gt;El gráfico se crea manipulando los colores de las celdas. No es un gráfico como los más comunes en excel (de barras o líneas), es decir, no es un gráfico que &lt;em&gt;insertas&lt;/em&gt; al que le conectas celdas y modificas sus propiedades y atributos. &lt;br /&gt;
+Toma 10 lineas y 10 columnas, llénalas de los valores 0 a 1 en incrementos de un centésimo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_2.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Con la siguiente formula puedes llenar más rápidamente tus celdas:&lt;/p&gt;
+&lt;pre&gt;=(COLUMNS($C2:C$11)+10*(ROWS($C2:C$11)-1))/100&lt;/pre&gt;
+
+&lt;p&gt;Yo estoy usando los valroes de C2 a C11 porque ahí comienza mi cuadrícula. Asegúrate de que tus valores concuerden con los de tu cuadrícula.&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-2-agregale-el-color-de-fondo&quot;&gt;Paso 2: Agregale el color de fondo.&lt;/h2&gt;
+&lt;p&gt;Cambia el color de tus números y de las celdas al color que quieras que sea &lt;em&gt;el fondo&lt;/em&gt; de tu gráfico. Te recomiendo escoger un valor claro. En este caso utilizamos un verde claro:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_3.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-3-escoge-la-celda-que-va-a-servir-como-indicador&quot;&gt;Paso 3: Escoge la celda que va a servir como indicador.&lt;/h2&gt;
+&lt;p&gt;Escoge una celda que contenga el número (o porcentaje en este caso) que ilustrarás con tu waffle.
+En nuestro caso va a ser la celda &lt;strong&gt;A2&lt;/strong&gt;. &lt;br /&gt;
+&lt;strong&gt;nota&lt;/strong&gt;: Aquí escogemos una valor inventado pero podrías escoger una celda que contenga alguna estadística de alguna tabla que tengas en tu planilla. La &lt;em&gt;celda indicadora&lt;/em&gt; no tiene que ser un valor estático, puede contener una fórmula - el promedio, la suma, la diferencia de otros valores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_4.png&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;paso-4-agrega-un-formato-condicional-a-tu-cuadrícula&quot;&gt;Paso 4: Agrega un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula.&lt;/h2&gt;
+&lt;p&gt;Este es el paso clave. Cuando agregas un &lt;em&gt;formato condicional&lt;/em&gt; a tu cuadrícula vas a poder &lt;em&gt;pintar&lt;/em&gt; las celdas de tu waffle &lt;em&gt;interactivamente&lt;/em&gt; modificando sólo el valor de la celda que haz escogido como indicador.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/003_ejemplo_5.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;ojo&quot;&gt;Ojo:&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;formato condicional&lt;/em&gt; tienes que escoger &lt;strong&gt;igual o menor que&lt;/strong&gt; al valor de tu &lt;em&gt;celda indicadora&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Cuando escoges tu &lt;em&gt;celda indicadora&lt;/em&gt; tienes que utilizar el formato &lt;strong&gt;=$A$2&lt;/strong&gt;. Es decir: el signo de &lt;strong&gt;=&lt;/strong&gt; y tu celda con los símbolos &lt;strong&gt;$&lt;/strong&gt; antes de la letra y el número. Eso le dice a Excel y Google Sheets que esta fórmula es &lt;em&gt;estática&lt;/em&gt; y aplica así como esta a todas las celdas de tu cuadrícula.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;paso-5-listo&quot;&gt;Paso 5: ¡Listo!&lt;/h2&gt;
+&lt;p&gt;Ya solo tienes que estilizar tu gráfico como te guste. Yo te recomiendo:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Utilizar bordes claros en el interior de tu cuadrícula y oscuros en el borde más externo.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_6.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Agregale un título.
+ &lt;img src=&quot;../assets/blogposts/003_ejemplo_7.gif&quot; alt=&quot;grafico waffle con google sheets&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Aqui te dejo el enlace a la planilla original en &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1f1-1J7SXMn4R9OW2XwRLYs8aGy3cB9ITFoy62ZCYHQc/edit?usp=sharing&quot;&gt;Google Drive&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Este tutorial esta etiquetado como &lt;strong&gt;principiante&lt;/strong&gt; ya que solo necesitas tener acceso a una cuenta google y seguir estos simples pasos.&lt;/p&gt;
+
+&lt;p&gt;Para terminar, este es el primer tutorial que publicamos sobre excel/google sheets. Estamos creciendo en &lt;strong&gt;tacosdedatos&lt;/strong&gt; y queremos saber si te gusta el formato o tienes sugerencias. Cuéntanos que piensas de este formato en un &lt;a href=&quot;https://twitter.com/share?text=%40tacosdedatos+sobre+el+tutorial+yo+pienso+que+&quot;&gt;tuit&lt;/a&gt;. ¿Tienes ideas o sugerencias sobre que más deberíamos cubrir en &lt;strong&gt;tacosdedatos&lt;/strong&gt;? Envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="recursos" />
+      
+        <category term="tutoriales" />
+      
+        <category term="excel" />
+      
+        <category term="google sheets" />
+      
+        <category term="principiante" />
+      
+
+      
+        <summary type="html">Hay veces que un gráfico pastel no es suficiente, es cuando llegan los waffles.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">ggplot2 + BBC = bbplot</title>
+      <link href="https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot" rel="alternate" type="text/html" title="ggplot2 + BBC = bbplot" />
+      <published>2019-03-12T12:00:00+00:00</published>
+      <updated>2019-03-12T12:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot">&lt;!-- Load Thebelab for interactive widgets --&gt;
+&lt;!-- Include Thebelab for interactive code if it's enabled --&gt;
+
+&lt;script type=&quot;text/x-thebe-config&quot;&gt;
+    {
+      bootstrap: false,
+      requestKernel: true,
+      binderOptions: {
+        repo: 'tacosdedatos/probando-bbplot',
+        ref: 'master',
+      },
+      kernelOptions: {
+        name: 'ir',
+      },
+      codeMirrorConfig: {
+        theme: 'panda-syntax',
+        mode: 'r'
+      }
+    }
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/thebelab@0.3.3/lib/index.js&quot;&gt;&lt;/script&gt;
+
+&lt;style&gt;
+.ghost-button {
+  display: inline-block;
+  background-color: transparent;
+  width: 250px;
+  padding: 8px;
+  color: #676B79;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+
+.jp-RenderedText pre {
+    color: #000;
+    background-color: transparent;
+}
+
+.thebelab-cell {
+    width: 100%;
+    max-width: 100%;
+}
+
+.thebelab-button {
+    width: 50%;
+    max-width: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    background-color: #FCFCFC;
+    border: #FCFCFC;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.post-full-content pre code {
+    padding: 0px 0px 0px 6px;
+}
+  
+&lt;/style&gt;
+&lt;blockquote&gt;
+
+&lt;/blockquote&gt;
+&lt;div class=&quot;ghost-button&quot;&gt;
+    &lt;button id=&quot;activateButton&quot; class=&quot;ghost-button&quot;&gt;✨ activar código ✨&lt;/button&gt;
+    &lt;script&gt;
+        var bootstrapThebe = function() {
+            thebelab.bootstrap();
+        }
+        document.querySelector(&quot;#activateButton&quot;).addEventListener('click', bootstrapThebe)
+        document.querySelector(&quot;#activateButton&quot;).addEventListener('click', changeNames)
+        
+        function changeNames() {
+                run_button = document.getElementsByClassName(&quot;thebelab-run-button&quot;)
+                for(i=0;i &lt;= run_button.length -1; i++) {
+                    run_button[i].innerText = 'ejecutar'
+                    run_button[i].className += ' ghost-button'
+                    // run_button[i].setAttribute('style', 'height: 20px')
+                }
+                restart_button = document.getElementsByClassName(&quot;thebelab-restart-button&quot;)
+                for(i=0;i&lt;= restart_button.length -1; i++) {
+                    restart_button[i].innerText = 'reiniciar'
+                    restart_button[i].className += ' ghost-button'
+                    // restart_button[i].setAttribute('style', 'height: 20px')
+                }
+
+
+        }        
+   
+    &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; es un paquete del lenguage &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R&lt;/code&gt; para la visualización de datos. El par de &lt;strong&gt;G&lt;/strong&gt;s en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; es de &lt;em&gt;Grammar of Graphics&lt;/em&gt; o la &lt;strong&gt;&lt;em&gt;Gramática de Gráficos&lt;/em&gt;&lt;/strong&gt; - un lenguaje simple e intuitivo para &lt;em&gt;construir&lt;/em&gt; gráficos.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Una gramática de gráficos es una herramienta que nos permite describir de manera concisa los componentes de un gráfico. Dicha gramática nos permite ir más allá de los gráficos con nombre (por ejemplo, el &lt;strong&gt;gráfico de dispersión&lt;/strong&gt;) y obtener información sobre la estructura profunda que subyace en los gráficos estadísticos. &lt;br /&gt; - &lt;strong&gt;&lt;em&gt;Hadley Wickham&lt;/em&gt;&lt;/strong&gt;, creador del &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tidyverse&lt;/code&gt; en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R&lt;/code&gt; en su arículo &lt;strong&gt;A Layered Grammar of Graphics (2010)&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;qué-es-bbplot&quot;&gt;¿Qué es &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt;?&lt;/h3&gt;
+&lt;p&gt;A finales de enero del 2019, la BBC publicó el paquete &lt;a href=&quot;https://github.com/bbc/bbplot&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt;&lt;/a&gt; y un &lt;a href=&quot;https://bbc.github.io/r-cookbook&quot;&gt;&lt;em&gt;libro de recetas&lt;/em&gt;&lt;/a&gt; para crear varios gráficos listos para publicación con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt;. &lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;La meta es crear un proceso de creación de gráficos más reproducible y de paso ayudarle a principiantes de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R&lt;/code&gt; a hacer gráficos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; es un paquete que transforma un gráfico creado con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; agregándole el &lt;em&gt;estilo&lt;/em&gt; de la BBC.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/blogposts/002_bbplot_ejemplo.png&quot; alt=&quot;ggplot2 + bbc_style = bbplot&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;Ejemplos de gráficos con el estilo de la BBC&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; es esencialmente dos funciones:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbc_style()&lt;/code&gt;: añade atributos a tu gráfico de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt;. &lt;br /&gt;
+Lo único que necesitas hacer es agregar la línea &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+ bbc_style()&lt;/code&gt; a tu gráfico de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; para transformarlo en algo que pareciera haber salido de un artículo de la BBC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div style=&quot;float:left;width:49%&quot;&gt;
+          &lt;img src=&quot;../assets/blogposts/002_bbplot_ejemplo_2.jpg&quot; alt=&quot;gráfico de ggplot2&quot; style=&quot;max-width:100%&quot; /&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;float:right;width:49%&quot;&gt;
+          &lt;img src=&quot;../assets/blogposts/002_bbplot_ejemplo_3.jpg&quot; alt=&quot;gráfico de ggplot2 + bbc_style&quot; style=&quot;max-width:100%&quot; /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;La diferencia entre estos dos gráficos es &lt;/i&gt;&lt;span style=&quot;font-family:monospace&quot;&gt;+ bbc_style()&lt;/span&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finalise_plot()&lt;/code&gt;: agrega los ultimos detalles a tu gráfico y lo guarda como imagen &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.png&lt;/code&gt;. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;la-meta-de-este-artículo-es-ilustrar-lo-que-puedes-hacer-con-el-paquete-bbplot&quot;&gt;La meta de este artículo es ilustrar lo que puedes hacer con el paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Sin más preambulo veamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; en acción. En &lt;strong&gt;tacosdedatos&lt;/strong&gt; acabamos de agregar una magia antigüa para poder hacer nuestros artículos más interactivos 🔮👀 (se llama &lt;a href=&quot;https://thebelab.readthedocs.io/&quot;&gt;thebelab&lt;/a&gt;). &lt;br /&gt;
+Si vas al inicio de esta página verás el botón &lt;em&gt;✨ activar código ✨&lt;/em&gt;. Al hacer clic transformarás ciertas celdas de código aquí debajo en celdas ejecutables. Estas celdas &lt;em&gt;activadas&lt;/em&gt; son editables así que te invito a que cambies el código para personalizar los gráficos un poco como se te ocurra. Detrás de todo esto esta el poder de &lt;a href=&quot;https://mybinder.org/&quot;&gt;MyBinder&lt;/a&gt; un proyecto del mismo equipo que te trajo &lt;a href=&quot;https://jupyter.org/&quot;&gt;Project Jupyter&lt;/a&gt; del cual aprenderemos más adelante.&lt;/p&gt;
+
+&lt;h3 id=&quot;primero-necesitas-cargar-los-paquetes-necesarios&quot;&gt;Primero necesitas cargar los paquetes necesarios&lt;/h3&gt;
+&lt;p&gt;En el &lt;em&gt;libro de recetas&lt;/em&gt; publicado en conjunto con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; la BBC sugiere utilizar el paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman&lt;/code&gt; para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library(&quot;dplyr&quot;)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library(&quot;tidyr&quot;)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;library(&quot;gapminder&quot;)&lt;/code&gt;, etc. pero en un sólo comando. &lt;br /&gt;
+&lt;em&gt;NOTA: La primera línea del código instala &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman&lt;/code&gt; si no lo tienes.&lt;/em&gt;&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;if(!require(pacman))install.packages(&quot;pacman&quot;)
+
+pacman::p_load('dplyr', 'tidyr', 'gapminder',
+               'ggplot2',  'ggalt',
+               'forcats', 'R.utils', 'png', 
+               'grid', 'ggpubr', 'scales',
+               'bbplot')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Mucho ojo&lt;/strong&gt;, nosotros ya tenemos instalado el paquete &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt;. Si no lo haz instalado el código aquí arriba resultará en un error.&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; no está en &lt;a href=&quot;https://cran.r-project.org/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CRAN&lt;/code&gt;&lt;/a&gt;, el sistema central de paquetes de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R&lt;/code&gt; del que normalmente descargarías un paquete nuevo. &lt;br /&gt;
+A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; lo instalas desde &lt;em&gt;GitHub&lt;/em&gt; con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devtools&lt;/code&gt;. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos (&lt;em&gt;aunque con todos los que hablé en preparación para este artículo me lo contaron como si fuera algo simple y sencillo…&lt;/em&gt; 🙄).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 1&lt;/strong&gt;: instala &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devtools&lt;/code&gt;, el paquete que te ayuda a instalar paquetes de &lt;em&gt;GitHub&lt;/em&gt;. Este si existe en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CRAN&lt;/code&gt; así que solo necesitas ejecutar:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;devtools&quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Paso 2&lt;/strong&gt;: instala &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; utilizando &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devtools&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;devtools::install_github(&quot;bbc/bbplot&quot;)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Mucho ojo (parte 2)&lt;/strong&gt;, existe un sinfín de razones por las cuales esto no funcione en ciertos sistemas. Por ejemplo, el servidor conectado a esta página donde estás ejecutando código está basado en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Linux&lt;/code&gt; (Ubuntu 16.04, creo) y por alguna razón no podíamos instalarlo con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devtools&lt;/code&gt;. Lo que tuvimos que hacer es clonar el repositorio &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbc/bbplot&lt;/code&gt;, instalarlo como &lt;strong&gt;source&lt;/strong&gt; y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos más.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;#clona el repositorio. ocupas tener git instalado.
+git clone https://github.com/bbc/bbplot.git
+# dile a R que instale el paquete
+R --quiet -e &quot;install.packages('bbplot', repos = NULL, type = 'source')&quot;
+# borra la carpeta de tu area de trabajo
+## En sistemas Linux/MacOS
+rm -rf bbplot #'rmdir /s /q bbplot' en Windows&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;Ya que tenemos todos los paquetes instalados y cargados en nuestro entorno podemos hacer nuestros gráficos. Utilizaremos los datos de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gapminder&lt;/code&gt; los cuales puedes instalar también de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CRAN&lt;/code&gt;. &lt;br /&gt;
+&lt;a href=&quot;https://gapminder.org/&quot;&gt;Gapminder&lt;/a&gt; &lt;em&gt;“es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global”&lt;/em&gt; a través de datos.&lt;br /&gt;
+&lt;strong&gt;&lt;em&gt;nota: todo esto asume que ya fuiste al inicio de la página a activar el código 👀 y ejecutaste la celda que carga los paquetes con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman&lt;/code&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+pais = &quot;Colombia&quot;
+datos_para_linea &amp;lt;- gapminder %&amp;gt;%
+  filter(country == pais) 
+
+# crea el gráfico
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = &quot;#1380A1&quot;, size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour=&quot;#333333&quot;) + 
+  labs(title=&quot;Pura Vida&quot;, 
+         subtitle = paste(&quot;Esperanza de Vida en &quot;, pais, &quot; 1952-2007&quot;)) + 
+  bbc_style()
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;Pero vayamos paso a paso. &lt;br /&gt;
+&lt;strong&gt;Paso 0&lt;/strong&gt;: Cargas tus datos.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+# Arabia Saudita sería 'Saudi Arabia', por ejemplo.
+pais = &quot;Colombia&quot;
+datos_para_linea &amp;lt;- gapminder %&amp;gt;%
+  filter(country == pais)
+
+head(datos_para_linea)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 1&lt;/strong&gt;: Crea un gráfico y asígnale lo que &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; llama &lt;em&gt;aesthethic mappings&lt;/em&gt; o mapeos estéticos (cuando &lt;em&gt;mapeas&lt;/em&gt; o relacionas tus datos a una característica estética del gráfico). &lt;br /&gt;
+Es decir: &lt;em&gt;X es el año e Y es esperanza de vida&lt;/em&gt;.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Ya tenemos cargados los datos
+# crea el gráfico - paso 1
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 2&lt;/strong&gt;: Agrégale una &lt;em&gt;geometría&lt;/em&gt;. ¿Cómo vas a visualizar los valores &lt;em&gt;mapeados&lt;/em&gt;? &lt;br /&gt;
+En este caso con una línea:&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Ya tenemos cargados los datos
+# crea el gráfico - paso 2
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = &quot;#1380A1&quot;, size = 1)
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 3&lt;/strong&gt;: Agregamos una línea horizontal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;geom_hline&lt;/code&gt; en el valor 0 de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Y&lt;/code&gt;. &lt;br /&gt;
+Este paso es opcional pero recomendado - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Y&lt;/code&gt; representa Esperanza de Vida y estaría bueno que tu escala comience en 0.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Ya tenemos cargados los datos
+# crea el gráfico - paso 3
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = &quot;#1380A1&quot;, size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour=&quot;#333333&quot;)
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 4&lt;/strong&gt;: Güau que rápido vas. En este paso le agregamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;labels&lt;/code&gt; o etiquetas: Título y Subtítutlo.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Ya tenemos cargados los datos
+# crea el gráfico - paso 4
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = &quot;#1380A1&quot;, size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour=&quot;#333333&quot;) + 
+  labs(title=&quot;Pura Vida&quot;, 
+       subtitle = &quot;Esperanza de Vida en Colombia 1952-2007&quot;)
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Paso 5&lt;/strong&gt;: Agrégale &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+ bbc_style()&lt;/code&gt; y ¡ya quedó!&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Ya tenemos cargados los datos
+# crea el gráfico - paso 5
+línea &amp;lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = &quot;#1380A1&quot;, size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour=&quot;#333333&quot;) + 
+  labs(title=&quot;Pura Vida&quot;, 
+       subtitle = &quot;Esperanza de Vida en Colombia 1952-2007&quot;) + 
+  bbc_style()
+
+# muestra el gráfico
+línea
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Como puedes ver, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; es un paquete útil y muy fácil de usar. Te sirve para ahorrar tiempo en modificar cada uno de los aspectos de tu gráfico al darte un conjunto de atributos predeterminados (el estilo de la BBC). La segunda función de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; sirve para guardar tus gráficos en formato &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.png&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# finalise_plot() para guardar tu gráfico
+finalise_plot(plot_name = linea, # el nombre de tu gráfico en R
+              source_name = 'Gapminder', # la fuente de tus datos
+              save_filepath = &quot;ejemplo_1.png&quot;, # el nombre con el cual guardarlo
+              width_pixels = 500, # ancho
+              height_pixels = 500, # alto
+              logo_image_path = &quot;logo.png&quot;) # tu logo, si quieres.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/blogposts/002_bbplot_ejemplo_4.png&quot; alt=&quot;gráfico de bbplot con logo&quot; style=&quot;max-width:70%&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;Un gráfico finalizado con todo y el logo de &lt;strong&gt;tacosdedatos&lt;/strong&gt;&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;hr /&gt;
+&lt;h2 id=&quot;conclusión&quot;&gt;Conclusión&lt;/h2&gt;
+&lt;p&gt;Este es el primer artículo explorando paquetes/librerías para visualizar datos. Como otros productos de &lt;strong&gt;tacosdedatos&lt;/strong&gt;, queremos mantenerlos cortos y directos al punto, mostrandote a través de ejemplos el “que” y el “como”. Creemos que aprendemos más y mejor explorando.&lt;/p&gt;
+
+&lt;p&gt;¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? &lt;a href=&quot;https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit a @tacosdedatos&lt;/a&gt; o envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;. Y recuerda que puedes subscribirte a nuestro boletín al final de esta página. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.&lt;/p&gt;
+
+&lt;p&gt;¡Hasta la próxima! Te dejamos aquí debajo otros ejemplos.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h4 id=&quot;más-ejemplos&quot;&gt;Más ejemplos&lt;/h4&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Prepara los datos
+dumbbell_datos &amp;lt;- gapminder %&amp;gt;%
+  filter(year == 1967 | year == 2007) %&amp;gt;%
+  select(country, year, lifeExp) %&amp;gt;%
+  spread(year, lifeExp) %&amp;gt;%
+  mutate(gap = `2007` - `1967`) %&amp;gt;%
+  arrange(desc(gap)) %&amp;gt;%
+  head(10)
+
+# Hacemos el gráfico
+ggplot(dumbbell_datos, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
+  geom_dumbbell(colour = &quot;#dddddd&quot;,
+                size = 3,
+                colour_x = &quot;#FAAB18&quot;,
+                colour_xend = &quot;#1380A1&quot;) +
+  bbc_style() + 
+  labs(title=&quot;Güau, vivimos más y más&quot;,
+       subtitle=&quot;Cambios más grandes \nen esperanza de vida, 1967-2007&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A este par de ejemplos debajo puedes borrarles el &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#&lt;/code&gt; en la línea &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbc_style() +&lt;/code&gt; para &lt;em&gt;activar&lt;/em&gt; el estilo BBC.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Prepara los datos
+faceta &amp;lt;- gapminder %&amp;gt;%
+  filter(continent != &quot;Americas&quot;) %&amp;gt;%
+  group_by(continent, year) %&amp;gt;%
+  summarise(pop = sum(as.numeric(pop)))
+
+# Haz el gráfico
+grafico_faceteado &amp;lt;- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
+  scale_fill_manual(values = c(&quot;#FAAB18&quot;, &quot;#1380A1&quot;,&quot;#990000&quot;, &quot;#588300&quot;)) + 
+  facet_wrap( ~ continent, ncol = 5) + 
+  scale_y_continuous(breaks = c(0, 2000000000, 4000000000),
+                     labels = c(0, &quot;2bn&quot;, &quot;4bn&quot;)) +
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
+  geom_hline(yintercept = 0, size = 1, colour = &quot;#333333&quot;) +
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_blank()) +
+  labs(title = &quot;El rápido crecimiento de Asia&quot;,
+       subtitle = &quot;Crecimiento de población \npor continente, 1952-2007&quot;)
+
+grafico_faceteado
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Prepara los datos
+faceta &amp;lt;- gapminder %&amp;gt;%
+  filter(continent != &quot;Americas&quot;) %&amp;gt;%
+  group_by(continent, year) %&amp;gt;%
+  summarise(pop = sum(as.numeric(pop)))
+
+# Hagamos el gráfico
+grafico_faceteado_free &amp;lt;- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
+  facet_wrap(~ continent, scales = &quot;free&quot;) + 
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
+  scale_fill_manual(values = c(&quot;#FAAB18&quot;, &quot;#1380A1&quot;,&quot;#990000&quot;, &quot;#588300&quot;)) +
+  geom_hline(yintercept = 0, size = 1, colour = &quot;#333333&quot;) +
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(title = &quot;Todo es relativo&quot;,
+       subtitle = &quot;Crecimiento relativo de población \npor continente,1952-2007&quot;)
+
+grafico_faceteado_free
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;br /&gt;
+Este es un buen ejemplo de como solo añadir &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbc_style()&lt;/code&gt; al final de cualquier gráfico de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; no siempre es la mejor opción. La BBC utiliza marcas en sus ejes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; por defecto pero en este gráfico en particular toman mucho espacio. Así que primero &lt;em&gt;activamos&lt;/em&gt; el estilo BBC y &lt;em&gt;luego&lt;/em&gt; agregamos código que elimina las etiquetas en los ejes.&lt;/p&gt;
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Hagamos el gráfico
+datos = gapminder %&amp;gt;%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre data-executable=&quot;true&quot; data-language=&quot;R&quot;&gt;
+&lt;code class=&quot;language-r&quot;&gt;# Hagamos el gráfico
+datos = gapminder %&amp;gt;%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style() + 
+  theme(legend.position = &quot;none&quot;, 
+        axis.text.x = element_blank(),
+        # bbc_style agrega etiquetas en el eje X asi tenemos que agregar esto
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;bonus&quot;&gt;bonus&lt;/h3&gt;
+&lt;p&gt;Mira este super gif creado con &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ggplot2&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bbplot&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gganimate&lt;/code&gt; 😱&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/blogposts/002_bbplot_y_gganimate.gif&quot; alt=&quot;ggplot2 + bbplot + gganimate = güau&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;span style=&quot;font-family:monospace&quot;&gt;ggplot2 + bbplot + gganimate = güau&lt;/span&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Este es el código para hacerlo en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rstudio&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Carga todos tus paquetes
+library(ggplot2)
+library(bbplot)
+library(gganimate)
+library(gapminder)
+
+# Creas el gráfico
+animeishon &amp;lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+    geom_point(alpha = 0.7, show.legend = FALSE) +
+    scale_colour_manual(values = country_colors) +
+    scale_size(range = c(2, 12)) +
+    scale_x_log10() +
+    facet_wrap(~continent) + 
+	  bbc_style() + 
+    theme(legend.position = &quot;none&quot;,
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          plot.subtitle = element_text(size=12, face=&quot;italic&quot;,)) +
+    # Estos son los atributos especificos de gganimate
+    labs(title = 'Año: {frame_time}', subtitle = 'x: PIB per capita \ny: Esperanza de vida') +
+    transition_time(year) +
+    ease_aes('linear')
+
+animate(animeishon, nframes = 100, end_pause = 10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes copiar y pegar todo esto en &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rstudio&lt;/code&gt; sin necesidad de instalar nada en MyBinder.org haciendo clic aquí &lt;a href=&quot;https://mybinder.org/v2/gh/tacosdedatos/probando-bbplot/master?urlpath=rstudio&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Rstudio-579ACA.svg?logo=data:image/png;base64,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&quot; alt=&quot;badge&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="recursos" />
+      
+
+      
+        <summary type="html"></summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Datawrapper para visualizar datos sin saber programar</title>
+      <link href="https://old.tacosdedatos.com/Datawrapper-para-visualizar-datos-sin-saber-programar" rel="alternate" type="text/html" title="Datawrapper para visualizar datos sin saber programar" />
+      <published>2019-02-22T12:00:00+00:00</published>
+      <updated>2019-02-22T12:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/Datawrapper-para-visualizar-datos-sin-saber-programar</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/Datawrapper-para-visualizar-datos-sin-saber-programar">&lt;p&gt;Datawrapper es una herramienta de visualización de datos &lt;em&gt;“por periodistas, para periodistas”&lt;/em&gt;. No necesitas saber programar o de diseño para crear visualizaciones atractivas e interactivas en cuestión de minutos.&lt;/p&gt;
+
+&lt;p&gt;En esta publicación del blog quiero compartirles esta poderosa herramienta.&lt;/p&gt;
+&lt;figure&gt;
+&lt;iframe title=&quot;Gráfico: Estudiantes Extranjeros en Universidades de California&quot; aria-describedby=&quot;&quot; id=&quot;datawrapper-chart-SrMxE&quot; src=&quot;//datawrapper.dwcdn.net/SrMxE/2/&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;width: 0; min-width: 100% !important;&quot; height=&quot;284&quot;&gt;&lt;/iframe&gt;&lt;script type=&quot;text/javascript&quot;&gt;!function(){&quot;use strict&quot;;window.addEventListener(&quot;message&quot;,function(a){if(void 0!==a.data[&quot;datawrapper-height&quot;])for(var t in a.data[&quot;datawrapper-height&quot;]){var e=document.getElementById(&quot;datawrapper-chart-&quot;+t);e&amp;&amp;(e.style.height=a.data[&quot;datawrapper-height&quot;][t]+&quot;px&quot;)}})}();&lt;/script&gt;
+&lt;figcaption style=&quot;text-align:center&quot;&gt;Este gráfico fué creado con &lt;i&gt;&lt;a href=&quot;https://datawrapper.de/&quot;&gt;Datawrapper&lt;/a&gt;&lt;/i&gt; &lt;strong&gt;en 10 minutos.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;
+Existen muchas herramientas hoy en día para visualizar tus datos sin necesidad de escribir una sola línea de código. En &lt;strong&gt;tacosdedatos&lt;/strong&gt; planeamos compartir un pequeño resumen de cada una con sus ventajas y desventajas. Esta publicación es la primera de la serie.&lt;/p&gt;
+
+&lt;h2 id=&quot;qué-es-datawrapper&quot;&gt;¿Qué es Datawrapper?&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Datawrapper es una herramienta creada por un equipo de once personas.
+Trabajamos juntos para crear la mejor herramienta de gráficos para todos los que quieran mostrar sus datos en hermosos gráficos y mapas.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Esta herramienta para visualización de datos existe completamente en tu navegador (en &lt;a href=&quot;https://datawrapper.de/&quot;&gt;datawrapper.de&lt;/a&gt;) donde puedes construir gráficos elegantes, interactivos y, lo más importante, sin necesidad de saber programar.&lt;/p&gt;
+
+&lt;h2 id=&quot;ventajas-de-datawrapper&quot;&gt;Ventajas de Datawrapper&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Datawrapper asume cero conocimiento de diseño o programación de tu parte. &lt;br /&gt;
+Para trabajar con Datawrapper sólo necesitas tus datos y ya. Datawrapper se encarga hasta de escoger una paleta de colores inclusiva. &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/blogposts/001_dashboard.png&quot; alt=&quot;Datawrapper dashboard&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;Si decides escoger tus colores manualmente Datawrapper te hará saber si tu combinación será difícil de ver para personas con daltonismo.&lt;/i&gt;&lt;/figcaption&gt;
+   &lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Una interfáz intuitiva. &lt;br /&gt;
+Aunque su sitio es en inglés también es muy intuitivo y utilizan íconos para todo. No necesitas saber hablar o leer inglés para utilizar su servicio.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Todo es en tu navegador &lt;br /&gt;
+Datawrapper existe completamente en tu navegador sin la necesidad de descargar una aplicación de software. Esto significa puedes utilizarlo aún si trabajas en una oficina donde no tengas privilegios de administrador para instalar aplicaciones en tu computadora. No sé ustedes pero yo no puedo instalar nada sin tener que convencer a 3 personas de que es &lt;strong&gt;indispensable&lt;/strong&gt; que me pongan el programa que estoy pidiendo (lo que lo hace más difícil es que la mayoría de las veces no es indispensable 😜)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;desventajas&quot;&gt;Desventajas&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lo que ves es lo que hay. &lt;br /&gt;
+Datawrapper es &lt;strong&gt;muy&lt;/strong&gt; bueno para visualizar datos en los gráficos que tienen. Pero sólo en los gráficos que tienen. Es una selección amplia pero si lo que quieres es una herramienta para crear visualizaciones súper personalizadas, esta no es la indicada.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Tienes que limpiar tus datos antes de subirlos a Datawrapper. &lt;br /&gt;
+Datawrapper acepta archivos en formato &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.csv&lt;/code&gt; y excel además de Google Sheets. Pero no puedes manipular tus datos &lt;em&gt;en&lt;/em&gt; Datawrapper como lo podrías hacer en Tableau, por ejemplo. Esto es porque 1) Datawrapper vive en tu navegador y no es una aplicación como Tableau, y 2) porque Datawrapper es para visualizar datos, no para analizarlos.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;La visualización de datos no tiene que ser sinónimo de saber programar. Si nunca en tu vida has visto una terminal o escrito un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;¡Hola mundo!&lt;/code&gt; aún puedes visualizar datos de una manera elegante y eficáz. Datawrapper es una de las muchas herramientas con la que lo puedes lograr.&lt;/p&gt;
+
+&lt;p&gt;Si visitas &lt;a href=&quot;https://datawrapper.de&quot;&gt;Datawrapper&lt;/a&gt; podrás ver que grandes instituciones periodisticas lo utilizan actualmente.&lt;br /&gt;&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/blogposts/001_mapa.png&quot; alt=&quot;Datawrapper mapa&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;&lt;a href=&quot;https://datawrapper.de/&quot;&gt;Datawrapper&lt;/a&gt;&lt;/i&gt;&lt;/figcaption&gt;
+   &lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Para terminar te quiero compartir 3 puntos más relacionados a Datawrapper la empresa, no la herramienta:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Su blog semanal maravilloso llamado &lt;a href=&quot;https://blog.datawrapper.de&quot;&gt;&lt;strong&gt;Chartable&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Su sección &lt;em&gt;académica&lt;/em&gt; donde puedes aprender a crear todos los gráficos que ofrecen. Son tutoriales muy detallados y útiles. &lt;a href=&quot;https://academy.datawrapper.de&quot;&gt;&lt;strong&gt;Datawrapper Academy&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Su &lt;a href=&quot;https://river.datawrapper.de/&quot;&gt;&lt;strong&gt;River&lt;/strong&gt;&lt;/a&gt;, un &lt;em&gt;río&lt;/em&gt; de visualizaciones del que puedes tomar gráficos y sus datos y modificarlos a tu gusto.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;Este es el primer blog de la serie sobre herramientas para visualizar datos sin programación. Queremos mantenerlos cortos y directos al punto, listando ventajas y desventajas y uno que otro punto relevante. Creemos que aprendemos más y mejor explorando, lo que queremos hacer en &lt;strong&gt;tacosdedatos&lt;/strong&gt; es señalarte a donde ir.&lt;/p&gt;
+
+&lt;p&gt;¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? &lt;a href=&quot;https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit a @tacosdedatos&lt;/a&gt; o envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;. Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="recursos" />
+      
+
+      
+        <summary type="html">Datawrapper es una herramienta de visualización de datos “por periodistas, para periodistas”. No necesitas saber programar o de diseño para crear visualizaciones atractivas e interactivas en cuestión de minutos.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

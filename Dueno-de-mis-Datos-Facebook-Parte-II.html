@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Dueño de mis datos - Capítulo Facebook - Parte II</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dueño de mis datos - Capítulo Facebook - Parte II" />
+    <meta property="og:description" content="¡Text Mining! Es hora de entrarle a la onda de los diccionarios de palabras, los análisis de sentimientos y las gráficas de nube de palabras. Si quieren ver como obtener los datos con los que vamos a trabajar pueden verlo en la primera parte de esta serie. Solo para recordar" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/blogposts/017.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-05-18T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-05-18T10:00:00+00:00" />
+    <meta property="article:tag" content="Blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dueño de mis datos - Capítulo Facebook - Parte II" />
+    <meta name="twitter:description" content="¡Text Mining! Es hora de entrarle a la onda de los diccionarios de palabras, los análisis de sentimientos y las gráficas de nube de palabras. Si quieren ver como obtener los datos con los que vamos a trabajar pueden verlo en la primera parte de esta serie. Solo para recordar" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/blogposts/017.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Blog" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/blogposts/017.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II"
+    },
+    "description": "¡Text Mining! Es hora de entrarle a la onda de los diccionarios de palabras, los análisis de sentimientos y las gráficas de nube de palabras. Si quieren ver como obtener los datos con los que vamos a trabajar pueden verlo en la primera parte de esta serie. Solo para recordar"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Dueño de mis datos - Capítulo Facebook - Parte II" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-blog ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="18 May 2020">18 May 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>,
+                            
+                        
+                            
+                               <a href='/tag/facebook/'>FACEBOOK</a>,
+                            
+                        
+                            
+                               <a href='/tag/ggplot2/'>GGPLOT2</a>,
+                            
+                        
+                            
+                               <a href='/tag/r/'>R</a>,
+                            
+                        
+                            
+                               <a href='/tag/text-mining/'>TEXT-MINING</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Dueño de mis datos - Capítulo Facebook - Parte II</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/blogposts/017.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>¡Text Mining! Es hora de entrarle a la onda de los diccionarios de palabras, los análisis de sentimientos y las gráficas de nube de palabras.</p>
+
+<p>Si quieren ver como obtener los datos con los que vamos a trabajar pueden verlo <a href="https://tacosdedatos.com/dueno-de-mis-datos-facebook">en la primera parte</a> de esta serie.</p>
+
+<p>Solo para recordar el objetivo de esta serie:</p>
+
+<blockquote>
+  <p>… vamos a jugar con todos los posteos que hice en Facebook y todos los comentarios que puse a posteos de otras personas. Aprovechando el gran curso de Text Mining que <a href="https://twitter.com/jmtoralc">@jmtoral</a> nos dio durante la cuarentena, vamos a analizar mis textos e intentar encontrar algunas cosas interesantes. Al final, y porque nos gusta mucho, haremos gráficas y más gráficas.</p>
+</blockquote>
+
+<h2 id="un-poco-de-contexto-o-sea-mi-disclaimer">Un poco de contexto. O sea, mi <em>Disclaimer</em></h2>
+
+<p>La cuarentena me ha pegado duro como a la mayoría de la gente. Si le suman que previo a ella ya tenía 4 meses encerrado por una lesión, se podrán imaginar lo desesperado que he llegado a estar.</p>
+
+<p>Una forma en que yo logro manejar la ansiedad es estudiando, aprendiendo cosas nuevas y pasando horas practicándolas. Entiendo que eso no es para todos pero se los comparto por si les es de ayuda.</p>
+
+<p>Cuando <a href="https://twitter.com/jmtoralc">@jmtoral</a> avisó en Twitter que iba a dar un curso de Minería de Texto no dudé ni tantito en escribirme. Era un tema que desconocía por completo y que pensé que podría aplicar con los datos de Facebook que tenía parados desde hace unos meses.</p>
+
+<p>Dicho esto, por favor tengan en mente que lo que aqui haremos es una acercamiento al tema con las cosas que entendí y ,seguro también, con los errores de las cosas que aún no entiendo por completo. Lo importante es que se queden con una noción y empiecen a jugar.</p>
+
+<h2 id="guidelines-para-la-visualización"><em>Guidelines</em> para la visualización</h2>
+
+<p>Esta vez no hay bocetos en papel pero vamos a tocar un tema nuevo: los <em>guidelines</em>.</p>
+
+<p>Para las visualizaciones de los <a href="https://tacosdedatos.com/Primeros-pasos-con-ggplot-y-altair">Pats</a> y de <a href="https://tacosdedatos.com/Dueno-de-mis-Datos-Spotify">Spotify</a> me tuve que crear un par de <em>themes</em> para que las visualizaciones fueran consistentes. Eso son las <em>guidelines</em>. Sin embargo, estas gúias de estilo no son enchiladas. En aquellas ocasiones tardé mucho en elegir colores, tamaños de fuentes, espacios entre márgenes, etc.</p>
+
+<p>Todos sabemos que usar Comic Sans no es profesional para una dataviz, pero ¿por qué? Si van a hacer una gráfica, ¿porqué usarían Calibri, Arial o Times New Roman? Si van a combinar fuentes, ¿cuál va mejor con cúal?</p>
+
+<p>Afortunadamente hay un montón de UX, VD, entre otras profesiones, que se dedican a crear estas guías para sus organizaciones y muchas de ellas con públicas. Hay una buena lista <a href="https://docs.google.com/spreadsheets/d/1VhBBwSvIeiUL42eLQgoXb93Y1_LBUWTaW2OB-tXFYD0/edit#gid=1679646668">aquí</a> que tenemos a la mano gracias a la <a href="https://www.datavisualizationsociety.com/">Data Visualization Society</a>. Para este ejercicio decidí tomar como referencia la guía del <a href="https://urbaninstitute.github.io/graphics-styleguide/">Urban Institute</a>.</p>
+
+<p>Les dejo unos pedacitos de lo que pueden encontrar ahí:</p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/layout_guideline.png?raw=true" alt="layout" /></p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/color_guideline.png?raw=true" alt="color" /></p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/categorical_guideline.png?raw=true" alt="categorical" /></p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/tips_guidelines.png?raw=true" alt="tips" /></p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/maps_guidelines.png?raw=true" alt="maps" /></p>
+
+<p>Tener definidos colores, fuentes y tamaños es una ayudadota. El theme sale de volada:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Cargar la fuente desde mi Windows</span><span class="w">
+</span><span class="n">windowsFonts</span><span class="p">(</span><span class="n">`Lato`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">windowsFont</span><span class="p">(</span><span class="s2">"Lato"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Crear theme</span><span class="w">
+</span><span class="c1"># Inspirado en el styleguide del Urban Institute</span><span class="w">
+</span><span class="c1"># https://urbaninstitute.github.io/graphics-styleguide/</span><span class="w">
+
+</span><span class="n">theme_fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">theme</span><span class="p">(</span><span class="w">
+  </span><span class="c1">#Esto pone blanco el titulo , los ejes, etc</span><span class="w">
+  </span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'#FFFFFF'</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'#FFFFFF'</span><span class="p">),</span><span class="w">
+  </span><span class="c1">#Esto pone blanco el panel de la gráfica, es decir, sobre lo que van los bubbles</span><span class="w">
+  </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#FFFFFF"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"#FFFFFF"</span><span class="p">),</span><span class="w">
+  </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">panel.grid.major.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#DEDDDD"</span><span class="p">),</span><span class="w">
+  </span><span class="n">panel.grid.major.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="c1">#color = "#1db954",</span><span class="w">
+                      </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">),</span><span class="w">
+  </span><span class="c1"># limpiar la gráfica</span><span class="w">
+  </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">"#FFFFFF"</span><span class="p">),</span><span class="w">
+  </span><span class="c1">#axis.title=element_blank(),</span><span class="w">
+  </span><span class="n">axis.text</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">),</span><span class="w">
+  </span><span class="n">axis.ticks</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="w"> </span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w">
+                               </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+                               </span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w">
+                               </span><span class="n">color</span><span class="o">=</span><span class="s2">"#0D1F2D"</span><span class="w">
+                               </span><span class="p">),</span><span class="w">
+  </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="w"> </span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">15</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w">
+                               </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+                               </span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w">
+                               </span><span class="n">color</span><span class="o">=</span><span class="s2">"#0D1F2D"</span><span class="w">
+  </span><span class="p">),</span><span class="w">
+  </span><span class="c1"># ajustar titulos y notas</span><span class="w">
+  </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+                            </span><span class="n">size</span><span class="o">=</span><span class="m">18</span><span class="p">,</span><span class="w">
+                            </span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">15</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w">
+                            </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">  </span><span class="c1">#align left</span><span class="w">
+                            </span><span class="n">color</span><span class="o">=</span><span class="s2">"#0D1F2D"</span><span class="p">),</span><span class="w">
+  </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">,</span><span class="w">
+                               </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+                               </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">  </span><span class="c1">#align left</span><span class="w">
+                               </span><span class="n">margin</span><span class="o">=</span><span class="n">margin</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">25</span><span class="p">,</span><span class="m">0</span><span class="p">),</span><span class="w">
+                               </span><span class="n">color</span><span class="o">=</span><span class="s2">"#0D1F2D"</span><span class="p">),</span><span class="w">
+  </span><span class="n">plot.caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="w">
+    </span><span class="n">color</span><span class="o">=</span><span class="s2">"#0D1F2D"</span><span class="p">,</span><span class="w">
+    </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+    </span><span class="n">size</span><span class="o">=</span><span class="m">11</span><span class="p">,</span><span class="w">
+    </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1">#align left</span><span class="w">
+  </span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+  </span><span class="c1">#para los titulos del facet_wrap</span><span class="w">
+  </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">),</span><span class="w">
+  
+  </span><span class="n">complete</span><span class="o">=</span><span class="kc">FALSE</span><span class="w">
+</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#pequeño truco para crear el caption con negritas y que puedo reusar en las gráficas</span><span class="w">
+</span><span class="n">my_caption</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="nf">expression</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">bold</span><span class="p">(</span><span class="s2">"Fuente:"</span><span class="p">),</span><span class="w"> </span><span class="s2">" Datos proporcionados por Facebook para el usuario "</span><span class="p">,</span><span class="w"> </span><span class="n">bold</span><span class="p">(</span><span class="s2">"nerudista"</span><span class="p">)))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Los invito a intenten replicar alguna de las guías que vienen en la lista que está arriba y vean como sus visualizaciones empiezan a verse más profesionales. Después pueden crearse las propias que reflejen su estilo de visualización.</p>
+
+<h2 id="preparando-los-datos">Preparando los datos</h2>
+
+<p>Para poder trabajar con análisis de texto necesitamos crear un <em>corpus</em>. Es decir, un conjunto de documentos a analizar. En nuestro caso no basta solo con pegar los dos documentos (posts y comments) sino que hay que preprocesarlos para:</p>
+
+<ul>
+  <li>Crear una columna que nos diga si es un post o un comment (se me olvidó hacerlo en el <a href="https://tacosdedatos.com/Dueno-de-mis-Datos-Facebook">Python</a> pasado).</li>
+  <li>Quitar las <em>stopwords</em>. Es decir, las palabras que se repiten mucho y no nos sirven en el análisis (articulos, pronombres, conjunciones, etc).</li>
+  <li>Quitar números y puntuaciones.</li>
+</ul>
+
+<p>La primera parte es sencilla y podemos sacarla con este código:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># cargar archivos</span><span class="w">
+</span><span class="n">data_comments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./Datos/misComentarios.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">data_posts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./Datos/misPosts.csv"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Crear columan "tipo"</span><span class="w">
+</span><span class="n">data_comments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_comments</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  </span><span class="n">mutate</span><span class="p">(</span><span class="n">tipo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Comentario"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data_posts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_posts</span><span class="o">%&gt;%</span><span class="w">  </span><span class="n">mutate</span><span class="p">(</span><span class="n">tipo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Post"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">data_comments</span><span class="p">,</span><span class="w"> </span><span class="n">data_posts</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># cargar stopwords en español</span><span class="w">
+</span><span class="n">stop_words</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">stopwords</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">"es"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#cargar palabras que no eliminó el paquete tm::stopwords </span><span class="w">
+</span><span class="n">my_stop_words</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"si"</span><span class="p">,</span><span class="s2">"p"</span><span class="p">,</span><span class="s2">"d"</span><span class="p">,</span><span class="s2">"así"</span><span class="p">,</span><span class="s2">"tan"</span><span class="p">,</span><span class="s2">"!"</span><span class="p">,</span><span class="s2">"¡"</span><span class="p">,</span><span class="s2">"="</span><span class="p">,</span><span class="s2">"$"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"esposa"</span><span class="p">,</span><span class="s2">"de"</span><span class="p">,</span><span class="s2">"que"</span><span class="p">,</span><span class="s2">"a"</span><span class="p">,</span><span class="s2">"with"</span><span class="p">,</span><span class="s2">"to"</span><span class="p">,</span><span class="s2">"ps"</span><span class="p">,</span><span class="s2">"made"</span><span class="p">,</span><span class="s2">"nocroprc"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#Unir los dos vectores de stop words</span><span class="w">
+</span><span class="n">final_stop_words</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">stop_words</span><span class="p">,</span><span class="n">my_stop_words</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Tengan presente la variable <code class="language-plaintext highlighter-rouge">my_stop_words</code>. Más adelante vamos a ver porqué tuve que crearla.</p>
+
+<h2 id="creando-corpus-tokens-y-wordclouds">Creando <em>corpus, tokens y wordclouds</em></h2>
+
+<p><code class="language-plaintext highlighter-rouge">Quanteda</code> es un paquete en <code class="language-plaintext highlighter-rouge">R</code> que nos permite crear corpus, tokenizar y crear algunas gráficas. Otro paquete es <code class="language-plaintext highlighter-rouge">tm</code> pero ese lo vamos a utilizar más adelante.</p>
+
+<blockquote>
+  <p>Nota:
+Una de las cosas que más se me complican es saber a qué #BibliotecaNoLibreria corresponde cada comando. Para intentar que no les pase, voy a usar cada comando mencionando previamente la biblioteca, por ejemplo <code class="language-plaintext highlighter-rouge">tm::stopwords</code>. Si solo  pusiera <code class="language-plaintext highlighter-rouge">stopwords</code> también jalaría pero la idea es que sepan de donde viene cada comando.</p>
+</blockquote>
+
+<p>Convertir el dataframe en un corpus es bastante sencillo. Basta con este comando:</p>
+
+<p><code class="language-plaintext highlighter-rouge">corp_comments &lt;- quanteda::corpus(data$Comment)</code></p>
+
+<p>Lo que sigue es tokenizar (convertir cada palabra en un objeto que puede analizarse) y después quitar las palabras que no nos sirven. La premisa es que las palabras que más se repiten como los artículos, pronombres, preposiciones; son las que menos aportan al análisis. Las palabras que se repiten menos son las más características de nuestros textos y las que más nos pueden ayudar al análisis. Por eso es importante quitar la paja desde el principio.</p>
+
+<p>En mi primera ejecución quité los stopwords que vienen por default en <code class="language-plaintext highlighter-rouge">tm::stopwords</code> pero cuando vi los tokens me di cuenta que había muchas que no servían en para mi analisis en particular. A lo que voy es que deben entrar a ensuciarse con los datos antes de empezar a hacer cosas bonitas. Si conoces tus datos, les puedes sacar más jugo.</p>
+
+<p>Después de varias iteraciones saqué la lista de palabras que quería quitar y es entonces cuando creé la variable <code class="language-plaintext highlighter-rouge">my_stop_words</code>. Esta la que acabé usando para crear la que usé al final: <code class="language-plaintext highlighter-rouge">final_stop_words</code></p>
+
+<p>Con <code class="language-plaintext highlighter-rouge">Quanteda</code> podemos tokenizar y hacer limpieza en el mismo comando. Esto va a crear un objeto donde cada registro va a ser un token. Después necesitamos crear una <em>Document Feature Matrix (dfm)</em> que es otro tipo de objeto donde cada token se convierte en una “columna” en vez de un registro.</p>
+
+<p>El código es muy simple:</p>
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#creo un corpus con QUANTEDA con los comentarios</span><span class="w">
+</span><span class="n">corp_comments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">quanteda</span><span class="o">::</span><span class="n">corpus</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">Comment</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># voy a tokenizar cada post</span><span class="w">
+</span><span class="n">tok_comments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">quanteda</span><span class="o">::</span><span class="n">tokens</span><span class="p">(</span><span class="n">corp_comments</span><span class="p">,</span><span class="w">
+                 </span><span class="n">remove_numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                 </span><span class="n">remove_punct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">tokens_remove</span><span class="p">(</span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">final_stop_words</span><span class="p">,</span><span class="w">
+                </span><span class="n">valuetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'fixed'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># ahora voy a crear una matrix dfm</span><span class="w">
+</span><span class="n">dfmat_comments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">quanteda</span><span class="o">::</span><span class="n">dfm</span><span class="p">(</span><span class="n">tok_comments</span><span class="p">,</span><span class="n">remove_punct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Con el <em>dfm</em> podemos ya aplicar varios comandos para sacar las frecuencias de tokens, analisis de sentimientos o para crear nubes de palabras, entre otras cosas.</p>
+
+<p>Empecemos con una nube de palabras:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">132</span><span class="p">)</span><span class="w">
+</span><span class="n">quanteda</span><span class="o">::</span><span class="n">textplot_wordcloud</span><span class="p">(</span><span class="n">dfmat_comments</span><span class="p">,</span><span class="w">
+                   </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="o">::</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="s2">"RdBu"</span><span class="p">)),</span><span class="w">
+                   </span><span class="n">max_words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+                   </span><span class="n">random_order</span><span class="w"> </span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/wordcloud_quanteda.png?raw=true" alt="quanteda_wordcloud" /></p>
+
+<p>Y podemos ver que soy una persona muy agradecida y que mando muchos abrazos, jeje. Hay por ahí algunos hashtags que me recuerdan que use una app durante un tiempo para publicar fotos.</p>
+
+<p>Ahora vamos a repetir el proceso, con unas pequeñas variantes, pero ahora con <code class="language-plaintext highlighter-rouge">tidytext</code>.</p>
+
+<p>El principio es el mismo: vamos a leer el data frame, hacerle limpieza de dígitos y puntuaciones y después tokenizarlo.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">##### TIDYTEXT #####</span><span class="w">
+  
+  </span><span class="c1">#Voy a limpiar un poco la base para estandarizarla</span><span class="w">
+  
+  </span><span class="n">data.limpia</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iconv</span><span class="w"> </span><span class="p">(</span><span class="n">Comment</span><span class="p">,</span><span class="s2">"UTF-8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ASCII//TRANSLIT"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># QUITA ACENTOS Y CARAC. ESPECIALES</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="n">Comment</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_squish</span><span class="p">(</span><span class="n">Comment</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_remove_all</span><span class="p">(</span><span class="n">Comment</span><span class="p">,</span><span class="s2">"[[:punct:]]"</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">Comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str_remove_all</span><span class="p">(</span><span class="n">Comment</span><span class="p">,</span><span class="s2">"[[:digit:]]"</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> 
+  
+</span></code></pre></div></div>
+
+<p>Para tokenizar <code class="language-plaintext highlighter-rouge">tidytext</code> nos deja usar varias opciones:</p>
+
+<ul>
+  <li>word , para tokenizar por palabra.</li>
+  <li>sencence , para tokenizar por frase.</li>
+  <li>ngram, para tokenizar por agrupaciones de n-gramas (un bigrama son  dos palabras juntas, 4-grama son 4 palabras y así sucesivamente).</li>
+</ul>
+
+<p>Para variar un poco voy a ocupar la opción de 2-gramas y crear una wordcloud con la biblioteca del mismo nombre:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Ahora a tokenizar por palabra</span><span class="w">
+  </span><span class="n">tidy.tokens.word</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.limpia</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">tidytext</span><span class="o">::</span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">Comment</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1">#Ahora a tokenizar por oracion</span><span class="w">
+  </span><span class="c1">#Da casi lo mismo que la data.limpia.</span><span class="w">
+
+  </span><span class="n">tidy.tokens.sentence</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.limpia</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span><span class="w"> </span><span class="n">Comment</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sentences"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1">#Ahora por n-gramas</span><span class="w">
+  </span><span class="n">tidy.tokens.ngram</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.limpia</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">ngram</span><span class="p">,</span><span class="w"> </span><span class="n">Comment</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ngrams"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+  
+  
+  </span><span class="n">cuenta.ngramas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy.tokens.ngram</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">count</span><span class="p">(</span><span class="n">ngram</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="c1">#dplyr::filter(!ngram %in% tm::stopwords(kind="es")) %&gt;% </span><span class="w">
+    </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">ngram</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">final_stop_words</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">dplyr</span><span class="o">::</span><span class="n">filter</span><span class="p">(</span><span class="n">nchar</span><span class="p">(</span><span class="n">ngram</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+  
+  
+  </span><span class="c1">#Visualizar ngramas</span><span class="w">
+  </span><span class="n">cuenta.ngramas</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">with</span><span class="p">(</span><span class="n">wordcloud</span><span class="o">::</span><span class="n">wordcloud</span><span class="p">(</span><span class="n">ngram</span><span class="p">,</span><span class="w">
+                   </span><span class="n">n</span><span class="p">,</span><span class="w">
+                   </span><span class="n">max.words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w">
+                   </span><span class="n">random.order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                   </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="s2">"Paired"</span><span class="p">))))</span><span class="w">
+  
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/wordcloud_tm.png?raw=true" alt="wordcloud" /></p>
+
+<p>En el repo viene el código que tienen que agregar para que le den buen tamaño a la imagen y no se les corten palabras.</p>
+
+<h2 id="analisis-de-sentimientos">Analisis de sentimientos</h2>
+
+<p>Aprovechando que tenemos recién creado el objeto <code class="language-plaintext highlighter-rouge">tidy.tokens.word</code>, que contiene tokens por palabra, intentemos hacer algo de análisis de sentimientos. Para eso necesitamos usar un diccionario de palabras. Los más usadons son <strong>Affin, NRC y Bing</strong>. Cada uno tiene sus caracteristicas especiales. Si los buscan en Google hay buenos artículos que mencionan sus diferencias.</p>
+
+<p>Vamos a ocupar el diccionario AFFIN en español que ronda por la internet para ligarlo con cada uno de los tokens que tenemos. El diccionario lo que tiene es algo así:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Palabra</th>
+      <th>Puntuacion</th>
+      <th>Word</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>abandona</td>
+      <td>-2</td>
+      <td>abandons</td>
+    </tr>
+    <tr>
+      <td>abandonado</td>
+      <td>-2</td>
+      <td>abandoned</td>
+    </tr>
+    <tr>
+      <td>abandonar</td>
+      <td>-2</td>
+      <td>abandon</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Las palabras están puntuadas del -5 al 5.</p>
+
+<p>Vamos a unir el diccionario para luego agrupar por tipo de publicacion (post o comment), sumar la puntuacion de cada agrupación y hacer una gráfica para estrenar el <em>theme</em> que no hemos usado.</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ahora con afinn</span><span class="w">
+  </span><span class="n">afinn.esp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./datos/lexico_afinn.en.es.csv"</span><span class="p">,</span><span class="w">
+                        </span><span class="n">locale</span><span class="o">=</span><span class="n">locale</span><span class="p">(</span><span class="n">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"LATIN1"</span><span class="p">))</span><span class="w">
+  
+  </span><span class="n">fb.affin.esp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy.tokens.word</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">word</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">final_stop_words</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">inner_join</span><span class="p">(</span><span class="n">afinn.esp</span><span class="p">,</span><span class="w">
+               </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"word"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Palabra"</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">distinct</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">.keep_all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1">#graficar</span><span class="w">
+  </span><span class="n">fb.affin.esp</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">group_by</span><span class="p">(</span><span class="n">tipo</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">summarise</span><span class="p">(</span><span class="w"> </span><span class="n">neto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Puntuacion</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">tipo</span><span class="p">,</span><span class="w">
+                </span><span class="n">y</span><span class="o">=</span><span class="n">neto</span><span class="p">,</span><span class="w">
+                </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipo</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">()</span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_text</span><span class="p">(</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">tipo</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">neto</span><span class="p">,</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">neto</span><span class="p">),</span><span class="w">
+               </span><span class="n">nudge_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w">
+               </span><span class="n">family</span><span class="o">=</span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+               </span><span class="n">fontface</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">,</span><span class="w">
+               </span><span class="n">size</span><span class="o">=</span><span class="m">4.5</span><span class="w">
+               </span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Sentimiento por Tipo de Publicación"</span><span class="p">,</span><span class="w">
+         </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Calificación Obtenida Usando AFFIN"</span><span class="p">,</span><span class="w">
+         </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_caption</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#0a4c6a"</span><span class="p">,</span><span class="s2">"#cfe8f3"</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_fb</span><span class="w">
+  
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/afinn.png?raw=true" alt="affin_por_tipo" /></p>
+
+<p>Lo que se puede ver es que mis respuestas a posts de otros solían ser bastante positivos. Todo lo contrario a cuando hacá post propios. Tiene sentido para mí porque usualmente escribo para criticar algo o expresar mi rechazo hacia algo principalmente político (mi Twitter es un gran ejemplo de eso) mientras que solía responder a muchas publicaciones de cumpleaños de mis amigos. Si recordamos las salidas de ambas <em>wordclouds</em> podemos ver que lo que más decía era “gracias”, “abrazo” y “felicidades”.</p>
+
+<h2 id="en-serio-una-tercera-parte">¿En serio una tercera parte?</h2>
+
+<p>Sí. Porque nos falta jugar con diccionarios NRC, calcular el TF-IDF y encontrar tópicos usando LDA.</p>
+
+<p>Espero este blog les hay aparecido interesante y les den ganas de ir a pedir sus datos y jugar con ellos. Siéntanse libres de contactarme en mi Twitter  <a href="https://twitter.com/nerudista">@nerudista</a> si se les ofrece algo.</p>
+
+<p>Así que no se desesperen. La próxima semana se viene la última y nos vamos.
+***</p>
+
+<p>¿Qué te pareció la nota? <a href="https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE">Mandanos un tuit a @tacosdedatos</a> o <a href="https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+y+%40nerudista+%F0%9F%8C%AE">a @nerudista</a> o envianos un correo a <a href="mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;body=Hola-holaaa">✉️ sugerencias@tacosdedatos.com</a>. Y recuerda que puedes subscribirte a nuestro boletín semanal aquí debajo.</p>
+
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="nerudista" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/nerudista">Pablo Quetzalcóatl Vázquez</a></h4>
+                                
+                                    <p>Me encantan los datos y los deportes. Aprendiz eterno de BI, Dataviz y ahora de Python y R. También entrenador de Triatlón por si ocupan.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/nerudista">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II';
+                            this.page.identifier = 'Dueño de mis datos - Capítulo Facebook - Parte II';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/blog/">Blog</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/sidetable-el-beffo-de-pandas">Sidetable, el beffo de pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-III">Dueño de mis datos - Capítulo Facebook - Parte III</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/pruebas-unitarias-pytest">Probando nuestro código con pytest</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/blog/">
+                                
+                                    See all 22 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Dueno-de-mis-Datos-Facebook-Parte-III">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/018.PNG)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Dueno-de-mis-Datos-Facebook-Parte-III">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Facebook</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Ggplot2</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">R</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Text-mining</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Dueño de mis datos - Capítulo Facebook - Parte III</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="Pablo Quetzalcóatl Vázquez" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/nerudista/">Pablo Quetzalcóatl Vázquez</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/pruebas-unitarias-pytest">
+                <div class="post-card-image" style="background-image: url(/assets/detrasdelavis/002.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/pruebas-unitarias-pytest">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Python</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Pytest</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Probando nuestro código con pytest</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="Antonio Feregrino Bolaños" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/io_exception/">Antonio Feregrino Bolaños</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Dueño de mis datos - Capítulo Facebook - Parte II</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Due%C3%B1o+de+mis+datos+-+Cap%C3%ADtulo+Facebook+-+Parte+II&amp;url=https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-II"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

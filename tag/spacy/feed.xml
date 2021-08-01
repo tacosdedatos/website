@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/spacy/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/spacy/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Introducción al análisis de texto</title>
+      <link href="https://old.tacosdedatos.com/analisis-texto" rel="alternate" type="text/html" title="Introducción al análisis de texto" />
+      <published>2020-08-16T10:00:00+00:00</published>
+      <updated>2020-08-16T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/analisis-texto</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/analisis-texto">&lt;p&gt;¿Alguna vez has querido analizar texto? en este post voy a tratar de explicar cuáles son los primeros pasos recomendados para comenzar cualquier proyecto que involucre texto y ciencia de datos.&lt;/p&gt;
+
+&lt;h2 id=&quot;texto-como-datos&quot;&gt;Texto como datos&lt;/h2&gt;
+&lt;p&gt;Seguramente ya habrás escuchado algunas veces, o tu mismo has dicho “Hey Google” o “Hey Siri”, o tal vez te le has echado un ojo a tu filtro de spam… pero ¿te has preguntado cómo es que funcionan estos sistemas? como ya te imaginarás, la mayoría son aplicaciones de aprendizaje automático (o &lt;em&gt;machine learning&lt;/em&gt;) que son posibles gracias a muchos de los algoritmos tradicionales del aprendizaje máquina.&lt;/p&gt;
+
+&lt;p&gt;Sin embargo, no podemos nosotros simplemente agarrar un montón de texto y dárselo a un algoritmo y esperar a que haga su magia… antes de todo esto existe un proceso que les voy a describir a continuación.&lt;/p&gt;
+
+&lt;h2 id=&quot;spacy&quot;&gt;&lt;em&gt;spaCy&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;Aquí es donde entra &lt;em&gt;spaCy&lt;/em&gt;, que es un paquete de Python que podríamos comparar con una navaja suiza para el procesamiento de texto. Esta es una herramienta muy poderosa, y aquí solamente vamos a tocar apenas la superficie de lo que ofrece. Para comenzar, hay que instalarlo:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;spacy
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Instalar &lt;em&gt;spaCy&lt;/em&gt; es solo la primera parte del rompecabezas, puesto que su correcto funcionamiento depende de usar el modelo adecuado para la tarea (y el idioma) que vamos a realizar, aquí puedes encontrar una &lt;a href=&quot;https://spacy.io/models&quot;&gt;descripción de los modelos&lt;/a&gt;, pero para este post, podemos usar el más simple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;es_core_news_sm&lt;/code&gt;, se descarga con estos comandos en la consola:&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; spacy download es_core_news_sm 
+python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; spacy &lt;span class=&quot;nb&quot;&gt;link &lt;/span&gt;es_core_news_sm es
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para acceder dentro de Python a todas las bondades de nuestra nueva herramienta, es necesario cargar el modelo, es convención cargar el modelo en una variable llamada &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nlp&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;spacy&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;nlp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spacy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;es&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Y listo, por el momento podemos seguir.&lt;/p&gt;
+
+&lt;h2 id=&quot;tokenización&quot;&gt;Tokenización&lt;/h2&gt;
+&lt;p&gt;El primer paso es segmentar nuestro texto en tokens. Un token es un conjunto de caracteres que representan texto. También podemos decir que el token es la únidad análisis de texto, así como un número es la unidad del análisis matemático. Es fácil para nosotros pensar que un token es igual a una palabra, sin embargo esto no es correcto, puesto que la “palabra” es un elemento del lenguaje que posee significado por sí misma, mientras que el token se supone es un elemento abstracto. Dependiendo de la tarea que estemos afrontando, el token puede ser alguna de las siguientes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Una sola palabra, como: “jóvenes”, “nivel” o “superior”,&lt;/li&gt;
+  &lt;li&gt;Un número, como: “1”, “0”, o “10”,&lt;/li&gt;
+  &lt;li&gt;Un solo caracter, como: “j”, “ó” o “v”,&lt;/li&gt;
+  &lt;li&gt;Un símbolo, como “¿”, “?” o “#”,&lt;/li&gt;
+  &lt;li&gt;Un conjunto de caracteres, como “nivel superior” o “escuela técnica”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;La forma de elegir los tokens en nuestro texto va a depender muchísimo del problema que estemos afrontando, habrá ocasiones en las que una simple tokenización, como la de dividir nuestro texto por los espacios, bastará:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Seguramente ya habrás escuchado algunas veces, o tu mismo has dicho &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hey Google&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; o &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hey Siri&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, o tal vez le has echado un ojo a tu filtro de spam...&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;simple_tokens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;simple_tokens&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;['Seguramente', 'ya', 'habrás', 'escuchado', 'algunas', 'veces,', 'o', 'tu', 'mismo', 'has', 'dicho', '&quot;Hey', 'Google&quot;', 'o', '&quot;Hey', 'Siri&quot;,', 'o', 'tal', 'vez', 'le', 'has', 'echado', 'un', 'ojo', 'a', 'tu', 'filtro', 'de', 'spam...']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Pero habrá otras ocasiones en las que tengamos que echar mano de otras formas de tokenizar el texto, por ejemplo en el paquete &lt;em&gt;spaCy&lt;/em&gt; podemos echar mano de algunas herramientas.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nlp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Seguramente, ya, habrás, escuchado, algunas, veces, ,, o, tu, mismo, has, dicho, &quot;, Hey, Google, &quot;, o, &quot;, Hey, Siri, &quot;, ,, o, tal, vez, le, has, echado, un, ojo, a, tu, filtro, de, spam, ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;La gran diferencia es que en la segunda tokenización los símbolos de puntuación están separadas de las palabras en el texto.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;spaCy&lt;/em&gt;: Cuando llamamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nlp(&quot;algún texto&quot;)&lt;/code&gt; obtenemos como retorno un valor del tipo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Document&lt;/code&gt;, que, a su vez está compuesto de valores del tipo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt;, es por eso que podemos iterar nuestro documento con un ciclo &lt;em&gt;for&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;reducción-de-tokens&quot;&gt;Reducción de tokens&lt;/h2&gt;
+
+&lt;h3 id=&quot;minúsculas-mayúsculas&quot;&gt;¿Minúsculas? ¿mayúsculas?&lt;/h3&gt;
+&lt;p&gt;Hasta este punto todo bien con nuestros tokens, pero piensa en una oración como:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;oracion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;El ciclo escolar comienza en las escuelas. Escuelas de todo el país comenzarán clases este lunes.&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Los tokens únicos de esta oración son:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;oracion_parsed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nlp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oracion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{'clases', 'El', 'las', 'en', 'todo', 'comenzarán', 'este', 'ciclo', 'escolar', 'comienza', 'escuelas', '.', 'el', 'lunes', 'Escuelas', 'país', 'de'}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Si te das cuenta, “&lt;em&gt;Escuelas&lt;/em&gt;” y “&lt;em&gt;escuelas&lt;/em&gt;” son dos tokens distintos, (recuerda, los tokens no son palabras); sin embargo, para muchas aplicaciones, estos dos tokens pueden, simple y sencillamente ser tratados como el mismo, simplemente con transformar todos nuestros tokens a minúsculas. Usamos la propiedad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lower_&lt;/code&gt; de &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt; para acceder a la versión en minúscula de la palabra:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower_&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion_parsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{'país', 'lunes', 'comenzarán', 'en', '.', 'el', 'comienza', 'de', 'ciclo', 'las', 'escolar', 'clases', 'este', 'todo', 'escuelas'}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;spaCy&lt;/em&gt;: como ya sabemos, en nuestro ejemplo de código anterior, cuando iteramos sobre &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oracion_parsed&lt;/code&gt;, obtenemos uno a uno los tokens que forman nuestro documento original. Cada uno de estos elementos de la clase &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Token&lt;/code&gt; posee &lt;a href=&quot;https://spacy.io/api/token&quot;&gt;muchas propiedades&lt;/a&gt;, de entre ellas &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lower_&lt;/code&gt; es una.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;stopwords-signos-de-puntuación&quot;&gt;¿&lt;em&gt;Stopwords&lt;/em&gt;? ¿Signos de puntuación?&lt;/h3&gt;
+
+&lt;p&gt;Como resultado de la tokenización, en el ejemplo anterior vemos que existen muchos &lt;em&gt;tokens&lt;/em&gt; que, dependiendo del análisis que vayamos a realizar, podemos considerar “irrelevantes” para nuestro análisis, por ejemplo, las palabras “en”, “este”, “el” y “las” ya que son muy comunes en el español y están destinadas a aparecer en todas las oraciones, sin importar el tema al que estas hagan referencia. Estas palabras en inglés son conocidas como “&lt;em&gt;stopwords&lt;/em&gt;”. Para encontrarlas con &lt;em&gt;spaCy&lt;/em&gt; podemos usar la propiedad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_stop&lt;/code&gt; de cada token:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_stop&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion_parsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;['el: True', 'ciclo: False', 'escolar: False', 'comienza: False', 'en: True', 'las: True', 'escuelas: False', '.: False', 'escuelas: False', 'de: True', 'todo: True', 'el: True', 'país: False', 'comenzarán: False', 'clases: False', 'este: True', 'lunes: False', '.: False']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Al igual que las stopwords puede ser que los símbolos carezcan de relevancia en nuestro análisis, nuevamente, por ser considerados como una ocurrencia común en el español. Para encontrarlos, podemos hacer uso de la propiedad &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is_punct&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower_&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_punct&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion_parsed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;['el: False', 'ciclo: False', 'escolar: False', 'comienza: False', 'en: False', 'las: False', 'escuelas: False', '.: True', 'escuelas: False', 'de: False', 'todo: False', 'el: False', 'país: False', 'comenzarán: False', 'clases: False', 'este: False', 'lunes: False', '.: True']
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;lematización&quot;&gt;Lematización&lt;/h3&gt;
+
+&lt;p&gt;Otro procedimiento que podemos usar para reducir la cantidad de tokens únicos es el proceso de lematización, que es un proceso lingüístico que consiste en, dada una forma flexionada, hallar el lema correspondiente. El lema es la forma que por convenio se acepta como representante de todas las formas flexionadas de una misma palabra… pero creo que es mejor con algunos ejemplos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;comienza -&amp;gt; comenzar&lt;/li&gt;
+  &lt;li&gt;comenzarán -&amp;gt; comenzar&lt;/li&gt;
+  &lt;li&gt;clases -&amp;gt; clase&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lemma_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{'país', 'lunes', 'en', '.', 'el', 'los', 'de', 'escolar', 'clase', 'este', 'ciclar', 'comenzar', 'escuela', 'todo', 'escuelas'}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;stemming---acortamiento-&quot;&gt;Stemming - Acortamiento (?)&lt;/h3&gt;
+
+&lt;p&gt;Existe otra forma de reducir el número de tokens. Y es conocida como &lt;em&gt;stemming&lt;/em&gt; en inglés, en español yo lo traduciría como “acortamiento” o “poda (de podar el césped)”. Este proceso consiste en simple y llanamente recortar las palabras para reduciras a una base común:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;comienza -&amp;gt; comienz&lt;/li&gt;
+  &lt;li&gt;comenzarán -&amp;gt; comenz&lt;/li&gt;
+  &lt;li&gt;clases -&amp;gt; clas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nltk.stem.snowball&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SnowballStemmer&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;stemmer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SnowballStemmer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'spanish'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stemmer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oracion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{'escol', 'en', 'comienz', 'el', '.', 'de', 'comenz', 'las', 'lun', 'pais', 'este', 'clas', 'tod', 'cicl', 'escuel'}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;spaCy&lt;/em&gt;: por increíble que parezca, esta poderosa librería no cuenta con la opción de ejecutar &lt;em&gt;stemming&lt;/em&gt; por default, las &lt;a href=&quot;https://github.com/explosion/spaCy/issues/327#issuecomment-208658745&quot;&gt;razones son varias&lt;/a&gt; y trataré de hablar sobre ellas más adelante, pero por ahora, si quieres realizar &lt;em&gt;stemming&lt;/em&gt;, el paquete NLTK es tu aliado.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;preguntas-más-comunes&quot;&gt;Preguntas más comunes&lt;/h3&gt;
+
+&lt;h4 id=&quot;lematización-o-stemming&quot;&gt;¿Lematización o &lt;em&gt;stemming&lt;/em&gt;?&lt;/h4&gt;
+
+&lt;p&gt;Estas dos técnicas son consideradas mutuamente exclusivas, puesto que o aplicas una o aplicas la otra, nunca las dos. Pero, ¿cuál es la más recomendada?&lt;/p&gt;
+
+&lt;p&gt;En general siempre se prefiere la lematización, puesto que es un buen compromiso entre reducir la cantidad de tokens y preservar un poco más la composición original de estos. El &lt;em&gt;stemming&lt;/em&gt; al ser más agresivo tiende a conllevar una pérdida de información más grande.&lt;/p&gt;
+
+&lt;h4 id=&quot;cuál-es-el-orden-en-que-se-aplican-los-pasos&quot;&gt;¿Cuál es el orden en que se aplican los pasos?&lt;/h4&gt;
+&lt;p&gt;Es común que después de tokenizar el texto, los pasos se apliquen en el orden presentado:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Conversión a minúsculas&lt;/li&gt;
+  &lt;li&gt;Eliminación de &lt;em&gt;stopwords&lt;/em&gt; y símbolos de puntuación&lt;/li&gt;
+  &lt;li&gt;Lematización o &lt;em&gt;stemming&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Siempre es muy importante realizar el proceso de eliminación de &lt;em&gt;stopwords&lt;/em&gt; antes de transformar los tokens, puesto que de otro modo puede que el proceso de transformación convierta “accidentalmente” nuestros tokens útiles en &lt;em&gt;stopwords&lt;/em&gt; y esto nos lleve a perder información valiosa de nuestro dataset.&lt;/p&gt;
+
+&lt;h4 id=&quot;por-qué-querríamos-reducir-la-cantidad-de-información-mediante-estas-transformaciones&quot;&gt;¿Por qué querríamos “reducir” la cantidad de información mediante estas transformaciones?&lt;/h4&gt;
+&lt;p&gt;La idea detrás de la eliminación de &lt;em&gt;stopwords&lt;/em&gt;, símbolos, la lematización o &lt;em&gt;stemming&lt;/em&gt; radica en reducir la cantidad de elementos únicos en nuestro dataset, con el objetivo de incrementar el desempeño de nuestro algoritmo de dos maneras:&lt;/p&gt;
+
+&lt;p&gt;El eliminar las &lt;em&gt;stopwords&lt;/em&gt; nos ayuda a elminiar palabras comunes que tienen poco valor discriminativo entre textos. Así mismo, para muchos problemas no necesitamos conocer el tiempo en el que un verbo estaba escrito, o si la palabra era “corrupto” o “corrupción”; con las formas base el algoritmo puede “aprender” una idea general.&lt;/p&gt;
+
+&lt;p&gt;Esta misma idea se puede aplicar para tokens muy raros dentro de nuestro texto… podríamos eliminar tokens que no aparezcan más de $X$ cantidad de veces, bajo la sospecha de que tal vez fueron errores ortográficos o palabras sin importancia.&lt;/p&gt;
+
+&lt;p&gt;Si tienes más dudas o comentarios, no olvides hacérmelas llegar a través de los comentarios en esta página, o, para mayor seguridad, a mi cuenta de Twitter &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;y-las-visualizaciones&quot;&gt;¿Y las visualizaciones?&lt;/h3&gt;
+&lt;p&gt;Para no fallarle al público de Tacos de Datos, vamos a hacer una sencillísima visualización con las palabras que más frecuente usa el presidente mexicano en sus conferencias (ojo, acá no vamos a hablar de política). Y de paso aprovecho para presentarles un dataset que estoy manteniendo en Kaggle, en el cual coloco más o menos semanalmente todas las versiones estenográficas de las conferencias que publica la presidencia de México. Puedes acceder al dataset aquí &lt;a href=&quot;https://www.kaggle.com/ioexception/mananeras&quot;&gt;Conferencias Mañaneras&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;El primer paso es crear una función que nos ayude a tokenizar texto, esta es una función que debemos conservar, ya que si en el futuro queremos repetir nuestros experimentos, debemos usar la misma forma de tokenizar para que exista consistencia en nuestros resultados.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nltk.corpus&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stopwords&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;spanish_stopwords&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stopwords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'spanish'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tokenize_phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;parsed_phrase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nlp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parsed_phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_punct&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;is_stop&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spanish_stopwords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lemma_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Después, con todas nuestras frases cargadas en el arreglo &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lopez_obrador&lt;/code&gt; rellenamos un &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Counter&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;collections&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Counter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;word_counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amlo_phrase&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lopez_obrador&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;word_counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenize_phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;amlo_phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Una vez que tenemos el objeto &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;word_counter&lt;/code&gt; con los valores, podemos graficarlo:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;values&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word_counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;most_common&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xticks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xticklabels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Las 20 más frecuentemente usadas&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;por López Obrador en sus discursos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/detrasdelavis/003_amlo_words.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Algunas cosas esperadas y otras no tanto: habrá que ver por qué se la pasa diciendo “mil” y “casar”… habrá que ver también si estas palabras no son sino las formas base de otras que tal vez hagan más sentido (puede que al lematizar nuestros tokens estemos perdiendo esta información). Como dije, esto es solo el comienzo del análisis de texto, ¡aún falta mucho por aprender!&lt;/p&gt;
+
+&lt;p&gt;Si tienes alguna duda con lo presentado en este post, repito: pregúntame por Twitter en &lt;a href=&quot;https://twitter.com/io_exception&quot;&gt;@io_exception&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Antonio Feregrino Bolaños</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="python" />
+      
+        <category term="spacy" />
+      
+        <category term="texto" />
+      
+
+      
+        <summary type="html">¿Alguna vez has querido analizar texto? en este post voy a tratar de explicar cuáles son los primeros pasos recomendados para comenzar cualquier proyecto que involucre texto y ciencia de datos.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

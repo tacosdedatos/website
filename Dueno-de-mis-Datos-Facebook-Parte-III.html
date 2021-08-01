@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Dueño de mis datos - Capítulo Facebook - Parte III</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dueño de mis datos - Capítulo Facebook - Parte III" />
+    <meta property="og:description" content="La última entrega de la serie de Text Mining con mis datos de Facebook Bienvenidos al último post de esta serie. Si quieren ver cómo obtuvimos los datos o cómo creamos los corpus con los que vamos a trabajar hoy, denle click en los enlaces. Recordemos de qué se trata" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/blogposts/018.PNG" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-05-22T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-05-22T10:00:00+00:00" />
+    <meta property="article:tag" content="Blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dueño de mis datos - Capítulo Facebook - Parte III" />
+    <meta name="twitter:description" content="La última entrega de la serie de Text Mining con mis datos de Facebook Bienvenidos al último post de esta serie. Si quieren ver cómo obtuvimos los datos o cómo creamos los corpus con los que vamos a trabajar hoy, denle click en los enlaces. Recordemos de qué se trata" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/blogposts/018.PNG" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Blog" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/blogposts/018.PNG",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III"
+    },
+    "description": "La última entrega de la serie de Text Mining con mis datos de Facebook Bienvenidos al último post de esta serie. Si quieren ver cómo obtuvimos los datos o cómo creamos los corpus con los que vamos a trabajar hoy, denle click en los enlaces. Recordemos de qué se trata"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Dueño de mis datos - Capítulo Facebook - Parte III" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-blog ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="22 May 2020">22 May 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>,
+                            
+                        
+                            
+                               <a href='/tag/facebook/'>FACEBOOK</a>,
+                            
+                        
+                            
+                               <a href='/tag/ggplot2/'>GGPLOT2</a>,
+                            
+                        
+                            
+                               <a href='/tag/r/'>R</a>,
+                            
+                        
+                            
+                               <a href='/tag/text-mining/'>TEXT-MINING</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Dueño de mis datos - Capítulo Facebook - Parte III</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/blogposts/018.PNG)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>La última entrega de la serie de Text Mining con mis datos de Facebook</p>
+
+<p>Bienvenidos al último post de esta serie. Si quieren ver cómo <a href="https://tacosdedatos.com/dueno-de-mis-datos-facebook">obtuvimos los datos</a> o <a href="https://tacosdedatos.com/dueno-de-mis-datos-facebook-parte-ii">cómo creamos los <em>corpus</em> </a>con los que vamos a trabajar hoy, denle click en los enlaces.</p>
+
+<p>Recordemos de qué se trata este guateque:</p>
+
+<blockquote>
+  <p>… vamos a jugar con todos los posteos que hice en Facebook y todos los comentarios que puse a posteos de otras personas. Aprovechando el gran curso de Text Mining que <a href="https://twitter.com/jmtoralc">@jmtoral</a> nos dio durante la cuarentena, vamos a analizar mis textos e intentar encontrar algunas cosas interesantes. Al final, y porque nos gusta mucho, haremos gráficas y más gráficas.</p>
+</blockquote>
+
+<h2 id="una-wordcloud-más-usando-afinn">Una <em>wordcloud</em> más usando AFINN</h2>
+
+<p>El post pasado acabamos usando el diccionario AFINN para determinar que tan positivos o negativos, en lo general, eran mis posts y mis comments.</p>
+
+<p>Para acabar de usar este diccionario esta vez vamos a crear una nube de palabras donde pongamos de un color las palabras positivas y en otro color las negativas. Para esto vamos a tener que crear una nueva columna que nos podrá el sentimiento como positivo si la palabra tiene una puntuación de entre 1 y 5. Si está entre -1 y -5, la pondrá como negativa.</p>
+
+<p>Por último, usaremos la función <code class="language-plaintext highlighter-rouge">comparison.cloud</code> para crear la gráfica y asignar los colores:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">png</span><span class="p">(</span><span class="s2">"graficas/comparacion_cloud.png"</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="o">=</span><span class="m">200</span><span class="p">)</span><span class="w">
+
+</span><span class="n">affin.count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">fb.affin.esp</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sentimiento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dplyr</span><span class="o">::</span><span class="n">case_when</span><span class="p">(</span><span class="w">
+    </span><span class="n">Puntuacion</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Negativo"</span><span class="p">,</span><span class="w">
+    </span><span class="n">Puntuacion</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">"Positivo"</span><span class="w">
+  </span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">count</span><span class="p">(</span><span class="n">tipo</span><span class="p">,</span><span class="n">sentimiento</span><span class="p">,</span><span class="n">word</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">reshape2</span><span class="o">::</span><span class="n">acast</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">sentimiento</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">value.var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">wordcloud</span><span class="o">::</span><span class="n">comparison.cloud</span><span class="p">(</span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#db2b27"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#12719e"</span><span class="p">),</span><span class="w">
+          </span><span class="n">random.order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+          </span><span class="n">scale</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="m">.5</span><span class="p">),</span><span class="w">
+          </span><span class="n">title.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w">
+          </span><span class="n">max.words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">400</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">dev.off</span><span class="p">()</span><span class="w"> 
+</span></code></pre></div></div>
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/comparacion_cloud.png?raw=true" alt="cloud_comparison" /></p>
+
+<h2 id="usando-el--diccionario-nrc">Usando el  Diccionario NRC</h2>
+
+<p>Otro diccionario muy usado en el diccionario <strong>NRC</strong>. A diferencia del <strong>AFINN</strong> donde cada palabra tenía una calificación numérica, en <strong>NRC</strong> la palabra puede ser clasificada como positiva o negativa (sin escala númerica) pero además puede entrar dentro de alguna de estas emociones:</p>
+
+<ul>
+  <li>anger - enojo</li>
+  <li>anticipation - expectación</li>
+  <li>disgust - disgusto</li>
+  <li>fear - miedo</li>
+  <li>joy - alegría</li>
+  <li>sadness - tristeza</li>
+  <li>surprise - sorpresa</li>
+  <li>trust - seguridad</li>
+</ul>
+
+<p>Para usar este diccionario tenemos que usar la <em>#BibliotecaNoLibreria</em> <code class="language-plaintext highlighter-rouge">syuzhet</code>. Empezemos utilizando nuestro data frame inicial (<code class="language-plaintext highlighter-rouge">data$Comment</code>) y después agrupemos por sentimiento y emoción para tener los totales de cada una:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sentiment analysis con syuzhet</span><span class="w">
+
+</span><span class="c1"># Aplico NRC a mis posts y comments</span><span class="w">
+</span><span class="n">fb_sentimientos_nrc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">syuzhet</span><span class="o">::</span><span class="n">get_nrc_sentiment</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">Comment</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"spanish"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">df_fb_sentimientos_nrc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">fb_sentimientos_nrc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">  
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise_all</span><span class="p">(</span><span class="n">funs</span><span class="p">(</span><span class="n">sum</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rowid_to_column</span><span class="p">(</span><span class="s2">"id"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">pivot_longer</span><span class="p">(</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">names_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sentimiento"</span><span class="p">,</span><span class="w"> </span><span class="n">values_to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"count"</span><span class="p">)</span><span class="w">  
+</span></code></pre></div></div>
+
+<p>Ya con el objeto <code class="language-plaintext highlighter-rouge">df_fb_sentimientos_nrc</code> podemos empezar a crear visualizaciones. Mi primer acercamiento fue una de barras pero de esas ya hicimos. Así que me aventuré a hacer un <code class="language-plaintext highlighter-rouge">treemap</code> que no habíamos hecho en post anteriores. Como sólo la haremos por emociones filtraré los sentimientos (positivo, negativo):</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="c1"># treemap</span><span class="w">
+  </span><span class="n">df_fb_sentimientos_nrc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">sentimiento</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'positive'</span><span class="p">,</span><span class="s1">'negative'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">treemap</span><span class="p">(</span><span class="w">
+          </span><span class="n">index</span><span class="o">=</span><span class="s2">"sentimiento"</span><span class="p">,</span><span class="w">
+          </span><span class="n">vSize</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span><span class="w">
+          </span><span class="n">type</span><span class="o">=</span><span class="s2">"index"</span><span class="p">,</span><span class="w">
+          </span><span class="n">fontsize.labels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">),</span><span class="w">
+          </span><span class="n">fontsize.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w">
+          </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Blues"</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">title</span><span class="o">=</span><span class="s2">"Sentimientos en Post y Comments"</span><span class="p">,</span><span class="w">
+          </span><span class="n">fontfamily.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+          </span><span class="n">fontfamily.labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Lato"</span><span class="p">,</span><span class="w">
+          </span><span class="n">border.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#191414"</span><span class="w">
+  </span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_fb</span><span class="w">
+</span></code></pre></div></div>
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/treemap_sentimientos.png?raw=true" alt="treemap" /></p>
+
+<p>La verdad no encontré muchas opciones para aplicar el theme a la gráfica ya que la función <code class="language-plaintext highlighter-rouge">treemap</code> no es parte de <code class="language-plaintext highlighter-rouge">ggplot</code>.</p>
+
+<p>Lo que podemos ver de la gráfica es que en su mayoría mis palabras expresan confianza y alegría. El disgusto, la tristeza, el miedo y el enojo están presentes pero no en gran cantidad.</p>
+
+<p>Quiero destacar que esta gráfica no es la mejor para poder comparar. Nuestro cerebro es malo para diferenciar áreas. Solo la hice para usar la función y poder generar algo que no hayamos hecho antes.</p>
+
+<p>¿Qué se les ocurre para poder comparar mejor?</p>
+
+<p>Ya para terminar, hagamos una gráfica de barras con el número de palabras por sentimiento:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">## grafica con positivo y negativo</span><span class="w">
+  </span><span class="n">BarPositiveNegative</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df_fb_sentimientos_nrc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">filter</span><span class="p">(</span><span class="n">sentimiento</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'positive'</span><span class="p">,</span><span class="s1">'negative'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">sentimiento</span><span class="p">,</span><span class="n">count</span><span class="p">),</span><span class="w">
+                 </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w">
+                 </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sentimiento</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Clasificación de Palabras Por Sentimiento "</span><span class="p">,</span><span class="w">
+         </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_caption</span><span class="w"> </span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Número de Palabras"</span><span class="p">,</span><span class="w">
+         </span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"#db2b27"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#12719e"</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"Negativas"</span><span class="p">,</span><span class="s2">"Positivas"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_fb</span><span class="p">;</span><span class="n">BarPositiveNegative</span><span class="w">
+  
+</span></code></pre></div></div>
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/BarPositiveNegative.png?raw=true" alt="nrc_sentiment" /></p>
+
+<p>Esta gráfica confirma lo que veíamos en el treemap. Solía usar muchas más palabras positivas que negativas. Casi el triple.</p>
+
+<h2 id="tf-idf">TF-IDF</h2>
+
+<p>Imagínense que tenemos un documento, por ejemplo, acerca de Michael Jordan (¿ya vieron “The Last Dance”?) y que nos ponemos a analizarlo. ¿Cómo podríamos saber si se trata acerca de ganar un campeonato, sobre sus apuestas, Space Jam o su paso por el beisbol? Ahí es cuando entra es el <strong>TF : <em>Term Frequency</em></strong>. Si un término se repite mucho es muy probable que nos de una buena pista acerca del contenido. Por ejemplo, si la palabra “Murray” es top 10 en apariciones, es muy probable que hable de Space Jam, si la palabra que más aparece es “swing” es muy probable que hable de beisbol. Para poder obtener un buen <strong>TF</strong> es importantísimo haber limpiado ya los datos, haberles quitado stopwords y otros términos que no nos sean de utilidad.</p>
+
+<p>¿Pero qué pasa si no tenemos sólo un documento sino más de cien? Ese <em>corpus</em> puede tener diferentes temas y el <strong>TF</strong> puede resultar no tan eficiente. Ahí es cuando entra el <strong>TF-IDF: <em>Term Frequency-Inverse Document Frequency</em></strong>.
+Antes de seguir, intentaré resumir la parte del <strong>IDF</strong>. Básicamente es qué tanto aparece ese término en los demás documentos del <em>corpus</em>. La fórmula tiene más chiste que eso, incluso usa logaritmos, pero no es mi intención entrar en la matemática. Ahora bien, el <strong>TF-IDF</strong> usa las dos métricas que acabamos de ver y nos dice el peso de un término dentro de un documento.</p>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/imagenes/formula05_ponderacion-tf-idf.png?raw=true" alt="tf-idf" />
+http://ccdoc-tecnicasrecuperacioninformacion.blogspot.com/2012/11/frecuencias-y-pesos-de-los-terminos-de.html</p>
+
+<p>Todo este show es para que tengamos una idea de lo que vamos  a intentar obtener y cómo lo vamos a interpretar. Tirar comandos es fácil pero tirarlos con sentido y saber interpretarlo es lo que cuenta.</p>
+
+<p>La biblioteca que usaremos es <code class="language-plaintext highlighter-rouge">tidytext</code> y vamos a reutilizar uno de los objetos que creamos en el post anterior</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="c1">#Necesito que ya esté tokenizado los post y los comments</span><span class="w">
+  </span><span class="c1"># voy a usar el tidy.tokens.word</span><span class="w">
+  
+  </span><span class="c1">#para que los DF no me de exponentes en en los resultados.</span><span class="w">
+  </span><span class="n">options</span><span class="p">(</span><span class="n">scipen</span><span class="o">=</span><span class="m">99</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1">#Calcular del tf_idf de un plumazo</span><span class="w">
+  </span><span class="n">tfidf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy.tokens.word</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">word</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">final_stop_words</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">tipo</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">tidytext</span><span class="o">::</span><span class="n">bind_tf_idf</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">tipo</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Lo que intento hacer al agregar el <code class="language-plaintext highlighter-rouge">tipo</code> es encontrar las palabras con más peso dependiento el tipo de publicación: post o comment.</p>
+
+<p>Vamos a crear una gráfica de barras para averiguar de qué hablé más en cada caso:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="c1">#primero creo los labels para los titulos del facet_wrap</span><span class="w">
+  </span><span class="n">labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Comentario"</span><span class="p">,</span><span class="w"> </span><span class="n">post</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Post"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">tfidf</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">   
+    </span><span class="n">group_by</span><span class="p">(</span><span class="n">tipo</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">tf_idf</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">top_n</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="c1">#ungroup() %&gt;% </span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">tf_idf</span><span class="p">),</span><span class="w">
+                </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf_idf</span><span class="p">,</span><span class="w">
+                </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipo</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#0a4c6a"</span><span class="p">,</span><span class="s2">"#cfe8f3"</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w">  </span><span class="n">tipo</span><span class="p">,</span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w">
+                </span><span class="n">labeller</span><span class="w"> </span><span class="o">=</span><span class="n">labeller</span><span class="p">(</span><span class="n">tipo</span><span class="o">=</span><span class="n">labels</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Palabras más Representativas por Tipo de Publicación"</span><span class="p">,</span><span class="w">
+         </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Ranking obtenido por TF_IDF"</span><span class="p">,</span><span class="w">
+         </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_caption</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_fb</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/tf-idf.png?raw=true" alt="tf-idf tipo" /></p>
+
+<p>Intentemos sacar algunas inferencias:</p>
+
+<ul>
+  <li>En los comentarios “pachas” y “pachis, los sobrenombres de una amiga, son muy relevantes.</li>
+  <li>Por otro lado, Es muy característico de mis posts las etiquetas “picoftheday”, “rcnocrop” y “amedemicorazon”. Lo cual me cuadra perfecto pues mi FB estaba ligado a mi Instagram dentro de la aplicación <em>rcnocrop</em>.</li>
+  <li>En los comentarios que hacía a otras personas era tan “ofensivo” como para poner “mms” pero no como para poner “mames”. Grosero, grosero pero no tanto.</li>
+</ul>
+
+<h2 id="lda-o-latient-dirichlet-allocation-para-los-cuates">LDA o <em>Latient Dirichlet Allocation</em> para los cuates.</h2>
+
+<p>Ya para terminar juguemos un poco con <strong>LDA</strong>. Este es un método de <em>topic modelling</em> que nos permite identificar tópicos dentro de una serie de documentos. Haciendo un símil muy burdo, es como encontrar clústeres dentro del <em>corpus</em>.</p>
+
+<p>Para echarlo andar necesitamos crear una <strong>DTM:_ Document Term Matrix_</strong> que vamos a obtener con la biblioteca <code class="language-plaintext highlighter-rouge">tm</code>. Además, nosotros tenemos que definir cuántos clústers o grupos queremos que cree el algoritmo.</p>
+
+<p>Veamos el código:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Crear un corpus</span><span class="w">
+  </span><span class="c1"># lee el vector y lo convierte en un corpus</span><span class="w">
+  </span><span class="n">corpus.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">Corpus</span><span class="p">(</span><span class="n">VectorSource</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">Comment</span><span class="p">))</span><span class="w">
+  
+  </span><span class="n">corpus.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">tm_map</span><span class="p">(</span><span class="n">corpus.fb</span><span class="p">,</span><span class="w"> </span><span class="n">removeWords</span><span class="p">,</span><span class="w"> </span><span class="n">stopwords</span><span class="p">(</span><span class="s2">"es"</span><span class="p">))</span><span class="w">
+  
+  </span><span class="n">corpus.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">tm_map</span><span class="p">(</span><span class="n">corpus.fb</span><span class="p">,</span><span class="w"> </span><span class="n">removePunctuation</span><span class="p">)</span><span class="w">  
+
+  </span><span class="n">corpus.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">tm_map</span><span class="p">(</span><span class="n">corpus.fb</span><span class="p">,</span><span class="w"> </span><span class="n">removeNumbers</span><span class="p">)</span><span class="w">  
+  
+  </span><span class="n">dtm.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tm</span><span class="o">::</span><span class="n">DocumentTermMatrix</span><span class="p">(</span><span class="n">corpus.fb</span><span class="p">)</span><span class="w">
+  
+  </span><span class="c1"># Aplicaré este truco porque sin él suelo</span><span class="w">
+  </span><span class="c1"># tener errores por filas vacías.</span><span class="w">
+  </span><span class="n">rowTotals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">dtm.fb</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">)</span><span class="w">
+  </span><span class="n">dtm.fb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dtm.fb</span><span class="p">[</span><span class="n">rowTotals</span><span class="o">&gt;</span><span class="m">0</span><span class="p">,]</span><span class="w">
+  
+  </span><span class="c1"># ahora sí, el LDA para 4 clústeres</span><span class="w">
+  </span><span class="n">bd.lda</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">topicmodels</span><span class="o">::</span><span class="n">LDA</span><span class="p">(</span><span class="n">dtm.fb</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">control</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="m">1234</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>El objeto <code class="language-plaintext highlighter-rouge">bd_lda</code> es un vector que no puedo usar para gráficar. Tengo que pasarlo a un dataframe con el comando <code class="language-plaintext highlighter-rouge">tidy</code> de <code class="language-plaintext highlighter-rouge">tidytext</code>. Este tiene dos opciones para el argumento <code class="language-plaintext highlighter-rouge">matrix</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">beta</code> para obtener la probabilidad de tópicos por palabra</li>
+  <li><code class="language-plaintext highlighter-rouge">gamma</code> para obtener la probabilidad de tópicos por documento</li>
+</ul>
+
+<p>Para nuestra gráfica utilizaremos <code class="language-plaintext highlighter-rouge">beta</code>:</p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bd.topics</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidytext</span><span class="o">::</span><span class="n">tidy</span><span class="p">(</span><span class="n">bd.lda</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="o">=</span><span class="s2">"beta"</span><span class="p">)</span><span class="w">   </span><span class="c1">#Prob por topico por palabra</span><span class="w">
+
+</span><span class="c1"># Va la gráfica</span><span class="w">
+  </span><span class="n">top_terminos</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder_within</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">topic</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w">
+               </span><span class="n">beta</span><span class="p">,</span><span class="w">
+               </span><span class="n">fill</span><span class="o">=</span><span class="n">factor</span><span class="p">(</span><span class="n">topic</span><span class="p">)))</span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">()</span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">topic</span><span class="p">),</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">percent_format</span><span class="p">())</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#1696d2"</span><span class="p">,</span><span class="s2">"#ec008b"</span><span class="p">,</span><span class="s2">"#fdbf11"</span><span class="p">,</span><span class="s2">"#5c5859"</span><span class="p">))</span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_x_reordered</span><span class="p">()</span><span class="o">+</span><span class="w"> </span><span class="c1"># necesita el mutate de arriba. Quita el __1, __2 que éste pone.</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Probabilidad de palabras por tópico"</span><span class="p">,</span><span class="w">
+         </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_caption</span><span class="w"> </span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Porcentaje LDA "</span><span class="p">,</span><span class="w">
+         </span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="s2">"Palabra"</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="c1">#scale_fill_manual(values=c("#db2b27", "#55b748","fdbf11","898F9C"))+</span><span class="w">
+    </span><span class="n">theme_fb</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="https://github.com/nerudista/DataViz/blob/master/MyFacebook/graficas/prob_topico.png?raw=true" alt="lda" /></p>
+
+<p>Lo que reconozco de la gráfica:</p>
+
+<ul>
+  <li>Los porcentajes más altos están en lso tópicos 3 y 4. No se dejen llevar por el 2%. Es un muy buen número considerando el número total de documentos.</li>
+  <li>En el tópico 3 están muchas felicitaciones y abrazos.</li>
+  <li>En el tópico 4 están las publicaciones que metí desde Instagram y donde mencionaba a amigos con los que intereactuaba mucho.</li>
+  <li>En el tópico dos hay risas y felicitaciones.</li>
+  <li>El tópico 1 me muestra que no hice una limpieza correcta de datos. Hay muchos stopword ahí que no limpié.</li>
+</ul>
+
+<p>Esto último fue un poco intencional para que vean como el algoritmo puede traer basura si no lo alimentamos bien. Como dice el adagio: <em>garbage in, garbage out</em></p>
+
+<h2 id="y-qué-sigue">¿Y qué sigue?</h2>
+
+<p>P’acabar pronto, que se vayan a este <a href="https://github.com/nerudista/DataViz/tree/master/MyFacebook">repo</a> y que intenten replicar lo que hicimos pero con sus datos. Como hay datos sensibles sólo les dejé los archivos de post y comments con cuatro o cinco registros. La idea es que pidan sus datos y sigan el camino de esta serie para que puedan replicar. Si se atoran, estoy siempre atento a responder en <a href="https://twitter.com/nerudista">@nerudista</a></p>
+
+<p>Como lo he mencionado en los post previos: piérdanle el miedo a analizar datos y a graficarlos. Además, los datos de sus usuarios que andan en la red son valiosos. Sean responsables con ellos.</p>
+
+<p>Espero que esta serie les haya desportado la cosquilla de empezar a practicar algo nuevo. No tienen porqué dedicarse a esto. Yo no lo hago pero jugarle es enriquecedor. Además, en estos tiempos de crisis ninguna nueva habilidad está de sobra.</p>
+
+<p>Gracias por llegar hasta aquí. BTW, #QuédateEnCasa</p>
+
+<hr />
+
+<p>¿Qué te pareció la nota? <a href="https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE">Mandanos un tuit a @tacosdedatos</a> o <a href="https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+y+%40nerudista+%F0%9F%8C%AE">a @nerudista</a> o envianos un correo a <a href="mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;body=Hola-holaaa">✉️ sugerencias@tacosdedatos.com</a>. Y recuerda que puedes subscribirte a nuestro boletín semanal aquí debajo.</p>
+
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="nerudista" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/nerudista">Pablo Quetzalcóatl Vázquez</a></h4>
+                                
+                                    <p>Me encantan los datos y los deportes. Aprendiz eterno de BI, Dataviz y ahora de Python y R. También entrenador de Triatlón por si ocupan.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/nerudista">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III';
+                            this.page.identifier = 'Dueño de mis datos - Capítulo Facebook - Parte III';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/blog/">Blog</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/sidetable-el-beffo-de-pandas">Sidetable, el beffo de pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-II">Dueño de mis datos - Capítulo Facebook - Parte II</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/pruebas-unitarias-pytest">Probando nuestro código con pytest</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/blog/">
+                                
+                                    See all 22 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/introduccion-eda">
+                <div class="post-card-image" style="background-image: url(/assets/tutoriales/eda_01.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/introduccion-eda">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Tutoriales</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Python</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Eda</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Introducción al análisis exploratorio de datos</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="Antonio Feregrino Bolaños" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/io_exception/">Antonio Feregrino Bolaños</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Dueno-de-mis-Datos-Facebook-Parte-II">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/017.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Dueno-de-mis-Datos-Facebook-Parte-II">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Facebook</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Ggplot2</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">R</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Text-mining</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Dueño de mis datos - Capítulo Facebook - Parte II</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="Pablo Quetzalcóatl Vázquez" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/nerudista/">Pablo Quetzalcóatl Vázquez</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Dueño de mis datos - Capítulo Facebook - Parte III</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Due%C3%B1o+de+mis+datos+-+Cap%C3%ADtulo+Facebook+-+Parte+III&amp;url=https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/Dueno-de-mis-Datos-Facebook-Parte-III"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

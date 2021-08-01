@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>ggplot2 + BBC = bbplot</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/panda-syntax.css" />
+    <!-- Eclipse Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="https://codemirror.net/theme/eclipse.css" />
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ggplot2 + BBC = bbplot" />
+    <meta property="og:description" content="✨ activar código ✨ ggplot2 es un paquete del lenguage R para la visualización de datos. El par de Gs en ggplot2 es de Grammar of Graphics o la Gramática de Gráficos - un lenguaje simple e intuitivo para construir gráficos. Una gramática de gráficos es una herramienta que nos" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/blogposts/002.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2019-03-12T12:00:00+00:00" />
+    <meta property="article:modified_time" content="2019-03-12T12:00:00+00:00" />
+    <meta property="article:tag" content="Blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ggplot2 + BBC = bbplot" />
+    <meta name="twitter:description" content="✨ activar código ✨ ggplot2 es un paquete del lenguage R para la visualización de datos. El par de Gs en ggplot2 es de Grammar of Graphics o la Gramática de Gráficos - un lenguaje simple e intuitivo para construir gráficos. Una gramática de gráficos es una herramienta que nos" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/blogposts/002.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Blog" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/blogposts/002.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot"
+    },
+    "description": "✨ activar código ✨ ggplot2 es un paquete del lenguage R para la visualización de datos. El par de Gs en ggplot2 es de Grammar of Graphics o la Gramática de Gráficos - un lenguaje simple e intuitivo para construir gráficos. Una gramática de gráficos es una herramienta que nos"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="ggplot2 + BBC = bbplot" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-blog ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="12 March 2019">12 March 2019</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>,
+                            
+                        
+                            
+                               <a href='/tag/recursos/'>RECURSOS</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">ggplot2 + BBC = bbplot</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/blogposts/002.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <!-- Load Thebelab for interactive widgets -->
+<!-- Include Thebelab for interactive code if it's enabled -->
+
+<script type="text/x-thebe-config">
+    {
+      bootstrap: false,
+      requestKernel: true,
+      binderOptions: {
+        repo: 'tacosdedatos/probando-bbplot',
+        ref: 'master',
+      },
+      kernelOptions: {
+        name: 'ir',
+      },
+      codeMirrorConfig: {
+        theme: 'panda-syntax',
+        mode: 'r'
+      }
+    }
+</script>
+
+<script src="https://unpkg.com/thebelab@0.3.3/lib/index.js"></script>
+
+<style>
+.ghost-button {
+  display: inline-block;
+  background-color: transparent;
+  width: 250px;
+  padding: 8px;
+  color: #676B79;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out,
+              color 0.2s ease-out;
+}
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #000;
+  transition: background-color 0.3s ease-in,
+              color 0.3s ease-in;
+}
+
+.jp-RenderedText pre {
+    color: #000;
+    background-color: transparent;
+}
+
+.thebelab-cell {
+    width: 100%;
+    max-width: 100%;
+}
+
+.thebelab-button {
+    width: 50%;
+    max-width: 50%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    background-color: #FCFCFC;
+    border: #FCFCFC;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.post-full-content pre code {
+    padding: 0px 0px 0px 6px;
+}
+  
+</style>
+<blockquote>
+
+</blockquote>
+<div class="ghost-button">
+    <button id="activateButton" class="ghost-button">✨ activar código ✨</button>
+    <script>
+        var bootstrapThebe = function() {
+            thebelab.bootstrap();
+        }
+        document.querySelector("#activateButton").addEventListener('click', bootstrapThebe)
+        document.querySelector("#activateButton").addEventListener('click', changeNames)
+        
+        function changeNames() {
+                run_button = document.getElementsByClassName("thebelab-run-button")
+                for(i=0;i <= run_button.length -1; i++) {
+                    run_button[i].innerText = 'ejecutar'
+                    run_button[i].className += ' ghost-button'
+                    // run_button[i].setAttribute('style', 'height: 20px')
+                }
+                restart_button = document.getElementsByClassName("thebelab-restart-button")
+                for(i=0;i<= restart_button.length -1; i++) {
+                    restart_button[i].innerText = 'reiniciar'
+                    restart_button[i].className += ' ghost-button'
+                    // restart_button[i].setAttribute('style', 'height: 20px')
+                }
+
+
+        }        
+   
+    </script>
+</div>
+
+<p><code class="language-plaintext highlighter-rouge">ggplot2</code> es un paquete del lenguage <code class="language-plaintext highlighter-rouge">R</code> para la visualización de datos. El par de <strong>G</strong>s en <code class="language-plaintext highlighter-rouge">ggplot2</code> es de <em>Grammar of Graphics</em> o la <strong><em>Gramática de Gráficos</em></strong> - un lenguaje simple e intuitivo para <em>construir</em> gráficos.</p>
+
+<blockquote>
+  <p>Una gramática de gráficos es una herramienta que nos permite describir de manera concisa los componentes de un gráfico. Dicha gramática nos permite ir más allá de los gráficos con nombre (por ejemplo, el <strong>gráfico de dispersión</strong>) y obtener información sobre la estructura profunda que subyace en los gráficos estadísticos. <br /> - <strong><em>Hadley Wickham</em></strong>, creador del <code class="language-plaintext highlighter-rouge">tidyverse</code> en <code class="language-plaintext highlighter-rouge">R</code> en su arículo <strong>A Layered Grammar of Graphics (2010)</strong>.</p>
+</blockquote>
+
+<h3 id="qué-es-bbplot">¿Qué es <code class="language-plaintext highlighter-rouge">bbplot</code>?</h3>
+<p>A finales de enero del 2019, la BBC publicó el paquete <a href="https://github.com/bbc/bbplot"><code class="language-plaintext highlighter-rouge">bbplot</code></a> y un <a href="https://bbc.github.io/r-cookbook"><em>libro de recetas</em></a> para crear varios gráficos listos para publicación con <code class="language-plaintext highlighter-rouge">ggplot2</code>. <br /></p>
+
+<blockquote>
+  <p>La meta es crear un proceso de creación de gráficos más reproducible y de paso ayudarle a principiantes de <code class="language-plaintext highlighter-rouge">R</code> a hacer gráficos.</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">bbplot</code> es un paquete que transforma un gráfico creado con <code class="language-plaintext highlighter-rouge">ggplot2</code> agregándole el <em>estilo</em> de la BBC.</p>
+<figure>
+    <img src="../assets/blogposts/002_bbplot_ejemplo.png" alt="ggplot2 + bbc_style = bbplot" />
+    <figcaption style="text-align:center"><i>Ejemplos de gráficos con el estilo de la BBC</i></figcaption>
+</figure>
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">bbplot</code> es esencialmente dos funciones:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bbc_style()</code>: añade atributos a tu gráfico de <code class="language-plaintext highlighter-rouge">ggplot2</code>. <br />
+Lo único que necesitas hacer es agregar la línea <code class="language-plaintext highlighter-rouge">+ bbc_style()</code> a tu gráfico de <code class="language-plaintext highlighter-rouge">ggplot2</code> para transformarlo en algo que pareciera haber salido de un artículo de la BBC.</li>
+</ul>
+<figure>
+    <div class="container">
+        <div style="float:left;width:49%">
+          <img src="../assets/blogposts/002_bbplot_ejemplo_2.jpg" alt="gráfico de ggplot2" style="max-width:100%" />
+        </div>
+        <div style="float:right;width:49%">
+          <img src="../assets/blogposts/002_bbplot_ejemplo_3.jpg" alt="gráfico de ggplot2 + bbc_style" style="max-width:100%" />
+        </div>
+    </div>
+    <figcaption style="text-align:center"><i>La diferencia entre estos dos gráficos es </i><span style="font-family:monospace">+ bbc_style()</span></figcaption>
+</figure>
+<p><br /></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">finalise_plot()</code>: agrega los ultimos detalles a tu gráfico y lo guarda como imagen <code class="language-plaintext highlighter-rouge">.png</code>. Esto esencialmente alínea a la izquierda el título y el subtítulo de tu gráfico además de agregar una nota al pie con la fuente de tus datos y hasta un logo si así lo deseas.</li>
+</ul>
+
+<hr />
+
+<h3 id="la-meta-de-este-artículo-es-ilustrar-lo-que-puedes-hacer-con-el-paquete-bbplot">La meta de este artículo es ilustrar lo que puedes hacer con el paquete <code class="language-plaintext highlighter-rouge">bbplot</code></h3>
+<p>Sin más preambulo veamos <code class="language-plaintext highlighter-rouge">bbplot</code> en acción. En <strong>tacosdedatos</strong> acabamos de agregar una magia antigüa para poder hacer nuestros artículos más interactivos 🔮👀 (se llama <a href="https://thebelab.readthedocs.io/">thebelab</a>). <br />
+Si vas al inicio de esta página verás el botón <em>✨ activar código ✨</em>. Al hacer clic transformarás ciertas celdas de código aquí debajo en celdas ejecutables. Estas celdas <em>activadas</em> son editables así que te invito a que cambies el código para personalizar los gráficos un poco como se te ocurra. Detrás de todo esto esta el poder de <a href="https://mybinder.org/">MyBinder</a> un proyecto del mismo equipo que te trajo <a href="https://jupyter.org/">Project Jupyter</a> del cual aprenderemos más adelante.</p>
+
+<h3 id="primero-necesitas-cargar-los-paquetes-necesarios">Primero necesitas cargar los paquetes necesarios</h3>
+<p>En el <em>libro de recetas</em> publicado en conjunto con <code class="language-plaintext highlighter-rouge">bbplot</code> la BBC sugiere utilizar el paquete <code class="language-plaintext highlighter-rouge">pacman</code> para cargar los paquetes necesarios a tu entorno. Esto es el equivalente de escribir <code class="language-plaintext highlighter-rouge">library("dplyr")</code>, <code class="language-plaintext highlighter-rouge">library("tidyr")</code>, <code class="language-plaintext highlighter-rouge">library("gapminder")</code>, etc. pero en un sólo comando. <br />
+<em>NOTA: La primera línea del código instala <code class="language-plaintext highlighter-rouge">pacman</code> si no lo tienes.</em></p>
+<pre data-executable="true" data-language="R">
+<code class="language-r">if(!require(pacman))install.packages("pacman")
+
+pacman::p_load('dplyr', 'tidyr', 'gapminder',
+               'ggplot2',  'ggalt',
+               'forcats', 'R.utils', 'png', 
+               'grid', 'ggpubr', 'scales',
+               'bbplot')
+</code></pre>
+<hr />
+<p><strong>Mucho ojo</strong>, nosotros ya tenemos instalado el paquete <code class="language-plaintext highlighter-rouge">bbplot</code>. Si no lo haz instalado el código aquí arriba resultará en un error.<br />
+<code class="language-plaintext highlighter-rouge">bbplot</code> no está en <a href="https://cran.r-project.org/"><code class="language-plaintext highlighter-rouge">CRAN</code></a>, el sistema central de paquetes de <code class="language-plaintext highlighter-rouge">R</code> del que normalmente descargarías un paquete nuevo. <br />
+A <code class="language-plaintext highlighter-rouge">bbplot</code> lo instalas desde <em>GitHub</em> con <code class="language-plaintext highlighter-rouge">devtools</code>. Esto puede ser un poco confuso para los principiantes ya que en esencia son dos pasos (<em>aunque con todos los que hablé en preparación para este artículo me lo contaron como si fuera algo simple y sencillo…</em> 🙄).</p>
+
+<p><strong>Paso 1</strong>: instala <code class="language-plaintext highlighter-rouge">devtools</code>, el paquete que te ayuda a instalar paquetes de <em>GitHub</em>. Este si existe en <code class="language-plaintext highlighter-rouge">CRAN</code> así que solo necesitas ejecutar:</p>
+<pre><code class="language-r">install.packages("devtools")</code></pre>
+<p><strong>Paso 2</strong>: instala <code class="language-plaintext highlighter-rouge">bbplot</code> utilizando <code class="language-plaintext highlighter-rouge">devtools</code>:</p>
+<pre><code class="language-r">devtools::install_github("bbc/bbplot")</code></pre>
+
+<p><strong>Mucho ojo (parte 2)</strong>, existe un sinfín de razones por las cuales esto no funcione en ciertos sistemas. Por ejemplo, el servidor conectado a esta página donde estás ejecutando código está basado en <code class="language-plaintext highlighter-rouge">Linux</code> (Ubuntu 16.04, creo) y por alguna razón no podíamos instalarlo con <code class="language-plaintext highlighter-rouge">devtools</code>. Lo que tuvimos que hacer es clonar el repositorio <code class="language-plaintext highlighter-rouge">bbc/bbplot</code>, instalarlo como <strong>source</strong> y luego borramos los archivos de donde estabamos trabajando ya que no los necesitamos más.</p>
+
+<pre><code class="language-shell">#clona el repositorio. ocupas tener git instalado.
+git clone https://github.com/bbc/bbplot.git
+# dile a R que instale el paquete
+R --quiet -e "install.packages('bbplot', repos = NULL, type = 'source')"
+# borra la carpeta de tu area de trabajo
+## En sistemas Linux/MacOS
+rm -rf bbplot #'rmdir /s /q bbplot' en Windows</code></pre>
+<hr />
+<p>Ya que tenemos todos los paquetes instalados y cargados en nuestro entorno podemos hacer nuestros gráficos. Utilizaremos los datos de <code class="language-plaintext highlighter-rouge">Gapminder</code> los cuales puedes instalar también de <code class="language-plaintext highlighter-rouge">CRAN</code>. <br />
+<a href="https://gapminder.org/">Gapminder</a> <em>“es una fundación sueca sin afiliaciones políticas, religiosas o económicas que busca luchar contra los conceptos erróneos y devastadores sobre el desarrollo global”</em> a través de datos.<br />
+<strong><em>nota: todo esto asume que ya fuiste al inicio de la página a activar el código 👀 y ejecutaste la celda que carga los paquetes con <code class="language-plaintext highlighter-rouge">pacman</code></em></strong></p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+pais = "Colombia"
+datos_para_linea &lt;- gapminder %&gt;%
+  filter(country == pais) 
+
+# crea el gráfico
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+         subtitle = paste("Esperanza de Vida en ", pais, " 1952-2007")) + 
+  bbc_style()
+
+# muestra el gráfico
+línea
+</code></pre>
+<hr />
+<p>Pero vayamos paso a paso. <br />
+<strong>Paso 0</strong>: Cargas tus datos.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Datos de gapminder
+# Primero escoge un pais del conjunto de datos
+# nota: Los datos de gapminder se encuentran en ingles
+# Arabia Saudita sería 'Saudi Arabia', por ejemplo.
+pais = "Colombia"
+datos_para_linea &lt;- gapminder %&gt;%
+  filter(country == pais)
+
+head(datos_para_linea)
+</code></pre>
+
+<p><strong>Paso 1</strong>: Crea un gráfico y asígnale lo que <code class="language-plaintext highlighter-rouge">ggplot2</code> llama <em>aesthethic mappings</em> o mapeos estéticos (cuando <em>mapeas</em> o relacionas tus datos a una característica estética del gráfico). <br />
+Es decir: <em>X es el año e Y es esperanza de vida</em>.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Ya tenemos cargados los datos
+# crea el gráfico - paso 1
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp))
+
+# muestra el gráfico
+línea
+</code></pre>
+
+<p><strong>Paso 2</strong>: Agrégale una <em>geometría</em>. ¿Cómo vas a visualizar los valores <em>mapeados</em>? <br />
+En este caso con una línea:</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Ya tenemos cargados los datos
+# crea el gráfico - paso 2
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1)
+
+# muestra el gráfico
+línea
+</code></pre>
+
+<p><strong>Paso 3</strong>: Agregamos una línea horizontal <code class="language-plaintext highlighter-rouge">geom_hline</code> en el valor 0 de <code class="language-plaintext highlighter-rouge">Y</code>. <br />
+Este paso es opcional pero recomendado - <code class="language-plaintext highlighter-rouge">Y</code> representa Esperanza de Vida y estaría bueno que tu escala comience en 0.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Ya tenemos cargados los datos
+# crea el gráfico - paso 3
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333")
+
+# muestra el gráfico
+línea
+</code></pre>
+
+<p><strong>Paso 4</strong>: Güau que rápido vas. En este paso le agregamos <code class="language-plaintext highlighter-rouge">labels</code> o etiquetas: Título y Subtítutlo.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Ya tenemos cargados los datos
+# crea el gráfico - paso 4
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+       subtitle = "Esperanza de Vida en Colombia 1952-2007")
+
+# muestra el gráfico
+línea
+</code></pre>
+
+<p><strong>Paso 5</strong>: Agrégale <code class="language-plaintext highlighter-rouge">+ bbc_style()</code> y ¡ya quedó!</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Ya tenemos cargados los datos
+# crea el gráfico - paso 5
+línea &lt;- ggplot(datos_para_linea, aes(x = year, y = lifeExp)) + 
+  geom_line(colour = "#1380A1", size = 1) + 
+  geom_hline(yintercept = 0, size = 1, colour="#333333") + 
+  labs(title="Pura Vida", 
+       subtitle = "Esperanza de Vida en Colombia 1952-2007") + 
+  bbc_style()
+
+# muestra el gráfico
+línea
+</code></pre>
+
+<p>Como puedes ver, <code class="language-plaintext highlighter-rouge">bbplot</code> es un paquete útil y muy fácil de usar. Te sirve para ahorrar tiempo en modificar cada uno de los aspectos de tu gráfico al darte un conjunto de atributos predeterminados (el estilo de la BBC). La segunda función de <code class="language-plaintext highlighter-rouge">bbplot</code> sirve para guardar tus gráficos en formato <code class="language-plaintext highlighter-rouge">.png</code>:</p>
+<pre><code class="language-r"># finalise_plot() para guardar tu gráfico
+finalise_plot(plot_name = linea, # el nombre de tu gráfico en R
+              source_name = 'Gapminder', # la fuente de tus datos
+              save_filepath = "ejemplo_1.png", # el nombre con el cual guardarlo
+              width_pixels = 500, # ancho
+              height_pixels = 500, # alto
+              logo_image_path = "logo.png") # tu logo, si quieres.
+</code></pre>
+<figure>
+    <img src="../assets/blogposts/002_bbplot_ejemplo_4.png" alt="gráfico de bbplot con logo" style="max-width:70%" />
+    <figcaption style="text-align:center"><i>Un gráfico finalizado con todo y el logo de <strong>tacosdedatos</strong></i></figcaption>
+</figure>
+<hr />
+<h2 id="conclusión">Conclusión</h2>
+<p>Este es el primer artículo explorando paquetes/librerías para visualizar datos. Como otros productos de <strong>tacosdedatos</strong>, queremos mantenerlos cortos y directos al punto, mostrandote a través de ejemplos el “que” y el “como”. Creemos que aprendemos más y mejor explorando.</p>
+
+<p>¿Qué te pareció el formato? ¿Te gustarían resúmenes más detallados o crees que así esta bien? <a href="https://twitter.com/share?text=Obvio+que+estuvo+super+el+blog+%40tacosdedatos+%F0%9F%8C%AE">Mandanos un tuit a @tacosdedatos</a> o envianos un correo a <a href="mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;body=Hola-holaaa">✉️ sugerencias@tacosdedatos.com</a>. Y recuerda que puedes subscribirte a nuestro boletín al final de esta página. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.</p>
+
+<p>¡Hasta la próxima! Te dejamos aquí debajo otros ejemplos.</p>
+
+<hr />
+<h4 id="más-ejemplos">Más ejemplos</h4>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Prepara los datos
+dumbbell_datos &lt;- gapminder %&gt;%
+  filter(year == 1967 | year == 2007) %&gt;%
+  select(country, year, lifeExp) %&gt;%
+  spread(year, lifeExp) %&gt;%
+  mutate(gap = `2007` - `1967`) %&gt;%
+  arrange(desc(gap)) %&gt;%
+  head(10)
+
+# Hacemos el gráfico
+ggplot(dumbbell_datos, aes(x = `1967`, xend = `2007`, y = reorder(country, gap), group = country)) + 
+  geom_dumbbell(colour = "#dddddd",
+                size = 3,
+                colour_x = "#FAAB18",
+                colour_xend = "#1380A1") +
+  bbc_style() + 
+  labs(title="Güau, vivimos más y más",
+       subtitle="Cambios más grandes \nen esperanza de vida, 1967-2007")
+</code></pre>
+
+<p>A este par de ejemplos debajo puedes borrarles el <code class="language-plaintext highlighter-rouge">#</code> en la línea <code class="language-plaintext highlighter-rouge">bbc_style() +</code> para <em>activar</em> el estilo BBC.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Prepara los datos
+faceta &lt;- gapminder %&gt;%
+  filter(continent != "Americas") %&gt;%
+  group_by(continent, year) %&gt;%
+  summarise(pop = sum(as.numeric(pop)))
+
+# Haz el gráfico
+grafico_faceteado &lt;- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
+  scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) + 
+  facet_wrap( ~ continent, ncol = 5) + 
+  scale_y_continuous(breaks = c(0, 2000000000, 4000000000),
+                     labels = c(0, "2bn", "4bn")) +
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
+  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
+  theme(legend.position = "none",
+        axis.text.x = element_blank()) +
+  labs(title = "El rápido crecimiento de Asia",
+       subtitle = "Crecimiento de población \npor continente, 1952-2007")
+
+grafico_faceteado
+</code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Prepara los datos
+faceta &lt;- gapminder %&gt;%
+  filter(continent != "Americas") %&gt;%
+  group_by(continent, year) %&gt;%
+  summarise(pop = sum(as.numeric(pop)))
+
+# Hagamos el gráfico
+grafico_faceteado_free &lt;- ggplot() +
+  geom_area(data = faceta, aes(x = year, y = pop, fill = continent)) +
+  facet_wrap(~ continent, scales = "free") + 
+  # Borra el signo de # al inicio de la siguiente línea para activar el bbc_style()
+  #bbc_style() + 
+  scale_fill_manual(values = c("#FAAB18", "#1380A1","#990000", "#588300")) +
+  geom_hline(yintercept = 0, size = 1, colour = "#333333") +
+  theme(legend.position = "none",
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  labs(title = "Todo es relativo",
+       subtitle = "Crecimiento relativo de población \npor continente,1952-2007")
+
+grafico_faceteado_free
+</code></pre>
+<p><br />
+Este es un buen ejemplo de como solo añadir <code class="language-plaintext highlighter-rouge">bbc_style()</code> al final de cualquier gráfico de <code class="language-plaintext highlighter-rouge">ggplot2</code> no siempre es la mejor opción. La BBC utiliza marcas en sus ejes <code class="language-plaintext highlighter-rouge">X</code> por defecto pero en este gráfico en particular toman mucho espacio. Así que primero <em>activamos</em> el estilo BBC y <em>luego</em> agregamos código que elimina las etiquetas en los ejes.</p>
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Hagamos el gráfico
+datos = gapminder %&gt;%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style()
+</code></pre>
+
+<pre data-executable="true" data-language="R">
+<code class="language-r"># Hagamos el gráfico
+datos = gapminder %&gt;%
+	filter(year == 2007)
+    
+ggplot(datos, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  bbc_style() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_blank(),
+        # bbc_style agrega etiquetas en el eje X asi tenemos que agregar esto
+        axis.ticks.x = element_blank(), 
+        axis.ticks.y = element_blank(),
+        axis.text.y = element_blank()) 
+</code></pre>
+
+<h3 id="bonus">bonus</h3>
+<p>Mira este super gif creado con <code class="language-plaintext highlighter-rouge">ggplot2</code> + <code class="language-plaintext highlighter-rouge">bbplot</code> + <code class="language-plaintext highlighter-rouge">gganimate</code> 😱</p>
+<figure>
+    <img src="../assets/blogposts/002_bbplot_y_gganimate.gif" alt="ggplot2 + bbplot + gganimate = güau" />
+    <figcaption style="text-align:center"><span style="font-family:monospace">ggplot2 + bbplot + gganimate = güau</span></figcaption>
+</figure>
+<p><br /></p>
+
+<p>Este es el código para hacerlo en <code class="language-plaintext highlighter-rouge">Rstudio</code>:</p>
+<pre><code class="language-r"># Carga todos tus paquetes
+library(ggplot2)
+library(bbplot)
+library(gganimate)
+library(gapminder)
+
+# Creas el gráfico
+animeishon &lt;- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+    geom_point(alpha = 0.7, show.legend = FALSE) +
+    scale_colour_manual(values = country_colors) +
+    scale_size(range = c(2, 12)) +
+    scale_x_log10() +
+    facet_wrap(~continent) + 
+	  bbc_style() + 
+    theme(legend.position = "none",
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.text.y = element_blank(),
+          plot.subtitle = element_text(size=12, face="italic",)) +
+    # Estos son los atributos especificos de gganimate
+    labs(title = 'Año: {frame_time}', subtitle = 'x: PIB per capita \ny: Esperanza de vida') +
+    transition_time(year) +
+    ease_aes('linear')
+
+animate(animeishon, nframes = 100, end_pause = 10)
+</code></pre>
+<p>Puedes copiar y pegar todo esto en <code class="language-plaintext highlighter-rouge">Rstudio</code> sin necesidad de instalar nada en MyBinder.org haciendo clic aquí <a href="https://mybinder.org/v2/gh/tacosdedatos/probando-bbplot/master?urlpath=rstudio"><img src="https://img.shields.io/badge/-Rstudio-579ACA.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAMAAABi1XidAAAB8lBMVEX///9XmsrmZYH1olJXmsr1olJXmsrmZYH1olJXmsr1olJXmsrmZYH1olL1olJXmsr1olJXmsrmZYH1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olJXmsrmZYH1olL1olL0nFf1olJXmsrmZYH1olJXmsq8dZb1olJXmsrmZYH1olJXmspXmspXmsr1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olLeaIVXmsrmZYH1olL1olL1olJXmsrmZYH1olLna31Xmsr1olJXmsr1olJXmsrmZYH1olLqoVr1olJXmsr1olJXmsrmZYH1olL1olKkfaPobXvviGabgadXmsqThKuofKHmZ4Dobnr1olJXmsr1olJXmspXmsr1olJXmsrfZ4TuhWn1olL1olJXmsqBi7X1olJXmspZmslbmMhbmsdemsVfl8ZgmsNim8Jpk8F0m7R4m7F5nLB6jbh7jbiDirOEibOGnKaMhq+PnaCVg6qWg6qegKaff6WhnpKofKGtnomxeZy3noG6dZi+n3vCcpPDcpPGn3bLb4/Mb47UbIrVa4rYoGjdaIbeaIXhoWHmZYHobXvpcHjqdHXreHLroVrsfG/uhGnuh2bwj2Hxk17yl1vzmljzm1j0nlX1olL3AJXWAAAAbXRSTlMAEBAQHx8gICAuLjAwMDw9PUBAQEpQUFBXV1hgYGBkcHBwcXl8gICAgoiIkJCQlJicnJ2goKCmqK+wsLC4usDAwMjP0NDQ1NbW3Nzg4ODi5+3v8PDw8/T09PX29vb39/f5+fr7+/z8/Pz9/v7+zczCxgAABC5JREFUeAHN1ul3k0UUBvCb1CTVpmpaitAGSLSpSuKCLWpbTKNJFGlcSMAFF63iUmRccNG6gLbuxkXU66JAUef/9LSpmXnyLr3T5AO/rzl5zj137p136BISy44fKJXuGN/d19PUfYeO67Znqtf2KH33Id1psXoFdW30sPZ1sMvs2D060AHqws4FHeJojLZqnw53cmfvg+XR8mC0OEjuxrXEkX5ydeVJLVIlV0e10PXk5k7dYeHu7Cj1j+49uKg7uLU61tGLw1lq27ugQYlclHC4bgv7VQ+TAyj5Zc/UjsPvs1sd5cWryWObtvWT2EPa4rtnWW3JkpjggEpbOsPr7F7EyNewtpBIslA7p43HCsnwooXTEc3UmPmCNn5lrqTJxy6nRmcavGZVt/3Da2pD5NHvsOHJCrdc1G2r3DITpU7yic7w/7Rxnjc0kt5GC4djiv2Sz3Fb2iEZg41/ddsFDoyuYrIkmFehz0HR2thPgQqMyQYb2OtB0WxsZ3BeG3+wpRb1vzl2UYBog8FfGhttFKjtAclnZYrRo9ryG9uG/FZQU4AEg8ZE9LjGMzTmqKXPLnlWVnIlQQTvxJf8ip7VgjZjyVPrjw1te5otM7RmP7xm+sK2Gv9I8Gi++BRbEkR9EBw8zRUcKxwp73xkaLiqQb+kGduJTNHG72zcW9LoJgqQxpP3/Tj//c3yB0tqzaml05/+orHLksVO+95kX7/7qgJvnjlrfr2Ggsyx0eoy9uPzN5SPd86aXggOsEKW2Prz7du3VID3/tzs/sSRs2w7ovVHKtjrX2pd7ZMlTxAYfBAL9jiDwfLkq55Tm7ifhMlTGPyCAs7RFRhn47JnlcB9RM5T97ASuZXIcVNuUDIndpDbdsfrqsOppeXl5Y+XVKdjFCTh+zGaVuj0d9zy05PPK3QzBamxdwtTCrzyg/2Rvf2EstUjordGwa/kx9mSJLr8mLLtCW8HHGJc2R5hS219IiF6PnTusOqcMl57gm0Z8kanKMAQg0qSyuZfn7zItsbGyO9QlnxY0eCuD1XL2ys/MsrQhltE7Ug0uFOzufJFE2PxBo/YAx8XPPdDwWN0MrDRYIZF0mSMKCNHgaIVFoBbNoLJ7tEQDKxGF0kcLQimojCZopv0OkNOyWCCg9XMVAi7ARJzQdM2QUh0gmBozjc3Skg6dSBRqDGYSUOu66Zg+I2fNZs/M3/f/Grl/XnyF1Gw3VKCez0PN5IUfFLqvgUN4C0qNqYs5YhPL+aVZYDE4IpUk57oSFnJm4FyCqqOE0jhY2SMyLFoo56zyo6becOS5UVDdj7Vih0zp+tcMhwRpBeLyqtIjlJKAIZSbI8SGSF3k0pA3mR5tHuwPFoa7N7reoq2bqCsAk1HqCu5uvI1n6JuRXI+S1Mco54YmYTwcn6Aeic+kssXi8XpXC4V3t7/ADuTNKaQJdScAAAAAElFTkSuQmCC" alt="badge" /></a></p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo.jpg" alt="sergio" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/sergio">Sergio Sánchez Zavala</a></h4>
+                                
+                                    <p>Soy investigador asociado de política pública basado en San Francisco, California. Diseñador de visualizaciones de datos.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/sergio">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot';
+                            this.page.identifier = 'ggplot2 + BBC = bbplot';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/blog/">Blog</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/sidetable-el-beffo-de-pandas">Sidetable, el beffo de pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-III">Dueño de mis datos - Capítulo Facebook - Parte III</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-II">Dueño de mis datos - Capítulo Facebook - Parte II</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/blog/">
+                                
+                                    See all 22 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/graficos-waffle-en-excel-y-google-sheets">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/003.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/graficos-waffle-en-excel-y-google-sheets">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Recursos</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Tutoriales</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Excel</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Google sheets</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Principiante</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Gráficos Waffle en Excel y Google Sheets en 5 pasos.</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo.jpg" alt="Sergio Sánchez Zavala" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/sergio/">Sergio Sánchez Zavala</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Datawrapper-para-visualizar-datos-sin-saber-programar">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/001.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Datawrapper-para-visualizar-datos-sin-saber-programar">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Recursos</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Datawrapper para visualizar datos sin saber programar</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo.jpg" alt="Sergio Sánchez Zavala" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/sergio/">Sergio Sánchez Zavala</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">ggplot2 + BBC = bbplot</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=ggplot2+%2B+BBC+%3D+bbplot&amp;url=https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/ggplot2-mas-bbc-es-igual-a-bbplot"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

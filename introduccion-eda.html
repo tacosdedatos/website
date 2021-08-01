@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Introducción al análisis exploratorio de datos</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/introduccion-eda" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Introducción al análisis exploratorio de datos" />
+    <meta property="og:description" content="En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis). Como lo mencioné en mi video de YouTube sobre el tema, El AED una forma de realizar análisis de datos, es usualmente uno de los" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/introduccion-eda" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/tutoriales/eda_01.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-05-24T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-05-24T10:00:00+00:00" />
+    <meta property="article:tag" content="Tutoriales" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Introducción al análisis exploratorio de datos" />
+    <meta name="twitter:description" content="En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis). Como lo mencioné en mi video de YouTube sobre el tema, El AED una forma de realizar análisis de datos, es usualmente uno de los" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/tutoriales/eda_01.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Tutoriales" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/introduccion-eda",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/tutoriales/eda_01.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/introduccion-eda"
+    },
+    "description": "En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis). Como lo mencioné en mi video de YouTube sobre el tema, El AED una forma de realizar análisis de datos, es usualmente uno de los"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Introducción al análisis exploratorio de datos" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-tutoriales ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="24 May 2020">24 May 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/tutoriales/'>TUTORIALES</a>,
+                            
+                        
+                            
+                               <a href='/tag/python/'>PYTHON</a>,
+                            
+                        
+                            
+                               <a href='/tag/eda/'>EDA</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Introducción al análisis exploratorio de datos</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/tutoriales/eda_01.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>En este post les voy a dar una pequeñísima introducción al análisis exploratorio de datos o EDA por sus siglas en inglés (Exploratory Data Analysis).</p>
+
+<p>Como lo mencioné en mi <a href="https://youtu.be/s7A1OxEeT6o">video de YouTube sobre el tema</a>, El AED una forma de realizar análisis de datos, es usualmente uno de los primeros pasos que uno debe realizar antes de aventurarse utilizar el scikit learn o tensoflow para hacer machine learning. Usualmente este proceso de análisis involucra muchas ayudas visuales, es decir gráficas, que nos ayudan a encontrar información que de otra forma sería difícil de conocer acerca de nuestros datos; mediante este proceso estamos tratando de encontrar:</p>
+
+<ul>
+  <li>La estructura y distribución de nuestros datos,</li>
+  <li>Encontrar las relaciones entre las variables explicatorias,</li>
+  <li>Encontrar la relación que tienen las variables explicatorias con la variable respuesta,</li>
+  <li>Encontrar posibles errores, puntos extremos y anomalías en los datos,</li>
+  <li>Refinar nuestras hipótesis, o generar nuevas preguntas sobre los datos que tenemos</li>
+</ul>
+
+<p>No existe una técnica formal sobre cómo llevar a cabo este tipo de análisis, sino que más dependen de lo que vayamos encontrando en los datos, así como de la experiencia y conocimiento específico del problema con el que contemos.</p>
+
+<p>Para este post usaré algunas de las librerías más comunes para el análisis de datos en el ecosistema de Python, todas las puedes instalar desde PyPI:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>numpy pandas matplotlib seaborn scikit-learn
+</code></pre></div></div>
+
+<p>Y sobre los datos que vamos a analizar, serán los datos de <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009">Red Wine Quality</a>. Por cierto, <a href="https://www.kaggle.com/ioexception/vino-eda">puedes ver el notebook completo</a> en Kaggle, si accedes al notebook ahí, no tienes que preocuparte por instalar nada ni descargar nada, todo está listo. Ahora si, comenzamos con nuestros imports de regla:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.style</span> <span class="k">as</span> <span class="n">style</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'ggplot'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Ahora sí, leemos nuestros a un <code class="language-plaintext highlighter-rouge">DataFrame</code> datos usando <em>pandas</em>, una vez leídos mostramos qué tan grande es nuestro <code class="language-plaintext highlighter-rouge">DataFrame</code>, así como una muestra de los datos:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wine_quality</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"/kaggle/input/red-wine-quality-cortez-et-al-2009/winequality-red.csv"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Dataset length"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">wine_quality</span><span class="p">))</span>
+<span class="n">wine_quality</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Dataset length 1599</p>
+</blockquote>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed acidity</th>
+      <th>volatile acidity</th>
+      <th>citric acid</th>
+      <th>residual sugar</th>
+      <th>chlorides</th>
+      <th>free sulfur dioxide</th>
+      <th>total sulfur dioxide</th>
+      <th>density</th>
+      <th>pH</th>
+      <th>sulphates</th>
+      <th>alcohol</th>
+      <th>quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7.8</td>
+      <td>0.88</td>
+      <td>0.00</td>
+      <td>2.6</td>
+      <td>0.098</td>
+      <td>25.0</td>
+      <td>67.0</td>
+      <td>0.9968</td>
+      <td>3.20</td>
+      <td>0.68</td>
+      <td>9.8</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.8</td>
+      <td>0.76</td>
+      <td>0.04</td>
+      <td>2.3</td>
+      <td>0.092</td>
+      <td>15.0</td>
+      <td>54.0</td>
+      <td>0.9970</td>
+      <td>3.26</td>
+      <td>0.65</td>
+      <td>9.8</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.2</td>
+      <td>0.28</td>
+      <td>0.56</td>
+      <td>1.9</td>
+      <td>0.075</td>
+      <td>17.0</td>
+      <td>60.0</td>
+      <td>0.9980</td>
+      <td>3.16</td>
+      <td>0.58</td>
+      <td>9.8</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7.4</td>
+      <td>0.70</td>
+      <td>0.00</td>
+      <td>1.9</td>
+      <td>0.076</td>
+      <td>11.0</td>
+      <td>34.0</td>
+      <td>0.9978</td>
+      <td>3.51</td>
+      <td>0.56</td>
+      <td>9.4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>De a poco vamos conociendo nuestros datos… ahora la siguiente pregunta <strong>¿Qué variables tenemos?</strong>.</p>
+
+<p>Lo primero que hay que hacer es tratar de identificar el tipo de variables que tenemos a la mano, en algunos <em>datasets</em> esto es posible con tan solo leer los nombres de las columnas (como es el caso de el <em>dataset</em> con el que estamos trabajando). Sin embargo, hay algunos casos en los que los nombres no son provistos (o están ofuscados) por diversas razones.</p>
+
+<p>Aprovechando que nuestro <em>dataset</em> sí tiene nombres, podemos verlos con:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wine_quality</span><span class="p">.</span><span class="n">columns</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Index([‘fixed acidity’, ‘volatile acidity’, ‘citric acid’, ‘residual sugar’,
+  ‘chlorides’, ‘free sulfur dioxide’, ‘total sulfur dioxide’, ‘density’,
+  ‘pH’, ‘sulphates’, ‘alcohol’, ‘quality’],
+  dtype=’object’)</p>
+</blockquote>
+
+<p>Probablemente si no eres un conocedor de vinos, las variables tengan poco o nada de sentido para ti. <strong>Idealmente nosotros deberíamos tener conocimiento del tema sobre el que vamos a trabajar (o podemos conseguir un experto que nos guíe)</strong>… pero por ahora pretendamos que sabemos lo que hacemos. Visita este link si quieres <a href="https://waterhouse.ucdavis.edu/whats-in-wine" target="_blank">una ligera introducción a los componentes del vino</a>.</p>
+
+<h2 id="antes-de-continuar-️">Antes de continuar ⚠️</h2>
+
+<blockquote>
+  <p>Si lo que estás esperando hacer con la información es crear un modelo predictivo, lo primero que hay que hacer es separar los datos en conjuntos de prueba, entrenamiento y, si puedes, validación. El análisis exploratorio de datos se debe conducir únicamente sobre los datos de entrenamiento, ya que realizar el análisis en todo el conjunto de datos nos llevaría a tomar decisiones teniendo en cuenta datos a los que, en teoría, tu modelo no tendría acceso en producción. Es decir, este es un problema de filtración de datos.</p>
+</blockquote>
+
+<p>Teniendo esto en mente, vamos a separar nuestros datos con:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wine_train</span><span class="p">,</span> <span class="n">wine_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">wine_quality</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="completitud-en-los-datos">Completitud en los datos</h2>
+<p>Antes de comenzar cualquier análisis, es bueno revisar los datos para buscar información faltante; y en caso de que la haya, es nuestra tarea decidir qué es lo que podemos hacer con esos registros faltantes. Con los dataframes de <code class="language-plaintext highlighter-rouge">pandas</code> podemos usar <code class="language-plaintext highlighter-rouge">info</code> para encontrar los datos faltantes: También podríamos haber usado <a href="https://github.com/ResidentMario/missingno">missingno</a> para tener una representación visual de esta información.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wine_train</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">wine_test</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Y así es cómo se ve a la salida:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 1199 entries, 1060 to 418
+Data columns (total 12 columns):
+fixed acidity           1199 non-null float64
+volatile acidity        1199 non-null float64
+citric acid             1199 non-null float64
+residual sugar          1199 non-null float64
+chlorides               1199 non-null float64
+free sulfur dioxide     1199 non-null float64
+total sulfur dioxide    1199 non-null float64
+density                 1199 non-null float64
+pH                      1199 non-null float64
+sulphates               1199 non-null float64
+alcohol                 1199 non-null float64
+quality                 1199 non-null int64
+dtypes: float64(11), int64(1)
+memory usage: 121.8 KB
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 400 entries, 1186 to 1163
+Data columns (total 12 columns):
+fixed acidity           400 non-null float64
+volatile acidity        400 non-null float64
+citric acid             400 non-null float64
+residual sugar          400 non-null float64
+chlorides               400 non-null float64
+free sulfur dioxide     400 non-null float64
+total sulfur dioxide    400 non-null float64
+density                 400 non-null float64
+pH                      400 non-null float64
+sulphates               400 non-null float64
+alcohol                 400 non-null float64
+quality                 400 non-null int64
+dtypes: float64(11), int64(1)
+memory usage: 40.6 KB
+</code></pre></div></div>
+
+<p>Y pues no, no hay datos faltantes… sin embargo si faltaran, debes saber que existe toda una metodología para decidir cómo actuar ante datos faltantes en nuestro <em>dataset</em>. Pero de eso podemos hablar en otro momento.</p>
+
+<h2 id="estadísticas-descriptivas">Estadísticas descriptivas</h2>
+
+<p>El segundo paso a dar, es ver las estadísticas descriptivas de nuestra información, esto nos ayudará a darnos una idea de los posibles valores de nuestro dataset. El paquete <code class="language-plaintext highlighter-rouge">pandas</code> ofrece el método <code class="language-plaintext highlighter-rouge">describe</code> para obtener una vista detallada y completa de algunas de las estadísticas más comunes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">wine_train</span><span class="p">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed acidity</th>
+      <th>volatile acidity</th>
+      <th>citric acid</th>
+      <th>residual sugar</th>
+      <th>chlorides</th>
+      <th>free sulfur dioxide</th>
+      <th>total sulfur dioxide</th>
+      <th>density</th>
+      <th>pH</th>
+      <th>sulphates</th>
+      <th>alcohol</th>
+      <th>quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+      <td>1199.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>8.309174</td>
+      <td>0.525847</td>
+      <td>0.269867</td>
+      <td>2.574604</td>
+      <td>0.088136</td>
+      <td>15.820267</td>
+      <td>46.194329</td>
+      <td>0.996755</td>
+      <td>3.312035</td>
+      <td>0.664120</td>
+      <td>10.436614</td>
+      <td>5.637198</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.758086</td>
+      <td>0.177889</td>
+      <td>0.194103</td>
+      <td>1.448308</td>
+      <td>0.049179</td>
+      <td>10.559120</td>
+      <td>32.648521</td>
+      <td>0.001879</td>
+      <td>0.156249</td>
+      <td>0.177114</td>
+      <td>1.075123</td>
+      <td>0.802324</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>4.600000</td>
+      <td>0.120000</td>
+      <td>0.000000</td>
+      <td>0.900000</td>
+      <td>0.012000</td>
+      <td>1.000000</td>
+      <td>6.000000</td>
+      <td>0.990070</td>
+      <td>2.740000</td>
+      <td>0.330000</td>
+      <td>8.400000</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>7.100000</td>
+      <td>0.390000</td>
+      <td>0.090000</td>
+      <td>1.900000</td>
+      <td>0.070000</td>
+      <td>7.000000</td>
+      <td>22.000000</td>
+      <td>0.995600</td>
+      <td>3.210000</td>
+      <td>0.560000</td>
+      <td>9.500000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>7.900000</td>
+      <td>0.520000</td>
+      <td>0.260000</td>
+      <td>2.200000</td>
+      <td>0.079000</td>
+      <td>13.000000</td>
+      <td>37.000000</td>
+      <td>0.996800</td>
+      <td>3.310000</td>
+      <td>0.620000</td>
+      <td>10.200000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>9.200000</td>
+      <td>0.637500</td>
+      <td>0.420000</td>
+      <td>2.600000</td>
+      <td>0.091000</td>
+      <td>22.000000</td>
+      <td>61.500000</td>
+      <td>0.997820</td>
+      <td>3.400000</td>
+      <td>0.735000</td>
+      <td>11.100000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>15.900000</td>
+      <td>1.330000</td>
+      <td>1.000000</td>
+      <td>15.500000</td>
+      <td>0.611000</td>
+      <td>72.000000</td>
+      <td>278.000000</td>
+      <td>1.003690</td>
+      <td>4.010000</td>
+      <td>2.000000</td>
+      <td>14.900000</td>
+      <td>8.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>De este resumen estadístico, una de las primeras cosas que podrían resultar extrañas es que la variable <strong>quality</strong> únicamente toma valores entre $3$ y $8$ (a pesar de que en la descripción original dice que los valores van de $0$ a $10$. Lo cual representa un problema puesto que nuestro modelo predictivo no tendrá ejemplos de vinos con una calidad de $0$ o de $10$, por ejemplo. Pero por el momento, no nos vamos a preocupar mucho por eso.</p>
+
+<p>También tengo que decir que algun conocedor del tema podría tener opiniones acerca de los rangos de valores que cubren ciertas variables… pero nosotros vamos a pasar al análisis gráfico.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">contextmanager</span>
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">5</span><span class="p">)):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">ax</span>
+    <span class="k">if</span> <span class="n">title</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="histogramas">Histogramas</h3>
+<p>Primero podemos echarle un ojo a la distribución de la variable <code class="language-plaintext highlighter-rouge">quality</code>, que como ya sabemos que es una variable discreta y que los valores van, en teoría de 0 a 10, podemos simplemente usar <code class="language-plaintext highlighter-rouge">countplot</code> del módulo <em>seaborn</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"Counts of `qualuty`"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">"Quality"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">"Count"</span><span class="p">)</span> <span class="k">as</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"quality"</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">(</span><span class="s">"Accent"</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">wine_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/FFFtlJm.png" /></p>
+
+<p>Como puedes ver, nuestro conjunto de datos está desbalanceado, con muchos mas $5$ y $6$ que cualquier otro valor.</p>
+
+<p>Ahora lo que podemos hacer es revisar algunas otras distribuciones, ahora sí, usando histogramas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"Fixed Acidity distribution"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">"Acidity"</span><span class="p">)</span> <span class="k">as</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">wine_train</span><span class="p">[</span><span class="s">"volatile acidity"</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/QnXb6u0.png" /></p>
+
+<p>Podemos usar un poco de código para visualizar más de una variable a la vez:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s">'fixed acidity'</span><span class="p">,</span> <span class="s">'volatile acidity'</span><span class="p">,</span> <span class="s">'citric acid'</span><span class="p">,</span> <span class="s">'residual sugar'</span><span class="p">,</span>
+       <span class="s">'chlorides'</span><span class="p">,</span> <span class="s">'free sulfur dioxide'</span><span class="p">,</span> <span class="s">'total sulfur dioxide'</span><span class="p">,</span> <span class="s">'density'</span><span class="p">,</span>
+       <span class="s">'pH'</span><span class="p">,</span> <span class="s">'sulphates'</span><span class="p">,</span> <span class="s">'alcohol'</span><span class="p">,</span> <span class="s">'quality'</span><span class="p">]</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">)</span> <span class="o">//</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">current_idx</span><span class="p">,</span> <span class="n">variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">current_idx</span> <span class="o">//</span> <span class="n">columns</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">current_idx</span> <span class="o">%</span> <span class="n">columns</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">wine_train</span><span class="p">[</span><span class="n">variable</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/ZoAJMQa.png" /></p>
+
+<p>De esta gráfica podemos ver que muchas de las variables tienen una distribución asimétrica (<code class="language-plaintext highlighter-rouge">fixed acidity</code>, <code class="language-plaintext highlighter-rouge">residual sugar</code>, <code class="language-plaintext highlighter-rouge">chlorides</code>, por ejemplo), además de que al parecer algunos valores tienen valores extremos (<code class="language-plaintext highlighter-rouge">residual sugar</code>, <code class="language-plaintext highlighter-rouge">sulphates</code>, <code class="language-plaintext highlighter-rouge">total sulfur dioxide</code>). Tal vez merezcan más exploración…</p>
+
+<h3 id="boxplots">Boxplots</h3>
+<p>Como mencioné anteriormente, existen algunas variables que merecen un poco más de exploración ya que parecen tener valores extremos, las <em>boxplots</em> nos permiten encontrar precisamente estos valores extremos. Es fácil graficar <em>boxplots</em> con <em>seaborn</em>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s">'fixed acidity'</span><span class="p">,</span> <span class="s">'residual sugar'</span><span class="p">,</span>
+       <span class="s">'chlorides'</span><span class="p">,</span> <span class="s">'free sulfur dioxide'</span><span class="p">,</span> 
+             <span class="s">'total sulfur dioxide'</span><span class="p">,</span><span class="s">'sulphates'</span><span class="p">,</span> <span class="s">'alcohol'</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">variables</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">variable</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">variables</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="n">boxplot</span><span class="p">(</span> <span class="n">y</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wine_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/zAGmjNX.png" /></p>
+
+<p>Como ya sabemos, los puntos fuera de las líneas horizontales son los famosos <em>outliers</em> o “valores atípicos”, dependiendo de la aplicación podemos reaccionar de diversas maneras frente a ellos… a veces los <em>outliers</em> se eliminan, a veces se transforman, o a veces se dejan porque tienen alto valor predictivo.</p>
+
+<h3 id="scatterplots">Scatterplots</h3>
+<p>El siguiente paso es tratar de identificar relaciones entre variables, podríamos por ejemplo usar un <em>scatterplot</em> para ver qué tipo de relación existe entre la cantidad de alcohol y la calidad de un vino:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"Alcohol - Quality scatterplot"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">"Alcohol"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">"Quality"</span><span class="p">)</span> <span class="k">as</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"alcohol"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"quality"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wine_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/GRULpvb.png" /></p>
+
+<p>Tal vez esta gráfica no sea tan reveladora, ya que nuestra variable <code class="language-plaintext highlighter-rouge">quality</code> es más bien del tipo categórico y es difícil identificar una tendencia. Otra cosa a notar es que las correlaciones también se pueden y, en la mayoría de los casos, se deben identificar entre las variables independientes también, no solo entre una de ellas y la variable dependiente. Por ejemplo, entre <code class="language-plaintext highlighter-rouge">free sulfur dioxide</code> y <code class="language-plaintext highlighter-rouge">total sulfur dioxide</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"Free Sulfur Dioxide - Total Sulfur Dioxide scatterplot"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">"Free Sulfur Dioxide"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">"Total Sulfur Dioxide"</span><span class="p">)</span> <span class="k">as</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">"free sulfur dioxide"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">"total sulfur dioxide"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">wine_train</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/HfdtXwC.png" /></p>
+
+<p>En esta gráfica si se puede observar una clara relación entre las variables, ¿cierto?</p>
+
+<p>Si quieres ver solamente el grado de correlación (sin necesidad de tratar de encontrarlo tu mismo desde una <em>scatterplot</em>) también podemos hacer uso de las matrices de correlación.</p>
+
+<h3 id="matrices-de-correlación">Matrices de correlación</h3>
+<p>Una matriz de correlación no es más que una matriz de números (cada número va de -1 a 1) que nos indican qué tan relacionadas están una variable con otra. Existen <a href="https://datascience.stackexchange.com/a/64261">3 métodos</a> para calcular esta correlación. Para calcularla en nuestro dataframe de vinos, podemos simplemente usar el método <code class="language-plaintext highlighter-rouge">corr</code> de un <em>dataframe</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">correlation</span> <span class="o">=</span> <span class="n">wine_train</span><span class="p">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">"pearson"</span><span class="p">)</span>
+<span class="n">correlation</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fixed acidity</th>
+      <th>volatile acidity</th>
+      <th>citric acid</th>
+      <th>residual sugar</th>
+      <th>chlorides</th>
+      <th>free sulfur dioxide</th>
+      <th>total sulfur dioxide</th>
+      <th>density</th>
+      <th>pH</th>
+      <th>sulphates</th>
+      <th>alcohol</th>
+      <th>quality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fixed acidity</th>
+      <td>1.000000</td>
+      <td>-0.237044</td>
+      <td>0.675747</td>
+      <td>0.164493</td>
+      <td>0.091213</td>
+      <td>-0.167011</td>
+      <td>-0.102002</td>
+      <td>0.681653</td>
+      <td>-0.692635</td>
+      <td>0.152724</td>
+      <td>-0.075869</td>
+      <td>0.128048</td>
+    </tr>
+    <tr>
+      <th>volatile acidity</th>
+      <td>-0.237044</td>
+      <td>1.000000</td>
+      <td>-0.543960</td>
+      <td>-0.011115</td>
+      <td>0.063904</td>
+      <td>-0.015815</td>
+      <td>0.088772</td>
+      <td>0.031415</td>
+      <td>0.220483</td>
+      <td>-0.248910</td>
+      <td>-0.209193</td>
+      <td>-0.389654</td>
+    </tr>
+    <tr>
+      <th>citric acid</th>
+      <td>0.675747</td>
+      <td>-0.543960</td>
+      <td>1.000000</td>
+      <td>0.149428</td>
+      <td>0.225910</td>
+      <td>-0.078811</td>
+      <td>0.004797</td>
+      <td>0.376603</td>
+      <td>-0.545874</td>
+      <td>0.314076</td>
+      <td>0.109625</td>
+      <td>0.241375</td>
+    </tr>
+    <tr>
+      <th>residual sugar</th>
+      <td>0.164493</td>
+      <td>-0.011115</td>
+      <td>0.149428</td>
+      <td>1.000000</td>
+      <td>0.059603</td>
+      <td>0.170785</td>
+      <td>0.162121</td>
+      <td>0.390897</td>
+      <td>-0.114692</td>
+      <td>0.021992</td>
+      <td>0.037932</td>
+      <td>0.026566</td>
+    </tr>
+    <tr>
+      <th>chlorides</th>
+      <td>0.091213</td>
+      <td>0.063904</td>
+      <td>0.225910</td>
+      <td>0.059603</td>
+      <td>1.000000</td>
+      <td>0.003828</td>
+      <td>0.061718</td>
+      <td>0.192486</td>
+      <td>-0.284091</td>
+      <td>0.391324</td>
+      <td>-0.222979</td>
+      <td>-0.133884</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Luego, para graficar estos números podemos usar un <code class="language-plaintext highlighter-rouge">heatmap</code> de <em>seaborn</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"Free Sulfur Dioxide - Total Sulfur Dioxide scatterplot"</span><span class="p">)</span> <span class="k">as</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">sns</span><span class="p">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span> <span class="s">'coolwarm'</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> 
+</code></pre></div></div>
+
+<p><img src="https://i.imgur.com/oKpJmEe.png" /></p>
+
+<p>Los colores más intensos corresponden con números cercanos a -1 o 1, que indican que tienen mayor relación entre ellas, por ejemplo, la variable <code class="language-plaintext highlighter-rouge">pH</code> con <code class="language-plaintext highlighter-rouge">fixed acidity</code> (que tienen una relación inversa) o <code class="language-plaintext highlighter-rouge">density</code> con <code class="language-plaintext highlighter-rouge">fixed acidity</code> que de igual manera, presenta una relación, pero en este caso, directa.</p>
+
+<p>Y pues, eso es todo por este post, sí, es bastante sencillo y aún hay mucho qué discutir sobre el análisis exploratorio de datos, aquí hay algunos de los recursos que yo consulté para preparar este video, y aún así hay mucho más por explorar:</p>
+
+<ul>
+  <li><a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda1.htm" target="_blank">EDA Introduction</a></li>
+  <li><a href="https://towardsdatascience.com/a-gentle-introduction-to-exploratory-data-analysis-f11d843b8184" target="_blank">A Gentle Introduction to Exploratory Data Analysis</a></li>
+  <li><a href="https://r4ds.had.co.nz/exploratory-data-analysis.html" target="_blank">Exploratory Data Analysis</a></li>
+</ul>
+
+<p>No olvides seguirme en twitter en <a href="https://twitter.com/io_exception">@io_exception</a>.</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="io_exception" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/io_exception">Antonio Feregrino Bolaños</a></h4>
+                                
+                                    <p>Soy científico de datos pero crecí siendo desarrollador de software.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/io_exception">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/introduccion-eda';
+                            this.page.identifier = 'Introducción al análisis exploratorio de datos';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/tutoriales/">Tutoriales</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/pronostico-de-ventas-arima">Pronóstico de ventas - ARIMA</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/pycon-2019">PyCon 2019 - PyCon Charlas y tutorial de Pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/graficos-waffle-en-excel-y-google-sheets">Gráficos Waffle en Excel y Google Sheets en 5 pasos.</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/tutoriales/">
+                                
+                                    See all 4 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/sidetable-el-beffo-de-pandas">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/019.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/sidetable-el-beffo-de-pandas">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Pandas</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Python</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Sidetable, el beffo de pandas</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo.jpg" alt="Sergio Sánchez Zavala" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/sergio/">Sergio Sánchez Zavala</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Dueno-de-mis-Datos-Facebook-Parte-III">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/018.PNG)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Dueno-de-mis-Datos-Facebook-Parte-III">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Facebook</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Ggplot2</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">R</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Text-mining</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Dueño de mis datos - Capítulo Facebook - Parte III</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="Pablo Quetzalcóatl Vázquez" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/nerudista/">Pablo Quetzalcóatl Vázquez</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Introducción al análisis exploratorio de datos</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Introducci%C3%B3n+al+an%C3%A1lisis+exploratorio+de+datos&amp;url=https://old.tacosdedatos.com/introduccion-eda"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/introduccion-eda"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

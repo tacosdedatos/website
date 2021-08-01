@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/author/manlio/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/author/manlio/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Webscrapping y Mapas con PowerBI</title>
+      <link href="https://old.tacosdedatos.com/Webscrapping-y-mapas-con-PowerBI" rel="alternate" type="text/html" title="Webscrapping y Mapas con PowerBI" />
+      <published>2019-05-30T08:00:00+00:00</published>
+      <updated>2019-05-30T08:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/Webscrapping-y-mapas-con-PowerBI</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/Webscrapping-y-mapas-con-PowerBI">&lt;p&gt;Saludos comunidad datera, en este pequeño artículo veremos lo sencillo que es conseguir datos de una página web y convertirlos en unos mapas interactivos con unos cuantos clicks.
+Para este caso queremos ubicar en un mapa los países y sus tasas de crecimiento poblacional.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_1.png&quot; alt=&quot;imagen 1&quot; /&gt;
+&lt;img src=&quot;../assets/blogposts/006_imagen_2.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;webscrapping&quot;&gt;Webscrapping&lt;/h3&gt;
+&lt;p&gt;Para este caso necesitamos tener instalado PowerBI, el cual es gratuito (por un mes) y completamente funcional, https://powerbi.microsoft.com/es-es/&lt;/p&gt;
+
+&lt;p&gt;Ya instalado, buscaremos obtener la información en la siguiente liga:&lt;/p&gt;
+
+&lt;p&gt;https://data.worldbank.org/indicator/SP.POP.GROW?page=6&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_3.png&quot; alt=&quot;imagen 2&quot; /&gt;
+&lt;img src=&quot;../assets/blogposts/006_imagen_4.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Navegando un poquito encontramos la información que deseamos. Ahora debemos descargarla y mapearla.
+Para ello utilizaremos el conector de PowerBI para páginas web.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_5.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Le indicaremos la página.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_6.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nos saldrá este navegador y veremos los dos elementos que nos facilitaran la vida. La vista web (Web View) y agregar tablas usando ejemplos (Add table using examples).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_7.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Una vez que demos click sobre esos botones entraremos en un modo de “What you see is what you get”, en la parte de arriba veremos la página web y en la parte de abajo diseñaremos nuestra tabla, seleccionaremos la tabla que ya habíamos identificado y le iremos diciendo a Power Bi que es o que necesitamos de esa tabla.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_8.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Conforme le vamos dando forma a nuestra tabla, nos irá dando sugerencias.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_9.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ya definimos el país, ahora seleccionemos el año.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_10.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora continuemos con la tasa de crecimiento.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_11.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Llenamos una segunda línea para entrenar a PowerBI sobre lo que queremos de la página. En este caso yo solo he escrito “Albania” y en automático llenó las otras dos columnas. Hacemos un chequeo rápido y vemos los datos son correctos.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_12.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Damos click en Ok, y regresamos a nuestro navegador a la vista de tabla (Table View) y vemos como ya contamos con la información lista para cargarla a nuestro modelo.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_13.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Le daremos cargar (Load) y listo, la tabla se encontrará disponible para hacer gráficos y mapeo.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_14.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Podemos hacer tablas y gráficos con nuestros datos, pero hoy veremos como hacer nuestros mapas, sólo falta decirle a PowerBI que la columna “Country” de nuestro modelo corresponde a datos Geográficos y que son países.&lt;/p&gt;
+
+&lt;p&gt;Y esto por supuesto se hace con unos cuantos clicks.
+Primero seleccionaremos nuestro columna “Country”, iremos a la pestaña de Modelado (Modeling) y en el menú Propiedades seleccionaremos la categoría de datos (Data Category) de País/Region (Country/Region), noten que si tuviéramos más detalle como estado o códigos postales, solo hará falta definirlos para mapearlos a el nivel que deseemos.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_15.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Una vez hecho esto aparecerá un icono de mundo justo a un lado de nuestra columna indicándonos que es un dato de categoría geográfica.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_16.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ahora sí a mapear, seleccionaremos de nuestro panel de visualizaciones (Visuals) el gráfico “Filled map”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_17.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizaremos la columna “Country” en “Location” y los valores de la columna “Growth Rate” en el campo “Tooltips”, con ello PowerBI sabrá que países colorear, pero nos falta agregarle una gama de colores que dependan de los valores de crecimiento.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_18.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Para agregarle el formato condicional seleccionamos nuestro mapa, nos dirigimos al panel de visualizaciones y seleccionamos “Data colors” damos click en “Default colors” y nos dará la opción e Formato condicional (Conditional formatting)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_19.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Configuramos la escala para que por las tasas de crecimiento coloree los países&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_20.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ya con eso queda nuestro mapa configurado.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_21.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Otra opción es usar el gráfico “Mapbox Visual”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_22.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Para este visual, necesitaremos un “Access token”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_23.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Una vez registrado, lo pegamos en el campo de “Access Token”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_24.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Configuramos nuestro mapa, definiendo tipo de mapa “Choropleth”&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/006_imagen_25.png&quot; alt=&quot;imagen 2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Y ya tenemos listos dos mapas, que podemos compartir en la internet mediante el servicio en línea de PowerBI.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Manlio Rolón Téllez</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="dax" />
+      
+        <category term="powerquery" />
+      
+        <category term="PowerBI" />
+      
+
+      
+        <summary type="html">Saludos comunidad datera, en este pequeño artículo veremos lo sencillo que es conseguir datos de una página web y convertirlos en unos mapas interactivos con unos cuantos clicks. Para este caso queremos ubicar en un mapa los países y sus tasas de crecimiento poblacional.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

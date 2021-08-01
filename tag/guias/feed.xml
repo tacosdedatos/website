@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/guias/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/guias/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">5 consejos para mejorar tus habilidades narrativas</title>
+      <link href="https://old.tacosdedatos.com/5-consejos-para-mejorar-tus-habilidades-narrativas-(storytelling)" rel="alternate" type="text/html" title="5 consejos para mejorar tus habilidades narrativas" />
+      <published>2019-02-06T08:30:00+00:00</published>
+      <updated>2019-02-06T08:30:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/5-consejos-para-mejorar-tus-habilidades-narrativas-(storytelling)</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/5-consejos-para-mejorar-tus-habilidades-narrativas-(storytelling)">&lt;p&gt;En la visualización y la ciencia de datos, como en cualquier otro ámbito técnico, la comunicación efectiva es una habilidad esencial.&lt;/p&gt;
+
+&lt;p&gt;La comunicación con datos efectiva es una combinación de 1) tus habilidades ilustrativas (visualización de datos) y 2) tus habilidades narrativas. No sólo es importante mostrar tus resultados con gráficos y diagramas. Es necesario el saber narrar tus resultados.&lt;/p&gt;
+
+&lt;p&gt;En &lt;strong&gt;tacosdedatos&lt;/strong&gt; seguiremos agregando recursos para desarrollar no sólo nuestras habilidades técnicas sino también otras habilidades complementarias. En este caso, como mejorar tus habilidades narrativas - como comunicar mejor con datos.&lt;/p&gt;
+
+&lt;h5 id=&quot;5-consejos-prácticos&quot;&gt;5 consejos prácticos.&lt;/h5&gt;
+
+&lt;p&gt;1. &lt;strong&gt;Mantén en mente el contexto y tu audiencia.&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Un error muy común al adentramos tanto en nuestro proyecto es olvidar que estamos presentando un producto final a alguien más. A alguien que no ha estado contigo paso a paso en tu análisis. Recuerda quien es tu &lt;strong&gt;&lt;em&gt;audiencia&lt;/em&gt;&lt;/strong&gt;: ¿estás presentando tus resultados al equipo de edición en tu periodico local? ¿a tu jefe que quiere saber como van las ventas? ¿a tus alumnos? ¿a tus seguidores en redes sociales? (sígueme &lt;a href=&quot;https://twitter.com/tacosdedatos&quot;&gt;@tacosdedatos&lt;/a&gt; 😉).&lt;/p&gt;
+
+&lt;p&gt;Tu audiencia va a variar de proyecto a proyecto y siempre van a llevar prioridad. Tu trabajo es personalizar tus visualizaciones y narrativas a la forma más facil de diregir para tus lectores.&lt;/p&gt;
+
+&lt;p&gt;Recuerda el &lt;strong&gt;&lt;em&gt;contexto&lt;/em&gt;&lt;/strong&gt; de tu presentación. Tu audiencia tiene un tiempo limitado para consumir tus visualizaciones y esto depende mucho del medio de comunicación. Si vas a enviar un reporte impreso puede que tengas el lujo de crear una visualización más compleja que si estás presentando algo en una reunión de 30 minutos con diapositivas.&lt;/p&gt;
+
+&lt;p&gt;Solo tú sabes tu &lt;strong&gt;audiencia&lt;/strong&gt; y el &lt;strong&gt;contexto&lt;/strong&gt; en el que vas a presentar tus visualizaciones. Aprovecha ese conocimiento y utilízalo en tu favor.&lt;/p&gt;
+
+&lt;p&gt;2. &lt;strong&gt;Escoje la mejor visualización para lo que quieres dar a conocer.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;La mejor visualización es la que transfiere su información de la manera más eficiente. Muchas veces nos encantaría mostrar un cartograma o algún análisis de redes porque son muy, muy, &lt;strong&gt;muy&lt;/strong&gt; interesantes y atractivos pero la realidad es que un simple gráfico de barras puede llegar ser más efectivo y eficiente.&lt;/p&gt;
+
+&lt;p&gt;3. &lt;strong&gt;Trata de mantenerlo simple. Estas presentando resultados, no explorando datos.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sumandole a los puntos que llevamos: recordando tu audiencia y el contexto de tu presentación probablemente la mejor visualización es algo más simple de lo que crees.&lt;/p&gt;
+
+&lt;p&gt;Quiero compartirles un ejemplo personal. En el trabajo estabamos escribiendo un reporte sobre la población migrante en California en Estados Unidos. Yo quería hacer algo así:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/000_ejemplo_1.jpg&quot; style=&quot;background-color:white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviamente primero personalizarlo con los colores de la empresa pero quería tener toda la información ahí presente. Quería que quien leyera pudiera ver las tendencias por nivel de educación y por país, que pudiera ver las proporciones por año, etc. Pero la realidad es que el punto que estabamos tratando de ilustrar es que la mayoría de los immigrantes llegando a California ya no vienen de Latinoamérica. Ahora llegan de Asia.&lt;/p&gt;
+
+&lt;p&gt;Mi ejemplo, técnicamente mostraba eso. Entre &lt;strong&gt;&lt;em&gt;muchas&lt;/em&gt;&lt;/strong&gt; otras cosas. Pero solamente necesitabamos illustrar &lt;strong&gt;un&lt;/strong&gt; hecho. Un gráfico como este lograba eso:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/000_ejemplo_2.png&quot; style=&quot;background-color:white&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4. &lt;strong&gt;Elimina distracciones y atrae atención a lo que &lt;em&gt;tú&lt;/em&gt; quieres que se le ponga atención.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Esto va mano a mano con mantener tus visualizaciónes explicativas y simples pero no es lo mismo.
+  No tengas miedo de ser obvio en tus intenciones. Tomemos por ejemplo estos dos gráficos de barras. Ambos muestran la misma información pero uno de ellos esta enfatizando un hecho muy obviamente.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/blogposts/000_ejemplo34.png&quot; style=&quot;background-color:white&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;No tengas miedo de agregar textos explicativos. Tus visualizaciones no siempre van a vivir en donde esperas y es buena practica incluir detalles que pueden ayudar a entender la visualización fuera de contexto (si no afecta tu visualización en sí). 
+  &lt;img src=&quot;../assets/blogposts/000_ejemplo_5.png&quot; style=&quot;background-color:white&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;5. &lt;strong&gt;Se conciente de los colores que utilizas y se conciente de las predispociciones de tu audiencia.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A nadie le gusta ver números rojos en una reunión de negocios.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Narra. Cuenta la historia.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;La visualización efectiva de datos se complementa con tu habilidad narrativa. Cuando termines tus lectores deberían poder explicarle a alguien que no estuvo presente de que se trató tu proyecto. O tu presentación. O tu artículo. Entregales el lenguaje para compartir el conocimiento que les acabas de otorgar.&lt;/p&gt;
+
+&lt;p&gt;En el mundo de los datos es fácil sentir la abrumación de tantos números, tendencias y patrones volando a todos lados. Como periodistas, como practicantes de la ciencia, como visualizadores, como escritores, como personas curiosas, es nuestro trabajo el sintetizar estos torbellinos de información en algo digerible para los demás. Para que esas personas tomen decisiones informadas. Para que construyan encima de lo que tú construiste y alcanzemos nuevas alturas como sociedad.&lt;/p&gt;
+
+&lt;p&gt;Cuando analizamos y visualizamos información aprendemos. Entre más aprendemos, más podemos enseñar a los demás.&lt;/p&gt;
+
+&lt;p&gt;Para concluir quiero pedirte una cosa: intercambia un consejo con alguien con quien trabajes o estudies. No importa tu nivel de expriencia, esa persona puede aprender algo nuevo por ti y tú por ella. Te dejo dos ejemplos de preguntas:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Estoy trabajando en este proyecto donde tengo que hacer &lt;em&gt;X&lt;/em&gt; y &lt;em&gt;Y&lt;/em&gt;, ¿cómo lo abordarías tu?&lt;/li&gt;
+  &lt;li&gt;Me gustó mucho tu trabajo/artículo/presentación, ¿cómo se te ocurrió hacerlo así?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Si tienes algún consejo que te haya servido mucho deberías compartirlo con la comunidad. Puedes tuitear usando la hashtag &lt;a href=&quot;https://twitter.com/share?text=%23VisDeDatosTips+&quot;&gt;#VisDeDatosTips&lt;/a&gt; o etiqueta a &lt;a href=&quot;https://twitter.com/tacosdedatos&quot;&gt;@tacosdedatos&lt;/a&gt;. Estaremos retuiteando todos los consejos, ¡entre más personas aprendan mejor!&lt;/p&gt;
+
+&lt;p&gt;Si tu consejo no cabe en un tuit &lt;a href=&quot;mailto:consejos@tacosdedatos.com?subject=Consejos%20de%20Narración%20con%20datos&amp;amp;body=Hola-holaaa&quot;&gt;mandanos un correo ✉️ consejos@tacosdedatos.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;“El conocimiento os hará libres” - Socrates&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="blog" />
+      
+        <category term="guias" />
+      
+
+      
+        <summary type="html">En la visualización y la ciencia de datos, como en cualquier otro ámbito técnico, la comunicación efectiva es una habilidad esencial.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

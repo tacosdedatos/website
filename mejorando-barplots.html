@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Mejorando nuestros gráficos de barras</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/mejorando-barplots" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mejorando nuestros gráficos de barras" />
+    <meta property="og:description" content="En esta ocasión les quiero hablar de cómo mejorar sus gráficos de barras con colores y fuentes personalizadas… aunque me gustaría que esta fuera una lección sobre cómo es que podemos sacar más provecho de Matplotlib y herramientas (como Seaborn) que se construyen al rededor de esta poderosa librería. Puedes" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/mejorando-barplots" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/blogposts/mejorando-barplots/index.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-09-25T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-09-25T10:00:00+00:00" />
+    <meta property="article:tag" content="Python" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mejorando nuestros gráficos de barras" />
+    <meta name="twitter:description" content="En esta ocasión les quiero hablar de cómo mejorar sus gráficos de barras con colores y fuentes personalizadas… aunque me gustaría que esta fuera una lección sobre cómo es que podemos sacar más provecho de Matplotlib y herramientas (como Seaborn) que se construyen al rededor de esta poderosa librería. Puedes" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/blogposts/mejorando-barplots/index.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Python" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/mejorando-barplots",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/blogposts/mejorando-barplots/index.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/mejorando-barplots"
+    },
+    "description": "En esta ocasión les quiero hablar de cómo mejorar sus gráficos de barras con colores y fuentes personalizadas… aunque me gustaría que esta fuera una lección sobre cómo es que podemos sacar más provecho de Matplotlib y herramientas (como Seaborn) que se construyen al rededor de esta poderosa librería. Puedes"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Mejorando nuestros gráficos de barras" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-tutoriales ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="25 September 2020">25 September 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/python/'>PYTHON</a>,
+                            
+                        
+                            
+                               <a href='/tag/matplotlib/'>MATPLOTLIB</a>,
+                            
+                        
+                            
+                               <a href='/tag/seaborn/'>SEABORN</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Mejorando nuestros gráficos de barras</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/blogposts/mejorando-barplots/index.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>En esta ocasión les quiero hablar de cómo mejorar sus gráficos de barras con colores y fuentes personalizadas… aunque me gustaría que esta fuera una lección sobre cómo es que podemos sacar más provecho de Matplotlib y herramientas (como Seaborn) que se construyen al rededor de esta poderosa librería.</p>
+
+<p>Puedes usar este <a href="https://www.kaggle.com/ioexception/las-cartas-m-s-usadas-de-yu-gi-oh">notebook de Kaggle</a> como referencia o como punto de inicio para tu experimentación.</p>
+
+<h2 id="los-datos">Los datos</h2>
+<p>Ultimamente he estado obsesionado con Yu-Gi-Oh! un juego de cartas en donde cada jugador elije cartas para su baraja, y encontré un dataset que contiene muchos, muchos decks… en fin, no es necesario que sepas nada sobre el juego para seguir este tutorial. Lo importante es que me hice de un dataset de barajas, y quise averiguar cuáles eran las cartas más usadas del juego, supongamos que tenemos un par de listas <code class="language-plaintext highlighter-rouge">card_ids</code> y <code class="language-plaintext highlighter-rouge">counts</code> con los identificadores de las cartas más comunes y la cantidad en la que aparecen en todas las barajas que encontré.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">card_ids</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['83764719', '14558127', '24224830', '81439173', '73628505', '10045474', '32807846', '97268402', '24094653', '2295440']
+[4649, 4406, 3634, 3169, 3076, 2739, 1695, 1682, 1676, 1539]
+</code></pre></div></div>
+
+<p>Que indica que el id <code class="language-plaintext highlighter-rouge">83764719</code> aparece <code class="language-plaintext highlighter-rouge">4649</code> veces, el id <code class="language-plaintext highlighter-rouge">14558127</code> lo hace <code class="language-plaintext highlighter-rouge">4406</code> veces y así sucesivamente…</p>
+
+<p>Además, tengo un diccionario que me permite obtener más información sobre determinada carta a partir de su identificador:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">card_by_id</span><span class="p">[</span><span class="s">'83764719'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83764719"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monster Reborn"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spell Card"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Target 1 monster in either GY; Special Summon it."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/ygoprodeck.com/pics/83764719.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"image_url_small"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/ygoprodeck.com/pics_small/83764719.jpg"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Tenemos cosas como el nombre y el tipo de carta, esos atributos nos serán de utilidad más adelante.</p>
+
+<h2 id="ahora-sí-a-graficar">Ahora sí, a graficar</h2>
+
+<p>Tenemos ids de cartas y la cantidad de veces que aparecen, suena a un trabajo para… ¡una gráfica de barras! así es como la harías usando <em>matplotlib</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">card_ids</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="assets/blogposts/mejorando-barplots/ugly.png" alt="An ugly plot" /></p>
+
+<h3 id="tamaño-de-la-gráfica">Tamaño de la gráfica</h3>
+<p>Además de las críticas obvias (gráfica sin título, no hay etiquetas en los ejes…) ¡la gráfica es horriblemente pequeña! para arreglar esto, podemos jugar con los argumentos <code class="language-plaintext highlighter-rouge">dpi</code> y <code class="language-plaintext highlighter-rouge">figsize</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">card_ids</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="assets/blogposts/mejorando-barplots/ugly-but-bigger.png" alt="An ugly, but bigger plot" /></p>
+
+<p>Un poquito mejor, ¿cierto? los argumentos que usamos nos ayudan a controlar dos cosas:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">figsize</code> controla el tamaño de la gráfica en pulgadas; el primer valor de la tupla es el valor horizontal y el segundo es vertical</li>
+  <li><code class="language-plaintext highlighter-rouge">dpi</code> controla los <em>puntos por pulgada</em> en nuestra gráfica, va de la mano con <code class="language-plaintext highlighter-rouge">figsize</code>. El usar este argumento nos facilitará en demasía el controlar el tamaño del texto en nuestra gráfica.</li>
+</ul>
+
+<h3 id="la-api-orientada-a-objetos">La API orientada a objetos</h3>
+<p>Para permitirnos aún más personalización, tendremos que aventurarnos a usar la no tan conocida API orientada a objetos de <em>matplotlib</em>, pero como verás no es nada del otro mundo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="n">card_ids</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
+</code></pre></div></div>
+<p>La gran diferencia es que no tenemos ya más referencias a <code class="language-plaintext highlighter-rouge">plt</code> más allá de la primera que nos ayuda a crear una figura. La novedad, también radica en que usamos el método <code class="language-plaintext highlighter-rouge">gca</code> (que proviene de <em>get current axes</em>) para obtener el <em>axes</em> que reside dentro de nuestra figura. Una vez hecho esto, ya podemos empezar a personalizar la gráfica:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Card id"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Occurrences"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s">"Most used cards across </span><span class="si">{</span><span class="n">deck_count</span><span class="si">}</span><span class="s"> Yu-Gi-Oh! decks"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="assets/blogposts/mejorando-barplots/ugly-but-better.png" alt="An ugly, but better plot" /></p>
+
+<h3 id="entra-seaborn">¡Entra <em>Seaborn</em>!</h3>
+<p>Muchas veces, si bien podemos lograr todos los resultados que queramos usando solamente matplotlib, hay ocasiones en las que podemos delegar este trabajo a otras librerías como <em>Seaborn</em>. Digamos que queremos mejorar aún más nuestra gráfica usando barras horizontales y los nombres de las cartas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">card_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">card_by_id</span><span class="p">[</span><span class="n">card_id</span><span class="p">][</span><span class="s">"name"</span><span class="p">]</span> <span class="k">for</span> <span class="n">card_id</span> <span class="ow">in</span> <span class="n">card_ids</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">card_names</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">"h"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Card name"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Occurrences"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s">"Most used cards across </span><span class="si">{</span><span class="n">deck_count</span><span class="si">}</span><span class="s"> Yu-Gi-Oh! decks"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>La novedad es que estamos usando <em>seaborn</em> (lo renombramos como <code class="language-plaintext highlighter-rouge">sns</code> en nuestro script) y, algo muy importante, le estamos pasando el argumento <code class="language-plaintext highlighter-rouge">ax</code> para que haga uso del axis que nosotros queremos. El resultado es el siguiente:</p>
+
+<p><img src="assets/blogposts/mejorando-barplots/improved.png" alt="An improved, bigger plot" /></p>
+
+<p>Se ve un poco mejor, pero la podemos hacer aún más atractiva.</p>
+
+<h3 id="personalización-máxima">Personalización máxima</h3>
+<p>Ahora podemos comenzar a crear nuestra gráfica:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">card_names</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">"h"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="tipografías-personalizadas">Tipografías personalizadas</h4>
+<p>Como se trata de una gráfica sobre cartas de Yu-Gi-Oh! decidí usar las tipografías que se usan para las cartas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># fm es matplotlib.font_manager
+</span><span class="n">card_name_prop</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s">"card_name.ttf"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">card_effect_prop</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s">"card_effect.ttf"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">card_effect_prop_sm</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s">"card_effect.ttf"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">card_number_prop</span> <span class="o">=</span> <span class="n">fm</span><span class="p">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s">"card_number.ttf"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">fname</code> es la ruta de la tipografía que vamos a usar, y los parámetros <code class="language-plaintext highlighter-rouge">size</code> tuve que averiguarlos a prueba y error (como casi todo en <em>matplotlib</em>). Mantengamos las referencias ahí, más adelante las vamos a usar.</p>
+
+<h4 id="etiquetas-de-los-ejes">Etiquetas de los ejes</h4>
+
+<p>Tengo la idea de poner los nombres de las cartas dentro de las barras, así que las podemos quitar las etiquetas del eje de las <em>y</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#ax.axes.get_yaxis().set_visible(False)
+</span><span class="n">ax</span><span class="p">.</span><span class="n">axes</span><span class="p">.</span><span class="n">get_yaxis</span><span class="p">().</span><span class="n">set_ticks</span><span class="p">([])</span>
+</code></pre></div></div>
+<p>Agreguemos las etiquetas, esta vez usando las tipografías personalizadas que definimos anteriormente. También vamos a cambiarle la tipografía a los valores en el eje de las <em>x</em> usando el método <code class="language-plaintext highlighter-rouge">ax.get_xticklabels</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">"Card"</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">card_number_prop</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">"Occurrences"</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">card_number_prop</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">.</span><span class="n">get_xticklabels</span><span class="p">()</span> <span class="p">:</span>
+    <span class="n">label</span><span class="p">.</span><span class="n">set_fontproperties</span><span class="p">(</span><span class="n">card_number_prop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="texto-dentro-de-las-barras">Texto dentro de las barras</h4>
+<p>Cada una de las barras dentro de nuestra gráfica no es más que una instancia de una clase llamada <code class="language-plaintext highlighter-rouge">matplotlib.patches.Rectangle</code>, a los cuales podemos acceder mediante la propiedad <code class="language-plaintext highlighter-rouge">patches</code> de nuestros axes. Cada uno de estos <em>patches</em> tiene diversas propiedades como su posición en [<em>x</em>,<em>y</em>], el color de relleno, entre otras.</p>
+
+<p>Nosotros nos aprovecharemos de tener acceso a estos <em>patches</em> poner los nombres dentro de las barras usando el método <code class="language-plaintext highlighter-rouge">text</code> que ofrece nuestro <code class="language-plaintext highlighter-rouge">ax</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">card_id</span><span class="p">,</span> <span class="n">rect</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">card_ids</span><span class="p">,</span> <span class="n">ax</span><span class="p">.</span><span class="n">patches</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rect</span><span class="p">.</span><span class="n">xy</span>
+    <span class="n">card</span> <span class="o">=</span> <span class="n">card_by_id</span><span class="p">[</span><span class="n">card_id</span><span class="p">]</span>
+    <span class="n">rect_color</span><span class="p">,</span> <span class="n">font_color</span> <span class="o">=</span> <span class="n">find_colors</span><span class="p">(</span><span class="n">card</span><span class="p">[</span><span class="s">"type"</span><span class="p">])</span>
+    <span class="n">rect</span><span class="p">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">rect_color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="mi">30</span> <span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">card</span><span class="p">[</span><span class="s">"name"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">font_color</span><span class="p">,</span> <span class="n">fontproperties</span><span class="o">=</span><span class="n">card_name_prop</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="pie-de-página">Pie de página</h4>
+<p>A la hora de compartir una gráfica siempre es importante informar de dónde obtuvimos la información, o tal vez una pequeña nota de <em>copyright</em> indicando que nosotros fuimos los creadores de esta, para este propósito podemos usar la clase <code class="language-plaintext highlighter-rouge">AnchoredText</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="n">AnchoredText</span><span class="p">(</span><span class="s">"Data from decks built at ygoprodeck.com"</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                    <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">'size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,},</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Y el esperado resultado final es:</p>
+
+<p><img src="assets/blogposts/mejorando-barplots/beautiful.png" alt="Beautiful" /></p>
+
+<p>Y <em>voilá</em>, nuestra gráfica está lista para ser compartida con el mundo.</p>
+
+<p>Como siempre, comentarios y dudas son bienvenidos en mi cuenta de Twitter <a href="https://twitter.com/io_exception">@io_exception</a>. Esta vez todo el código para reproducir lo que hicimos aquí está en este <a href="https://www.kaggle.com/ioexception/las-cartas-m-s-usadas-de-yu-gi-oh">notebook de Kaggle</a> (si no sabes qué es Kaggle, puedes ver <a href="https://www.youtube.com/watch?v=5yF-VeivtgU">mi video sobre el tema</a>).</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="io_exception" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/io_exception">Antonio Feregrino Bolaños</a></h4>
+                                
+                                    <p>Soy científico de datos pero crecí siendo desarrollador de software.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/io_exception">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/mejorando-barplots';
+                            this.page.identifier = 'Mejorando nuestros gráficos de barras';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/python/">Python</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/word-to-vec-ilustrado">Word2vec ilustrado</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/texto-vectores">De texto a vectores (parte 1)</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/analisis-texto">Introducción al análisis de texto</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/python/">
+                                
+                                    See all 15 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/tableau-mapas">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/020.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/tableau-mapas">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Tableau</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Mapas</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Creación de Mapas con Tableau</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/karen.jpg" alt="Karen Santoyo Tapia" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/karen/">Karen Santoyo Tapia</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Mejorando nuestros gráficos de barras</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Mejorando+nuestros+gr%C3%A1ficos+de+barras&amp;url=https://old.tacosdedatos.com/mejorando-barplots"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/mejorando-barplots"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

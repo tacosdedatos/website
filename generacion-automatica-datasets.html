@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Generando datasets de Kaggle automáticamente</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/generacion-automatica-datasets" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Generando datasets de Kaggle automáticamente" />
+    <meta property="og:description" content="Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré “Detrás de la visualización” para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/generacion-automatica-datasets" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/detrasdelavis/001.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-03-11T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-03-11T10:00:00+00:00" />
+    <meta property="article:tag" content="Blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Generando datasets de Kaggle automáticamente" />
+    <meta name="twitter:description" content="Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré “Detrás de la visualización” para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/detrasdelavis/001.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Blog" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/generacion-automatica-datasets",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/detrasdelavis/001.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/generacion-automatica-datasets"
+    },
+    "description": "Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré “Detrás de la visualización” para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Generando datasets de Kaggle automáticamente" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-blog ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="11 March 2020">11 March 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>,
+                            
+                        
+                            
+                               <a href='/tag/python/'>PYTHON</a>,
+                            
+                        
+                            
+                               <a href='/tag/kaggle/'>KAGGLE</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Generando datasets de Kaggle automáticamente</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/detrasdelavis/001.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p>Sé que Tacos de Datos está enfocado principalmente al resultado visual, pero creo que es importante tratar de resaltar qué es lo que hay detrás de. Quisiera inaugurar esta sección que llamaré <em>“Detrás de la visualización”</em> para cubrir temas de extracción, procesamiento y almacenamiento de datos; en pocas palabras: ingeniería de datos. <em>Y es que, además de preparar los tacos, también es bueno saber cómo conseguir los ingredientes.</em></p>
+
+<p>PD: Mira cuál es el resultado de lo que estoy explicando aquí: <a href="https://www.kaggle.com/ioexception/medium-daily-digests">Medium Daily Digests on Kaggle</a>.</p>
+
+<h2 id="fuente-de-los-datos-y-su-recolección">Fuente de los datos y su recolección</h2>
+
+<p>Ya tenía tiempo queriendo hacer un dataset con información extraída de Medium.com. Al principio, pensé en hacer <em>web scraping</em> masivamente en las publicaciones de Medium; el problema es que no proporcionan un sitio web ni fácil de <em>crawlear</em> ni fácil de extraer información… luego pensé en ese “Medium Daily Digest”, un <em>newsletter</em> que recibo todos los días, en él, Medium me envía historias que “me pueden interesar”; Recuerdo que cuando me suscribí, tuve que elegir mis temas preferidos, y desde entonces siempre recibo un correo con artículos sobre ellos.</p>
+
+<p>Con eso en mente, me propuse crear 20 cuentas de correo electrónico diferentes (en realidad son alias para una sola cuenta) y luego usar cada una de ellas para suscribirse al mentado “Medium Daily Digest”, cada cuenta asociada con cinco diferentes (pero un tanto relacionados) temas. Y desde entonces he estado recibiendo 20 correos electrónicos, todos los días con títulos, subtítulos y URLs de posts.</p>
+
+<p>De vez en cuando inicio sesión en esas cuentas, abro algunos correos electrónicos para evitar que dichas cuentas se eliminen de la sindicación de Medium <a href="(https://www.theverge.com/2019/7/3/20681508/tracking-pixel-email-spying-superhuman-web-beacon-open-tracking-read-receipts-location)">porque esta gente sabe cuándo no lees sus correos electrónicos</a>. También es de esperarse que los temas que ofrecen puedan cambiar con el tiempo, y en algún momento los intereses asociados de algunas cuentas pueden cambiar, en ese caso tendré que iniciar sesión en Medium y modificar las cuentas  manualmente, pero en su mayor parte la recopilación de datos se ejecuta de manera automática.</p>
+
+<p>Por cierto, no estoy seguro de si el conjunto de datos será útil para alguien, pero espero que la forma en que lo construí con Python sea útil para cualquiera con datos más importantes.</p>
+
+<h2 id="leyendo-los-correos-del-servidor">Leyendo los correos del servidor</h2>
+
+<p>Como lo mencioné anteriormente, los correos electrónicos llegan a mi cuenta, y no es divertido tener que descargar 20 correos electrónicos manualmente todos los días, por lo tanto, por primera vez en este artículo: Python al rescate.</p>
+
+<p>Para acceder a los correos electrónicos en mi servidor, uso el protocolo IMAP; Esto me permite leerlos sin tenerlos que borrar del servidor, en caso de que quiera acceder a ellos en el futuro. Para esto, a pesar de que Python ofrece el módulo <code class="language-plaintext highlighter-rouge">imaplib</code> para interactuar con dichos servidores, decidí usar el paquete <code class="language-plaintext highlighter-rouge">imapclient</code> que, en mi opinión, hace que el código sea un poco más limpio y comprensible. Leer todos los correos electrónicos de una cuenta es tan fácil como muestra este fragmento de código:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">email</span>
+<span class="kn">from</span> <span class="nn">imapclient</span> <span class="kn">import</span> <span class="n">IMAPClient</span>
+
+<span class="k">with</span> <span class="n">IMAPClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">imap_server</span><span class="p">,</span> <span class="n">use_uid</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>  
+    <span class="n">client</span><span class="p">.</span><span class="n">login</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>  
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">search</span><span class="p">([</span><span class="s">"NOT"</span><span class="p">,</span> <span class="s">"DELETED"</span><span class="p">])</span>  
+    <span class="k">for</span> <span class="n">message_id</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>  
+        <span class="n">fetched</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">message_id</span><span class="p">,</span> <span class="s">"RFC822"</span><span class="p">)</span>  
+        <span class="n">data</span> <span class="o">=</span> <span class="n">fetched</span><span class="p">[</span><span class="n">message_id</span><span class="p">]</span>  
+        <span class="n">email_message</span> <span class="o">=</span> <span class="n">email</span><span class="p">.</span><span class="n">message_from_bytes</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="sa">b</span><span class="s">"RFC822"</span><span class="p">])</span>
+        <span class="k">yield</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">email_message</span>
+</code></pre></div></div>
+
+<p>Como puede ver, usamos <code class="language-plaintext highlighter-rouge">IMAPClient</code> como <em>context manager</em>, luego iniciamos sesión con nuestras credenciales de correo electrónico (sí, es una pena que tengamos que usar nuestra contraseña directamente); después de iniciar sesión, buscamos todos los correos electrónicos que no hemos eliminado (<code class="language-plaintext highlighter-rouge">NOT</code> <code class="language-plaintext highlighter-rouge">DELETED</code>), esto devolverá una lista de cadenas que contienen los identificadores para cada mensaje; podemos iterar sobre estos identificadores y usar el cliente ejecutándo <code class="language-plaintext highlighter-rouge">fetch</code> para obtener cada mensaje, especificando que queremos la propiedad <code class="language-plaintext highlighter-rouge">RFC822</code> del correo electrónico.</p>
+
+<p>El valor de retorno de <code class="language-plaintext highlighter-rouge">fetch</code> será un diccionario de la forma <code class="language-plaintext highlighter-rouge">{ message_id: { b"RFC822": (bytes) } }</code>, podemos transformar fácilmente estos bytes en una representación de correo electrónico más pytónica mediante el uso de la función <code class="language-plaintext highlighter-rouge">message_from_bytes</code>. Puedes ver mi implementación real en la función <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/reader.py#L6"><code class="language-plaintext highlighter-rouge">read_from_mail</code></a> en mi repositorio.</p>
+
+<h2 id="extrayendo-datos-del-correo-electrónico">Extrayendo datos del correo electrónico</h2>
+
+<p>Teniendo un correo electrónico con el que sea fácil trabajar en Python, me referiré una publicación anterior sobre <a href="https://dev.to/fferegrino/reading-emails-with-python-4o72">cómo leer trabajar con correos electrónicos con Python</a>. Una vez que podemos <em>“leer”</em> el mensaje, podemos acceder a propiedades como <code class="language-plaintext highlighter-rouge">To</code>, <code class="language-plaintext highlighter-rouge">From</code>, <code class="language-plaintext highlighter-rouge">Subject</code> y <code class="language-plaintext highlighter-rouge">Date</code>, así como acceder al contenido real del correo electrónico. Para referencia, mira este fragmento de código donde <code class="language-plaintext highlighter-rouge">message</code> es lo que obtenemos al llamar a <code class="language-plaintext highlighter-rouge">message_from_bytes</code> en el fragmento de código anterior:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">quopri</span>
+
+<span class="n">parts</span> <span class="o">=</span> <span class="p">{</span><span class="n">part</span><span class="p">.</span><span class="n">get_content_type</span><span class="p">():</span> <span class="n">part</span> <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">message</span><span class="p">.</span><span class="n">get_payload</span><span class="p">()}</span>  
+<span class="n">html</span> <span class="o">=</span> <span class="n">quopri</span><span class="p">.</span><span class="n">decodestring</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="s">"text/html"</span><span class="p">].</span><span class="n">get_payload</span><span class="p">()).</span><span class="n">decode</span><span class="p">(</span><span class="s">"utf8"</span><span class="p">)</span>   
+<span class="n">mail_info</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="s">"id"</span><span class="p">:</span> <span class="n">message</span><span class="p">[</span><span class="s">"Message-ID"</span><span class="p">],</span>  
+    <span class="s">"to"</span><span class="p">:</span> <span class="n">message</span><span class="p">[</span><span class="s">"To"</span><span class="p">],</span>  
+    <span class="s">"from"</span><span class="p">:</span> <span class="n">message</span><span class="p">[</span><span class="s">"From"</span><span class="p">],</span>  
+    <span class="s">"date"</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="n">strptime</span><span class="p">(</span>  
+        <span class="n">message</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"Date"</span><span class="p">),</span> <span class="s">"%a, %d %b %Y %H:%M:%S +0000 (%Z)"</span>  
+    <span class="p">),</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>El resultado final de este fragmento es producir un diccionario (<code class="language-plaintext highlighter-rouge">mail_info</code>) que contenga información básica del correo electrónico y la versión html del correo electrónico (<code class="language-plaintext highlighter-rouge">html</code>). Puedes ver mi implementación real en la función <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/parser.py#L34"><code class="language-plaintext highlighter-rouge">parse_mail</code></a>.</p>
+
+<p>Para trabajar con el HTML del correo electrónico utilicé BeautifulSoup, no entraré en detalles, pero como siempre en <em>web scraping</em>, fue un proceso de prueba y error obtener la estructura adecuada para extraer información del contenido del correo. Puedes ver la función de extracción completa <a href="https://github.com/fferegrino/medium-collector/blob/master/medium_collector/download/parser.py#L50">aquí</a>, todo se reduce a una lista de diccionarios (uno para cada publicación en el correo electrónico) con la siguiente información: <em>section_title</em>, <em>post_title</em>, <em>post_subtitle</em>, <em>post_url</em>, <em>author_name</em>, <em>author_handle</em>, <em>site_name</em>, <em>site_slug</em>, <em>members_only</em>:</p>
+
+<p><img src="https://i.imgur.com/jmkVSgz.png" alt="Extraction description" /></p>
+
+<p><small>(en restrospectiva, pude haber extraído el tiempo de lectura… tal vez para la siguiente versión)</small>.</p>
+
+<h2 id="guardando-la-información">Guardando la información</h2>
+
+<p>Después de descargar la información, esta es almacenada en dos archivos csv:</p>
+
+<ul>
+  <li><em>mails.csv</em>, que es un archivo de todos los correos electrónicos recibidos, este contiene:
+    <ul>
+      <li><strong>id</strong>: un identificador único del correo electrónico</li>
+      <li><strong>date</strong>: la fecha y hora en que se recibió el correo electrónico</li>
+      <li><strong>to</strong>: un hash de la cuenta de correo electrónico a la que se envió este correo electrónico</li>
+      <li><strong>from</strong>: la cuenta de correo electrónico utilizada para enviar el correo electrónico (siempre es la misma)</li>
+      <li><strong>subject</strong>:  el asunto del correo electrónico</li>
+    </ul>
+  </li>
+  <li><em>articles_mails.csv</em>, contiene la información extraída de cada correo electrónico, asociada al correo electrónico del que provienen:
+    <ul>
+      <li><strong>mail_id</strong>: un identificador único del correo electrónico del que proviene este artículo, corresponde a <strong>id</strong> en el archivo <code class="language-plaintext highlighter-rouge">mails.csv</code></li>
+      <li><strong>post_url</strong>: la url del artículo</li>
+      <li><strong>post_title</strong>: el título del artículo</li>
+      <li><strong>post_subtitle</strong>: el subtítulo del artículo</li>
+      <li><strong>section_title</strong>: el título de la sección en la que encontró la publicación</li>
+      <li><strong>members_only</strong>: una bandera que especifica si el artículo es para miembros de Medium</li>
+      <li><strong>author_name</strong>: nombre del autor del artículo</li>
+      <li><strong>author_handle</strong>: identificador del autor del artículo</li>
+      <li><strong>site_name</strong>: si el artículo se publicó en un sitio, este contiene el nombre de dicho sitio</li>
+      <li><strong>site_slug</strong>: si el artículo se publicó en un sitio, este contiene el identificador de dicho sitio</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Para escribir toda esta información en los archivos, utilicé el módulo <code class="language-plaintext highlighter-rouge">csv</code> siempre confiable, en particular, la clase <code class="language-plaintext highlighter-rouge">DictWriter</code> que permite el uso de diccionarios cuando se llama al método <code class="language-plaintext highlighter-rouge">writerow</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="n">EMAILS_FILE_HEADERS</span> <span class="o">=</span> <span class="p">[</span><span class="s">"id"</span><span class="p">,</span> <span class="s">"date"</span><span class="p">,</span> <span class="s">"to"</span><span class="p">,</span> <span class="s">"from"</span><span class="p">,</span> <span class="s">"subject"</span><span class="p">]</span>
+<span class="n">emails</span> <span class="o">=</span> <span class="p">[{</span><span class="s">"id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">"date"</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">(),</span> 
+           <span class="s">"to"</span><span class="p">:</span> <span class="s">"cosme@fulanito.com"</span><span class="p">,</span> <span class="s">"from"</span><span class="p">:</span> <span class="s">"noreply@medium.com"</span><span class="p">,</span>
+	   <span class="s">"subject"</span><span class="p">:</span> <span class="s">"Don't miss this!"</span><span class="p">}]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"mails.csv"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">writable</span><span class="p">:</span>
+	<span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="p">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">writable</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">EMAILS_FILE_HEADERS</span><span class="p">)</span>
+	<span class="n">writer</span><span class="p">.</span><span class="n">writeheader</span><span class="p">()</span>
+	<span class="k">for</span> <span class="n">email</span> <span class="ow">in</span> <span class="n">emails</span><span class="p">:</span>
+		<span class="n">writer</span><span class="p">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>En realidad, lo que hago es un poco más complicado, ya que quiero agregar filas al conjunto de datos de forma incremental; por lo tanto, el archivo debe abrirse con <code class="language-plaintext highlighter-rouge">"a"</code> como modo de archivo, no con <code class="language-plaintext highlighter-rouge">"w"</code> y es necesario tener especial cuidado para no escribir los encabezados en el medio del archivo tampoco. Puedes verificar toda la implementación de las funciones de escritura en <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/writer.py">este fragmento de código</a>.</p>
+
+<h2 id="cargando-la-información-a-s3">Cargando la información a S3</h2>
+
+<p>Pero, ¿de qué sirven estos datos si van a vivir guardados en mi computadora? Para superar este problema, pensé en cargar los datos en un <em>bucket</em> de S3, para que estén disponibles para descargarlo en cualquier lugar que lo necesite. Para acceder a cualquier recurso de AWS, mi herramienta favorita es el paquete <code class="language-plaintext highlighter-rouge">boto3</code> que es una verdadera navaja suiza para AWS.</p>
+
+<p>Supongamos que desea cargar el archivo <code class="language-plaintext highlighter-rouge">medium_data/mails.csv</code> en el bucket <code class="language-plaintext highlighter-rouge">"medium_bucket"</code> y que se llame <code class="language-plaintext highlighter-rouge">"mails.csv"</code>, el siguiente código será suficiente:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">boto3</span>
+
+<span class="n">bucket</span> <span class="o">=</span> <span class="s">"my_super_cool_bucket"</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="n">client</span><span class="p">(</span>  
+	<span class="s">"s3"</span><span class="p">,</span>
+	<span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">config</span><span class="p">(</span><span class="s">"ACCESS_KEY"</span><span class="p">),</span>
+	<span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">config</span><span class="p">(</span><span class="s">"SECRET_KEY"</span><span class="p">),</span>  
+	<span class="n">region_name</span><span class="o">=</span><span class="s">"eu-west-2"</span><span class="p">,</span>  
+<span class="p">)</span>
+
+<span class="n">client</span><span class="p">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s">"medium_data/mails.csv"</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="s">"mails.csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Pero no quiero seguir cargando el mismo archivo una y otra vez si no hay necesidad de hacerlo. Para lograr esto, es posible verificar si el archivo existe en nuestro <em>bucket</em> y resumir su contenido con un hash <code class="language-plaintext highlighter-rouge">md5</code> generado por el propio AWS. Entonces es solo una cuestión de comparar dicho hash con el hash del archivo local y si son iguales, no subo el archivo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="k">def</span> <span class="nf">get_file_hash</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>   
+	<span class="n">hash_md5</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">md5</span><span class="p">()</span>  
+	<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">readable</span><span class="p">:</span>  
+		<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">readable</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4096</span><span class="p">),</span> <span class="sa">b</span><span class="s">""</span><span class="p">):</span>  
+			<span class="n">hash_md5</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>  
+	<span class="k">return</span> <span class="n">hash_md5</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">head</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">head_object</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span> <span class="n">Key</span><span class="o">=</span><span class="s">"mails.csv"</span><span class="p">)</span>
+<span class="n">md5_signature</span> <span class="o">=</span> <span class="n">get_file_hash</span><span class="p">(</span><span class="s">"medium_data/mails.csv"</span><span class="p">)</span>
+<span class="k">if</span> <span class="s">"ETag"</span> <span class="ow">in</span> <span class="n">head</span> <span class="ow">and</span> <span class="n">literal_eval</span><span class="p">(</span><span class="n">head</span><span class="p">[</span><span class="s">"ETag"</span><span class="p">])</span> <span class="o">==</span> <span class="n">md5_signature</span><span class="p">:</span>
+	<span class="c1"># The file already exists, do nothing
+</span><span class="k">else</span><span class="p">:</span>
+	<span class="n">client</span><span class="p">.</span><span class="n">upload_file</span><span class="p">(</span><span class="s">"medium_data/mails.csv"</span><span class="p">,</span> <span class="n">bucket</span><span class="p">,</span> <span class="s">"mails.csv"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>El método al que se debe llamar para obtener información para un objeto es <code class="language-plaintext highlighter-rouge">head_object</code>. Por cierto, toda la lógica y la implementación están en <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/s3.py">este archivo</a> si quieres verlo.</p>
+
+<p><em>Algunas consideraciones</em>: para este ejemplo, consideré que el <em>depósito</em> ya existe, sin embargo, si no existe, también es posible usar <em>boto</em> para crearlo. Como dije, <em>boto</em> es un monstruo de biblioteca que debes considerar si trabajas con AWS. También estoy usando las credenciales directamente en la llamada a la creación del cliente para <em>s3</em>, pero hay varias formas de manejar la autenticación con <em>boto</em>, consulta la documentación para obtener más información.</p>
+
+<h2 id="cargando-los-datos-a-kaggle">Cargando los datos a Kaggle</h2>
+
+<p>Hasta ahora, todo va muy bien, pero el conjunto de datos todavía está disponible para mí, y aunque podría hacer público mi <em>bucket</em> de s3, hay algunos problemas con esto:</p>
+
+<ul>
+  <li>No quiero que mi factura de S3 suba por el cielo si alguien con intenciones maliciosas se apodera de mi s3</li>
+  <li>Quiero que la gente use los datos, y con una url de s3 no es muy fácil de descubrir o promocionar el <em>dataset</em></li>
+</ul>
+
+<p>Pero hay un buen lugar para almacenar conjuntos de datos, es gratuito y, al mismo tiempo, indexa los datos y los hace visibles al público en generar. Estoy hablando de Kaggle.</p>
+
+<p>Kaggle hace que sea relativamente fácil interactuar con algunos de los recursos que ofrece el sitio web a través de su paquete <a href="https://github.com/Kaggle/kaggle-api">kaggle-api</a>. En general, promueven la interacción a través de la línea de comando, sin embargo, también es posible utilizar la API programática que alimenta el <em>cli</em>. Para cargar una nueva versión de mi conjunto de datos tuve que hacer algo como esto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">kaggle</span> <span class="kn">import</span> <span class="n">api</span>
+
+<span class="k">def</span> <span class="nf">upload_to_kaggle</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+	<span class="n">api</span><span class="p">.</span><span class="n">dataset_create_version</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+	
+<span class="n">upload_to_kaggle</span><span class="p">(</span><span class="s">"medium_data"</span><span class="p">,</span> <span class="s">"A new version of this dataset"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Y eso es todo. Realmente, es así de fácil. Pero no tan rápido, es decir, si queremos actualizar un conjunto de datos, si estamos creando uno desde cero, primero debemos realizar tres cosas:</p>
+
+<ul>
+  <li>Crear una carpeta (por ejemplo, <code class="language-plaintext highlighter-rouge">"medium_data"</code>) donde solo existen los archivos correspondientes a nuestro conjunto de datos</li>
+  <li>Tener un archivo llamado <code class="language-plaintext highlighter-rouge">dataset-metadata.json</code> en esa carpeta con los metadatos para su conjunto de datos, el aspecto del archivo debe parecerse al siguiente (pero puedes revisar el de mi app <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/data/dataset-metadata.json">para un ejemplo más concreto</a>):</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "title": "My Awesome Dataset", 
+  "id": "cosme_fulanito/my-awesome-dataset", 
+  "licenses": [{"name": "CC0-1.0"}]
+}
+</code></pre></div></div>
+<ul>
+  <li>Ejecutar <code class="language-plaintext highlighter-rouge">kaggle datasets create -p medium_data</code> en la consola, o usar el método <code class="language-plaintext highlighter-rouge">dataset_create_new</code> programáticamente.</li>
+</ul>
+
+<p>Realicé esas tareas manualmente, ya que no es como si anduviera creando <em>datasets</em> a cada rato, sino que simplemente los estoy tratando de actualizar, tu caso de uso puede ser diferente.</p>
+
+<p><em>Algunas consideraciones</em>: al igual que AWS, Kaggle también ofrece algunas formas de autenticación con su servicio, utilicé el que más promocionan: un archivo kaggle.json en <code class="language-plaintext highlighter-rouge">~/.kaggle</code>, pero puede usar algo diferente.</p>
+
+<h2 id="pruebas">Pruebas</h2>
+
+<p>Al igual que con cualquier pieza de software que se pondrá en producción y que se ejecutará sin supervisión (sin mencionar que mi factura de s3 depende de que esto funcione correctamente), es bueno tener algunas pruebas solo para asegurarse de que haga lo que programamos. Sin embargo, inicialmente tenía la intención de escribir sobre las pruebas en esta publicación, pero este post ya es suficientemente largo, por lo que publicaré cómo probé la aplicación en una publicación futura, así que asegúrate de seguirme si quieres aprender sobre pruebas, <em>patching</em> y <em>mocks</em> (incluyéndo pruebas con servicios de AWS).</p>
+
+<h3 id="preguntas-comentarios">¿Preguntas? ¿comentarios?</h3>
+
+<p>No olvides que me puedes dejar un comentario aquí o enviarme un tuit en <a href="https://twitter.com/io_exception">@io_exception</a>, con gusto te ayudo si las cosas no están claras o necesitas más explicación sobre el código. Recuerda que la aplicación completa está <a href="https://github.com/fferegrino/medium-collector/tree/v0.0.0">disponible en GitHub</a> para que puedas jugar con el código.</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="io_exception" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/io_exception">Antonio Feregrino Bolaños</a></h4>
+                                
+                                    <p>Soy científico de datos pero crecí siendo desarrollador de software.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/io_exception">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/generacion-automatica-datasets';
+                            this.page.identifier = 'Generando datasets de Kaggle automáticamente';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/blog/">Blog</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/sidetable-el-beffo-de-pandas">Sidetable, el beffo de pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-III">Dueño de mis datos - Capítulo Facebook - Parte III</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-II">Dueño de mis datos - Capítulo Facebook - Parte II</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/blog/">
+                                
+                                    See all 22 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/animaciones-matplotlib">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/015.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/animaciones-matplotlib">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Python</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Matplotlib</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Creando animaciones con Python y matplotlib</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="Antonio Feregrino Bolaños" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/io_exception/">Antonio Feregrino Bolaños</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/paginas-perdidas-parte-1">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/014.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/paginas-perdidas-parte-1">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Python</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Las Páginas Perdidas Parte 1</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_lewiserick.jpeg" alt="Luis Erick Zul Rabasa" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/lewiserick/">Luis Erick Zul Rabasa</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Generando datasets de Kaggle automáticamente</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Generando+datasets+de+Kaggle+autom%C3%A1ticamente&amp;url=https://old.tacosdedatos.com/generacion-automatica-datasets"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/generacion-automatica-datasets"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

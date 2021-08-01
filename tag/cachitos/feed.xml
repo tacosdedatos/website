@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/cachitos/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/cachitos/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Cachitos de Diseño</title>
+      <link href="https://old.tacosdedatos.com/cachitos-de-diseno-003" rel="alternate" type="text/html" title="Cachitos de Diseño" />
+      <published>2019-02-19T12:00:00+00:00</published>
+      <updated>2019-02-19T12:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/cachitos-de-diseno-003</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/cachitos-de-diseno-003">&lt;p&gt;Cuando tenemos un espacio pequeño para visualizar nuestros datos, como es el caso en las redes sociales, es importante utilizarlo de manera eficiente. Mantén en mente la famosa &lt;a href=&quot;https://infovis-wiki.net/wiki/Data-Ink_Ratio&quot;&gt;&lt;em&gt;proporción de tinta y datos&lt;/em&gt;&lt;/a&gt; de Edward Tufte.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/003_ejemplo_1.jpg&quot; alt=&quot;Mexico Como Vamos, 2019&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://twitter.com/MexicoComoVamos/status/1093211471738257408&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;i&gt;México ¿Cómo Vamos?&lt;/i&gt;&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;
+Esta figura aparece en la cuenta de twitter de &lt;em&gt;México ¿Cómo Vamos?&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;México, ¿Cómo Vamos? es un colectivo de investigadores integrado por un grupo plural de académicos y expertos en economía y política pública mexicana. 
+&lt;a href=&quot;https://mexicocomovamos.mx&quot;&gt;sitio&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;En este cachito nos vamos a concentrar en el uso de etiquetas del gráfico. Especificamente en el eje horizontal.&lt;/p&gt;
+
+&lt;p&gt;El eje horizontal tiene 13 puntos: 4 trimestres de los años 2016 a 2018 y el último trimestre de 2015. Estos son representados con la combinación &lt;strong&gt;&lt;em&gt;XTYYYY&lt;/em&gt;&lt;/strong&gt;. &lt;strong&gt;&lt;em&gt;XT&lt;/em&gt;&lt;/strong&gt; representando el Xº trimestre y &lt;strong&gt;&lt;em&gt;YYYY&lt;/em&gt;&lt;/strong&gt; el año correspondiente.&lt;/p&gt;
+
+&lt;p&gt;El cachito de diseño es sobre la &lt;em&gt;redundancia&lt;/em&gt; de nuestras etiquetas. Cuando existen patrones claros y predecibles en nuestros datos no es necesario mencionarlos explícitamente. Una alternativa a escribir 13 etiquetas de 6 caracteres cada una podría ser escribir una sola vez el año y repetir el patrón &lt;strong&gt;&lt;em&gt;2T 3T 4T&lt;/em&gt;&lt;/strong&gt; para representar los trimestres entre cada uno.&lt;/p&gt;
+
+&lt;p&gt;Por ejemplo,&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/003_ejemplo_2.jpg&quot; alt=&quot;Mexico Como Vamos, 2019&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;i&gt;México ¿Cómo Vamos? (Remix)&lt;/i&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;
+Como hemos visto en otros &lt;a href=&quot;https://tacosdedatos.com/tag/cachitos/&quot;&gt;cachitos&lt;/a&gt; siempre tenemos que tener en mente el medio en el que presentamos nuestros graficos. En twitter la proporción &lt;em&gt;ideal&lt;/em&gt; para que una foto aparezca completa en la línea de tiempo de tus seguidores es de 1.91:1 y esto significa que no tienes mucho espacio vertical. Al tener nuestras etiquetas de manera vertical en un medio como twitter puede que estemos utilizando más espacio del absolutamente necesario.&lt;/p&gt;
+
+&lt;p&gt;Pero ¿qué sucede cuando nuestras etiquetas son demasiado largas como para escribirlas de manera horizontal? (i.e. &lt;em&gt;4T2017&lt;/em&gt;) &lt;br /&gt;
+La mayoría de las veces una etiqueta larga es una etiqueta redundante. Especialmente en nuestros ejes. Las etiquetas de nuestros ejes funcionan como referencía no como fuentes principales de información. Busca maneras de simplificar lo más posible tus etiquetas en los ejes de tu gráfico. Hazte las siguientes preguntas:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;¿Existe un patrón predecible al que pueda referenciar de manera intuitiva? &lt;br /&gt;Por ejemplo, &lt;strong&gt;&lt;em&gt;2016 2T 3T 4T 2017 2T 3T 4T&lt;/em&gt;&lt;/strong&gt; nos da a saber intuitivamente (en este caso a economistas quienes son la audiencia principal) que estamos hablando de los trimestres de cada año.&lt;/li&gt;
+  &lt;li&gt;¿Puedo simplificar aún más mis etiquetas sin perder información? &lt;br /&gt;&lt;strong&gt;2017&lt;/strong&gt; puede reducirce a &lt;strong&gt;‘17&lt;/strong&gt; por ejemplo.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para terminar, si vas a publicar una visualización en alguna red social ten en mente las dimensiones ideales para la plataforma ¡y aprovéchalas al máximo!&lt;/p&gt;
+
+&lt;p&gt;Y si encuentras una visualización que te haya gustado mucho ¡compartela con nosotros! &lt;a href=&quot;https://twitter.com/share?text=Miren+lo+que+encontre+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit a @tacosdedatos&lt;/a&gt; o envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;. Y recuerda que puedes subscribirte a nuestro boletín aquí debajo. Cada semana (o dos) te enviamos enviamos nuestras publicaciones y las últimas noticias directamente a tu caja de entrada.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cachitos" />
+      
+
+      
+        <summary type="html">Cuando tenemos un espacio pequeño para visualizar nuestros datos, como es el caso en las redes sociales, es importante utilizarlo de manera eficiente. Mantén en mente la famosa proporción de tinta y datos de Edward Tufte.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Cachitos de Diseño</title>
+      <link href="https://old.tacosdedatos.com/cachitos-de-diseno-002" rel="alternate" type="text/html" title="Cachitos de Diseño" />
+      <published>2019-02-12T12:00:00+00:00</published>
+      <updated>2019-02-12T12:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/cachitos-de-diseno-002</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/cachitos-de-diseno-002">&lt;p&gt;El &lt;strong&gt;&lt;em&gt;periodismo de datos&lt;/em&gt;&lt;/strong&gt; tiene una tarea diferente a la de científicos quienes tienen el lujo de presentar a una audiencia familiarizada con la materia. ¿Cómo presentamos información compleja a un público general?&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Cada día es más popular el &lt;a href=&quot;https://twitter.com/search?q=%23ddj&quot;&gt;#ddj&lt;/a&gt; - &lt;em&gt;Data Driven Journalism&lt;/em&gt; o &lt;strong&gt;&lt;em&gt;periodismo de datos&lt;/em&gt;&lt;/strong&gt;. De este campo del periodismo podemos aprender mucho quienes &lt;em&gt;sólo&lt;/em&gt; sabemos presentar información técnica.&lt;/p&gt;
+
+&lt;p&gt;En este cachito de diseño quiero celebrar el uso de colores en la historia &lt;a href=&quot;http://hasselfallas.com/2019/02/11/migrar-para-no-morir-en-la-violencia-y-la-pobreza/&quot;&gt;&lt;em&gt;“Migrar para no morir en la violencia y la probreza”&lt;/em&gt;&lt;/a&gt; de &lt;a href=&quot;https://twitter.com/hasselfallas&quot;&gt;Hassel Fallas&lt;/a&gt; de este 11 de febrero.&lt;/p&gt;
+
+&lt;p&gt;La historia está escrita en letras blancas con un fondo oscuro lo cual la hace ya un poco más fácil de leer. Lo que más me atrajo fue el uso de colores &lt;em&gt;llamativos&lt;/em&gt; pero opacos como el &lt;span style=&quot;background-color: #233142; color: #D9BC41&quot;&gt;amarillo&lt;/span&gt; y el &lt;span style=&quot;background-color: #233142;color: #879FB1&quot;&gt;azul claro&lt;/span&gt; de sus visualizaciones.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/002_HasselFallas.gif&quot; alt=&quot;Hassel Fallas&quot; /&gt;
+    &lt;img src=&quot;../assets/cachitos/002_ejemplo1.png&quot; alt=&quot;Hassel Fallas 1&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;http://hasselfallas.com/2019/02/11/migrar-para-no-morir-en-la-violencia-y-la-pobreza/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;i&gt;Migrar para no morir en la violencia y la pobreza&lt;/i&gt;, Hassel Fallas&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Esta combinación de colores me encantó porque atrae tu atención pero no de una manera brusca como lo haría un amarillo o un azul más &lt;em&gt;brillante&lt;/em&gt;. Cuando estas presentando información muy compleja es importante darle a tus lectores tiempo para procesar dicha información. No quieres presentarle un diagrama de flujos como el primer ejemplo y saturarlo con &lt;strong&gt;llamadas de atención&lt;/strong&gt; (&lt;em&gt;mira aquí, mira acá, esto también es importante y esto y esto y esto&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;El uso prudente y consciente de una paleta de colores &lt;strong&gt;funcional&lt;/strong&gt; es muy importante.&lt;/p&gt;
+
+&lt;p&gt;En esta era digital tenemos el lujo de poder controlar absolutamente todo. Desde el fondo de nuestra pantalla hasta los colores y el tamaño de cada letra. Esto es algo que debemos tener en cuenta cuando presentamos información en un medio digital.&lt;/p&gt;
+
+&lt;p&gt;La próxima vez que publiques una visualización ten en mente que un fondo blanco es opcional. Tú tienes la habilidad de controlar los colores de la visualización que estas creando y de el medio en el que la estás presentando.&lt;/p&gt;
+
+&lt;p&gt;Para terminar, si encuentras una visualización que te haya gustado mucho ¡compartela con nosotros! &lt;a href=&quot;https://twitter.com/share?text=Miren+lo+que+encontre+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit a @tacosdedatos&lt;/a&gt; o envianos un correo a &lt;a href=&quot;mailto:sugerencias@tacosdedatos.com?subject=Sugerencia&amp;amp;body=Hola-holaaa&quot;&gt;✉️ sugerencias@tacosdedatos.com&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cachitos" />
+      
+
+      
+        <summary type="html">El periodismo de datos tiene una tarea diferente a la de científicos quienes tienen el lujo de presentar a una audiencia familiarizada con la materia. ¿Cómo presentamos información compleja a un público general?</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Cachitos de Diseño</title>
+      <link href="https://old.tacosdedatos.com/cachitos-de-diseno-001" rel="alternate" type="text/html" title="Cachitos de Diseño" />
+      <published>2019-02-08T14:00:00+00:00</published>
+      <updated>2019-02-08T14:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/cachitos-de-diseno-001</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/cachitos-de-diseno-001">&lt;p&gt;Cuando el New York Times, Pew Research Center y Bloomberg visualizan los mismos datos. Este cachito de diseño es 3 x 1. Esta semana el presidente de Estados Unidos, El-Que-No-Debe-Ser-Nombrado, dió su discurso anual: &lt;em&gt;el Estado de la Unión&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Muchas publicaciones se dieron a la tarea de corroborar sus &lt;em&gt;“declaraciones”&lt;/em&gt; por lo cual sucedió este evento poco común donde muchos investigadores y periodistas presentan la misma información pero cada quien a su manera.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/001_NYT.png&quot; alt=&quot;NYT&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://www.nytimes.com/interactive/2019/01/11/us/politics/trump-border-crisis-reality.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;New York Times&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/001_PEW.jpg&quot; alt=&quot;PEW&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;http://www.pewresearch.org/fact-tank/2019/01/16/border-apprehensions-of-migrant-families-have-risen-substantially-so-far-in-2018/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pew Research Center&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;../assets/cachitos/001_Bloomberg_1.jpg&quot; alt=&quot;Bloomberg 1&quot; /&gt;
+    &lt;figcaption style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://www.bloomberg.com/graphics/trump-mexico-wall/#how-many-people-currently-cross&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Bloomberg&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;
+Los tres gráficos presentan la cantidad total de arrestos en la frontera con México pero cada una de estas instituciones tomo una decisión consciente sobre que querían enfatizar.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;El New York Times se enfoca en las administraciones en la Casa Blanca como si dijeran &lt;em&gt;“Trump dice que estamos en crisis pero miren como estaban las cosas bajo Bush.”&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Pew Research Center enfatiza el cambio en 2017, su título declara “Más arrestos en la frontera de no-mexicanos que de mexicanos en el 2017”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Bloomberg decidió concentrarse en la “caída en picada” de los arrestos desde el 2000.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cuando analizamos y visualizamos datos para presentar debemos detenernos un segundo a pensar: ¿qué punto estoy tratando de probar? ¿qué quiero resaltar?&lt;/p&gt;
+
+&lt;p&gt;Del mismo conjunto de datos pueden salir muchas historias muy diferentes.&lt;/p&gt;
+
+&lt;p&gt;En lo personal, me gustó más el de PEW porque utilizan líneas en lugar de barras lo cual deja mucho más espacio en blanco y vuelve el gráfico &lt;em&gt;menos pesado&lt;/em&gt; al leer.&lt;/p&gt;
+
+&lt;p&gt;¿A ti que gráfico te gusto más? &lt;a href=&quot;https://twitter.com/share?text=Obvis+microbis+el+de+PEW+es+el+mejor+%40tacosdedatos+%F0%9F%8C%AE&quot;&gt;Mandanos un tuit&lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cachitos" />
+      
+
+      
+        <summary type="html">Cuando el New York Times, Pew Research Center y Bloomberg visualizan los mismos datos. Este cachito de diseño es 3 x 1. Esta semana el presidente de Estados Unidos, El-Que-No-Debe-Ser-Nombrado, dió su discurso anual: el Estado de la Unión.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">Cachitos de Diseño</title>
+      <link href="https://old.tacosdedatos.com/cachitos-de-dise%C3%B1o" rel="alternate" type="text/html" title="Cachitos de Diseño" />
+      <published>2019-02-02T14:00:00+00:00</published>
+      <updated>2019-02-02T14:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/cachitos-de-dise%C3%B1o</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/cachitos-de-dise%C3%B1o">&lt;p&gt;cachitos de diseño es una serie de publicaciones pequeñas celebrando o criticando (de una manera respetuosa) una decisión en el diseño de una visualización de datos.&lt;/p&gt;
+
+&lt;p&gt;El gráfico en cuestión tal vez tenga más de una razón para ser celebrado pero trataré de concentrarme en una sola. Esta serie es inspirada por la serie &lt;em&gt;muy&lt;/em&gt;, &lt;em&gt;muy&lt;/em&gt; similar de &lt;a href=&quot;http://www.twitter.com/visualisingdata&quot;&gt;Andy Kirk&lt;/a&gt; en su sitio &lt;a href=&quot;https://visualisingdata.com&quot;&gt;Visualising Data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;En esta primera edición, tomada desde el reporte &lt;a href=&quot;http://www.datalabmx.com/diabetes.html&quot;&gt;&lt;em&gt;“Diabetes: Un desafío para la Salud Pública de Precisión en México, problemática abordada desde la Ciencia de Datos”&lt;/em&gt;&lt;/a&gt; de &lt;strong&gt;&lt;a href=&quot;datalabmx.com&quot;&gt;DataLabMX&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;su-gráfica-2a&quot;&gt;Su gráfica 2A&lt;/h5&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/cachitos/000_datalabmx_grafica2a.png&quot; alt=&quot;grafica_2a&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;El cachito de diseño que estamos celebrando en esta gráfica es el uso de las &lt;em&gt;facetas&lt;/em&gt; que encontramos debajo de la gráfica principal.&lt;/p&gt;
+
+&lt;p&gt;Al reutilizar el eje horizontal de la gráfica de líneas podemos agregar otra capa de información (en este caso la &lt;em&gt;proporción respecto al total&lt;/em&gt;) sin saturar el gráfico original.&lt;/p&gt;
+
+&lt;p&gt;El único criticismo que podría ofrecer es que el tamaño de las facetas no &lt;em&gt;necesita&lt;/em&gt; representar la cantidad total de defunciones ya que podemos observar esto en el gráfico de líneas superior de una manera más eficáz.&lt;/p&gt;
+
+&lt;p&gt;Estas facetas son pequeñas y no ofrecen a quien lea el reporte porcentages exactos. Esto esta completamente bien ya lo que se esta ilustrando es el cambio en las proporciones, la tendencia, no los números exactos.
+Si fueran del mismo tamaño podríamos observar de manera más inmediata que casi 3 de 5 personas que fallecieron por diabetes en México en 1990 fueron mujeres.&lt;/p&gt;
+
+&lt;p&gt;El uso de un gráfico (o una serie de gráficos) como apoyo a un gráfico principal es algo a lo que no le debemos tener miedo. Esta serie de facetas complementan al gráfico principal y aportan otra capa de información de interés al lector.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Una pregunta para ustedes ¿cómo le llaman ustedes a estos gráficos circulares? los conocidos y odiados &lt;em&gt;pie charts&lt;/em&gt; en inglés. Mándenme un tuit a &lt;a href=&quot;https://twitter.com/share?text=yo+le+digo+&amp;amp;url=https://tacosdedatos.com/cachitos-de-dise%C3%B1o&quot;&gt;@tacosdedatos&lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Sergio Sánchez Zavala</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="cachitos" />
+      
+
+      
+        <summary type="html">cachitos de diseño es una serie de publicaciones pequeñas celebrando o criticando (de una manera respetuosa) una decisión en el diseño de una visualización de datos.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

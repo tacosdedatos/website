@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>Probando nuestro código con pytest</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/built/prism.css" /> -->
+    <!-- highlight.js -->
+    <!-- <link rel="stylesheet" href="/assets/built/styles/default.css"> -->
+    <style>.hljs { background: none; }</style>
+    <!-- night owl style  -->
+    <link rel="stylesheet" href="/assets/built/styles/night-owl.css" />
+    <style type='text/css'>
+        pre, code {
+            white-space: pre-wrap;
+            overflow-x: scroll;
+        }
+        .hljs {
+            display: inline-block;
+            overflow-x: scroll;
+            min-width: 100%;
+        }
+        .highlight {
+            min-width: 100%;
+        }
+        div[class^="language-"] {
+            min-width: 100%;
+        }
+    </style>
+
+    
+
+    
+
+
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos." />
+    <link rel="shortcut icon" href="https://old.tacosdedatos.com/assets/icons/favicon.ico" type="image/png" />
+    <link rel="canonical" href="https://old.tacosdedatos.com/pruebas-unitarias-pytest" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Probando nuestro código con pytest" />
+    <meta property="og:description" content="Aviso A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la generación automática de datasets; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta. ¿Qué es" />
+    <meta property="og:url" content="https://old.tacosdedatos.com/pruebas-unitarias-pytest" />
+    <meta property="og:image" content="https://old.tacosdedatos.com/assets/detrasdelavis/002.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:author" content="https://www.facebook.com/tacosdedatos" />
+    <meta property="article:published_time" content="2020-05-12T10:00:00+00:00" />
+    <meta property="article:modified_time" content="2020-05-12T10:00:00+00:00" />
+    <meta property="article:tag" content="Blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Probando nuestro código con pytest" />
+    <meta name="twitter:description" content="Aviso A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la generación automática de datasets; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta. ¿Qué es" />
+    <meta name="twitter:url" content="https://old.tacosdedatos.com/" />
+    <meta name="twitter:image" content="https://old.tacosdedatos.com/assets/detrasdelavis/002.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="🌮 tacos de datos | Aprende visualización de datos en español." />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Blog" />
+    <meta name="twitter:site" content="@tacosdedatos" />
+    <meta name="twitter:creator" content="@tacosdedatos" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "🌮 tacos de datos | Aprende visualización de datos en español.",
+        "logo": "https://old.tacosdedatos.com/assets/images/alt-blog-icon.png"
+    },
+    "url": "https://old.tacosdedatos.com/pruebas-unitarias-pytest",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://old.tacosdedatos.com/assets/detrasdelavis/002.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://old.tacosdedatos.com/pruebas-unitarias-pytest"
+    },
+    "description": "Aviso A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la generación automática de datasets; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta. ¿Qué es"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="Probando nuestro código con pytest" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://old.tacosdedatos.com/"><img src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." /></a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">inicio</a></li>
+    <li class="nav-home" role="menuitem"><a href="https://medium.com/tacosdedatos/">la publiqueishon (Medium)</a></li>
+    <li class="nav-about" role="menuitem"><a href="/sobre/">sobre 🌮</a></li>
+    <li class="nav-podcast" role="menuitem"><a href="https://tacosdedatos.fm">podcast 🌮🎧</a></li>
+    <li class="nav-recursos" role="menuitem"><a href="http://boletin.tacosdedatos.com/">el boletín</a></li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+                <a class="social-link social-link-fb" href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+</a>
+            
+            
+                <a class="social-link social-link-tw" href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+</a>
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Subscríbete</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full post tag-blog ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="12 May 2020">12 May 2020</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>,
+                            
+                        
+                            
+                               <a href='/tag/python/'>PYTHON</a>,
+                            
+                        
+                            
+                               <a href='/tag/pytest/'>PYTEST</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">Probando nuestro código con pytest</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/detrasdelavis/002.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <h4 id="aviso">Aviso</h4>
+<p>A lo largo de este post estaré probando las funciones del código que escribí para el post sobre la <a href="https://tacosdedatos.com/generacion-automatica-datasets">generación automática de datasets</a>; sin embargo no es necesario que leas ese post primero, pero seguramente te ayudará a ponerle más contexto al código que aquí se presenta.</p>
+
+<h2 id="qué-es-pytest">¿Qué es <em>pytest</em>?</h2>
+
+<p><em>pytest</em> es un <em>framework</em> para Python que ofrece la recolección automática de los <em>tests</em>, aserciones simples, soporte para <em>fixtures</em>, <em>debugeo</em> y mucho más… no te preocupes si algunas de estas palabras no te hacen mucho sentido; intentaré aclararlos más adelante a lo largo de este post.</p>
+
+<p>Por cierto, <em>pytest</em> no es el único <em>framework</em> disponible; también está <em>nose</em>, <em>doctest</em>, <em>testify</em>… pero <em>pytest</em> es el que uso y de el que conozco más.</p>
+
+<p>Para obtener <em>pytest</em> lo puedes descargar desde PyPI con tu gestor de paquetes de elección:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pytest
+</code></pre></div></div>
+
+<h2 id="escribiendo-nuestros-tests">Escribiendo nuestros <em>tests</em></h2>
+
+<p>Para escribir las pruebas es necesario escribir funciones que comiencen con el prefijo <code class="language-plaintext highlighter-rouge">test_</code>. Es necesario que las llamemos así ya que al momento de ejecutar <em>pytest</em> debemos especificar un directorio raíz, a partir de este directorio <em>pytest</em> leerá todos los archivos buscando funciones que comiencen con <code class="language-plaintext highlighter-rouge">test_</code>. Por ejemplo, si miras el <a href="https://github.com/fferegrino/medium-collector">repositorio de <em>medium-collector</em></a>, verás que todos los <em>tests</em> están contenidos dentro de un folder apropiadamente llamado <em>tests</em>. Para ejecutar todas las pruebas, lo que tenemos que hacer es ejecutar <em>pytest</em> con esta carpeta como argumento:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/
+</code></pre></div></div>
+
+<h2 id="parametrizando-nuestras-pruebas">Parametrizando nuestras pruebas</h2>
+<p>Comencemos por escribir un test sencillo: una sola entrada, una sola salida. y sin llamadas a servicios externos. Me refiero a una función que toma una cadena codificada (como esta: <code class="language-plaintext highlighter-rouge">=?UTF-8?B?VGhlcmXigJlz?= more to the story</code>) y regresa otra cadena (como esta: <code class="language-plaintext highlighter-rouge">There’s more to the story</code>), en este caso estoy hablando sobre la función <a href="https://github.com/fferegrino/medium-collector/blob/v0.0.0/medium_collector/download/parser.py#L12"><code class="language-plaintext highlighter-rouge">get_subject</code> method</a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_subject</span><span class="p">(</span><span class="n">subject</span><span class="p">):</span>
+    <span class="n">subject_parts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">subjects</span> <span class="o">=</span> <span class="n">email</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">decode_header</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">content</span><span class="p">,</span> <span class="n">encoding</span> <span class="ow">in</span> <span class="n">subjects</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subject_parts</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span> <span class="ow">or</span> <span class="s">"utf8"</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">subject_parts</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">subject_parts</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Para escribir una prueba unitaria es tan “simple” como hacer esto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_get_subject</span><span class="p">():</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s">"There's more to the story"</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">get_subject</span><span class="p">(</span><span class="s">"=?UTF-8?B?VGhlcmXigJlz?= more to the story"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">actual</span>
+</code></pre></div></div>
+
+<p>Sin embargo, esta funcion necesita ser probada con el caso en donde toda la cadena está codificada, o el caso en donde no lo está. Para cubrir estos casos tendríamos que escribir métodos como <code class="language-plaintext highlighter-rouge">test_get_subject_all_encoded</code> y <code class="language-plaintext highlighter-rouge">test_get_subject_none_encoded</code>, pero eso sería una duplicación absurda de código, para solucionar este problema de <strong>probar el mismo código con múltiples valores de entrada</strong> podemos hacer uso de la <strong>parametrización</strong> usando el decorador <code class="language-plaintext highlighter-rouge">@pytest.mark.parametrize</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">mark</span><span class="p">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="p">[</span><span class="s">"input_subject"</span><span class="p">,</span> <span class="s">"expected"</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="c1"># Input 1
+</span>        <span class="p">(</span>
+            <span class="s">"=?UTF-8?B?V2hlbiBhICQxMDAsMDAwIFNhbGFyeSBJc27igJl0IEVub3VnaCB8IEFkYW0gUGFyc29ucyBpbiBNYWtpbmcgb2YgYSBNaWxsaW8=?= =?UTF-8?B?bmFpcmU=?="</span><span class="p">,</span>
+            <span class="s">"When a $100,000 Salary Isn’t Enough | Adam Parsons in Making of a Millionaire"</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="c1"># Input 2
+</span>        <span class="p">(</span>
+            <span class="s">"=?UTF-8?B?VGhlcmXigJlz?= more to the story"</span><span class="p">,</span> 
+            <span class="s">"There’s more to the story"</span>
+        <span class="p">),</span>
+        <span class="c1"># Input 3
+</span>        <span class="p">(</span>
+            <span class="s">"7 Things Rich People Advise But Never Do | David O. in The Startup"</span><span class="p">,</span>
+            <span class="s">"7 Things Rich People Advise But Never Do | David O. in The Startup"</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_get_subject</span><span class="p">(</span><span class="n">input_subject</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="n">actual</span> <span class="o">=</span> <span class="n">get_subject</span><span class="p">(</span><span class="n">input_subject</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+</code></pre></div></div>
+
+<p>El código anterior le indica a <em>pytest</em> que ejecute la prueba <code class="language-plaintext highlighter-rouge">test_get_subject</code> tres veces, cada una reemplazando <code class="language-plaintext highlighter-rouge">input_subject</code> y <code class="language-plaintext highlighter-rouge">expected</code> con sus valores correspondientes especificados en el segundo argumento de <code class="language-plaintext highlighter-rouge">parametrize</code>.</p>
+
+<h2 id="fixtures">Fixtures</h2>
+<p>En algunas ocasiones tal vez tengamos <strong>pruebas que comiencen desde cierto estado</strong>, este estado puede ser tener datos en una base de datos, tener archivos en alguna carpeta, o tal vez simplemente tener el objeto correcto como entrada a la función; es ahí donde las <em>fixtures</em> son útiles.</p>
+
+<p>Por ejemplo, en el repositorio de <em>medium-colletor</em> hay una función llamada <code class="language-plaintext highlighter-rouge">parse_mail</code> que, como el nombre lo sugiere, podemos usar para extraer información de un objeto de la clase <code class="language-plaintext highlighter-rouge">email.message.Message</code>. Esta es una versión simplificada de la implementación del método:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">parse_mail</span><span class="p">(</span><span class="n">email_message</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">get_html</span><span class="p">(</span><span class="n">email_message</span><span class="p">)</span>
+    <span class="n">mail_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="n">email_message</span><span class="p">[</span><span class="s">"Message-ID"</span><span class="p">],</span>
+        <span class="s">"to"</span><span class="p">:</span> <span class="n">email_message</span><span class="p">[</span><span class="s">"To"</span><span class="p">],</span>
+        <span class="s">"from"</span><span class="p">:</span> <span class="n">email_message</span><span class="p">[</span><span class="s">"From"</span><span class="p">],</span>
+        <span class="s">"subject"</span><span class="p">:</span> <span class="n">get_subject</span><span class="p">(</span><span class="n">email_message</span><span class="p">[</span><span class="s">"Subject"</span><span class="p">]),</span>
+        <span class="s">"date"</span><span class="p">:</span> <span class="n">email_message</span><span class="p">[</span><span class="s">"Date"</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">mail_info</span><span class="p">,</span> <span class="n">html</span>
+</code></pre></div></div>
+
+<p>Para probar esta función necesitamos un objeto de la clase <code class="language-plaintext highlighter-rouge">Message</code>, pero en realidad no quiero tener que conectarme a nuestro servidor de email cada vez que ejecutemos la prueba; este es el escenario perfecto para usar una <em>fixture</em>. Para definir una, tenemos que isar algo como el siguiente código:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">dummy_mail</span><span class="p">():</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">(</span><span class="s">"alternative"</span><span class="p">)</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">"Subject"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Link"</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">"From"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"you@this.com"</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">"To"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"me@that.com"</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">"Message-ID"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"123"</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">"Date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">().</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%a, %d %b %Y %H:%M:%S +0000 (UTC)"</span><span class="p">)</span>
+    
+    <span class="n">text</span> <span class="o">=</span> <span class="s">"Hi!"</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s">&lt;br&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="s">"plain"</span><span class="p">))</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">"html"</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">msg</span>
+</code></pre></div></div>
+
+<p>Lo primero que hay que notar es que <code class="language-plaintext highlighter-rouge">@pytest.fixture</code> es usado como decorador de… ¿¡una función!? Sí, así es, una <em>fixture</em> no es nada más que una función cuyo valor de retorno debe ser el valor que queremos que esa <em>fixture</em> tenga. En este caso, el valor de nuestra <em>fixture</em> será un objeto de la clase <code class="language-plaintext highlighter-rouge">MIMEMultipart</code> que hereda de <code class="language-plaintext highlighter-rouge">Message</code> que es justo lo que queremos.</p>
+
+<p>Ahora, para usar nuestra <em>fixture</em> llamada <code class="language-plaintext highlighter-rouge">dummy_mail</code> en nuestra prueba es suficiente con pasarla como argumento en nuestra función de prueba:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_parse_mail</span><span class="p">(</span><span class="n">dummy_mail</span><span class="p">):</span>
+    <span class="n">expected_mail_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="s">"ad841b37bd4b9b5403b575432f67f5ed2d68ed40"</span><span class="p">,</span>
+        <span class="s">"to"</span><span class="p">:</span> <span class="s">"a4747a50dad63531704f5ab32509bb0c60b7350f"</span><span class="p">,</span>
+        <span class="s">"from"</span><span class="p">:</span> <span class="s">"you@this.com"</span><span class="p">,</span>
+        <span class="s">"subject"</span><span class="p">:</span> <span class="s">"Link"</span><span class="p">,</span>
+        <span class="s">"date"</span><span class="p">:</span> <span class="n">ANY</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">mail_info</span><span class="p">,</span> <span class="n">decoded</span> <span class="o">=</span> <span class="n">parse_mail</span><span class="p">(</span><span class="n">dummy_mail</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">mail_info</span> <span class="o">==</span> <span class="n">expected_mail_info</span>
+    <span class="k">assert</span> <span class="n">decoded</span> <span class="o">==</span> <span class="s">"&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;Hi!&lt;br&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+</code></pre></div></div>
+
+<p>Cuando ejecutamos <em>pytest</em>, este tratará de resolverlas antes de que se ejecute cualquier prueba que las use, y una ves que estas estén listas, los métodos de prueba reciben los valores especificados en cada método asociado. Este mecanismo permite algunos otros usos interesantes de los que hablaré más adelante.</p>
+
+<h3 id="una-característica-extra-de-las-fixtures">Una característica extra de las <em>fixtures</em></h3>
+<p>Las <em>fixtures</em> de <em>pytest</em> son geniales, y otro de sus usos es cuando queremos reutilizar el mismo fragmento de código en dos o más funciones de prueba. Imagina que necesitamos usar un objeto de la clase <code class="language-plaintext highlighter-rouge">Message</code> para dos pruebas. Podríamos haber declarado una variable global, digamos <code class="language-plaintext highlighter-rouge">MESSAGE = MIMEMultipart("alternative")</code> y después usarla en nuestros métodos así:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_parse_mail_1</span><span class="p">():</span>
+    <span class="n">parse_mail</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>
+    <span class="c1"># ...
+</span>    
+<span class="k">def</span> <span class="nf">test_parse_mail_2</span><span class="p">():</span>
+    <span class="n">parse_mail</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>
+    <span class="c1"># ...
+</span></code></pre></div></div>
+
+<p>Pero en este caso, ambos tests estarían usando la misma variable, <code class="language-plaintext highlighter-rouge">MESSAGE</code> lo que significa que cualquier cambio hecho por <code class="language-plaintext highlighter-rouge">test_parse_mail_1</code> afectaría el <code class="language-plaintext highlighter-rouge">MESSAGE</code> que <code class="language-plaintext highlighter-rouge">test_parse_mail_2</code> recibe, esto rompe el propósito de las pruebas unitarias, ya que nuestros <em>tests</em> no estarían aislados. Sin embargo, cuando usamos <em>fixtures</em>, cada función de prueba recibe una copia nueva de lo que sea que regrese nuestra función marcada con <code class="language-plaintext highlighter-rouge">@pytest.fixture</code>, haciendo fácil y sencillo usarlas una y otra vez.</p>
+
+<h2 id="patching">Patching</h2>
+<p>Sin lugar a dudas, algunas partes de nuestro código dependerán de librerías de terceros o a servicios externos que no queremos ejecutar o contactar cuando ejecutamos nuestras pruebas. Ya sea porque la librería que estamos usando consume muchos recursos o es un sistema productivo que no debería ser tocado durante las pruebas, aquí es cuando el <strong>patching</strong> brilla por su utilidad; este nos ayuda a <strong>reemplazar el comportamiento (o valores de retorno) de una llamada a una función</strong> con lo que nosotros dispongamos.</p>
+
+<p>Imagina que la función <code class="language-plaintext highlighter-rouge">get_html</code> contiene código que es muy <em>“costoso”</em> ejecutar, y no lo queremos que este código se ejecute cada vez que llamamos al test <code class="language-plaintext highlighter-rouge">test_parse_mail</code>, entonces podemos <em>parcharlo</em> (tengo que decir que el <em>patching</em> no es una funcionalidad de <em>pytest</em> si no que viene con Python por default).</p>
+
+<p>Hay dos formas de <em>“parchar”</em> nuestro código: una de ellas es haciendo uso de la instrucción <code class="language-plaintext highlighter-rouge">with</code>, pasando el nombre completo de la función que queremos <em>“parchar”</em>. Un test que aplica un <em>patch</em> a la función <code class="language-plaintext highlighter-rouge">get_html</code> dentro de <code class="language-plaintext highlighter-rouge">parse_email</code> se vería así:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span>
+
+<span class="k">def</span> <span class="nf">test_parse_mail</span><span class="p">(</span><span class="n">dummy_mail</span><span class="p">):</span>
+    <span class="n">expected_mail_info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"id"</span><span class="p">:</span> <span class="s">"ad841b37bd4b9b5403b575432f67f5ed2d68ed40"</span><span class="p">,</span>
+        <span class="c1"># ...
+</span>    <span class="p">}</span>
+    
+    <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s">"medium_collector.download.parser.get_html"</span><span class="p">,</span> 
+        <span class="n">return_value</span><span class="o">=</span><span class="s">"Hello"</span><span class="p">)</span> <span class="k">as</span> <span class="n">patched</span><span class="p">:</span>
+        <span class="n">mail_info</span><span class="p">,</span> <span class="n">decoded</span> <span class="o">=</span> <span class="n">parse_mail</span><span class="p">(</span><span class="n">dummy_mail</span><span class="p">)</span>
+
+    <span class="n">patched</span><span class="p">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">mail_info</span> <span class="o">==</span> <span class="n">expected_mail_info</span>
+    <span class="k">assert</span> <span class="n">decoded</span> <span class="o">==</span> <span class="s">"Hello"</span>
+</code></pre></div></div>
+
+<p>En el fragmento anterior estamos <em>“parchando”</em> la función y estableciendo el valor de <code class="language-plaintext highlighter-rouge">"Hello"</code> como su valor de retorno con <code class="language-plaintext highlighter-rouge">return_value</code>. Esto significa que <code class="language-plaintext highlighter-rouge">"Hello"</code> será regresado cada vez que la función es ejecutada. Ahora que la función original no es realmente ejecutada, es importante que nos cercioremos que nuestro código está llamando a esta función, para esto podemos utilizar el método <code class="language-plaintext highlighter-rouge">assert_called_once</code> para verificar que lo hemos llamado.</p>
+
+<h3 id="los-peligros-del-patching">Los peligros del <em>patching</em></h3>
+<p>El <em>parcheo</em> podría parecer una solución fácil para evitar conectarse con servicios externos o llamadas a funciones costosas. Pero debes tener en cuenta que cuando <em>parchamos</em> algo, estamos asumiendo muchas cosas sobre el código que estamos <em>parchando</em>, estas asunciones son:</p>
+
+<ul>
+  <li>Sabemos el comportamiento esperado del código que estamos <em>parchando</em>, es decir, sabemos sus valores de retorno y bajo que circunstancias falla.</li>
+  <li>Puedes, con completa seguridad, regresar un objeto que se comporte como el valor que originalmente sería retornado por la función real.</li>
+</ul>
+
+<p>Cuando aplicas un parche a una función, toma en cuenta que esta puede retornar un valor “complejo” que sea difícil de reproducir, y que <em>“parcharlo”</em> mal resultaría en tu código siendo probado ante un escenario que nunca ocurrirá en la vida real. Para evitar esto, tal vez tengas que examinar muy a detalla cuales son los valores de retorno de lo que estás <em>“parchando”</em> con el fin de hacerlo correctamente.</p>
+
+<p>Otro problema muy común con el <em>patching</em> es que en nos podemos dejar llevar y terminar <em>“parchando”</em> todo… lo que, a final de cuentas nos pone en la situación de estar probando nuestro código en escenarios poco realistas. Si en algún momento te encuentras haciendo esto, es mejor que te detengas y reconsideres si las pruebas unitarias son la mejor solución para probar tu código… tal vez las pruebas de integración sean una mejor solución para tu problema de <em>testing</em>.</p>
+
+<h2 id="fixtures-avanzadas"><em>Fixtures</em> avanzadas</h2>
+<p>Como lo mencioné anteriormente, la forma en la que <em>pytest</em> resuelve las <em>fixtures</em> puede ser usada para darle a nuestro código más flexibilidad. En el repositorio de <em>medium-collector</em> hay una función que carga algunos archivos a un <em>bucket</em> de S3 usando la librería <em>boto</em>, esta es la función <code class="language-plaintext highlighter-rouge">upload_files</code>, que se ve más o menos así:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">upload_files</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">bucket</span><span class="p">):</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="n">client</span><span class="p">(</span>
+        <span class="s">"s3"</span><span class="p">,</span>
+        <span class="n">aws_access_key_id</span><span class="o">=</span><span class="n">config</span><span class="p">(</span><span class="s">"ACCESS_KEY"</span><span class="p">),</span>
+        <span class="n">aws_secret_access_key</span><span class="o">=</span><span class="n">config</span><span class="p">(</span><span class="s">"SECRET_KEY"</span><span class="p">),</span>
+        <span class="n">region_name</span><span class="o">=</span><span class="s">"eu-west-2"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">upload_file</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">file</span><span class="p">),</span> <span class="n">bucket</span><span class="p">,</span> <span class="nb">file</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="mi">2</span>
+</code></pre></div></div>
+
+<p>Claro que no quero estar conectándome a AWS cada vez que ejecuto las pruebas; aquí es donde la librería <em>moto</em> aparece para rescatarme. En palabras de sus creadores: <em>“Moto es una librería que permite que tus tests fácilmente finjan comunicarse con servicios de AWS”</em>. La forma en la que ellos sugieren usarla es a través de un manejador de contexto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_my_model_save</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">mock_s3</span><span class="p">():</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="n">resource</span><span class="p">(</span><span class="s">'s3'</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s">'us-east-1'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Para probar nuestra función debemos cumplir dos condiciones antes de llamar a <code class="language-plaintext highlighter-rouge">upload_files</code>:</p>
+
+<ol>
+  <li>Imitar S3; no queremos estar conectándonos a AWS en nuestras pruebas unitarias,</li>
+  <li>Tener un <em>bucket</em> que ya exista; nuestro código asume que uno ya existe</li>
+</ol>
+
+<p>Para lograr estas dos cosas con un <em>fixture</em> podemos hacer algo como esto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">bucket</span><span class="p">():</span>
+   <span class="k">return</span> <span class="s">"my_special_bucket"</span>
+
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">mock_storage</span><span class="p">(</span><span class="n">bucket</span><span class="p">):</span>
+    <span class="o">@</span><span class="n">contextmanager</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">create_bucket</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">mock_s3</span><span class="p">():</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="n">client</span><span class="p">(</span><span class="s">"s3"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s">"eu-east-1"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">create_bucket</span><span class="p">:</span>
+                <span class="n">conn</span><span class="p">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">)</span>
+            <span class="k">yield</span>
+    <span class="k">return</span> <span class="n">inner</span>
+</code></pre></div></div>
+
+<p>Esta <em>fixture</em> es, en realidad, una función (<code class="language-plaintext highlighter-rouge">inner</code>) que gracias al decorador <code class="language-plaintext highlighter-rouge">contextmanager</code> podemos llamar con la instrucción <code class="language-plaintext highlighter-rouge">with</code>. En términos de la implementación puedes ver que estamos usando <code class="language-plaintext highlighter-rouge">mock_s3</code> como lo recomiendan los desarrolladores de <em>moto</em>, dentro de este contexto creamos un cliente de <em>boto3</em>, luego, dependiendo de un parámetro pasado a nuestra función <code class="language-plaintext highlighter-rouge">inner</code> decidimos si creamos o no la <em>bucket</em>; por último, y como este se trata de un manejador de contexto usamos la instrucción <code class="language-plaintext highlighter-rouge">yield</code> que le indicará a <em>pytest</em> que nuestra <em>fixture</em> está lista para ser usada.</p>
+
+<p>Ah, no sé si te diste cuenta, pero <code class="language-plaintext highlighter-rouge">mock_storage</code> toma como argumento otra <em>fixture</em> (<code class="language-plaintext highlighter-rouge">bucket</code> en este caso). Esa es otra de las excelentes características de <em>pytest</em>: permite crear ciertas dependencias entre nuestras <em>fixtures</em>, y esta es resuleta antes de que se ejecuten nuestras pruebas.</p>
+
+<p>Ahora sí, estamos listos a probar nuestra función <code class="language-plaintext highlighter-rouge">upload_files</code> con esta función:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_upload_files</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">mock_storage</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">mock_storage</span><span class="p">(</span><span class="n">create_bucket</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">upload_files</span><span class="p">(</span><span class="n">files_path</span><span class="p">)</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="n">client</span><span class="p">(</span><span class="s">"s3"</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="s">"eu-east-1"</span><span class="p">)</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">list_objects</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">)[</span><span class="s">"Contents"</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="practica">¡Practica!</h2>
+<p>Me hubiera encantado preparar un notebook o cualquier otra forma de entorno interactivo que pudieras usar para jugar y experimentar un poco con los <em>tests</em>, pero creo que para este tema, es mejor que te ensucies las manos con un poco de código verdadero. Te invito a que descargues el código de la aplicación <a href="https://github.com/fferegrino/medium-collector"><em>medium-collector</em> repo</a> y ejecutes los test por ti mism@.</p>
+
+<h2 id="más-allá-de-las-pruebas-unitarias">Más allá de las pruebas unitarias</h2>
+<p>A pesar de que <em>pytest</em> es fabuloso para realizar pruebas unitarias, nada nos detiene de usarlo para otras pruebas, aún más más complejas; hablo de pruebas de integración o tal vez hasta de <em>end-to-end</em>. Con herramientas como <em>Docker</em>, <em>localstack</em> y otras más, es posible crear un poderos <em>framework</em> de pruebas para todos tus proyectos de Python. En un post futuro voy a hablar de cómo es que se puede utilizar todo el poder de estas herramientas para crear un test de <em>end-to-end</em>, así que asegúrate de seguir el blog y de seguirme en Twitter en <a href="https://twitter.com/io_exception">@io_exception</a>.</p>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h3>
+                    <p>Recibe las mejores publicaciones directamente a tu caja de entrada</p>
+                    <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+                </section>
+            
+
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/images/yo_io_exception.jpg" alt="io_exception" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/io_exception">Antonio Feregrino Bolaños</a></h4>
+                                
+                                    <p>Soy científico de datos pero crecí siendo desarrollador de software.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/io_exception">Lee Más</a>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            this.page.url = 'https://old.tacosdedatos.com/pruebas-unitarias-pytest';
+                            this.page.identifier = 'Probando nuestro código con pytest';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://tacosdedatos.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/images/blog-cover.png)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 🌮 tacos de datos | Aprende visualización de datos en español. &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/blog/">Blog</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/sidetable-el-beffo-de-pandas">Sidetable, el beffo de pandas</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-III">Dueño de mis datos - Capítulo Facebook - Parte III</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/Dueno-de-mis-Datos-Facebook-Parte-II">Dueño de mis datos - Capítulo Facebook - Parte II</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/blog/">
+                                
+                                    See all 22 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Dueno-de-mis-Datos-Facebook-Parte-II">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/017.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Dueno-de-mis-Datos-Facebook-Parte-II">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Facebook</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Ggplot2</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">R</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Text-mining</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Dueño de mis datos - Capítulo Facebook - Parte II</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="Pablo Quetzalcóatl Vázquez" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/nerudista/">Pablo Quetzalcóatl Vázquez</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/Dueno-de-mis-Datos-Facebook">
+                <div class="post-card-image" style="background-image: url(/assets/blogposts/blog-016.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/Dueno-de-mis-Datos-Facebook">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Blog</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Facebook</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Python</span>
+                            
+                        
+                            
+                               <span class="post-card-tags">Privacidad</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Text-mining</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Dueño de mis datos - Capítulo Facebook</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p></p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/images/yo_nerudista.jpg" alt="Pablo Quetzalcóatl Vázquez" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/nerudista/">Pablo Quetzalcóatl Vázquez</a>
+                        </span>
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://old.tacosdedatos.com/">
+            
+                <img src="/assets/icons/favicon.ico" alt="🌮 tacos de datos | Aprende visualización de datos en español. icon" />
+            
+            <span>🌮 tacos de datos | Aprende visualización de datos en español.</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Probando nuestro código con pytest</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">comparte esto <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Probando+nuestro+c%C3%B3digo+con+pytest&amp;url=https://old.tacosdedatos.com/pruebas-unitarias-pytest"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://old.tacosdedatos.com/pruebas-unitarias-pytest"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://old.tacosdedatos.com/">🌮 tacos de datos | Aprende visualización de datos en español.</a> &copy; 2021</section>
+                <section class="poweredby">Publicado con <a href="https://jekyllrb.com/">Jekyll</a>, código abierto en 
+                    <a href="https://github.com/tacosdedatos/website" target="_blank" rel="noopener">GitHub</a> usando
+                    <a href="https://github.com/jekyller/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">lo <b>+</b> nuevo</a>
+                    <a href="https://tacosdedatos.com/etiquetas" target="_blank" rel="noopener">etiquetas</a>
+                    <!-- <a href="https://facebook.com/tacosdedatos" target="_blank" rel="noopener">Facebook</a> -->
+                    <!-- <a href="https://twitter.com/tacosdedatos" target="_blank" rel="noopener">Twitter</a> -->
+                    <a href="https://instagram.com/chekos.visuals" target="_blank" rel="noopener">instagram</a>
+                    
+                    <a href="https://join.slack.com/t/tacosdedatos/shared_invite/enQtNTQyOTE3NzE5NDE1LTA2MWZhMGE3NzNhYTA0Yjc1Yjk0NTZjNzM4M2VjOGIzOTA4YTc2ZjlkYjIyODRmYjA0MjVlMjExNjRjYWQ0NDQ" target="_blank" rel="noopener">slack</a>
+                    <a href="https://patreon.com/tacosdedatos/" target="_blank" rel="noopener">patreon</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                    <img class="subscribe-overlay-logo" src="/assets/images/alt-blog-icon.png" alt="🌮 tacos de datos | Aprende visualización de datos en español." />
+                
+                <h1 class="subscribe-overlay-title">Subscríbete a 🌮 tacos de datos | Aprende visualización de datos en español.</h1>
+                <p class="subscribe-overlay-description">¡Mantente al tanto! Recibe las mejores publicaciones directamente a tu caja de entrada.</p>
+                <div id="revue-embed">
+  <form
+    action="http://boletin.tacosdedatos.com/add_subscriber"
+    method="post"
+    id="revue-form"
+    name="revue-form"
+    target="_blank"
+  >
+    <div class="revue-form-group">
+      <div>
+        <label for="member_email">Correo electrónico</label>
+        <input
+          class="revue-form-field"
+          placeholder="Tu correo electrónico"
+          type="email"
+          name="member[email]"
+          id="member_email"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_first_name"
+          >Nombre <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Nombre (opcional)"
+          type="text"
+          name="member[first_name]"
+          id="member_first_name"
+        />
+      </div>
+      <div class="revue-form-group">
+        <label for="member_last_name"
+          >Apellidos <span class="optional">(Opcional)</span></label
+        >
+        <input
+          class="revue-form-field"
+          placeholder="Apellidos (opcional)"
+          type="text"
+          name="member[last_name]"
+          id="member_last_name"
+        />
+      </div>
+      <div class="revue-form-actions">
+        <input
+          type="submit"
+          value="Subscribe"
+          name="member[subscribe]"
+          id="member_submit"
+        />
+      </div>
+    </div>
+    <div class="revue-form-footer">
+      Al registrarte declaras aceptar los
+      <a target="_blank" href="https://www.getrevue.co/terms"
+        >términos y condiciones de uso</a
+      >
+      y la
+      <a target="_blank" href="https://www.getrevue.co/privacy"
+        >política de privacidad</a
+      >
+      de Revue.
+    </div>
+  </form>
+</div>
+
+            </div>
+        </div>
+    
+
+    <!-- highlight.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script> -->
+    <script src="/assets/js/highlight.pack.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+    <!-- prism.js -->
+    <!-- <script type="text/javascript" src="/assets/js/prism.js"></script> -->
+    
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+    <!-- <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script> -->
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-133541532-1', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

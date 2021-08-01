@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator>
+  <link href="https://old.tacosdedatos.com/tag/an%C3%A1lisis/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://old.tacosdedatos.com/" rel="alternate" type="text/html" />
+  <updated>2021-08-01T20:46:16+00:00</updated>
+  <id>https://old.tacosdedatos.com/tag/an%C3%A1lisis/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">🌮 tacos de datos | Aprende visualización de datos en español. | </title>
+  
+
+  
+    <subtitle>Tu sitio para aprender de visualización y ciencia de datos en español. Consejos, recursos y mejores prácticas para tus proyectos de tecnología, periodismo de datos y análisis estadísticos.</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">Elementos de diseño y análisis en la visualización de datos</title>
+      <link href="https://old.tacosdedatos.com/Elementos-de-diseno-y-analisis-en-la-visualizacion-de-datos" rel="alternate" type="text/html" title="Elementos de diseño y análisis en la visualización de datos" />
+      <published>2020-01-24T10:00:00+00:00</published>
+      <updated>2020-01-24T10:00:00+00:00</updated>
+      <id>https://old.tacosdedatos.com/Elementos-de-diseno-y-analisis-en-la-visualizacion-de-datos</id>
+      <content type="html" xml:base="https://old.tacosdedatos.com/Elementos-de-diseno-y-analisis-en-la-visualizacion-de-datos">&lt;p&gt;La visualización de datos es, sin duda, un tema de actualidad. Su implementación en áreas como la ciencia, la ingeniería, la medicina, la sociología, la política, el periodismo o la educación es motivo suficiente para dedicarle un análisis. Este artículo pretende ser una aproximación a la visualización de datos; a través del mismo, trataremos de dar una definición de esta disciplina en cuestión, establecer sus propósitos y señalar algunas de las inconsistencias o dificultades que aparecen cuando se contraponen los diferentes puntos de vista existentes en torno a esta materia.&lt;/p&gt;
+
+&lt;p&gt;De acuerdo con el portal Iniciativa de Datos Abiertos del Gobierno de España (2016), la visualización de datos es un conjunto de técnicas y herramientas orientadas a la adquisición y transformación de datos brutos en información y conocimiento con el propósito de servir de base para la toma de decisiones. Como se puede apreciar, se trata de una definición genérica que podría extrapolarse a muchas otras disciplinas relacionadas con la gestión y explotación del dato. Manovich (2010), en su artículo What is Visualization, matiza a este respecto que, dado un conjunto de datos, hasta que no los visualizamos, éstos no tienen forma y que la visualización sería, precisamente, el proceso por medio del cual convertimos unos datos en imágenes. Se trataría, por tanto, de una conversión mediante  la cual pasamos de un sistema representacional simbólico dado a otro distinto: por ejemplo, de una representación numérica a una visoespacial. Pero, ¿cuáles son los propósitos de esta conversión simbólica?&lt;/p&gt;
+
+&lt;p&gt;Según el portal de Datos Abiertos anteriormente mencionado, los principales propósitos de la visualización son dos: analizar e interpretar, por un lado, y comunicar, por otro lado.  Respecto al primer propósito, la mayor parte de referencias señalan a Tukey, estadístico norteamericano que en 1977 estableció la noción de análisis de datos exploratorio, conocido también por el acrónimo EDA (Exploratory Data Analysis). Tukey propondría una serie procedimientos visuales para explorar y analizar datos con la finalidad de detectar y descubrir las estructuras, patrones, tendencias y anomalías subyacentes. En cuanto a la segunda finalidad, el modelo de Dürsteler y Engelhardt, adaptado por Jaume Pérez (Pascual, 2016) establece que la visualización tiene lugar entre usuarios que comparten un determinado contexto y cultura como una forma de comunicación orientada a facilitar la comprensión de un mensaje que ha sido elaborado pasando por un proceso de múltiples etapas: los datos son filtrados y procesados, dando lugar a información; posteriormente, ésta es traducida visualmente para facilitar su interpretación y comprensión.&lt;/p&gt;
+
+&lt;p&gt;Establecida una primera definición provisional y señalados los principales objetivos de la visualización de datos, veamos ahora algunas de las complejidades que aparecen cuando se examina la temática en mayor profundidad. Y es que detrás de los dos propósitos arriba mencionados, podría decirse que subyacen dos formas de racionalidad: una analítica y otra comunicativa que se rigen por lógicas distintas y que se sitúan en dos culturas diferentes: la cultura de la ciencia y la del diseño gráfico (Manovich, 2010). Ello, en principio, no debería ser per se una fuente de contradicciones ya que la visualización de datos puede entenderse como un fenómeno interdisciplinario. De hecho, en muchas organizaciones los productos o servicios basados en la visualización de datos son fruto de la interacción entre analistas de datos y diseñadores gráficos.&lt;/p&gt;
+
+&lt;p&gt;La presencia de dos culturas distintas en torno a la visualización de datos ha hecho que algunos autores (Manovich, 2010) hayan adoptado un vocabulario para diferenciar ambos paradigmas: visualización científica y diseño de la información. Dicho esto, se podría plantear la siguiente pregunta: ¿qué es lo que diferencia la visualización científica del diseño de la información? Manovich (2010) expone una de las primeras hipótesis que se han planteado como respuesta a este interrogante: la visualización científica trabajaría con variables cuantitativas mientras que el diseño de la información lo haría con variables cualitativas. El mismo autor descarta esta hipótesis señalando que incluso en el análisis estructural de las redes sociales - enfoque paradigmáticamente cualitativo – cuando se emplean grafos no sólo se señalan las relaciones a través de enlaces que conectan nodos, sino que esos enlaces o arcos varían su grosor para mostrar una dimensión cuantitativa de la relación entre los vértices.&lt;/p&gt;
+
+&lt;p&gt;Parecería ser que el elemento diferencial lo encontraríamos en el hecho de que se privilegian técnicas y tecnologías distintas, además de que, en un caso, el punto de partida sería la información mientras que en el otro caso lo serían los datos. Evidentemente, siempre será posible encontrar excepciones a esta observación, pero, en términos generales, el analista o científico de datos trabajaría con datos para visibilizar la lógica inherente a los mismos y contrastar hipótesis científicas. Ejemplo de ello lo constituye el hecho de comprobar si un conjunto de datos sigue una determinada distribución o si dos variables mantienen una relación lineal. Por otro lado, aquellos que pertenecen a la cultura del diseño, partirían de datos procesados - información - en la elaboración de sus visualizaciones y su objetivo no sería la explicitación de patrones ocultos en los datos o no conocidos a priori, sino comunicar de manera eficaz un mensaje.  Insistimos en que se trata de una generalización y que ambas facetas se pueden superponer.&lt;/p&gt;
+
+&lt;p&gt;No obstante, hay circunstancias particularmente interesantes en relación a lo mencionado con anterioridad. Pensemos, por ejemplo, en aquellas situaciones en las que, desde una perspectiva del diseño de la información, se enfatiza tanto la dimensión estética de la visualización que acaba por ser ininteligible. Valero (2014) denomina a esta dimensión estética ‘visualidad’. Uno de los principios axiomáticos de la visualización de datos es que ésta debe ser simple y funcional (BBVA Innovation Center, 2016). Sin embargo, hay circunstancias en las que la visualidad va en detrimento de lo funcional. Se llega, de esta manera, a una situación paradójica: se enfatiza la visualidad en aras de generar un mayor impacto pero el resultado es que al usuario le resulta más complicado interpretar el objeto visual. Se podría sostener, siguiendo a Few y en coherencia con los principios de la psicología gestáltica de la percepción (Minguillon, 2016), que se transgrede el equilibrio entre percepción y cognición.&lt;/p&gt;
+
+&lt;p&gt;La producción de una visualización que confunde a su audiencia tiene diferentes causas; una de ellas es la falta de rigor analítico para determinar qué tipo de gráfico conviene escoger para representar un tipo de dimensión. Es fundamental establecer qué es lo que tratamos de expresar: composición, distribución, comparación, relación…, para escoger un gráfico adecuado. No es suficiente la visualidad. Por este motivo, algunos autores (Minguillon, 2016) cuando tratan la visualización de datos lo hacen empleando la expresión Visual Analytics, acentuando la faceta analítica. Y es que nos movemos dentro de un área en la que la transformación de los datos, la creación de nuevas variables a partir otras disponibles, el cálculo de estadísticos descriptivos o la modelización son operaciones habituales. En cualquier caso, en aquellas circunstancias en que se tengan razones para creer que una determinada producción podría no ser eficaz en términos comunicativos, siempre se puede realizar un test de usabilidad para corroborar o refutar tal hipótesis. Esto, ciertamente, no siempre es posible. Mientras que en el periodismo de investigación se dispone de un margen temporal, en el periodismo informativo, en ciertas ocasiones, el tiempo es un factor coercitivo. En todo caso, se debería adoptar siempre como principio regulativo el tratar de encontrar un equilibrio entre la visualidad y la funcionalidad. Además, los gráficos deberían satisfacer aquel principio del código limpio: han de ser autoexplicativos. Tufte (Minguillon, 2016) consideraba que la excelencia comunicativa se da cuando nuestro mensaje es claro, preciso, eficiente y verdadero. La última asunción no es baladí considerando que la visualización de datos ha sido empleada en el contexto de la comunicación persuasiva política como herramienta de manipulación. Y es que basta con alterar el rango en el eje de ordenadas en un diagrama de barras para inducir una determinada percepción en nuestra audiencia.&lt;/p&gt;
+
+&lt;p&gt;Por otro lado, se da también con frecuencia otro tipo de situaciones muy interesantes en las que la visualidad predomina sobre la funcionalidad: aquellas en las que lo estético no genera ningún tipo de carga cognitiva o confusión en la audiencia pero, no obstante, el producto tampoco añade valor. Nótese que en este caso, a diferencia del anterior, no hay lugar para la introducción de sesgos o manipulaciones que alteren la interpretación del mensaje. Se trataría de producciones que podrían subsumirse dentro de esa categoría que Tufte (Minguillon, 2016) llamaba chartjunk o diagrama basura. Piénsese, por ejemplo, en la elaboración de una composición visual como un cuadro de mando. Efectivamente, se pueden agregar diferentes diagramas sobre un lienzo, pero ello no necesariamente constituirá una herramienta funcional, ya que la elaboración de un cuadro de mando presupone conocimientos sobre estrategia empresarial; requiere conocer las principales cadenas de valor y los mapas de proceso, entre otros muchos elementos, que son los que permiten monitorizar el curso de una organización y tomar decisiones. Se constata, de nuevo, que la visualización ha de ser útil y añadir valor. Debe, por así decirlo, permitirnos ver aspectos sustantivos que, de otro modo, no veríamos.&lt;/p&gt;
+
+&lt;p&gt;Pero no sólo el exceso de visualidad puede generar un déficit comunicativo. El afán analítico de algunos profesionales les puede llevar a prescindir del uso de estas técnicas. ¿Por qué emplear un diagrama de dispersión cuando podemos obtener un coeficiente numérico mucho más preciso? ¿Por qué trazar una curva sobre unos datos si puedo emplear una prueba de bondad de ajuste? En definitiva, ¿no es más precisa la aproximación analítica que el enfoque basado en la inspección visual? La generalización del software de cálculo científico hace que, en términos generales, para algunos análisis sea igual de costoso adoptar un enfoque que otro. Se podría decir que ambas aproximaciones son complementarias en la medida en que ofrecen informaciones distintas. También es cierto que el enfoque analítico puede ser, en algunos casos, más eficiente cuando la comunicación tiene lugar entre usuarios que pertenecen a una misma subcultura. No obstante, los analistas habitualmente trabajan en entornos multidisciplinarios razón por la cual no pueden presuponer el mismo background entre sus colegas. La audiencia, de nuevo, determina por qué en el contexto de una reunión interdepartamental puede ser útil y eficaz exponer conjuntamente una gráfica de series temporales con, por ejemplo, una tabla con números índice para abordar la evolución de las ventas.&lt;/p&gt;
+
+&lt;p&gt;Finalizaremos este artículo con una mención a la cuestión de la innovación. La búsqueda de la simplicidad  arriba citada no debería ir en detrimento de la innovación, pues de lo contrario se corre el riesgo de limitar el desarrollo de esta disciplina. La simplicidad puede llevarnos a recurrir constantemente a los mismos tipos de elemento visuales: diagramas de barras, diagramas de sector, histogramas, etc. No se trata de desmerecer estos recursos que han demostrado, cuando se los emplea adecuadamente, ser eficaces en términos comunicativos. La visualización de datos es una disciplina que presupone una cierta creatividad ya que muchas de sus producciones – piénsese, por ejemplo, en las infografías – tienen un componente artesanal y ad hoc. Un ejemplo de innovación lo constituye el tag cloud, también llamado word cloud, empleado típicamente como apoyo en el análisis textual para clasificar palabras según su frecuencia de aparición. De acuerdo con Manovich (2010), no sólo se trata de una innovación sino que se trata de una técnica que rompe con uno de los presupuestos básicos de la visualización de datos clásica: en el tag cloud no se produce un cambio de un sistema representacional dado a otro distinto. Las mismas palabras del texto analizado, en lugar de representarse a través de un diagrama de barra, se emplean directamente como metadatos. Esta es la razón por la que el autor acuña la expresión visualización directa para referirse al conjunto de técnicas en las que no se produce este proceso de traducción simbólica. El cambio en el tamaño de las palabras sería un cambio cuantitativo, pero no cualitativo como ocurre cuando desde un data set numérico generamos un histograma, por ejemplo.&lt;/p&gt;
+
+&lt;p&gt;A través de este artículo hemos querido aproximarnos a la visualización de datos exponiendo algunos de los elementos que entran en juego y articulándolos entre sí, mostrando algunas de las complejidades que aparecen cuando se contraponen algunos enfoques. Se trata, no obstante, de una mera aproximación en la que hemos privilegiado los conceptos de diseño y análisis. Otros temas igual de interesantes no han sido abordado. Algunos de ellos son los siguientes: la alfabetización visual, la importancia de la narratividad en el contexto de las infografías, la interactividad que ofrece la web, el reto de la visualización de datos en tiempo real a la luz del Big Data y de la realidad aumentada, etc. En cualquier caso, si la lectura de este artículo ha conseguido ofrecer una mirada general al fenómeno de la visualización de datos, se considerará logrado su propósito.&lt;/p&gt;
+
+&lt;h3 id=&quot;referencias&quot;&gt;Referencias:&lt;/h3&gt;
+
+&lt;p&gt;BBVA Innovation Center. (2016). Herramientas para la visualización de datos. Las claves en el análisis de datos. Serie Innovation Trends. Recuperado de: &lt;a href=&quot;https://www.bbva.com/wp-content/uploads/2017/10/ebook-cibbva-visualizacion_de_datos-es.pdf&quot;&gt;https://www.bbva.com/wp-content/uploads/2017/10/ebook-cibbva-visualizacion_de_datos-es.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Inicitaiva de Datos Abiertos del Gobierno de España (2016). Visualización de datos: Definición, tecnologías y herramientas. Recuperado de: &lt;a href=&quot;https://datos.gob.es/ca/documentacion/visualizacion-de-datos-definicion-tecnologia-y-herramientas&quot;&gt;https://datos.gob.es/ca/documentacion/visualizacion-de-datos-definicion-tecnologia-y-herramientas&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Manovich, Lev (2010). What is Visualization. Recuperado de: &lt;a href=&quot;http://manovich.net/content/04-projects/064-what-is-visualization/61_article_2010.pdf&quot;&gt;http://manovich.net/content/04-projects/064-what-is-visualization/61_article_2010.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Minguillon, J. (2016). Introducción a la visualización de datos. UOC (Universitat Oberta de Catalunya). Recuperado de: &lt;a href=&quot;http://openaccess.uoc.edu/webapps/o2/handle/10609/57624&quot;&gt;http://openaccess.uoc.edu/webapps/o2/handle/10609/57624&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Pascual, Víctor (2016). Buenas prácticas en visualización de datos. UOC (Universitat Oberta de Catalunya). Recuperado de: &lt;a href=&quot;http://openaccess.uoc.edu/webapps/o2/handle/10609/59025&quot;&gt;http://openaccess.uoc.edu/webapps/o2/handle/10609/59025&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Valero, J.L. (2014). La visualización de datos. Ámbitos.25. Recuperado de: &lt;a href=&quot;https://revistascientificas.us.es/index.php/Ambitos/article/view/9996/8774&quot;&gt;https://revistascientificas.us.es/index.php/Ambitos/article/view/9996/8774&lt;/a&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>Bilal Laouah Bakkali</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="artículos" />
+      
+        <category term="visualización de datos" />
+      
+        <category term="análisis" />
+      
+        <category term="diseño gráfico" />
+      
+        <category term="comunicación eficaz" />
+      
+
+      
+        <summary type="html">La visualización de datos es, sin duda, un tema de actualidad. Su implementación en áreas como la ciencia, la ingeniería, la medicina, la sociología, la política, el periodismo o la educación es motivo suficiente para dedicarle un análisis. Este artículo pretende ser una aproximación a la visualización de datos; a través del mismo, trataremos de dar una definición de esta disciplina en cuestión, establecer sus propósitos y señalar algunas de las inconsistencias o dificultades que aparecen cuando se contraponen los diferentes puntos de vista existentes en torno a esta materia.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
